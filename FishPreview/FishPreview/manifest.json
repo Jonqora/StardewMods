@@ -1,0 +1,10 @@
+﻿{
+  "Name": "Fish Preview",
+  "Author": "logofe",
+  "Version": "1.0.0",
+  "Description": "Displays fish species while catching if the species has been previously caught.",
+  "UniqueID": "logofe.fishpreview",
+  "EntryDll": "FishPreview.dll",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": []
+}
