@@ -1,2 +1,2 @@
-# StardewValleyMods
-Mods and content packs for Stardew Valley
+# Fish Preview
+A mod for Stardew Valley
