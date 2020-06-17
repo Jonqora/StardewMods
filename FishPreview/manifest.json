@@ -6,5 +6,5 @@
   "UniqueID": "Jonqora.FishPreview",
   "EntryDll": "FishPreview.dll",
   "MinimumApiVersion": "3.0.0",
-  "UpdateKeys": []
+  "UpdateKeys": [6303]
 }

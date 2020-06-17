@@ -25,7 +25,8 @@ namespace FishPreview
         private string textValue;
         private IList<string> displayOrder;
         private Vector2 textSize;
-        private int margin = 18;
+        private int margin = 18; 
+        private int spriteSize = 64;
         private float scale = 0.7f;
         private int boxwidth;
         private int boxheight;
@@ -39,7 +40,6 @@ namespace FishPreview
         {
             Config = Helper.ReadConfig<ModConfig>();
 
-            helper.Events.Input.ButtonPressed += this.OnButtonPressed;
             helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
             helper.Events.Display.MenuChanged += this.OnMenuChanged;
             helper.Events.Display.RenderedActiveMenu += this.OnRenderMenu;
@@ -49,25 +49,18 @@ namespace FishPreview
         /*********
         ** Private methods
         *********/
-        /// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
+        /// <summary>Raised after the game is launched, right before the first update tick.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event data.</param>
-        private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
-        {
-            // ignore if player hasn't loaded a save yet
-            if (!Context.IsWorldReady)
-                return;
-
-            // print button presses to the console window
-            // this.Monitor.Log($"{Game1.player.Name} pressed {e.Button}.", LogLevel.Debug);
-        }
-
         private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
         {
             // read the Config for display position and get list priority for displayOrder
             RefreshConfig();
         }
 
+        /// <summary>Raised after a game menu is opened, closed, or replaced.</summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event data.</param>
         private void OnMenuChanged(object sender, MenuChangedEventArgs e)
         {
             if (Game1.player == null || !Game1.player.IsLocalPlayer)
@@ -93,6 +86,9 @@ namespace FishPreview
             }
         }
 
+        /// <summary>When a menu is open, raised after that menu is drawn to the sprite batch but before it's rendered to the screen.</summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event data.</param>
         private void OnRenderMenu(object sender, RenderedActiveMenuEventArgs e)
         {
             if (Game1.player == null || !Game1.player.IsLocalPlayer)
@@ -243,19 +239,19 @@ namespace FishPreview
         }
 
         private void DrawAtCoordinates(int x, int y)
-        {
+        {   
             // draw box of height and width at location
             IClickableMenu.drawTextureBox(Game1.spriteBatch, x, y, boxwidth, boxheight, Color.White);
 
             // if showFish, center the fish x
             if (showFish)
             {
-                fishSprite.drawInMenu(Game1.spriteBatch, new Vector2(x + (boxwidth / 2) - 32, y + 18), 1.0f, 1.0f, 1.0f, StackDrawType.Hide);
+                fishSprite.drawInMenu(Game1.spriteBatch, new Vector2(x + (boxwidth / 2) - (spriteSize / 2), y + margin), 1.0f, 1.0f, 1.0f, StackDrawType.Hide);
                     
                 // if showFish and showText, center the text x below the fish
                 if (showText)
                 {
-                    Game1.spriteBatch.DrawString(Game1.dialogueFont, textValue, new Vector2(x + (boxwidth / 2) - ((int)textSize.X / 2), y + 82), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    Game1.spriteBatch.DrawString(Game1.dialogueFont, textValue, new Vector2(x + (boxwidth / 2) - ((int)textSize.X / 2), y + spriteSize + margin), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                 }
             }
             // else (if not showFish), center the text x&y
