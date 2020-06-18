@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishPreview", "FishPreview\FishPreview.csproj", "{8FB478F1-8357-40C8-8DC8-0D03E3EC316E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowItemQuality", "ShowItemQuality\ShowItemQuality.csproj", "{5DCA400F-1B78-4404-A500-2C7584DC33C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{8FB478F1-8357-40C8-8DC8-0D03E3EC316E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8FB478F1-8357-40C8-8DC8-0D03E3EC316E}.Release|x86.ActiveCfg = Release|x86
 		{8FB478F1-8357-40C8-8DC8-0D03E3EC316E}.Release|x86.Build.0 = Release|x86
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Debug|x86.Build.0 = Debug|Any CPU
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Release|x86.ActiveCfg = Release|Any CPU
+		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
