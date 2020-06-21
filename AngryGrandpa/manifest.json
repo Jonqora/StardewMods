@@ -1,12 +1,10 @@
 {
-    "Name": "Grandpa",
-    "Author": "logofe",
+    "Name": "Angry Grandpa",
+    "Author": "Jonqora",
     "Version": "1.0.0",
     "Description": "Restores the old, harsher dialogue for grandpa's evaluation in year 3.",
-    "UniqueID": "logofe.AngryGrandpa",
+    "UniqueID": "Jonqora.AngryGrandpa",
+    "EntryDll": "AngryGrandpa.dll",
     "MinimumApiVersion": "3.0.0",
-    "UpdateKeys": [],
-    "ContentPackFor": {
-      "UniqueID": "Pathoschild.ContentPatcher"
-    }
+    "UpdateKeys": ["Nexus:6324"]
   }
