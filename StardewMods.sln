@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishPreview", "FishPreview\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowItemQuality", "ShowItemQuality\ShowItemQuality.csproj", "{5DCA400F-1B78-4404-A500-2C7584DC33C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngryGrandpa", "AngryGrandpa\AngryGrandpa.csproj", "{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Release|x86.ActiveCfg = Release|Any CPU
 		{5DCA400F-1B78-4404-A500-2C7584DC33C7}.Release|x86.Build.0 = Release|Any CPU
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Debug|x86.ActiveCfg = Debug|x86
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Debug|x86.Build.0 = Debug|x86
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Release|x86.ActiveCfg = Release|Any CPU
+		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

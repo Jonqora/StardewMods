@@ -1,10 +1,20 @@
 {
     "Name": "Angry Grandpa",
     "Author": "Jonqora",
-    "Version": "1.0.0",
+    "Version": "0.1.1",
     "Description": "Restores the old, harsher dialogue for grandpa's evaluation in year 3.",
     "UniqueID": "Jonqora.AngryGrandpa",
     "EntryDll": "AngryGrandpa.dll",
     "MinimumApiVersion": "3.0.0",
-    "UpdateKeys": ["Nexus:6324"]
+    "UpdateKeys": ["Nexus:6324"],
+    "Dependencies": [
+        {
+            "UniqueID": "Hana.GenderNeutralityMod",
+            "IsRequired": false
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
   }
