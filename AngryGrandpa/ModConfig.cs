@@ -11,7 +11,7 @@ namespace AngryGrandpa
 
         internal static ModConfig Instance { get; private set; }
 
-        // Fields for config values
+        // Properties and Fields for config values
         public string GrandpaDialogue 
         { 
             get { return _grandpaDialogue; } 
@@ -20,37 +20,43 @@ namespace AngryGrandpa
                 if (GrandpaDialogueChoices.Contains(value)) _grandpaDialogue = value;
                 else
                 {
-                    string fallback = GrandpaDialogueChoices[0]; // Default to "Original"
+                    string fallback = GrandpaDialogueDefault;
                     _grandpaDialogue = fallback;
-                    Monitor.Log($"Invalid config value \"{value}\" for ScoringSystem. \n                Accepted values are [{string.Join(", ", GrandpaDialogueChoices)}]. \n                Config has been reset to default value \"{fallback}\".", LogLevel.Warn);
+                    Monitor.Log($"Invalid config value \"{value}\" for GrandpaDialogue.\n" + 
+                        $"                Accepted values are [{string.Join(", ", GrandpaDialogueChoices)}].\n" + 
+                        $"                GrandpaDialogue has been reset to default value \"{fallback}\"", LogLevel.Warn);
                 }
             } 
         }
-        internal static string[] GrandpaDialogueChoices = new string[] { "Original", "Vanilla", "Nuclear" };
-        private string _grandpaDialogue;
+        private static readonly string[] GrandpaDialogueChoices = new string[] { "Original", "Vanilla", "Nuclear" };
+        private static readonly string GrandpaDialogueDefault = GrandpaDialogueChoices[0]; // Default to "Original"
+        private string _grandpaDialogue = GrandpaDialogueDefault;
 
-        public bool? GenderNeutrality
+        public bool GenderNeutrality
         {
-            get { Monitor.Log("Ran GenderNeutrality.get()", LogLevel.Debug); return _genderNeutrality; }
-            set
+            get 
             {
-                Monitor.Log("Ran GenderNeutrality.set()", LogLevel.Debug);
-                if (value == null)
+                if (_genderNeutrality == null) // Determine the appropriate default setting, set it, and then return it
                 {
                     Monitor.Log("Looking for Hana.GenderNeutralityMod", LogLevel.Debug);
-                    if (Helper.ModRegistry.IsLoaded("Hana.GenderNeutralityMod"))
+                    bool hasMod = Helper.ModRegistry.IsLoaded("Hana.GenderNeutralityMod");
+                    if (hasMod)
                     {
-                        _genderNeutrality = true;
-                        Monitor.Log($"GenderNeutralityMod detected. Initializing AngryGrandpa gender neutrality config to {_genderNeutrality}", LogLevel.Info);
+                        Monitor.Log($"GenderNeutralityMod detected. Setting up AngryGrandpa config with GenderNeutrality: {hasMod.ToString().ToLower()}", LogLevel.Info);
                     }
-                    else { _genderNeutrality = false; Monitor.Log($"GenderNeutralityMod NOT detected.", LogLevel.Info); }
+                    else
+                    {
+                        Monitor.Log($"GenderNeutralityMod not detected. Setting up AngryGrandpa config with GenderNeutrality: {hasMod.ToString().ToLower()}", LogLevel.Info);
+                    }
+                    _genderNeutrality = hasMod; // set default
                 }
-                else { _genderNeutrality = value ?? false; }
+                return _genderNeutrality.GetValueOrDefault(); 
             }
+            set { _genderNeutrality = value; }
         }
-        private bool _genderNeutrality;
+        private bool? _genderNeutrality = null; // Initialized with null before determining which default setting to use
 
-        public bool ShowPointsTotal { get; set; }
+        public bool ShowPointsTotal { get; set; } = true;
 
         public string ScoringSystem
         {
@@ -60,14 +66,17 @@ namespace AngryGrandpa
                 if (ScoringSystemChoices.Contains(value)) _scoringSystem = value;
                 else
                 {
-                    string fallback = ScoringSystemChoices[1]; // Default to "Vanilla"
+                    string fallback = ScoringSystemDefault;
                     _scoringSystem = fallback;
-                    Monitor.Log($"Invalid config value \"{value}\" for ScoringSystem. \n                Accepted values are [{string.Join(", ", ScoringSystemChoices)}]. \n                Config has been reset to default value \"{fallback}\".", LogLevel.Warn);
+                    Monitor.Log($"Invalid config value \"{value}\" for ScoringSystem.\n" + 
+                        $"                Accepted values are [{string.Join(", ", ScoringSystemChoices)}].\n" + 
+                        $"                ScoringSystem has been reset to default value \"{fallback}\"", LogLevel.Warn);
                 }
             }
         }
-        internal static string[] ScoringSystemChoices = new string[] { "Original", "Vanilla", "Hard", "Expert" };
-        private string _scoringSystem;
+        private static readonly string[] ScoringSystemChoices = new string[] { "Original", "Vanilla", "Hard", "Expert" };
+        private static readonly string ScoringSystemDefault = ScoringSystemChoices[1]; // Default to "Vanilla"
+        private string _scoringSystem = ScoringSystemDefault;
 
         public int YearsBeforeEvaluation 
         {
@@ -77,46 +86,29 @@ namespace AngryGrandpa
                 else
                 {
                     _yearsBeforeEvaluation = 2; // Default to 2 years
-                    Monitor.Log($"Invalid config value [{value}] for YearsBeforeEvaluation. \n                You must enter a non-negative integer. \n                Config has been reset to default value [2].", LogLevel.Warn);
+                    Monitor.Log($"Invalid config value [{value}] for YearsBeforeEvaluation.\n" + 
+                        $"                You must enter a non-negative integer.\n" + 
+                        $"                YearsBeforeEvaluation has been reset to default value [2].", LogLevel.Warn);
                 }
             }
         }
-        private int _yearsBeforeEvaluation;
+        private int _yearsBeforeEvaluation = 2;
 
-        public bool BonusRewards { get; set; }
-
-        // Custom constructor, set defaults here
-        public ModConfig()
-        {
-            this.GrandpaDialogue = "Original";
-            this.GenderNeutrality = null; // Initialize with null so we can intercept and detect the appropriate default settings
-            this.ShowPointsTotal = true;
-            this.ScoringSystem = "Vanilla";
-            this.YearsBeforeEvaluation = 2;
-            this.BonusRewards = true;
-
-            Monitor.Log("Ran ModConfig()", LogLevel.Debug);
-
-            /**if (this.GenderNeutrality ?? false)
-            {
-                Monitor.Log($"GenderNeutralityMod detected. Initializing AngryGrandpa gender neutrality config to {this.GenderNeutrality}", LogLevel.Info);
-            }**/
-        }
+        public bool BonusRewards { get; set; } = true;
 
         // Generic Mod Config Menu helper functions
         internal static void Load() 
         { 
-            Instance = Helper.ReadConfig<ModConfig>(); 
-            // Check for GNM - if null, do the log thing and set
+            Instance = Helper.ReadConfig<ModConfig>();
         }
         internal static void Save()
         {
-            Helper.WriteConfig(Instance); 
+            Helper.WriteConfig(Instance);
+            ModConfig.Print();
         }
         internal static void Reset()
         {
             Instance = new ModConfig();
-            // Set GN config to default and if GNM present, do the log thing
         }
 
         internal static void SetUpMenu()
@@ -147,7 +139,7 @@ namespace AngryGrandpa
             api.RegisterSimpleOption(manifest,
                     "Use gender-neutral dialogue",
                     "Removes references to player gender from dialogue strings",
-                    () => Instance.GenderNeutrality ?? false,
+                    () => Instance.GenderNeutrality,
                     (bool val) => Instance.GenderNeutrality = val);
 
             api.RegisterLabel(manifest, "", "");
@@ -172,8 +164,8 @@ namespace AngryGrandpa
                     (int val) => Instance.YearsBeforeEvaluation = val);
 
             api.RegisterSimpleOption(manifest,
-                    "Display points total",
-                    "Shows your raw score during the evaluation",
+                    "Show points total",
+                    "Displays your raw score during the evaluation",
                     () => Instance.ShowPointsTotal,
                     (bool val) => Instance.ShowPointsTotal = val);
 
@@ -195,12 +187,12 @@ namespace AngryGrandpa
                 $@"====================
                 ANGRY GRANDPA CONFIG
                 GrandpaDialogue: ""{Instance.GrandpaDialogue}""
-                GenderNeutrality: {Instance.GenderNeutrality}
-                ShowPointsTotal: {Instance.ShowPointsTotal}
+                GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}
+                ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}
                 ScoringSystem: ""{Instance.ScoringSystem}""
                 YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}
-                BonusRewards: {Instance.BonusRewards}
-                ====================", LogLevel.Debug);
+                BonusRewards: {Instance.BonusRewards.ToString().ToLower()}
+                ====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
         }
     }
 }

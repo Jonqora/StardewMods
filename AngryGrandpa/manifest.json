@@ -1,7 +1,7 @@
 {
     "Name": "Angry Grandpa",
     "Author": "Jonqora",
-    "Version": "0.1.1",
+    "Version": "0.1.2",
     "Description": "Restores the old, harsher dialogue for grandpa's evaluation in year 3.",
     "UniqueID": "Jonqora.AngryGrandpa",
     "EntryDll": "AngryGrandpa.dll",
