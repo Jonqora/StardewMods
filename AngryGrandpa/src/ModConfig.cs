@@ -11,7 +11,7 @@ namespace AngryGrandpa
 
         internal static ModConfig Instance { get; private set; }
 
-        // Properties and Fields for config values
+        #region Properties and Fields for config values
         public string GrandpaDialogue 
         { 
             get { return _grandpaDialogue; } 
@@ -56,8 +56,6 @@ namespace AngryGrandpa
         }
         private bool? _genderNeutrality = null; // Initialized with null before determining which default setting to use
 
-        public bool ShowPointsTotal { get; set; } = true;
-
         public string ScoringSystem
         {
             get { return _scoringSystem; }
@@ -88,15 +86,71 @@ namespace AngryGrandpa
                     _yearsBeforeEvaluation = 2; // Default to 2 years
                     Monitor.Log($"Invalid config value [{value}] for YearsBeforeEvaluation.\n" + 
                         $"                You must enter a non-negative integer.\n" + 
-                        $"                YearsBeforeEvaluation has been reset to default value [2].", LogLevel.Warn);
+                        $"                YearsBeforeEvaluation has been reset to default value [{_yearsBeforeEvaluation}].", LogLevel.Warn);
                 }
             }
         }
         private int _yearsBeforeEvaluation = 2;
 
+        public bool ShowPointsTotal { get; set; } = true;
+
         public bool BonusRewards { get; set; } = true;
 
-        // Generic Mod Config Menu helper functions
+        private int[] CustomCandleScores // Change this to public when I update to allow custom configs
+        { 
+            get { return _customCandleScores; }
+            set 
+            { 
+                if ( !(value.Length == 4 && value[0] == 0) ) // Wrong length or first number not zero
+                {
+                    Monitor.Log($"Invalid config entry [{value}] for CustomCandleScores.\n" +
+                        $"                You must enter a list of four numbers with the first number equal to 0.\n" +
+                        $"                CustomCandleScores has been reset.", LogLevel.Warn);
+                    return;
+                }
+                else if ( !(value[0] <= value[1] && value[1] <= value[2] && value[2] <= value[3]) ) // Not in ascending order
+                {
+                    Monitor.Log($"Invalid config entry [{value}] for CustomCandleScores.\n" +
+                        $"                You must enter a list of four numbers in increasing order.\n" +
+                        $"                CustomCandleScores has been reset.", LogLevel.Warn);
+                    return;
+                }
+                _customCandleScores = value;
+            }
+        }
+        private int[] _customCandleScores = new int[4] { 0, 4, 8, 12 };
+        #endregion
+
+        #region Utility functions to access config data
+        internal int GetScoreForCandles(int candles)
+        {
+            if (candles < 1 || candles > 4)
+            {
+                throw new System.ArgumentOutOfRangeException("candles", candles, "candles must be an integer between 1 and 4 inclusive.");
+            }
+            int[] candleScores;
+            if (ScoringSystem == "Original" || ScoringSystem == "Vanilla") 
+            {
+                candleScores = new int[4] { 0, 4, 8, 12 }; 
+            }
+            else if (ScoringSystem == "Hard") 
+            {
+                candleScores = new int[4] { 0, 10, 14, 18 }; 
+            }
+            else if (ScoringSystem == "Expert")
+            {
+                candleScores = new int[4] { 0, 15, 18, 21 };
+            }
+            else if (ScoringSystem == "Custom")
+            {
+                candleScores = CustomCandleScores;
+            }
+            else { throw new System.InvalidOperationException("ModConfig.ScoringSystem has an unaccounted-for value."); }
+            return candleScores[candles - 1];
+        }
+        #endregion
+
+        #region Generic Mod Config Menu helper functions
         internal static void Load() 
         { 
             Instance = Helper.ReadConfig<ModConfig>();
@@ -180,6 +234,7 @@ namespace AngryGrandpa
 
             Monitor.Log("Added Angry Grandpa Config to GMCM", LogLevel.Info);
         }
+        #endregion
 
         internal static void Print()
         {

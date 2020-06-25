@@ -3,7 +3,7 @@
 
 In early versions of Stardew Valley (pre-1.05), grandpa's evaluation was much tougher. There were fewer ways to earn points (13 total), and 12 points were required to obtain 4 candles. If you disappointed grandpa, his original dialogue was very harsh.
 
-![Original 1-candle dialogue](images/original_dialogue.png)
+![Original 1-candle dialogue](promo/original_dialogue.png)
 
 **Angry Grandpa** mod gives the ability to restore the original dialogue or use new dialogue options! You can see your actual points total during evaluations, customize the scoring system used, reschedule grandpa's visit to happen earlier or later in the game, and even earn new rewards for achieving 1, 2, or 3 candles.
 

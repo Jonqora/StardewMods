@@ -4,6 +4,9 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
+using StardewValley.Locations;
+using Harmony;
+using Netcode;
 
 namespace AngryGrandpa
 {
@@ -11,7 +14,8 @@ namespace AngryGrandpa
     public class ModEntry : Mod
     {
         internal static ModEntry Instance { get; private set; }
-        protected static ModConfig Config => ModConfig.Instance;
+        internal HarmonyInstance Harmony { get; private set; }
+        internal protected static ModConfig Config => ModConfig.Instance;
 
 
         /*********
@@ -32,16 +36,21 @@ namespace AngryGrandpa
             Instance = this;
             ModConfig.Load();
 
+            // Apply Harmony patches.
+            harmony = HarmonyInstance.Create(ModManifest.UniqueID);
+            UtilityPatches.Apply();
+
             // Add console commands.
-            // Helper.ConsoleCommands.Add("command_string", "Description of command function.", cmdFunctionName);
-            // reset_evaluation? print_config? evaluation_points?
+            //Helper.ConsoleCommands.Add("command_string", "Description of command function.", cmdFunctionName);
+            //reset_evaluation? print_config? evaluation_points?
 
-            // Set up helper access
-            //ModMonitor = this.Monitor;
-            //ModHelper = this.Helper; 
-
+            // Listen for game events. (Make these into an event handler thing?)
             helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
             helper.Events.Input.ButtonPressed += this.OnButtonPressed;
+
+            // Set up asset loaders/editors.
+            //Helper.Content.AssetEditors.Add(new EventsEditor());
+
         }
 
 
@@ -60,14 +69,11 @@ namespace AngryGrandpa
         private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
         {
             if (e.Button != SButton.O)
-            return;
+                return;
 
-            PrintConfig(); // Print config values to console when "O" key is pressed.
+            ModConfig.Print(); // Print config values to console when "O" key is pressed.
         }
 
-        public void PrintConfig()
-        {
-            ModConfig.Print();
-        }
+        NetInt test1 = new NetInt(-3);
     }
 }
