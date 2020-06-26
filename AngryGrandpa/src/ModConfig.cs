@@ -23,8 +23,8 @@ namespace AngryGrandpa
                     string fallback = GrandpaDialogueDefault;
                     _grandpaDialogue = fallback;
                     Monitor.Log($"Invalid config value \"{value}\" for GrandpaDialogue.\n" + 
-                        $"                Accepted values are [{string.Join(", ", GrandpaDialogueChoices)}].\n" + 
-                        $"                GrandpaDialogue has been reset to default value \"{fallback}\"", LogLevel.Warn);
+                        $"Accepted values are [{string.Join(", ", GrandpaDialogueChoices)}].\n" + 
+                        $"GrandpaDialogue has been reset to default value \"{fallback}\"", LogLevel.Warn);
                 }
             } 
         }
@@ -67,8 +67,8 @@ namespace AngryGrandpa
                     string fallback = ScoringSystemDefault;
                     _scoringSystem = fallback;
                     Monitor.Log($"Invalid config value \"{value}\" for ScoringSystem.\n" + 
-                        $"                Accepted values are [{string.Join(", ", ScoringSystemChoices)}].\n" + 
-                        $"                ScoringSystem has been reset to default value \"{fallback}\"", LogLevel.Warn);
+                        $"Accepted values are [{string.Join(", ", ScoringSystemChoices)}].\n" + 
+                        $"ScoringSystem has been reset to default value \"{fallback}\"", LogLevel.Warn);
                 }
             }
         }
@@ -85,8 +85,8 @@ namespace AngryGrandpa
                 {
                     _yearsBeforeEvaluation = 2; // Default to 2 years
                     Monitor.Log($"Invalid config value [{value}] for YearsBeforeEvaluation.\n" + 
-                        $"                You must enter a non-negative integer.\n" + 
-                        $"                YearsBeforeEvaluation has been reset to default value [{_yearsBeforeEvaluation}].", LogLevel.Warn);
+                        $"You must enter a non-negative integer.\n" + 
+                        $"YearsBeforeEvaluation has been reset to default value [{_yearsBeforeEvaluation}].", LogLevel.Warn);
                 }
             }
         }
@@ -104,15 +104,15 @@ namespace AngryGrandpa
                 if ( !(value.Length == 4 && value[0] == 0) ) // Wrong length or first number not zero
                 {
                     Monitor.Log($"Invalid config entry [{value}] for CustomCandleScores.\n" +
-                        $"                You must enter a list of four numbers with the first number equal to 0.\n" +
-                        $"                CustomCandleScores has been reset.", LogLevel.Warn);
+                        $"You must enter a list of four numbers with the first number equal to 0.\n" +
+                        $"CustomCandleScores has been reset.", LogLevel.Warn);
                     return;
                 }
                 else if ( !(value[0] <= value[1] && value[1] <= value[2] && value[2] <= value[3]) ) // Not in ascending order
                 {
                     Monitor.Log($"Invalid config entry [{value}] for CustomCandleScores.\n" +
-                        $"                You must enter a list of four numbers in increasing order.\n" +
-                        $"                CustomCandleScores has been reset.", LogLevel.Warn);
+                        $"You must enter a list of four numbers in increasing order.\n" +
+                        $"CustomCandleScores has been reset.", LogLevel.Warn);
                     return;
                 }
                 _customCandleScores = value;
@@ -248,15 +248,15 @@ namespace AngryGrandpa
         internal static void Print()
         {
             Monitor.Log(
-                $@"====================
-                ANGRY GRANDPA CONFIG
-                GrandpaDialogue: ""{Instance.GrandpaDialogue}""
-                GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}
-                ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}
-                ScoringSystem: ""{Instance.ScoringSystem}""
-                YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}
-                BonusRewards: {Instance.BonusRewards.ToString().ToLower()}
-                ====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
+                $"ANGRY GRANDPA CONFIG" +
+                $"====================" +
+                $"GrandpaDialogue: \"{Instance.GrandpaDialogue}\"" +
+                $"GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}" +
+                $"ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}" +
+                $"ScoringSystem: \"{Instance.ScoringSystem}\"" +
+                $"YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}" +
+                $"BonusRewards: {Instance.BonusRewards.ToString().ToLower()}" +
+                $"====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
         }
     }
 }

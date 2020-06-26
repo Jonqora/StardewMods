@@ -45,13 +45,14 @@ namespace AngryGrandpa
 				{
 					int grandpaScore = Utility.getGrandpaScore();
 					int maxScore = Config.GetMaxScore();
+					string displayText = $"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors";
 					location.temporarySprites.Add(new TemporaryAnimatedSprite()
 					{
-						text = "Grandpa's Score: " + (object)grandpaScore + " of " + (object)maxScore + " Great Honors",
+						text = displayText,
 						local = true,
-						position = new Vector2((float)(Game1.graphics.GraphicsDevice.Viewport.Width / 2) - Game1.dialogueFont.MeasureString("Grandpa's Evaluation: " + (object)grandpaScore + " out of " + (object)maxScore + " Great Honors").X / 2f, (float)(Game1.tileSize / 4)),
+						position = new Vector2((float)(Game1.viewport.Width / 2) - Game1.dialogueFont.MeasureString(displayText).X / 2f, (float)(Game1.tileSize / 2)), // was /4,  
 						color = Color.White,
-						interval = 15000f,
+						interval = 15000f, // Lasts for 15 seconds
 						layerDepth = 1f,
 						animationLength = 1,
 						initialParentTileIndex = 1,
