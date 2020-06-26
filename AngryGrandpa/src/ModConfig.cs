@@ -148,6 +148,15 @@ namespace AngryGrandpa
             else { throw new System.InvalidOperationException("ModConfig.ScoringSystem has an unaccounted-for value."); }
             return candleScores[candles - 1];
         }
+
+        internal int GetMaxScore()
+        {
+            if (ScoringSystem == "Original")
+            {
+                return 13;
+            }
+            else return 21;
+        }
         #endregion
 
         #region Generic Mod Config Menu helper functions

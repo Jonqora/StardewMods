@@ -37,8 +37,9 @@ namespace AngryGrandpa
             ModConfig.Load();
 
             // Apply Harmony patches.
-            harmony = HarmonyInstance.Create(ModManifest.UniqueID);
+            Harmony = HarmonyInstance.Create(ModManifest.UniqueID);
             UtilityPatches.Apply();
+            EventPatches.Apply();
 
             // Add console commands.
             //Helper.ConsoleCommands.Add("command_string", "Description of command function.", cmdFunctionName);
@@ -73,7 +74,5 @@ namespace AngryGrandpa
 
             ModConfig.Print(); // Print config values to console when "O" key is pressed.
         }
-
-        NetInt test1 = new NetInt(-3);
     }
 }
