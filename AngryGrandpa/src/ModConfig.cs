@@ -248,14 +248,14 @@ namespace AngryGrandpa
         internal static void Print()
         {
             Monitor.Log(
-                $"ANGRY GRANDPA CONFIG" +
-                $"====================" +
-                $"GrandpaDialogue: \"{Instance.GrandpaDialogue}\"" +
-                $"GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}" +
-                $"ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}" +
-                $"ScoringSystem: \"{Instance.ScoringSystem}\"" +
-                $"YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}" +
-                $"BonusRewards: {Instance.BonusRewards.ToString().ToLower()}" +
+                $"CONFIG\n" +
+                $"====================\n" +
+                $"GrandpaDialogue: \"{Instance.GrandpaDialogue}\"\n" +
+                $"GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}\n" +
+                $"ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}\n" +
+                $"ScoringSystem: \"{Instance.ScoringSystem}\"\n" +
+                $"YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}\n" +
+                $"BonusRewards: {Instance.BonusRewards.ToString().ToLower()}\n" +
                 $"====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
         }
     }

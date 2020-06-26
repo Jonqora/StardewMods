@@ -70,6 +70,7 @@
     <Compile Include="src\ModConfig.cs" />
     <Compile Include="src\ModEntry.cs" />
     <Compile Include="src\Patches\EventPatches.cs" />
+    <Compile Include="src\Patches\FarmPatches.cs" />
     <Compile Include="src\Patches\UtilityPatches.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -40,6 +40,7 @@ namespace AngryGrandpa
             Harmony = HarmonyInstance.Create(ModManifest.UniqueID);
             UtilityPatches.Apply();
             EventPatches.Apply();
+            FarmPatches.Apply();
 
             // Add console commands.
             addConsoleCommands();
@@ -127,6 +128,8 @@ namespace AngryGrandpa
                 Game1.player.eventsSeen.Remove(321777); // Evaluation request
                 Game1.getFarm().hasSeenGrandpaNote = false; // Seen the note on the shrine
                 Game1.player.mailReceived.Remove("grandpaPerfect"); // Received the statue of perfection
+                //Remove the candles and candle sprites???
+                //Reset grandpaScore?
 
                 Monitor.Log($"Reset event flags successfully.", LogLevel.Info);
             }
