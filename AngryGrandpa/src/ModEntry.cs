@@ -124,14 +124,21 @@ namespace AngryGrandpa
                 }
                 Game1.player.eventsSeen.Remove(558291); // Initial evaluation
                 Game1.player.eventsSeen.Remove(558292); // Re-evaluation
-                Game1.player.eventsSeen.Remove(2146991); // Candle lighting
+                // Game1.player.eventsSeen.Remove(2146991); // Candle lighting (this is now removed by command_grandpaEvaluation postfix)
                 Game1.player.eventsSeen.Remove(321777); // Evaluation request
                 Game1.getFarm().hasSeenGrandpaNote = false; // Seen the note on the shrine
                 Game1.player.mailReceived.Remove("grandpaPerfect"); // Received the statue of perfection
-                //Remove the candles and candle sprites???
-                //Reset grandpaScore?
+                Game1.getFarm().grandpaScore.Value = 0; // Reset grandpaScore
+                Game1.getFarm().removeTemporarySpritesWithIDLocal(6666f); // Remove candles. Does it remove existing TemporaryAnimatedSprites?
+                
+                // Remove flags added by this mod
+                Game1.player.mailReceived.Remove("6324grandpaNoteMail"); // Mail entry
+                Game1.player.mailReceived.Remove("6324reward1candle");
+                Game1.player.mailReceived.Remove("6324reward2candles");
+                Game1.player.mailReceived.Remove("6324reward3candles");
 
-                Monitor.Log($"Reset event flags successfully.", LogLevel.Info);
+
+                Monitor.Log($"Reset grandpaScore and associated event and mail flags.", LogLevel.Info);
             }
             catch (Exception ex)
             {

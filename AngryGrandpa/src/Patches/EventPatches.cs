@@ -41,6 +41,7 @@ namespace AngryGrandpa
 		{
 			try
 			{
+				Game1.player.eventsSeen.Remove(2146991); // Extra removal needed for initial evaluation after a reset command
 				if (Config.ShowPointsTotal)
 				{
 					int grandpaScore = Utility.getGrandpaScore();

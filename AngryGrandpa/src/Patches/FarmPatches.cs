@@ -54,16 +54,16 @@ namespace AngryGrandpa
                             __result = true;
                             return false; // Alter __result, don't run original code.
                         }
-                        if (Game1.year >= 3 && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore > 0 && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore < 4)
+                        if (Game1.year >= (Config.YearsBeforeEvaluation + 1) && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore > 0) // && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore < 4) // Allow endless re-evaluations
                         {
-                            if (who.ActiveObject != null && (int)(NetFieldBase<int, NetInt>)who.ActiveObject.parentSheetIndex == 72 && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore < 4)
+                            if (who.ActiveObject != null && (int)(NetFieldBase<int, NetInt>)who.ActiveObject.parentSheetIndex == 72) // && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore < 4) // Allow endless re-evaluations
                             {
                                 who.reduceActiveItemByOne();
                                 __instance.playSound("stoneStep", NetAudio.SoundContext.Default);
                                 __instance.playSound("fireball", NetAudio.SoundContext.Default);
                                 DelayedAction.playSoundAfterDelay("yoba", 800, (GameLocation)__instance, -1);
                                 DelayedAction.showDialogueAfterDelay(Game1.content.LoadString("Strings\\Locations:Farm_GrandpaShrine_PlaceDiamond"), 1200);
-                                // Game1.multiplayer.broadcastGrandpaReevaluation();
+                                // Game1.multiplayer.broadcastGrandpaReevaluation(); // Re-implemented below
                                 IReflectedField<Multiplayer> mp = Helper.Reflection.GetField<Multiplayer>(typeof(Game1), "multiplayer");
                                 Helper.Reflection.GetMethod(mp.GetValue(), "broadcastGrandpaReevaluation").Invoke();
                                 Game1.player.freezePause = 1200;
@@ -78,14 +78,36 @@ namespace AngryGrandpa
                             }
                             break;
                         }
+                        // Give new 1-candle reward (Ancient seed artifact)
+                        if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 1 && !Game1.player.mailReceived.Contains("6324reward1candle") )
+                        {
+                            who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 114, 1), new ItemGrabMenu.behaviorOnItemSelect(grandpa1CandleCallback));
+                            __result = true;
+                            return false; // Alter __result, don't run original code.
+                        }
+                        // Give new 2-candle reward (Dinosaur egg)
+                        if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 2 && !Game1.player.mailReceived.Contains("6324reward2candles") )
+                        {
+                            who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 107, 1), new ItemGrabMenu.behaviorOnItemSelect(grandpa2CandleCallback));
+                            __result = true;
+                            return false; // Alter __result, don't run original code.
+                        }
+                        // Give new 3-candle reward (Prismatic shard)
+                        if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 3 && !Game1.player.mailReceived.Contains("6324reward3candles") )
+                        {
+                            who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 74, 1), new ItemGrabMenu.behaviorOnItemSelect(grandpa3CandleCallback));
+                            __result = true;
+                            return false; // Alter __result, don't run original code.
+                        }
+                        // Give 4-candle reward (Statue of Perfection)
                         if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 4 && !Utility.doesItemWithThisIndexExistAnywhere(160, true))
                         {
                             who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 160, false), new ItemGrabMenu.behaviorOnItemSelect(__instance.grandpaStatueCallback));
                             __result = true;
                             return false; // Alter __result, don't run original code.
                         }
-                        if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore == 0 && Game1.year >= 3)
-                        {
+                        if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore == 0 && Game1.year >= (Config.YearsBeforeEvaluation + 1) )
+                        { // Uh-oh, somehow an evaluation is needed. Request one for free.
                             Game1.player.eventsSeen.Remove(558292);
                             if (!Game1.player.eventsSeen.Contains(321777))
                             {
@@ -98,14 +120,12 @@ namespace AngryGrandpa
                     default:
                         return true; // Run original code if not one of the shrine tiles
                 }
-                // return base.checkAction(tileLocation, viewport, who) || Game1.didPlayerJustRightClick(true) && __instance.CheckInspectAnimal(rect, who);
+                // return base.checkAction(tileLocation, viewport, who) || Game1.didPlayerJustRightClick(true) && __instance.CheckInspectAnimal(rect, who); // Re-implemented below.
                 var baseMethod = typeof(BuildableGameLocation).GetMethod("checkAction");
-                //var baseMethod = Helper.Reflection.GetMethod(typeof(BuildableGameLocation), "checkAction").MethodInfo; // PICK ONE.
                 var ftn = baseMethod.MethodHandle.GetFunctionPointer();
                 var baseCheckAction = (Func<Location, xTile.Dimensions.Rectangle, Farmer, bool>)Activator.CreateInstance(
                     typeof(Func<Location, xTile.Dimensions.Rectangle, Farmer, bool>), __instance, ftn);
                 __result = baseCheckAction(tileLocation, viewport, who) || (Game1.didPlayerJustRightClick(true) && __instance.CheckInspectAnimal(rect, who));
-                //__result = Helper.Reflection.GetMethod(typeof(BuildableGameLocation), "checkAction").Invoke<bool>(__instance, new object[] { tileLocation, viewport, who }) || (Game1.didPlayerJustRightClick(true) && __instance.CheckInspectAnimal(rect, who));
                 return false; // Alter __result, don't run original code.
             }
 			catch (Exception ex)
@@ -115,5 +135,35 @@ namespace AngryGrandpa
                 return true; // Run original code
 			}
 		}
-	}
+
+        private static void grandpa1CandleCallback(Item item, Farmer who)
+        {
+            if (item == null 
+                || !(item is Object) 
+                || ( (bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 114 ) 
+                || who == null)
+                return;
+            who.mailReceived.Add("6324reward1candle");
+        }
+
+        private static void grandpa2CandleCallback(Item item, Farmer who)
+        {
+            if (item == null
+                || !(item is Object)
+                || ( (bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 107 )
+                || who == null)
+                return;
+            who.mailReceived.Add("6324reward2candles");
+        }
+
+        private static void grandpa3CandleCallback(Item item, Farmer who)
+        {
+            if (item == null
+                || !(item is Object)
+                || ( (bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 74 )
+                || who == null)
+                return;
+            who.mailReceived.Add("6324reward3candles");
+        }
+    }
 }
