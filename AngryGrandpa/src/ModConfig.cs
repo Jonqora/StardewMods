@@ -168,6 +168,12 @@ namespace AngryGrandpa
         {
             Helper.WriteConfig(Instance);
             ModConfig.Print();
+            Helper.Content.InvalidateCache(asset 
+                => asset.AssetNameEquals("Strings\\Locations") 
+                || asset.AssetNameEquals("Data\\mail")
+                || asset.AssetNameEquals("Data\\Events\\Farmhouse")
+                || asset.AssetNameEquals("Data\\Events\\Farm")
+                || asset.AssetNameEquals("Strings\\StringsFromCSLocations"));
         }
         internal static void Reset()
         {
