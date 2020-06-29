@@ -51,8 +51,7 @@ namespace AngryGrandpa
             helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
 
             // Set up asset loaders/editors.
-            //Helper.Content.AssetEditors.Add(new EventsEditor());
-
+            helper.Content.AssetEditors.Add(new GrandpaNoteEditor());
         }
 
 

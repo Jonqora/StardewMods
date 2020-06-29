@@ -67,6 +67,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\APIs\GMCM.cs" />
+    <Compile Include="src\Editors\GrandpaNoteEditor.cs" />
     <Compile Include="src\ModConfig.cs" />
     <Compile Include="src\ModEntry.cs" />
     <Compile Include="src\Patches\EventPatches.cs" />

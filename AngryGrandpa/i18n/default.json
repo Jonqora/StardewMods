@@ -1,7 +1,12 @@
 ﻿{
+    "GrandpaOrdinalYears": "first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth",
+    "GrandpaNote": "{0}-\n\nWait for my return on the dawn of your {{ordinalYear}} year.\n\n-Grandpa",
+    "GrandpaNoteMail": "@-^^Wait for my return on the dawn of your {{ordinalYear}} year.^^-Grandpa[#]Grandpa's Note",
+    "GrandpaNoteTenPlusYears": "{0}-\n\nWait for my return on {{smapiSDate}}.\n\n-Grandpa",
+    "GrandpaNoteMailTenPlusYears": "@-^^Wait for my return on {{smapiSDate}}.^^-Grandpa[#]Grandpa's Note",
+    
+    
     "6324grandpaNoteMail": "@-^^Wait for my return on the dawn of your third year.^^-Grandpa",
-
-
     // FROM Strings/StringsFromCSFiles.json 
     // (Need regular and g-n versions of Vanilla, Original, and Nuclear... 48 strings total!)
 
@@ -45,8 +50,6 @@
     "Farm_GrandpaShrine_PlaceDiamond": "You place the diamond on Grandpa's Shrine.",
     "Farm_GrandpaShrine_DiamondSlot": "There's a diamond-shaped slot in the shrine... was that always there?",
 
-
     // What is event 2146991? (is removed from events seen after grandpaEvaluation2)
     // What is event 321777? (is a requirement to get re-evaluation event) - this is added when you request a re-evaluation
-    // Ugggghhh checkAction switch case 1958: is a lot of messy code, with hard-coded Year3 and score < 4 bits. A yucky transpile!
 }

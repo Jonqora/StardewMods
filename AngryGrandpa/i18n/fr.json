@@ -1,3 +1,7 @@
 ﻿{
-    
+    "GrandpaOrdinalYears": "première|deuxième|troisième|quatrième|cinqième|sixième|septième|huitième|neuvième|dixième",
+    "GrandpaNote": "{0}-\n\nAttends mon retour à l’aube de ta {{ordinalYear}} année.\n\n-Grand-père",
+    "GrandpaNoteMail": "@-^^Attends mon retour à l’aube de ta {{ordinalYear}} année.^^-Grand-père[#]Mot de Grand-père",
+    "GrandpaNoteTenPlusYears": "{0}-\n\nAttends mon retour le {{smapiSDate}}.\n\n-Grand-père",
+    "GrandpaNoteMailTenPlusYears": "@-^^Attends mon retour le {{smapiSDate}}.^^-Grand-père[#]Mot de Grand-père",
 }
