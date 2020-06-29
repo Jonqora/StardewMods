@@ -44,12 +44,11 @@ namespace AngryGrandpa
 
             // Add console commands.
             addConsoleCommands();
-            //Helper.ConsoleCommands.Add("command_string", "Description of command function.", cmdFunctionName);
-            //reset_evaluation? print_config?
 
             // Listen for game events. (Make these into an event handler thing?)
             helper.Events.GameLoop.GameLaunched += this.onGameLaunched;
             helper.Events.Input.ButtonPressed += this.onButtonPressed;
+            helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
 
             // Set up asset loaders/editors.
             //Helper.Content.AssetEditors.Add(new EventsEditor());
@@ -75,6 +74,17 @@ namespace AngryGrandpa
                 return;
 
             ModConfig.Print(); // Print config values to console when "O" key is pressed.
+        }
+
+        private void onSaveLoaded(object sender, SaveLoadedEventArgs e)
+        {
+            if (Game1.getFarm().hasSeenGrandpaNote
+                && Game1.player.mailReceived[0] != "6324grandpaNoteMail" ) // Missing or misplaced AG mail flag
+            {
+                Game1.player.mailReceived.Remove("6324grandpaNoteMail");
+                Game1.player.mailReceived.Insert(0, "6324grandpaNoteMail"); // Insert grandpa note first on mail tab
+            }
+            //Load the IAssetEditors in here somewhere?
         }
 
         private void addConsoleCommands()
@@ -129,14 +139,14 @@ namespace AngryGrandpa
                 Game1.getFarm().hasSeenGrandpaNote = false; // Seen the note on the shrine
                 Game1.player.mailReceived.Remove("grandpaPerfect"); // Received the statue of perfection
                 Game1.getFarm().grandpaScore.Value = 0; // Reset grandpaScore
-                Game1.getFarm().removeTemporarySpritesWithIDLocal(6666f); // Remove candles. Does it remove existing TemporaryAnimatedSprites?
+                FarmPatches.RemoveCandlesticks(Game1.getFarm()); // Will remove all candlesticks (but not flames).
+                Game1.getFarm().removeTemporarySpritesWithIDLocal(6666f); // Remove candle flames.
                 
                 // Remove flags added by this mod
                 Game1.player.mailReceived.Remove("6324grandpaNoteMail"); // Mail entry
                 Game1.player.mailReceived.Remove("6324reward1candle");
                 Game1.player.mailReceived.Remove("6324reward2candles");
                 Game1.player.mailReceived.Remove("6324reward3candles");
-
 
                 Monitor.Log($"Reset grandpaScore and associated event and mail flags.", LogLevel.Info);
             }

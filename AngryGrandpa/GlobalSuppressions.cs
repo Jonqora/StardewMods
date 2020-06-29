@@ -19,3 +19,6 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.FarmPatches.grandpa1CandleCallback(StardewValley.Item,StardewValley.Farmer)")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.FarmPatches.grandpa2CandleCallback(StardewValley.Item,StardewValley.Farmer)")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.FarmPatches.grandpa3CandleCallback(StardewValley.Item,StardewValley.Farmer)")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.FarmPatches.addGrandpaCandles_Prefix(StardewValley.Farm)")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.FarmerPatches.addItemsByMenuIfNecessary_Postfix")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ModEntry.onSaveLoaded(System.Object,StardewModdingAPI.Events.SaveLoadedEventArgs)")]
