@@ -1,7 +1,41 @@
 ﻿{
+    // Hello! If you are here to help create a new translation file, thank you so much!
+    // These links might be helpful:
+    // https://stardewvalleywiki.com/Modding:Translations (translation guide)
+    // https://github.com/StardewModders/mod-translations (requests board)
+    // https://discord.gg/stardewvalley (ask for help on discord)
+    // https://github.com/Jonqora/StardewMods/ (github repo for my mods, including this one)
+    
+    // Some data entries below include event scripts and dialogue with keys or symbols that should not be changed or removed.
+    // Please be careful not to remove symbols, dialogue keys, or special character sequences (like \" or _ or #$b# or $y) when translating.
+    // For example, @ is a placeholder for player name, %farm is a placeholder for farm name, and %rival gives a random same-gender name.
+    // https://stardewvalleywiki.com/Modding:Event_data (how Stardew event scripts work)
+    // https://stardewvalleywiki.com/Modding:Dialogue#Format (Stardew dialogue formatting)
+
+// ===================================
+// TRANSLATION TEXT FOR GRANDPA'S NOTE
+// ===================================
+
+    // These text entries are based on game files => Strings/Locations => "Farm_GrandpaNote"
+
+    // Do not remove or change any symbols {0}-\n\n , \n\n , @-^^ , ^^ , or [#]
+    // Text that comes after [#] is the mail preview name; this is shown when you hover over a letter in collections.
+
+    // If your language has grammatical gender, make sure the ordinal numbers match the word in your language for "year".
     "GrandpaOrdinalYears": "première|deuxième|troisième|quatrième|cinqième|sixième|septième|huitième|neuvième|dixième",
+    
+    // Do not change {{ordinalYear}} tokens; these will automatically use an appropriate word from the list above.
     "GrandpaNote": "{0}-\n\nAttends mon retour à l’aube de ta {{ordinalYear}} année.\n\n-Grand-père",
     "GrandpaNoteMail": "@-^^Attends mon retour à l’aube de ta {{ordinalYear}} année.^^-Grand-père[#]Mot de Grand-père",
+
+    // Do not change {{smapiSDate}} tokens; these automatically generate a translated date string.
+    // smapiSDate example: "Spring 1 in year 15" or "le 1 printemps de l'année 12"
     "GrandpaNoteTenPlusYears": "{0}-\n\nAttends mon retour le {{smapiSDate}}.\n\n-Grand-père",
     "GrandpaNoteMailTenPlusYears": "@-^^Attends mon retour le {{smapiSDate}}.^^-Grand-père[#]Mot de Grand-père",
+
+
+
+   
+
+
 }
