@@ -41,9 +41,9 @@
   // =======================
   // TOKENS AND INSTRUCTIONS
     
-    // Token used in EvaluationEvent {{countYears}} when grandpa says long you've had the farm. E.g. "You've been here {{four years now}}..."
-    // The first in list, "one day now", is used when Config.YearsBeforeEvaluation = 0
-    "GrandpaCountYears": "one day now|one year now|two years now|three years now|four years now|five years now|six years now|seven years now|eight years now|nine years now",
+    // Token used in EvaluationEvent {{countYears}} when grandpa says long you've had the farm. E.g. "You've been here [four years now]..."
+    // The first in list, "less than a year now", is used when Config.YearsBeforeEvaluation = 0
+    "GrandpaCountYears": "less than a year now|one year now|two years now|three years now|four years now|five years now|six years now|seven years now|eight years now|nine years now",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
     "GrandpaManyYears": "many years now",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
@@ -141,7 +141,7 @@
   // TOKENS AND INSTRUCTIONS
 
     // Token used in 1CandleResult.Original {{pastYears}} when grandpa talks about how long you've been there. 
-    // E.g. "you haven't accomplished very much during {{this past year}}"
+    // E.g. "you haven't accomplished very much during [this past year]"
     // The first in list, "so far", is used if Config.YearsBeforeEvaluation = 0 (grandpa visits on the morning of 1 Spring year 1)
     "GrandpaDuringPastYears": "this time|this past year|these past two years|these past three years|these past four years|these past five years|these past six years|these past seven years|these past eight years|these past nine years",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
@@ -149,7 +149,7 @@
     // Token used for {{pastYears}} when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
     "GrandpaDuringManyYears.Nuclear": "all these years? By Yoba... it's been over a decade",
 
-    //Special text for {{fifthCandle}} token that is added to the 4-candle dialogue ONLY if a player earns all 21 grandpa points in one year.
+    //Special lines of text for {{fifthCandle}} token that are added to the 4-candle dialogue ONLY if a player earns all 21 grandpa points in one year.
     "FifthCandle.Original": "#$b#You have even achieved the impossible.
         #$b#I wish I could light a fifth candle on my shrine in your honor.",
     "FifthCandle.Vanilla": "#$b#You've truly achieved the impossible.

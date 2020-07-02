@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AngryGrandpa
 {
-	internal class GrandpaNoteEditor : IAssetEditor
+	internal class EventEditor : IAssetEditor
 	{
 		protected static IModHelper Helper => ModEntry.Instance.Helper;
 		protected static IMonitor Monitor => ModEntry.Instance.Monitor;
@@ -14,8 +14,8 @@ namespace AngryGrandpa
 
 		public bool CanEdit<_T> (IAssetInfo asset)
 		{
-			return asset.AssetNameEquals($"Strings\\Locations") ||
-				asset.AssetNameEquals($"Data\\mail");
+			return asset.AssetNameEquals($"Data\\Events\\Farm") ||
+				asset.AssetNameEquals($"Data\\Events\\Farmhouse");
 		}
 
 		public void Edit<_T> (IAssetData asset)
