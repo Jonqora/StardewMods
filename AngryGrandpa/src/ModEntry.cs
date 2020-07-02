@@ -2,11 +2,10 @@
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewModdingAPI.Utilities;
 using StardewValley;
-using StardewValley.Locations;
 using Harmony;
 using Netcode;
+using StardewValley.Locations;
 
 namespace AngryGrandpa
 {
@@ -19,6 +18,8 @@ namespace AngryGrandpa
 
         /// <summary>Whether the next tick is the first one.</summary>
         private bool IsFirstTick = true;
+
+        private int CurrentYear; // Monitor for changes
 
 
         /*********
@@ -53,6 +54,7 @@ namespace AngryGrandpa
             helper.Events.GameLoop.UpdateTicked += this.onUpdateTicked;
             helper.Events.Input.ButtonPressed += this.onButtonPressed;
             helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
+            helper.Events.GameLoop.DayStarted += this.onDayStarted;
         }
 
 
@@ -80,8 +82,8 @@ namespace AngryGrandpa
 
                 // Set up asset loaders/editors.
                 Instance.Helper.Content.AssetEditors.Add(new GrandpaNoteEditor());
-                //helper.Content.AssetEditors.Add(new EventEditor());
-                //helper.Content.AssetEditors.Add(new EvaluationEditor());
+                Instance.Helper.Content.AssetEditors.Add(new EventEditor());
+                Instance.Helper.Content.AssetEditors.Add(new EvaluationEditor());
             }
         }
 
@@ -96,12 +98,34 @@ namespace AngryGrandpa
         private void onSaveLoaded(object sender, SaveLoadedEventArgs e)
         {
             if (Game1.getFarm().hasSeenGrandpaNote
-                && Game1.player.mailReceived[0] != "6324grandpaNoteMail" ) // Missing or misplaced AG mail flag
+                && Game1.player.mailReceived[0] != "6324grandpaNoteMail" ) // Missing (or misplaced) AG mail flag?
             {
                 Game1.player.mailReceived.Remove("6324grandpaNoteMail");
                 Game1.player.mailReceived.Insert(0, "6324grandpaNoteMail"); // Insert grandpa note first on mail tab
             }
-            //Load the IAssetEditors in here somewhere?
+            CurrentYear = Game1.year;
+        }
+
+        private void onDayStarted(object sender, DayStartedEventArgs e)
+        {
+            if (Game1.year != CurrentYear) // Invalidate cache to reload assets that contain references to years passed
+            {
+                CurrentYear = Game1.year; // Update tracked value
+                Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
+                => asset.AssetNameEquals("Data\\Events\\Farmhouse")
+                || asset.AssetNameEquals("Data\\Events\\Farm") );
+            }
+        }
+
+        private void onWarped(object sender, WarpedEventArgs e)
+        {
+            if (Game1.year != CurrentYear) // Invalidate cache to reload assets that contain references to years passed
+            {
+                CurrentYear = Game1.year; // Update tracked value
+                Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
+                => asset.AssetNameEquals("Data\\Events\\Farmhouse")
+                || asset.AssetNameEquals("Data\\Events\\Farm"));
+            }
         }
 
         private void addConsoleCommands()
@@ -164,6 +188,11 @@ namespace AngryGrandpa
                 Game1.player.mailReceived.Remove("6324reward1candle");
                 Game1.player.mailReceived.Remove("6324reward2candles");
                 Game1.player.mailReceived.Remove("6324reward3candles");
+
+                //Invalidate cache so that any changes will apply // Is this really necessary?
+                Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
+                => asset.AssetNameEquals("Data\\Events\\Farmhouse")
+                || asset.AssetNameEquals("Data\\Events\\Farm"));
 
                 Monitor.Log($"Reset grandpaScore and associated event and mail flags.", LogLevel.Info);
             }

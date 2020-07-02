@@ -1,8 +1,6 @@
 ﻿using StardewModdingAPI;
-using StardewModdingAPI.Utilities;
 using StardewValley;
 using System.Collections.Generic;
-using System.Xml.Schema;
 using static System.Math;
 
 namespace AngryGrandpa
@@ -35,33 +33,41 @@ namespace AngryGrandpa
 
 		public void Edit<_T> (IAssetData asset)
 		{
+			// Can't edit these assets without an active game for spouse, NPC, and year info
+
+			if (!Context.IsWorldReady)
+			{ return; }
+
 			// Prepare tokens
 
 			string pastYears;
-			int yearsPassed = Max(Game1.year - 1, Config.YearsBeforeEvaluation);
+			int yearsPassed = Max(Game1.year - 1, Config.YearsBeforeEvaluation); // Accurate dialogue even for delayed event
 			if (yearsPassed >= 10)
 			{
 				if (Config.GrandpaDialogue == "Nuclear") { pastYears = i18n.Get("GrandpaDuringManyYears.Nuclear"); }
 				else { pastYears = i18n.Get("GrandpaDuringManyYears"); }
 			}
-			else // YearsBeforeEvaluation < 10
+			else // yearsPassed < 10
 			{
 				pastYears = i18n.Get("GrandpaDuringPastYears").ToString().Split('|')[yearsPassed];
 			}
 
 			string spouseOrLewis;
 			if (Game1.player.isMarried()) { spouseOrLewis = "%spouse"; }
-			else {spouseOrLewis = Game1.getCharacterFromName("Lewis").displayName; }
+			else {spouseOrLewis = Game1.getCharacterFromName<NPC>("Lewis").displayName; }
 
 			string fifthCandle = "";
-			if (Utility.getGrandpaScore() >= 21)
-			{ fifthCandle = i18n.Get("FifthCandle." + Config.GrandpaDialogue); }
+			bool inOneYear = Game1.year == 1 || (Game1.year == 2 && Game1.currentSeason == "spring" && Game1.dayOfMonth == 1);
+			if (Utility.getGrandpaScore() >= 21 && inOneYear)
+			{ 
+				fifthCandle = i18n.Get("FifthCandle." + Config.GrandpaDialogue);
+			}
 
 			var tokens = new
 			{
-				pastYears = pastYears,
-				spouseOrLewis = spouseOrLewis,
-				fifthCandle = fifthCandle
+				pastYears,
+				spouseOrLewis,
+				fifthCandle
 			};
 
 			// Prepare data

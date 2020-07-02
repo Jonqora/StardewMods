@@ -45,9 +45,9 @@
     // The first in list, "less than a year now", is used when Config.YearsBeforeEvaluation = 0
     "GrandpaCountYears": "less than a year now|one year now|two years now|three years now|four years now|five years now|six years now|seven years now|eight years now|nine years now",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
-    "GrandpaManyYears": "many years now",
+    "GrandpaCountManyYears": "many years now",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
-    "GrandpaManyYears.Nuclear": "a really fucking long time",
+    "GrandpaCountManyYears.Nuclear": "a really fucking long time",
 
     // Keys ending with -gn are gender-neutral. These should stay as close as possible to the standard scripts, but anything
     // like "boy", "girl", "grand-daughter" that refers to the player should be replaced with a gender-neutral phrase.
@@ -58,79 +58,151 @@
   // "ORIGINAL" DIALOGUE VARIANT
 
     // Slightly different script from the earliest versions of Stardew Valley
-    "EvaluationEvent.Original": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/
-        speak Grandpa \"My dear boy...^My dearest grand-daughter...
+    "EvaluationEvent.Original": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear boy...^My dearest grand-daughter...
             #$b#It's been many years since we last spoke. You were just a little boy... Do you remember?
             ^It's been many years since we last spoke. You were just a little girl... Do you remember?
             #$b#Look how far you've come!
             #$b#Though you may have forgotten me, I've been here all along.
-            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"/
-        specificTemporarySprite grandpaNight/pause 4000/
-        speak Grandpa \"You've been here {{countYears}}...\"/
-        grandpaEvaluation/pause 3000/
-        speak Grandpa \"The future of %farm Farm is in your hands, now.
-            #$b#Farewell!\"/
-        pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
-    "EvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/speak Grandpa \"My dear child...#$b#It's been many years since we last spoke. You were just a wee child... Do you remember?#$b#Look how far you've come!#$b#Though you may have forgotten me, I've been here all along.#$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"/specificTemporarySprite grandpaNight/pause 4000/speak Grandpa \"You've been here {{countYears}}...\"/grandpaEvaluation/pause 3000/speak Grandpa \"The future of %farm Farm is in your hands, now.#$b#Farewell!\"/pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"You've been here {{countYears}}...\"
+        /grandpaEvaluation/pause 3000
+        /speak Grandpa \"The future of %farm Farm is in your hands, now.
+            #$b#Farewell!\"
+        /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "EvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear child...
+            #$b#It's been many years since we last spoke. You were just a wee child... Do you remember?
+            #$b#Look how far you've come!
+            #$b#Though you may have forgotten me, I've been here all along.
+            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"You've been here {{countYears}}...\"
+        /grandpaEvaluation/pause 3000
+        /speak Grandpa \"The future of %farm Farm is in your hands, now.
+            #$b#Farewell!\"
+        /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
     // Re-evaluations didn't exist in the original game, so this entry is creatively written to fit grandpa's old attitudes.
-    "RepeatEvaluationEvent.Original": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/speak Grandpa \"My dear boy...^My dearest grand-daughter...#$b#I'm glad you summoned me. I am curious to see the progress you've made.#$b#I trust that you've been working hard since my last visit?\"/specificTemporarySprite grandpaNight/pause 4000/speak Grandpa \"Let's see...\"/grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
-    "RepeatEvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/speak Grandpa \"My dear child...#$b#I'm glad you summoned me. I am curious to see the progress you've made.#$b#I trust that you've been working hard since my last visit?\"/specificTemporarySprite grandpaNight/pause 4000/speak Grandpa \"Let's see...\"/grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "RepeatEvaluationEvent.Original": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear boy...^My dearest grand-daughter...
+            #$b#I'm glad you summoned me. I am curious to see the progress you've made.
+            #$b#I trust that you've been working hard since my last visit?\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"Let's see...\"
+        /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "RepeatEvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear child...
+            #$b#I'm glad you summoned me. I am curious to see the progress you've made.
+            #$b#I trust that you've been working hard since my last visit?\"
+        /specificTemporarySprite grandpaNight
+        /pause 4000
+        /speak Grandpa \"Let's see...\"
+        /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
   // ==========================
   // "VANILLA" DIALOGUE VARIANT
 
     // Normal event script found in the current game files => Data/Events/Farmhouse => "558291/y 3/H"
-    "EvaluationEvent.Vanilla": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/speak Grandpa \"My dear boy...^My dearest grand-daughter...#$b#It's been many years since we last spoke. You were just a little boy... Do you remember?^It's been many years since we last spoke. You were just a little girl... Do you remember?#$b#Look how far you've come!#$b#Though you may have forgotten me, I've been here all along.#$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"/specificTemporarySprite grandpaNight/pause 4000/speak Grandpa \"You've been here {{countYears}}...\"/grandpaEvaluation/pause 3000/speak Grandpa \"The future of %farm Farm is in your hands, now.#$b#Farewell!\"/pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
-    "EvaluationEvent.Vanilla-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/speak Grandpa \"My dear child...#$b#It's been many years since we last spoke. You were just a wee child... Do you remember?#$b#Look how far you've come!#$b#Though you may have forgotten me, I've been here all along.#$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"/specificTemporarySprite grandpaNight/pause 4000/speak Grandpa \"You've been here {{countYears}}...\"/grandpaEvaluation/pause 3000/speak Grandpa \"The future of %farm Farm is in your hands, now.#$b#Farewell!\"/pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "EvaluationEvent.Vanilla": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear boy...^My dearest grand-daughter...
+            #$b#It's been many years since we last spoke. You were just a little boy... Do you remember?
+            ^It's been many years since we last spoke. You were just a little girl... Do you remember?
+            #$b#Look how far you've come!
+            #$b#Though you may have forgotten me, I've been here all along.
+            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"You've been here {{countYears}}...\"
+        /grandpaEvaluation/pause 3000
+        /speak Grandpa \"The future of %farm Farm is in your hands, now.
+            #$b#Farewell!\"
+        /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "EvaluationEvent.Vanilla-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear child...
+            #$b#It's been many years since we last spoke. You were just a wee child... Do you remember?
+            #$b#Look how far you've come!#$b#Though you may have forgotten me, I've been here all along.
+            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"You've been here {{countYears}}...\"
+        /grandpaEvaluation/pause 3000
+        /speak Grandpa \"The future of %farm Farm is in your hands, now.
+            #$b#Farewell!\"
+        /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
     // Normal event script found in the current game files => Data/Events/Farmhouse => "558292/e 321777/t 600 620/H"
-    "RepeatEvaluationEvent.Vanilla": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/speak Grandpa \"My dear boy...^My dearest grand-daughter...#$b#I'm glad you summoned me. I... was perhaps a little too harsh with you last time.#$b#Forgive me. You've been working very hard, and I'm proud of it.\"/specificTemporarySprite grandpaNight/pause 4000/speak Grandpa \"Let's see...\"/grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
-    "RepeatEvaluationEvent.Vanilla-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/speak Grandpa \"My dear child...#$b#I'm glad you summoned me. I... was perhaps a little too harsh with you last time.#$b#Forgive me. You've been working very hard, and I'm proud of it.\"/specificTemporarySprite grandpaNight/pause 4000/speak Grandpa \"Let's see...\"/grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "RepeatEvaluationEvent.Vanilla": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear boy...^My dearest grand-daughter...
+            #$b#I'm glad you summoned me. I... was perhaps a little too harsh with you last time.
+            #$b#Forgive me. You've been working very hard, and I'm proud of it.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"Let's see...\"
+        /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "RepeatEvaluationEvent.Vanilla-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear child...
+            #$b#I'm glad you summoned me. I... was perhaps a little too harsh with you last time.
+            #$b#Forgive me. You've been working very hard, and I'm proud of it.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"Let's see...\"
+        /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
   // ==========================
   // "NUCLEAR" DIALOGUE VARIANT
 
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity.
-    "EvaluationEvent.Nuclear": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/
-        speak Grandpa \"My dear boy...^My dearest grand-daughter...
+    "EvaluationEvent.Nuclear": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear boy...^My dearest grand-daughter...
             #$b#It's been so long since we last spoke. You were just a little boy... Do you remember?
             ^It's been so long since we last spoke. You were just a little girl... Do you remember?
-            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.'
-            #$b#Since my death I have been unable to care for the farm... and my spirit is troubled.
-            #$b#Perhaps your own work on the farm will finally allow me to find peace.\"/
-        specificTemporarySprite grandpaNight/pause 4000/
-        speak Grandpa \"You've been here {{countYears}}...\"/
-        grandpaEvaluation/pause 3000/
-        speak Grandpa \"Farewell!\"/
-        pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
-    "EvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/
-        speak Grandpa \"My dear child...
+            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.
+            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.
+            #$b#Perhaps your own work on the farm will finally allow me to find peace.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"You've been here {{countYears}}.
+            #$b#Let's see...\"
+        /grandpaEvaluation/pause 3000
+        /speak Grandpa \"Farewell!\"
+        /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "EvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear child...
             #$b#It's been so long since we last spoke. You were just a wee child... Do you remember?
-            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.'
-            #$b#Since my death I have been unable to care for the farm... and my spirit is troubled.
-            #$b#Perhaps your own work on the farm will finally allow me to find peace.\"/
-        specificTemporarySprite grandpaNight/pause 4000/
-        speak Grandpa \"You've been here {{countYears}}...\"/
-        grandpaEvaluation/pause 3000/
-        speak Grandpa \"Farewell!\"/
-        pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.
+            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.
+            #$b#Perhaps your own work on the farm will finally allow me to find peace.\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"You've been here {{countYears}}.
+            #$b#Let's see...\"
+        /grandpaEvaluation/pause 3000
+        /speak Grandpa \"Farewell!\"
+        /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity.
-    "RepeatEvaluationEvent.Nuclear": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/
-        speak Grandpa \"My dear boy...^My dearest grand-daughter...
+    "RepeatEvaluationEvent.Nuclear": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear boy...^My dearest grand-daughter...
             #$b#I received your summons in the other world and came to see how the farm is doing.
-            #$b#Have you made improvements since my last visit?\"/
-        specificTemporarySprite grandpaNight/pause 4000/
-        speak Grandpa \"Let's see what you've accomplished...\"/
-        grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
-    "RepeatEvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true/skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000/
-        speak Grandpa \"My dear child...
+            #$b#Have you made improvements since my last visit?\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"Let's see what you've accomplished...\"
+        /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+    "RepeatEvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
+        /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
+        /speak Grandpa \"My dear child...
             #$b#I received your summons in the other world and came to see how the farm is doing.
-            #$b#Have you made improvements since my last visit?\"/
-        specificTemporarySprite grandpaNight/pause 4000/
-        speak Grandpa \"Let's see what you've accomplished...\"/
-        grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
+            #$b#Have you made improvements since my last visit?\"
+        /specificTemporarySprite grandpaNight/pause 4000
+        /speak Grandpa \"Let's see what you've accomplished...\"
+        /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
 
 // =======================================
@@ -147,7 +219,7 @@
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
     "GrandpaDuringManyYears": "all these years",
     // Token used for {{pastYears}} when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
-    "GrandpaDuringManyYears.Nuclear": "all these years? By Yoba... it's been over a decade",
+    "GrandpaDuringManyYears.Nuclear": "all these years? By Yoba, don't you realize it's been over a decade?",
 
     //Special lines of text for {{fifthCandle}} token that are added to the 4-candle dialogue ONLY if a player earns all 21 grandpa points in one year.
     "FifthCandle.Original": "#$b#You have even achieved the impossible.
@@ -286,48 +358,52 @@
     
   // ==========================x
   // "NUCLEAR" DIALOGUE VARIANT
-
+    
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
-    "1CandleResult.Nuclear": "What goddamn fuckery have you been up to {{pastYears}}!
+    "1CandleResult.Nuclear": "What goddamn fuckery have you been up to {{pastYears}}?
+        #$b#Really, @...
         #$b#You call this a farm?
         #$b#I've seen tidier plots of land in war zones.
         #$b#...
         #$b#Giving you %farm Farm is my biggest regret in life...
         #$b#I should have given it to one of your cousins.
-        $y '
+        #$b#...
+        #$b#The future of %farm Farm is in your hands, now...
+        #$b#unfortunately.
+        #$b#$y '
             _Well fuck you too, grandpa.
                 _% Grandpa is affronted.
             _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
-                _Well I'm sorry if my *death* inconvenienced your inheritance... asshole.
+                _Well I'm sorry if my death inconvenienced your inheritance... asshole.
             _[say nothing]
-                _% There is an awkward silence.'
-        #$b#...
-        #$b#The future of %farm Farm is in your hands, now...
-        #$b#unfortunately.",
-    "1CandleResult.Nuclear-gn": "What goddamn fuckery have you been up to {{pastYears}}!
+                _% There is an awkward silence.'",
+    "1CandleResult.Nuclear-gn": "What goddamn fuckery have you been up to {{pastYears}}?
+        #$b#Really, @...
         #$b#You call this a farm?
         #$b#I've seen tidier plots of land in war zones.
         #$b#...
         #$b#Giving you %farm Farm is my biggest regret in life...
         #$b#I should have given it to one of your cousins.
-        $y '
+        #$b#...
+        #$b#The future of %farm Farm is in your hands, now...
+        #$b#unfortunately.
+        #$b#$y '
             _Well fuck you too, grandpa.
                 _% Grandpa is affronted.
             _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
-                _Well I'm sorry if my *death* inconvenienced your inheritance... asshole.
+                _Well I'm sorry if my death inconvenienced your inheritance... asshole.
             _[say nothing]
-                _% There is an awkward silence.'
-        #$b#...
-        #$b#The future of %farm Farm is in your hands, now...
-        #$b#unfortunately.",
+                _% There is an awkward silence.'",
 
     "2CandleResult.Nuclear": "Is this all you've managed to accomplish in {{pastYears}}?
         #$b#If I'm honest, the farm has certainly seen better days than this.
         #$b#It's really not what it used to be... but I suppose you did your best.
+        #$b#...
         #$b#For better or worse, the future of %farm Farm is in your hands, now...",
     "2CandleResult.Nuclear-gn": "Is this all you've managed to accomplish in {{pastYears}}?
         #$b#If I'm honest, the farm has certainly seen better days than this.
         #$b#It's really not what it used to be... but I suppose you did your best.
+        #$b#...
         #$b#For better or worse, the future of %farm Farm is in your hands, now...", 
 
     "3CandleResult.Nuclear": "The farm looks quite good, actually.
@@ -335,22 +411,24 @@
         #$b#In any case, I'm pleased to see it's being put to good use.
         #$b#There's room for improvement still, but you've done well, my boy.
         ^There's room for improvement still, but you've done well, my dear.
+        #$b#...
         #$b#The future of %farm Farm is in your hands, now...",
     "3CandleResult.Nuclear-gn": "The farm looks quite good, actually.
         #$b#I'm bloody surprised you've done so well with the place. Did {{spouseOrLewis}} help you with it?
         #$b#In any case, I'm pleased to see it's being put to good use.
         #$b#There's room for improvement still, but you've done well, my child.
+        #$b#...
         #$b#The future of %farm Farm is in your hands, now...",
 
-    "4CandleResult.Nuclear": "@, my boy...
-        ^@, my dear...
+    "4CandleResult.Nuclear": "@, my boy...^@, my dear...
         #$b#You are an absolute fucking legend.
         #$b#Is... this really the same farm I left to you? I hardly recognize it!
         #$b#The work you've done on the place is incredible! You've become a better farmer than I ever was.
         #$b#Such commitment to excellence... This is why you're my favorite grandchild, you know.{{fifthCandle}}
         #$b#Ah yes...
         #$b#I can feel it now... My spirit is finally put to rest. Bless you.
-        #$b#The future of %farm Farm is in your very capable hands, now...
+        #$b#...
+        #$b#The future of %farm Farm is in your very capable hands...
         #$b#Please call on me any time; I would love to see your continued progress.",
     "4CandleResult.Nuclear-gn": "@, my child...
         #$b#You are an absolute fucking legend.
@@ -359,7 +437,8 @@
         #$b#Such commitment to excellence... This is why you're my favorite grandchild, you know.{{fifthCandle}}
         #$b#Ah yes...
         #$b#I can feel it now... My spirit is finally put to rest. Bless you.
-        #$b#The future of %farm Farm is in your very capable hands, now...
+        #$b#...
+        #$b#The future of %farm Farm is in your very capable hands...
         #$b#Please call on me any time; I would love to see your continued progress.",
 
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
@@ -368,38 +447,44 @@
         #$b#Your cousin %rival's progress on his farm would put you to shame.
         ^Your cousin %rival's progress on her farm would put you to shame.
         #$b#This visit was a waste of time.
+        #$b#...
         #$b#I'm leaving... don't summon me again unless you have something worth seeing.
         #$b#%Wow, grandpa is really angry. I better not disappoint him again.",
     "1CandleReevaluation.Nuclear-gn": "I thought maybe I was too harsh last time, so I came back to have a look...
         #$b#But here I am, and you've still accomplished fuck-all.
         #$b#Your cousin %rival's progress on their farm would put you to shame.
         #$b#This visit was a waste of time.
-        #$b#I'm leaving... don't summon me again unless you have something worth seeing.",
+        #$b#...
+        #$b#I'm leaving... don't summon me again unless you have something worth seeing.
+        #$b#%Wow, grandpa is really angry. I better not disappoint him again.",
     
     "2CandleReevaluation.Nuclear": "Is this all you have to show me?
         #$b#I was hoping for something a little more... I don't know.
         #$b#I'm not entirely disappointed, mind; you've clearly been putting in *some* effort.
         #$b#Perhaps I was foolish to expect more from you.
+        #$b#...
         #$b#I must return now... do try to make more progress around here before you summon me again.",
     "2CandleReevaluation.Nuclear-gn": "Is this all you have to show me?
         #$b#I was hoping for something a little more... I don't know.
         #$b#I'm not entirely disappointed, mind; you've clearly been putting in *some* effort.
         #$b#Perhaps I was foolish to expect more from you.
+        #$b#...
         #$b#I must return now... do try to make more progress around here before you summon me again.",
     
     "3CandleReevaluation.Nuclear": "The farm is looking very good these days.
         #$b#I'm damn well surprised you've been able to make so much progress... did {{spouseOrLewis}} help you?
-        #$b#Either way, I'm happy to see the farm in good shape. You've done well.'
+        #$b#Either way, I'm happy to see the farm in good shape. You've done well.
         #$b#Although... there's still plenty of work to keep you busy in the coming years, if you really put the effort in.
+        #$b#...
         #$b#It's time for me to return to the other world... feel free to call on me again when you're ready.",
     "3CandleReevaluation.Nuclear-gn": "The farm is looking very good these days.
         #$b#I'm damn well surprised you've been able to make so much progress... did {{spouseOrLewis}} help you?
-        #$b#Either way, I'm happy to see the farm in good shape. You've done well.'
+        #$b#Either way, I'm happy to see the farm in good shape. You've done well.
         #$b#Although... there's still plenty of work to keep you busy in the coming years, if you really put the effort in.
+        #$b#...
         #$b#It's time for me to return to the other world... feel free to call on me again when you're ready.",
     
-    "4CandleReevaluation.Nuclear": "@, my boy...
-        ^@, my dear... 
+    "4CandleReevaluation.Nuclear": "@, my boy...^@, my dear... 
         #$b#You are an absolute fucking legend.
         #$b#%farm Farm looks amazing... the results of your hard work speak for themselves.
         #$b#Just look at the incredible progress you've made! I get overwhelmed thinking about how far you've come...

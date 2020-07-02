@@ -1,6 +1,5 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
-using System.Collections.Generic;
 
 namespace AngryGrandpa
 {
@@ -41,12 +40,12 @@ namespace AngryGrandpa
 			if (Config.YearsBeforeEvaluation >= 10)
 			{
 				modKey += "TenPlusYears";
-				var smapiSDate = new SDate(1, "spring", Config.YearsBeforeEvaluation + 1).ToLocaleString();
+				string smapiSDate = new SDate(1, "spring", Config.YearsBeforeEvaluation + 1).ToLocaleString();
 				value = i18n.Get(modKey, new { smapiSDate });
 			}
 			else // YearsBeforeEvaluation < 10
 			{
-				var ordinalYear = i18n.Get("GrandpaOrdinalYears").ToString().Split('|')[Config.YearsBeforeEvaluation];
+				string ordinalYear = i18n.Get("GrandpaOrdinalYears").ToString().Split('|')[Config.YearsBeforeEvaluation];
 				value = i18n.Get(modKey, new { ordinalYear });
 			}
 
