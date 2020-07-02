@@ -17,12 +17,15 @@ namespace AngryGrandpa
         internal HarmonyInstance Harmony { get; private set; }
         internal protected static ModConfig Config => ModConfig.Instance;
 
+        /// <summary>Whether the next tick is the first one.</summary>
+        private bool IsFirstTick = true;
+
 
         /*********
         ** Accessors 
         *********/
         /// <summary>Provides methods for interacting with the mod directory.</summary>
-        public static IModHelper ModHelper { get; private set; }
+        //public static IModHelper ModHelper { get; private set; }
 
 
         /*********
@@ -47,11 +50,9 @@ namespace AngryGrandpa
 
             // Listen for game events. (Make these into an event handler thing?)
             helper.Events.GameLoop.GameLaunched += this.onGameLaunched;
+            helper.Events.GameLoop.UpdateTicked += this.onUpdateTicked;
             helper.Events.Input.ButtonPressed += this.onButtonPressed;
             helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
-
-            // Set up asset loaders/editors.
-            helper.Content.AssetEditors.Add(new GrandpaNoteEditor());
         }
 
 
@@ -65,6 +66,23 @@ namespace AngryGrandpa
         {
             // Set up Generic Mod Config Menu if available.
             ModConfig.SetUpMenu();
+        }
+
+        private void onUpdateTicked(object sender, UpdateTickedEventArgs e)
+        {
+            if (this.IsFirstTick)
+            {
+                this.IsFirstTick = false;
+            }
+            else // Is second update tick
+            {
+                Instance.Helper.Events.GameLoop.UpdateTicked -= this.onUpdateTicked; // Don't check again
+
+                // Set up asset loaders/editors.
+                Instance.Helper.Content.AssetEditors.Add(new GrandpaNoteEditor());
+                //helper.Content.AssetEditors.Add(new EventEditor());
+                //helper.Content.AssetEditors.Add(new EvaluationEditor());
+            }
         }
 
         private void onButtonPressed(object sender, ButtonPressedEventArgs e)
