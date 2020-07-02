@@ -26,18 +26,36 @@ namespace AngryGrandpa
 			Harmony.Patch(
 				original: AccessTools.Method(typeof(Event),
 					nameof(Event.command_grandpaEvaluation)),
+				prefix: new HarmonyMethod(typeof(EventPatches),
+					nameof(EventPatches.grandpaEvaluations_Prefix)),
 				postfix: new HarmonyMethod(typeof(EventPatches),
 					nameof(EventPatches.grandpaEvaluations_Postfix))
 			);
 			Harmony.Patch(
 				original: AccessTools.Method(typeof(Event),
 					nameof(Event.command_grandpaEvaluation2)),
+				prefix: new HarmonyMethod(typeof(EventPatches),
+					nameof(EventPatches.grandpaEvaluations_Prefix)),
 				postfix: new HarmonyMethod(typeof(EventPatches),
 					nameof(EventPatches.grandpaEvaluations_Postfix))
 			);
 		}
 
-		public static void grandpaEvaluations_Postfix(GameLocation location, GameTime time)
+		public static void grandpaEvaluations_Prefix()
+		{
+			try
+			{
+				Helper.Content.InvalidateCache(asset // Get updated assets to use during evaluation.
+				=> asset.AssetNameEquals("Strings\\StringsFromCSLocations"));
+			}
+			catch (Exception ex)
+			{
+				Monitor.Log($"Failed in {nameof(grandpaEvaluations_Prefix)}:\n{ex}",
+					LogLevel.Error);
+			}
+		}
+		
+		public static void grandpaEvaluations_Postfix()
 		{
 			try
 			{

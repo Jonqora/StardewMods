@@ -168,12 +168,11 @@ namespace AngryGrandpa
         {
             Helper.WriteConfig(Instance);
             ModConfig.Print();
-            Helper.Content.InvalidateCache(asset 
+            Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
                 => asset.AssetNameEquals("Strings\\Locations") 
                 || asset.AssetNameEquals("Data\\mail")
                 || asset.AssetNameEquals("Data\\Events\\Farmhouse")
-                || asset.AssetNameEquals("Data\\Events\\Farm")
-                || asset.AssetNameEquals("Strings\\StringsFromCSLocations"));
+                || asset.AssetNameEquals("Data\\Events\\Farm"));
         }
         internal static void Reset()
         {
