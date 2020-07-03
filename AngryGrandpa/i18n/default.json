@@ -12,6 +12,10 @@
     // https://stardewvalleywiki.com/Modding:Event_data (how Stardew event scripts work)
     // https://stardewvalleywiki.com/Modding:Dialogue#Format (Stardew dialogue formatting)
 
+    // If you are creating a new translation, making gender-neutral "-gn" dialogue variants dialogue is optional! 
+    // Feel free to submit a partial translation with only standard dialogue keys. Someone else can add the -gn variant later.
+
+
 // ===================================
 // TRANSLATION TEXT FOR GRANDPA'S NOTE
 // ===================================
@@ -33,6 +37,22 @@
     "GrandpaNoteTenPlusYears": "{0}-\n\nWait for my return on {{smapiSDate}}.\n\n-Grandpa",
     "GrandpaNoteMailTenPlusYears": "@-^^Wait for my return on {{smapiSDate}}.^^-Grandpa[#]Grandpa's Note",
     
+
+// =====================================
+// TRANSLATION TEXT FOR DISPLAY MESSAGES
+// =====================================
+
+    // These text entries are brand-new messages that appear when you collect a bonus reward from Grandpa's Shrine.
+    // In vanilla, finding the statue of perfection shows: "You found a peculiar statue behind Grandpa's Shrine."
+
+    "Object.cs.1CandleReward": "There was a very old seed laying on Grandpa's Shrine.",
+    "Object.cs.2CandleReward": "You found a prehistoric egg tucked behind the Shrine. Was that always there?",
+    "Object.cs.3CandleReward": "Something was glimmering under Grandpa's Shrine... a rare and powerful gemstone!",
+
+    // Points score message displayed at the top of the screen during the evaluation events."
+
+    "Event.cs.ShowGrandpaScore": "Grandpa's Score: {{grandpaScore}} of {{maxScore}} Great Honors",
+
 
 // ==================================
 // TRANSLATION TEXT FOR EVENT SCRIPTS
@@ -513,7 +533,7 @@
 // NO TRANSLATION NEEDED FOR THESE ENTRIES
 // =======================================
 
-    // Do not copy these entries to new translation files. These are important data and their values should never change.
+    // DO NOT copy the entries in this section to new translation files. These are important data and their values should never change.
     "GrandpaNote.gameKey": "Farm_GrandpaNote",
     "GrandpaNoteMail.gameKey": "6324grandpaNoteMail",
 

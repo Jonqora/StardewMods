@@ -42,9 +42,10 @@ namespace AngryGrandpa
 
             // Apply Harmony patches.
             Harmony = HarmonyInstance.Create(ModManifest.UniqueID);
-            UtilityPatches.Apply();
             EventPatches.Apply();
             FarmPatches.Apply();
+            ObjectPatches.Apply();
+            UtilityPatches.Apply();
 
             // Add console commands.
             addConsoleCommands();

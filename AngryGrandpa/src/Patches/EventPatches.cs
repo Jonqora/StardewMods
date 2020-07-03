@@ -19,8 +19,9 @@ namespace AngryGrandpa
 		private static IModHelper Helper => ModEntry.Instance.Helper;
 		private static IMonitor Monitor => ModEntry.Instance.Monitor;
 		private static ModConfig Config => ModConfig.Instance;
-
 		private static HarmonyInstance Harmony => ModEntry.Instance.Harmony;
+
+		protected static ITranslationHelper i18n = Helper.Translation;
 
 		public static void Apply()
 		{
@@ -66,7 +67,7 @@ namespace AngryGrandpa
 				{
 					int grandpaScore = Utility.getGrandpaScore();
 					int maxScore = Config.GetMaxScore();
-					string displayText = $"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors";
+					string displayText = i18n.Get("Event.cs.ShowGrandpaScore", new { grandpaScore, maxScore });
 					location.temporarySprites.Add(new TemporaryAnimatedSprite()
 					{
 						text = displayText,
