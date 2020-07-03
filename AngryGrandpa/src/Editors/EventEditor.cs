@@ -75,9 +75,9 @@ namespace AngryGrandpa
 				}
 
 				// Delete old entries for the Evaluation event
-				Regex regex = new Regex(@"^558291/.*"); // Matches any event key that starts with "558291/"
+				Regex regex = new Regex(@"^55829(1|2)\/.*"); // Matches any event key that starts with "558291/" or "558292/"
 				List<string> todelete = data.Keys.Where(k => regex.Match(k).Success).ToList();
-				todelete.ForEach(k => data.Remove(k)); // Remove the old event script completely
+				todelete.ForEach(k => data.Remove(k)); // Remove the old event scripts completely
 
 				// Organize the keys and values with corrected event preconditions
 				foreach (string entry in new List<string> { "EvaluationEvent", "RepeatEvaluationEvent" })
