@@ -103,21 +103,20 @@ namespace AngryGrandpa
                 Game1.player.mailReceived.Remove("6324grandpaNoteMail");
                 Game1.player.mailReceived.Insert(0, "6324grandpaNoteMail"); // Insert grandpa note first on mail tab
             }
-            CurrentYear = Game1.year;
+            CurrentYear = Game1.year; // Track year for updating cached Events
         }
 
         private void onDayStarted(object sender, DayStartedEventArgs e)
         {
-            if (Game1.year != CurrentYear) // Invalidate cache to reload assets that contain references to years passed
-            {
-                CurrentYear = Game1.year; // Update tracked value
-                Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
-                => asset.AssetNameEquals("Data\\Events\\Farmhouse")
-                || asset.AssetNameEquals("Data\\Events\\Farm") );
-            }
+            resetEventsCacheIfYearChanged();
         }
 
         private void onWarped(object sender, WarpedEventArgs e)
+        {
+            resetEventsCacheIfYearChanged();
+        }
+
+        private void resetEventsCacheIfYearChanged()
         {
             if (Game1.year != CurrentYear) // Invalidate cache to reload assets that contain references to years passed
             {
