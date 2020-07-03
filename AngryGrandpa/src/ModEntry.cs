@@ -179,8 +179,8 @@ namespace AngryGrandpa
                 Game1.getFarm().hasSeenGrandpaNote = false; // Seen the note on the shrine
                 Game1.player.mailReceived.Remove("grandpaPerfect"); // Received the statue of perfection
                 Game1.getFarm().grandpaScore.Value = 0; // Reset grandpaScore
-                FarmPatches.RemoveCandlesticks(Game1.getFarm()); // Will remove all candlesticks (but not flames).
-                Game1.getFarm().removeTemporarySpritesWithIDLocal(6666f); // Remove candle flames.
+                FarmPatches.RemoveCandlesticks(Game1.getFarm()); // Removes all candlesticks (not flames).
+                Game1.getFarm().removeTemporarySpritesWithIDLocal(6666f); // Removes candle flames.
                 
                 // Remove flags added by this mod
                 Game1.player.mailReceived.Remove("6324grandpaNoteMail"); // Mail entry
@@ -188,10 +188,10 @@ namespace AngryGrandpa
                 Game1.player.mailReceived.Remove("6324reward2candles");
                 Game1.player.mailReceived.Remove("6324reward3candles");
 
-                //Invalidate cache so that any changes will apply // Is this really necessary?
-                Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
-                => asset.AssetNameEquals("Data\\Events\\Farmhouse")
-                || asset.AssetNameEquals("Data\\Events\\Farm"));
+                if (!Game1.player.eventsSeen.Contains(2146991))
+                {
+                    Game1.player.eventsSeen.Add(2146991); // Make sure they can't see candle event before the next evaluation.
+                }
 
                 Monitor.Log($"Reset grandpaScore and associated event and mail flags.", LogLevel.Info);
             }
