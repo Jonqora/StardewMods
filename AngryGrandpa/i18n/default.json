@@ -166,10 +166,10 @@
             #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.
             #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.
             #$b#Perhaps your own work on the farm will finally allow me to find peace.\"
-        /specificTemporarySprite grandpaNight/pause 4000
+        /specificTemporarySprite grandpaNight/pause 3000
         /speak Grandpa \"You've been here {{countYears}}.
             #$b#Let's see...\"
-        /grandpaEvaluation/pause 3000
+        /grandpaEvaluation/pause 2000
         /speak Grandpa \"Farewell!\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "EvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
@@ -179,10 +179,10 @@
             #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.
             #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.
             #$b#Perhaps your own work on the farm will finally allow me to find peace.\"
-        /specificTemporarySprite grandpaNight/pause 4000
+        /specificTemporarySprite grandpaNight/pause 3000
         /speak Grandpa \"You've been here {{countYears}}.
             #$b#Let's see...\"
-        /grandpaEvaluation/pause 3000
+        /grandpaEvaluation/pause 2000
         /speak Grandpa \"Farewell!\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
@@ -192,7 +192,7 @@
         /speak Grandpa \"My dear boy...^My dearest grand-daughter...
             #$b#I received your summons in the other world and came to see how the farm is doing.
             #$b#Have you made improvements since my last visit?\"
-        /specificTemporarySprite grandpaNight/pause 4000
+        /specificTemporarySprite grandpaNight/pause 3000
         /speak Grandpa \"Let's see what you've accomplished...\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "RepeatEvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
@@ -200,7 +200,7 @@
         /speak Grandpa \"My dear child...
             #$b#I received your summons in the other world and came to see how the farm is doing.
             #$b#Have you made improvements since my last visit?\"
-        /specificTemporarySprite grandpaNight/pause 4000
+        /specificTemporarySprite grandpaNight/pause 3000
         /speak Grandpa \"Let's see what you've accomplished...\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
