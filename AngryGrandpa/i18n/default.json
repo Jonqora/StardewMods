@@ -504,12 +504,12 @@
         #$b#...
         #$b#It's time for me to return to the other world... feel free to call on me again when you're ready.",
     
-    "4CandleReevaluation.Nuclear": "@, my boy...^@, my dear... 
-        #$b#You are an absolute fucking legend.
-        #$b#%farm Farm looks amazing... the results of your hard work speak for themselves.
-        #$b#Just look at the incredible progress you've made! I get overwhelmed thinking about how far you've come...
-        #$b#Aww shit, @... you're going to make me cry.{{fifthCandle}}
-        #$b#Above all, you've brought me peace... My spirit is calmly at rest. Bless you.",
+    "4CandleReevaluation.Nuclear": "@, my boy...^@, my dear$9... 
+        #$b#You are an absolute fucking legend.$4
+        #$b#%farm Farm looks amazing... the results of your hard work speak for themselves.$10
+        #$b#Just look at the incredible progress you've made! I get overwhelmed thinking about how far you've come...$11
+        #$b#Aww shit, @... you're going to make me cry.$2{{fifthCandle}}
+        #$b#Above all, you've brought me peace... My spirit is calmly at rest. Bless you.$1",
     "4CandleReevaluation.Nuclear-gn": "@, my child...
         #$b#You are an absolute fucking legend.
         #$b#%farm Farm looks amazing... the results of your hard work speak for themselves.
