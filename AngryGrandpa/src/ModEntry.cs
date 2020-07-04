@@ -6,6 +6,8 @@ using StardewValley;
 using Harmony;
 using Netcode;
 using StardewValley.Locations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AngryGrandpa
 {
@@ -157,6 +159,15 @@ namespace AngryGrandpa
                 int candles = Utility.getGrandpaCandlesFromScore(grandpaScore);
                 Monitor.Log($"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors\nNumber of candles earned: {candles}\nScoring system: \"{Config.ScoringSystem}\"\nCandle score thresholds: [{Config.GetScoreForCandles(1)}, {Config.GetScoreForCandles(2)}, {Config.GetScoreForCandles(3)}, {Config.GetScoreForCandles(4)}]",
                     LogLevel.Info);
+                int farmScore = Game1.getFarm().grandpaScore.Value;
+                Monitor.Log($"DEBUG", LogLevel.Debug);
+                Monitor.Log($"Actual current Farm.grandpaScore value: {farmScore}", LogLevel.Debug);
+                bool farmNote = Game1.getFarm().hasSeenGrandpaNote;
+                Monitor.Log($"Actual current Farm.hasSeenGrandpaNote value: {farmNote}", LogLevel.Debug); 
+                List<int> eventsAG = new List<int> { 558291, 558292, 2146991, 321777 };
+                List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled" };
+                Monitor.Log($"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}", LogLevel.Debug);
+                Monitor.Log($"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
             }
             catch (Exception ex)
             {

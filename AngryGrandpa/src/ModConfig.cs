@@ -321,9 +321,10 @@ namespace AngryGrandpa
                 $"====================\n" +
                 $"GrandpaDialogue: \"{Instance.GrandpaDialogue}\"\n" +
                 $"GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}\n" +
-                $"ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}\n" +
+                $"ExpressivePortraits: {Instance.ExpressivePortraits.ToString().ToLower()}\n" +
                 $"ScoringSystem: \"{Instance.ScoringSystem}\"\n" +
                 $"YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}\n" +
+                $"ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}\n" +
                 $"BonusRewards: {Instance.BonusRewards.ToString().ToLower()}\n" +
                 $"====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
         }
