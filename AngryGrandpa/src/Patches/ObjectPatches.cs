@@ -21,32 +21,37 @@ namespace AngryGrandpa
 		{
 			Harmony.Patch(
 				original: AccessTools.Method(typeof(Object),
-					nameof(Object.checkForSpecialItemHoldUpMeessage)),
-				postfix: new HarmonyMethod(typeof(UtilityPatches),
+					nameof(Object.checkForSpecialItemHoldUpMeessage)), // Yes, the game code spells it Meessage. -_-
+				postfix: new HarmonyMethod(typeof(ObjectPatches),
 					nameof(ObjectPatches.checkForSpecialItemHoldUpMeessage_Postfix))
 			);
 		}
 
-		public static string checkForSpecialItemHoldUpMeessage_Postfix(string __result, Object __instance)
+		public static void checkForSpecialItemHoldUpMeessage_Postfix(ref string __result, Object __instance)
 		{
 			try
 			{
-				if (!(bool)(NetFieldBase<bool, NetBool>)__instance.bigCraftable &&
-					(NetFieldBase<string, NetString>)__instance.type != (NetString)null && __instance.type.Equals((object)"Arch") &&
+				if ( !(bool)(NetFieldBase<bool, NetBool>)__instance.bigCraftable &&
+					(NetFieldBase<string, NetString>)__instance.type != (NetString)null &&
 					Game1.getFarm().grandpaScore != 0 &&
 					Game1.currentLocation is Farm)
 				{
-					switch ((int)(NetFieldBase<int, NetInt>)__instance.parentSheetIndex)
+					if (__instance.type.Equals((object)"Arch") &&
+						Game1.player.archaeologyFound.Count() > 0) // They *have* found an artifact
 					{
-						case 114: // Ancient seed
-							__result = i18n.Get("Object.cs.1CandleReward");
-							break;
-						case 107: // Dinosaur egg
-							__result = i18n.Get("Object.cs.2CandleReward");
-							break;
-						case 74: // Prismatic shard
-							__result = i18n.Get("Object.cs.3CandleReward");
-							break;
+						switch ((int)(NetFieldBase<int, NetInt>)__instance.parentSheetIndex)
+						{
+							case 114: // Ancient seed
+								__result = i18n.Get("Object.cs.1CandleReward");
+								break;
+							case 107: // Dinosaur egg
+								__result = i18n.Get("Object.cs.2CandleReward");
+								break;
+						}
+					} 
+					else if (((int)(NetFieldBase<int, NetInt>)__instance.parentSheetIndex) == 74) // Prismatic shard
+					{
+						__result = i18n.Get("Object.cs.3CandleReward");
 					}
 				}
 			}
@@ -55,7 +60,6 @@ namespace AngryGrandpa
 				Monitor.Log($"Failed in {nameof(checkForSpecialItemHoldUpMeessage_Postfix)}:\n{ex}",
 					LogLevel.Error);
 			}
-			return __result;
 		}
 	}
 }

@@ -45,8 +45,8 @@
     // These text entries are brand-new messages that appear when you collect a bonus reward from Grandpa's Shrine.
     // In vanilla, finding the statue of perfection shows: "You found a peculiar statue behind Grandpa's Shrine."
 
-    "Object.cs.1CandleReward": "There was a very old seed laying on Grandpa's Shrine.",
-    "Object.cs.2CandleReward": "You found a prehistoric egg tucked behind the Shrine. Was that always there?",
+    "Object.cs.1CandleReward": "You found a very old seed on top the shrine.",
+    "Object.cs.2CandleReward": "You found a prehistoric egg tucked behind the shrine. Was that always there?",
     "Object.cs.3CandleReward": "Something was glimmering under Grandpa's Shrine... a rare and powerful gemstone!",
 
     // Points score message displayed at the top of the screen during the evaluation events."

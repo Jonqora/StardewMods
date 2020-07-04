@@ -30,3 +30,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.EventPatches.grandpaEvaluations_Prefix(StardewValley.GameLocation)")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ModEntry.onWarped(System.Object,StardewModdingAPI.Events.WarpedEventArgs)")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ModEntry.resetEventsCacheIfYearChanged")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.EventPatches.skipEvent_Postfix")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ObjectPatches.checkForSpecialItemHoldUpMeessage_Postfix(System.String@,StardewValley.Object)")]
