@@ -41,5 +41,5 @@ No translations are planned right off the bat, but the mod will be designed with
     - `"Vanilla"` - Normal game evaluation: 21 possible points, you need 12 to earn 4 candles.
     - `"Hard"` - Harder scoring option. You need 18/21 points to earn 4 candles.
     - `"Expert"` - Hardest scoring option. You need all 21 points to earn 4 candles!
-- **EvaluationYear:** Default is `3`. Grandpa will make his first appearance at the START of this in-game year.
-- **BonusRewards:** Defaults to `true`. You will get new bonus rewards for earning at least 1, at least 2, and at least 3 candles.
+- **YearsBeforeEvaluation:** Default is `2`. Grandpa will make his first appearance after this many in-game years have passed.
+- **BonusRewards:** Defaults to `true`. You will get new bonus rewards for earning at least 1, at least 2, and at least 3 candles. You must complete an evaluation or re-evalution event with the mod to access these rewards.
