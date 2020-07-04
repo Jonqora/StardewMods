@@ -32,3 +32,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ModEntry.resetEventsCacheIfYearChanged")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.EventPatches.skipEvent_Postfix")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ObjectPatches.checkForSpecialItemHoldUpMeessage_Postfix(System.String@,StardewValley.Object)")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.EventPatches.skipEvent_Postfix(StardewValley.Event)")]

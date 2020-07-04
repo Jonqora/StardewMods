@@ -37,7 +37,7 @@ namespace AngryGrandpa
 					Game1.currentLocation is Farm)
 				{
 					if (__instance.type.Equals((object)"Arch") &&
-						Game1.player.archaeologyFound.Count() > 0) // They *have* found an artifact
+						Game1.player.archaeologyFound.Count() > 0) // They've already found at least one artifact
 					{
 						switch ((int)(NetFieldBase<int, NetInt>)__instance.parentSheetIndex)
 						{
