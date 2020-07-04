@@ -41,6 +41,12 @@ namespace AngryGrandpa
 				postfix: new HarmonyMethod(typeof(EventPatches),
 					nameof(EventPatches.grandpaEvaluations_Postfix))
 			);
+			Harmony.Patch(
+				original: AccessTools.Method(typeof(Event),
+					nameof(Event.skipEvent)),
+				postfix: new HarmonyMethod(typeof(EventPatches),
+					nameof(EventPatches.skipEvent_Postfix))
+			);
 		}
 
 		public static void grandpaEvaluations_Prefix()
@@ -86,6 +92,26 @@ namespace AngryGrandpa
 			catch (Exception ex)
 			{
 				Monitor.Log($"Failed in {nameof(grandpaEvaluations_Postfix)}:\n{ex}",
+					LogLevel.Error);
+			}
+		}
+
+		public static void skipEvent_Postfix(Event __instance)
+		{
+			try
+			{
+				switch(__instance.id)
+				{
+					case 558291: // Initial
+					case 558292: // Reevaluation
+						Game1.player.eventsSeen.Remove(2146991); // Candles event removal for initial eval after a reset cmd
+						Game1.player.eventsSeen.Remove(321777); // Remove re-evaluation request flag
+						break;
+				}
+			}
+			catch (Exception ex)
+			{
+				Monitor.Log($"Failed in {nameof(skipEvent_Postfix)}:\n{ex}",
 					LogLevel.Error);
 			}
 		}
