@@ -1,6 +1,8 @@
 ﻿using StardewModdingAPI;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 
 namespace AngryGrandpa
 {
@@ -55,6 +57,17 @@ namespace AngryGrandpa
             set { _genderNeutrality = value; }
         }
         private bool? _genderNeutrality = null; // Initialized with null before determining which default setting to use
+
+        public bool ExpressivePortraits
+        {
+            get { return _expressivePortraits; }
+            set
+            {
+                _expressivePortraits = value;
+                setPortraitTokens();
+            }
+        }
+        private bool _expressivePortraits; // Initialize this one in the constructor
 
         public string ScoringSystem
         {
@@ -121,7 +134,14 @@ namespace AngryGrandpa
         private int[] _customCandleScores = new int[4] { 0, 4, 8, 12 };
         #endregion
 
-        #region Utility functions to access config data
+        #region ModConfig constructor
+        public ModConfig()
+        {
+            ExpressivePortraits = true; // This makes sure setPortraitTokens runs on setup
+        }
+        #endregion
+
+        #region Utility functions and fields to access config data
         internal int GetScoreForCandles(int candles)
         {
             if (candles < 1 || candles > 4)
@@ -157,6 +177,42 @@ namespace AngryGrandpa
             }
             else return 21;
         }
+
+        private static readonly List<string> PortraitNames = 
+            new List<string>
+        {
+            "gpaNeutral",
+            "gpaHappy",
+            "gpaTears",
+            "gpaShock",
+            "gpaLove",
+            "gpaAngry",
+            "gpaSigh",
+            "gpaRage",
+            "gpaFrown",
+            "gpaStern",
+            "gpaSurprise",
+            "gpaJoy"
+        };
+
+        // EventEditor and EvaluationEditor each grab this dictionary for translation tokens
+        internal Dictionary<string, string> PortraitTokens = new Dictionary<string, string>();
+
+        private void setPortraitTokens()
+        {
+            PortraitTokens.Clear();
+            int count = 0;
+            foreach (string emotion in PortraitNames)
+            {
+                if (ExpressivePortraits)
+                {
+                    PortraitTokens[emotion] = "$" + count.ToString();
+                }
+                else PortraitTokens[emotion] = "";
+
+                count++;
+            }
+        }
         #endregion
 
         #region Generic Mod Config Menu helper functions
@@ -172,8 +228,10 @@ namespace AngryGrandpa
                 => asset.AssetNameEquals("Strings\\Locations") 
                 || asset.AssetNameEquals("Data\\mail")
                 || asset.AssetNameEquals("Data\\Events\\Farmhouse")
-                || asset.AssetNameEquals("Data\\Events\\Farm"));
+                || asset.AssetNameEquals("Data\\Events\\Farm")
+                || asset.AssetNameEquals("Portraits\\Grandpa"));
         }
+
         internal static void Reset()
         {
             Instance = new ModConfig();
@@ -209,6 +267,12 @@ namespace AngryGrandpa
                     "Removes references to player gender from dialogue strings",
                     () => Instance.GenderNeutrality,
                     (bool val) => Instance.GenderNeutrality = val);
+
+            api.RegisterSimpleOption(manifest,
+                    "Enable expressive portraits",
+                    "Grandpa gets a variety of new facial expressions",
+                    () => Instance.ExpressivePortraits,
+                    (bool val) => Instance.ExpressivePortraits = val);
 
             api.RegisterLabel(manifest, "", "");
             api.RegisterLabel(manifest, "Scoring Options", "");

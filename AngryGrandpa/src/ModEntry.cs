@@ -56,6 +56,9 @@ namespace AngryGrandpa
             helper.Events.Input.ButtonPressed += this.onButtonPressed;
             helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
             helper.Events.GameLoop.DayStarted += this.onDayStarted;
+
+            // Set up portrait asset editor. This one is added early since it never changes.
+            helper.Content.AssetEditors.Add(new PortraitEditor());
         }
 
 

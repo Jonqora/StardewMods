@@ -61,7 +61,8 @@ namespace AngryGrandpa
 			// Change the event key for EvaluationEvent and edit the scripts for EvaluationEvent, RepeatEvaluationEvent
 			else if (asset.AssetNameEquals($"Data\\Events\\Farmhouse"))
 			{
-				// Prepare tokens (even if there's only one)
+				// Prepare the tokens!
+
 				string countYears;
 				int yearsPassed = Max(Game1.year - 1, Config.YearsBeforeEvaluation); // Accurate dialogue even for delayed event
 				if (yearsPassed >= 10)
@@ -74,12 +75,21 @@ namespace AngryGrandpa
 					countYears = i18n.Get("GrandpaCountYears").ToString().Split('|')[yearsPassed];
 				}
 
+				// Collect all portrait tokens & others
+
+				var allEventTokens = new Dictionary<string, string>(Config.PortraitTokens)
+				{
+					["countYears"] = countYears
+				};
+
 				// Delete old entries for the Evaluation event
-				Regex regex = new Regex(@"^55829(1|2)\/.*"); // Matches any event key that starts with "558291/" or "558292/"
+
+				Regex regex = new Regex(@"^55829(1|2)\/.*"); // Match events starting with "558291/" or "558292/"
 				List<string> todelete = data.Keys.Where(k => regex.Match(k).Success).ToList();
 				todelete.ForEach(k => data.Remove(k)); // Remove the old event scripts completely
 
 				// Organize the keys and values with corrected event preconditions
+
 				foreach (string entry in new List<string> { "EvaluationEvent", "RepeatEvaluationEvent" })
 				{
 					string gameKey = i18n.Get(entry + ".gameKey");
@@ -95,7 +105,7 @@ namespace AngryGrandpa
 					{
 						gameKey = Regex.Replace( gameKey, @"/y [0-9]+", "" );
 					}
-					string value = i18n.Get(modKey, new { countYears });
+					string value = i18n.Get(modKey, allEventTokens);
 
 					data[gameKey] = value; // Insert the new event data.
 				}
