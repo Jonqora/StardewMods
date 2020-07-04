@@ -80,7 +80,6 @@
     <Compile Include="src\Patches\UtilityPatches.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\Grandpa.xcf" />
     <None Include="i18n\default.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
