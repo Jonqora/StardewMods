@@ -62,12 +62,12 @@ namespace AngryGrandpa
         {
             get { return _expressivePortraits; }
             set
-            { 
+            {
                 _expressivePortraits = value;
                 setPortraitTokens();
             }
         }
-        private bool _expressivePortraits = true;
+        private bool _expressivePortraits; // Initialize this one in the constructor
 
         public string ScoringSystem
         {
@@ -132,6 +132,13 @@ namespace AngryGrandpa
             }
         }
         private int[] _customCandleScores = new int[4] { 0, 4, 8, 12 };
+        #endregion
+
+        #region ModConfig constructor
+        public ModConfig()
+        {
+            ExpressivePortraits = true; // This makes sure setPortraitTokens runs on setup
+        }
         #endregion
 
         #region Utility functions and fields to access config data
