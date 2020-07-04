@@ -63,11 +63,13 @@ namespace AngryGrandpa
 				fifthCandle = i18n.Get("FifthCandle." + Config.GrandpaDialogue);
 			}
 
-			var tokens = new
+			// Collect all portrait tokens & others
+
+			var allEvaluationTokens = new Dictionary<string, string>(Config.PortraitTokens)
 			{
-				pastYears,
-				spouseOrLewis,
-				fifthCandle
+				["pastYears"] = pastYears,
+				["spouseOrLewis"] = spouseOrLewis,
+				["fifthCandle"] = fifthCandle
 			};
 
 			// Prepare data
@@ -83,7 +85,7 @@ namespace AngryGrandpa
 					string gameKey = i18n.Get(entry + ".gameKey");
 					string modKey = entry + "." + Config.GrandpaDialogue;
 					if (Config.GenderNeutrality) { modKey += "-gn"; }
-					string value = i18n.Get(modKey, tokens);
+					string value = i18n.Get(modKey, allEvaluationTokens);
 
 					data[gameKey] = value;
 				}

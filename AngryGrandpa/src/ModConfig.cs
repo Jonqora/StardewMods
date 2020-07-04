@@ -1,6 +1,8 @@
 ﻿using StardewModdingAPI;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 
 namespace AngryGrandpa
 {
@@ -56,7 +58,16 @@ namespace AngryGrandpa
         }
         private bool? _genderNeutrality = null; // Initialized with null before determining which default setting to use
 
-        public bool ExpressivePortraits { get; set; } = true;
+        public bool ExpressivePortraits
+        {
+            get { return _expressivePortraits; }
+            set
+            { 
+                _expressivePortraits = value;
+                setPortraitTokens();
+            }
+        }
+        private bool _expressivePortraits = true;
 
         public string ScoringSystem
         {
@@ -123,7 +134,7 @@ namespace AngryGrandpa
         private int[] _customCandleScores = new int[4] { 0, 4, 8, 12 };
         #endregion
 
-        #region Utility functions to access config data
+        #region Utility functions and fields to access config data
         internal int GetScoreForCandles(int candles)
         {
             if (candles < 1 || candles > 4)
@@ -158,6 +169,42 @@ namespace AngryGrandpa
                 return 13;
             }
             else return 21;
+        }
+
+        private static readonly List<string> PortraitNames = 
+            new List<string>
+        {
+            "gpaNeutral",
+            "gpaHappy",
+            "gpaTears",
+            "gpaShock",
+            "gpaLove",
+            "gpaAngry",
+            "gpaSigh",
+            "gpaRage",
+            "gpaFrown",
+            "gpaStern",
+            "gpaSurprise",
+            "gpaJoy"
+        };
+
+        // EventEditor and EvaluationEditor each grab this dictionary for translation tokens
+        internal Dictionary<string, string> PortraitTokens = new Dictionary<string, string>();
+
+        private void setPortraitTokens()
+        {
+            PortraitTokens.Clear();
+            int count = 0;
+            foreach (string emotion in PortraitNames)
+            {
+                if (ExpressivePortraits)
+                {
+                    PortraitTokens[emotion] = "$" + count;
+                }
+                else PortraitTokens[emotion] = "";
+
+                count++;
+            }
         }
         #endregion
 

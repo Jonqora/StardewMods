@@ -15,6 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <EnableHarmony>true</EnableHarmony>
+    <IgnoreModFilePatterns>\.xcf$, [/\\]fr\.json$</IgnoreModFilePatterns>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
