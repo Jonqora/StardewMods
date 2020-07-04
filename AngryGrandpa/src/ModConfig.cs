@@ -56,6 +56,8 @@ namespace AngryGrandpa
         }
         private bool? _genderNeutrality = null; // Initialized with null before determining which default setting to use
 
+        public bool ExpressivePortraits { get; set; } = true;
+
         public string ScoringSystem
         {
             get { return _scoringSystem; }
@@ -172,8 +174,10 @@ namespace AngryGrandpa
                 => asset.AssetNameEquals("Strings\\Locations") 
                 || asset.AssetNameEquals("Data\\mail")
                 || asset.AssetNameEquals("Data\\Events\\Farmhouse")
-                || asset.AssetNameEquals("Data\\Events\\Farm"));
+                || asset.AssetNameEquals("Data\\Events\\Farm")
+                || asset.AssetNameEquals("Portraits\\Grandpa"));
         }
+
         internal static void Reset()
         {
             Instance = new ModConfig();
@@ -209,6 +213,12 @@ namespace AngryGrandpa
                     "Removes references to player gender from dialogue strings",
                     () => Instance.GenderNeutrality,
                     (bool val) => Instance.GenderNeutrality = val);
+
+            api.RegisterSimpleOption(manifest,
+                    "Enable expressive portraits",
+                    "Grandpa gets a variety of new facial expressions",
+                    () => Instance.ExpressivePortraits,
+                    (bool val) => Instance.ExpressivePortraits = val);
 
             api.RegisterLabel(manifest, "", "");
             api.RegisterLabel(manifest, "Scoring Options", "");
