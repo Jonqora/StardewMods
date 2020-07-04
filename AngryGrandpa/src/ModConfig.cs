@@ -199,7 +199,7 @@ namespace AngryGrandpa
             {
                 if (ExpressivePortraits)
                 {
-                    PortraitTokens[emotion] = "$" + count;
+                    PortraitTokens[emotion] = "$" + count.ToString();
                 }
                 else PortraitTokens[emotion] = "";
 
