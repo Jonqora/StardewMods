@@ -34,3 +34,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ObjectPatches.checkForSpecialItemHoldUpMeessage_Postfix(System.String@,StardewValley.Object)")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.EventPatches.skipEvent_Postfix(StardewValley.Event)")]
 [assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.ModConfig.setPortraitTokens")]
+[assembly: SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AngryGrandpa.FarmPatches.grandpa4CandleCallback(StardewValley.Item,StardewValley.Farmer)")]

@@ -91,11 +91,23 @@ namespace AngryGrandpa
                             } 
                         }
                         // Give 4-candle reward (Statue of Perfection)
-                        if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 4 && !Utility.doesItemWithThisIndexExistAnywhere(160, true))
+                        if ( Config.StatuesForFarmhands && Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation") )
+                        { // ANGRY GRANDPA LOGIC
+                            if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 4 && !Game1.player.mailReceived.Contains("6324reward4candle"))
+                            {
+                                who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 160, false), new ItemGrabMenu.behaviorOnItemSelect(grandpa4CandleCallback));
+                                __result = true;
+                                return false; // Alter __result, don't run original code.
+                            }
+                        }
+                        else // VANILLA LOGIC
                         {
-                            who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 160, false), new ItemGrabMenu.behaviorOnItemSelect(__instance.grandpaStatueCallback));
-                            __result = true;
-                            return false; // Alter __result, don't run original code.
+                            if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 4 && !Utility.doesItemWithThisIndexExistAnywhere(160, true))
+                            {
+                                who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 160, false), new ItemGrabMenu.behaviorOnItemSelect(__instance.grandpaStatueCallback));
+                                __result = true;
+                                return false; // Alter __result, don't run original code.
+                            }
                         }
                         // Accept diamond or prompt for diamond
                         if (Game1.year > Config.YearsBeforeEvaluation && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore > 0) // && (int)(NetFieldBase<int, NetInt>)__instance.grandpaScore < 4) // Allow endless re-evaluations
@@ -193,6 +205,24 @@ namespace AngryGrandpa
             if (!who.mailReceived.Contains("6324reward3candle"))
             {
                 who.mailReceived.Add("6324reward3candle");
+            }
+        }
+
+        private static void grandpa4CandleCallback(Item item, Farmer who)
+        {
+            who = Game1.player;
+            if (item == null
+                || !(item is Object)
+                || !((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 160)
+                || who == null)
+                return;
+            if (!who.mailReceived.Contains("6324reward4candle"))
+            {
+                who.mailReceived.Add("6324reward4candle");
+            }
+            if (!who.mailReceived.Contains("grandpaPerfect"))
+            {
+                who.mailReceived.Add("grandpaPerfect");
             }
         }
 
