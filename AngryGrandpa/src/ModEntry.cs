@@ -201,9 +201,12 @@ namespace AngryGrandpa
                 var flagsToRemove = new List<string> 
                 {
                     "6324bonusRewardsEnabled", "6324reward2candles", "6324reward3candles", // Old, outdated flags
-                    "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324hasDoneModdedEvaluation", // Current flags in use
+                    "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324hasDoneModdedEvaluation", // Current used flags
                 };
-                flagsToRemove.ForEach(f => Game1.player.mailReceived.Remove(f));
+                foreach (string flag in Game1.player.mailReceived)
+                {
+                    if (flagsToRemove.Contains(flag)) { Game1.player.mailReceived.Remove(flag); }
+                }
 
                 if (!Game1.player.eventsSeen.Contains(2146991))
                 {
