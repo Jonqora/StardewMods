@@ -76,14 +76,14 @@ namespace AngryGrandpa
                                 return false; // Alter __result, don't run original code.
                             }
                             // Give new 2-candle reward (Dinosaur egg)
-                            if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 2 && !Game1.player.mailReceived.Contains("6324reward2candles") )
+                            if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 2 && !Game1.player.mailReceived.Contains("6324reward2candle") )
                             {
                                 who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 107, 1), new ItemGrabMenu.behaviorOnItemSelect(grandpa2CandleCallback));
                                 __result = true;
                                 return false; // Alter __result, don't run original code.
                             }
                             // Give new 3-candle reward (Prismatic shard)
-                            if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 3 && !Game1.player.mailReceived.Contains("6324reward3candles") )
+                            if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 3 && !Game1.player.mailReceived.Contains("6324reward3candle") )
                             {
                                 who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 74, 1), new ItemGrabMenu.behaviorOnItemSelect(grandpa3CandleCallback));
                                 __result = true;
@@ -176,9 +176,9 @@ namespace AngryGrandpa
                 || ( (bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 107 )
                 || who == null)
                 return;
-            if (!who.mailReceived.Contains("6324reward2candles"))
+            if (!who.mailReceived.Contains("6324reward2candle"))
             {
-                who.mailReceived.Add("6324reward2candles");
+                who.mailReceived.Add("6324reward2candle");
             }
         }
 
@@ -190,9 +190,9 @@ namespace AngryGrandpa
                 || ( (bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 74 )
                 || who == null)
                 return;
-            if (!who.mailReceived.Contains("6324reward3candles"))
+            if (!who.mailReceived.Contains("6324reward3candle"))
             {
-                who.mailReceived.Add("6324reward3candles");
+                who.mailReceived.Add("6324reward3candle");
             }
         }
 

@@ -269,7 +269,7 @@ namespace AngryGrandpa
                     (bool val) => Instance.GenderNeutrality = val);
 
             api.RegisterSimpleOption(manifest,
-                    "Enable expressive portraits",
+                    "Expressive dialogue portraits",
                     "Grandpa gets a variety of new facial expressions",
                     () => Instance.ExpressivePortraits,
                     (bool val) => Instance.ExpressivePortraits = val);

@@ -196,12 +196,14 @@ namespace AngryGrandpa
                 Game1.getFarm().grandpaScore.Value = 0; // Reset grandpaScore
                 FarmPatches.RemoveCandlesticks(Game1.getFarm()); // Removes all candlesticks (not flames).
                 Game1.getFarm().removeTemporarySpritesWithIDLocal(6666f); // Removes candle flames.
-                
+
                 // Remove flags added by this mod
-                Game1.player.mailReceived.Remove("6324grandpaNoteMail"); // Mail entry
-                Game1.player.mailReceived.Remove("6324reward1candle");
-                Game1.player.mailReceived.Remove("6324reward2candles");
-                Game1.player.mailReceived.Remove("6324reward3candles");
+                var flagsToRemove = new List<string> 
+                {
+                    "6324bonusRewardsEnabled", "6324reward2candles", "6324reward3candles", // Old, outdated flags
+                    "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324hasDoneModdedEvaluation", // Current flags in use
+                };
+                flagsToRemove.ForEach(f => Game1.player.mailReceived.Remove(f));
 
                 if (!Game1.player.eventsSeen.Contains(2146991))
                 {
