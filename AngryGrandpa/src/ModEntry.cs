@@ -165,7 +165,7 @@ namespace AngryGrandpa
                 bool farmNote = Game1.getFarm().hasSeenGrandpaNote;
                 Monitor.Log($"Actual current Farm.hasSeenGrandpaNote value: {farmNote}", LogLevel.Debug); 
                 List<int> eventsAG = new List<int> { 558291, 558292, 2146991, 321777 };
-                List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled" };
+                List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled", "6324hasDoneModdedEvaluation" };
                 Monitor.Log($"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}", LogLevel.Debug);
                 Monitor.Log($"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
             }

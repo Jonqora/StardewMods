@@ -66,7 +66,7 @@ namespace AngryGrandpa
                             return false; // Alter __result, don't run original code.
                         }
                         // Check for new bonus rewards. Players must do an evaluation with this mod to activate them.
-                        if (Config.BonusRewards && Game1.player.mailReceived.Contains("6324bonusRewardsEnabled") )
+                        if (Config.BonusRewards && Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation") )
                         {
                             // Give new 1-candle reward (Ancient seed artifact)
                             if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore >= 1 && !Game1.player.mailReceived.Contains("6324reward1candle") )

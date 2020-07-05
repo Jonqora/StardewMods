@@ -70,9 +70,9 @@ namespace AngryGrandpa
 				Game1.player.eventsSeen.Remove(2146991); // Candles event removal needed for initial evaluation after a reset command
 				Game1.player.eventsSeen.Remove(321777); // Remove re-evaluation request flag
 				// Add a mail flag the FIRST time this mod is used for any evaluation. This activates bonus rewards.
-				if (!Game1.player.mailReceived.Contains("6324bonusRewardsEnabled"))
+				if (!Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation"))
 				{
-					Game1.player.mailReceived.Add("6324bonusRewardsEnabled");
+					Game1.player.mailReceived.Add("6324hasDoneModdedEvaluation");
 				}
 
 				if (Config.ShowPointsTotal)
@@ -112,9 +112,9 @@ namespace AngryGrandpa
 					case 558292: // Reevaluation
 						Game1.player.eventsSeen.Remove(2146991); // Candles event removal for initial eval after a reset cmd
 						Game1.player.eventsSeen.Remove(321777); // Remove re-evaluation request flag
-						if (!Game1.player.mailReceived.Contains("6324bonusRewardsEnabled"))
+						if (!Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation"))
 						{
-							Game1.player.mailReceived.Add("6324bonusRewardsEnabled"); // Activate bonus rewards
+							Game1.player.mailReceived.Add("6324hasDoneModdedEvaluation"); // Activate bonus rewards
 						}
 						break;
 				}
