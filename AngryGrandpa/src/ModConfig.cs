@@ -109,6 +109,8 @@ namespace AngryGrandpa
 
         public bool BonusRewards { get; set; } = true;
 
+        public bool StatuesForFarmhands { get; set; } = true;
+
         private int[] CustomCandleScores // Change this to public when I update to allow custom configs
         { 
             get { return _customCandleScores; }
@@ -309,6 +311,12 @@ namespace AngryGrandpa
                     "Gives new bonus rewards for earning 1-3 candles",
                     () => Instance.BonusRewards,
                     (bool val) => Instance.BonusRewards = val);
+
+            api.RegisterSimpleOption(manifest,
+                    "Give statues to all farmhands",
+                    "In a multiplayer game, each farmhand can receive their own Statue of Perfection.",
+                    () => Instance.StatuesForFarmhands,
+                    (bool val) => Instance.StatuesForFarmhands = val);
 
             Monitor.Log("Added Angry Grandpa Config to GMCM", LogLevel.Info);
         }

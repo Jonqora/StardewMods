@@ -67,6 +67,7 @@ namespace AngryGrandpa
 		{
 			try
 			{
+				CheckWorldForStatueOfPerfection(); // Add reward flag to host if any pre-existing statue
 				Game1.player.eventsSeen.Remove(2146991); // Candles event removal needed for initial evaluation after a reset command
 				Game1.player.eventsSeen.Remove(321777); // Remove re-evaluation request flag
 				// Add a mail flag the FIRST time this mod is used for any evaluation. This activates bonus rewards.
@@ -110,6 +111,7 @@ namespace AngryGrandpa
 				{
 					case 558291: // Initial
 					case 558292: // Reevaluation
+						CheckWorldForStatueOfPerfection(); // Add reward flag to host if any pre-existing statue
 						Game1.player.eventsSeen.Remove(2146991); // Candles event removal for initial eval after a reset cmd
 						Game1.player.eventsSeen.Remove(321777); // Remove re-evaluation request flag
 						if (!Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation"))
@@ -123,6 +125,19 @@ namespace AngryGrandpa
 			{
 				Monitor.Log($"Failed in {nameof(skipEvent_Postfix)}:\n{ex}",
 					LogLevel.Error);
+			}
+		}
+
+		public static void CheckWorldForStatueOfPerfection()
+		{
+			if (Game1.player.IsMainPlayer) // Host will always be present for evaluation events
+			{
+				if (!Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation") && // No modded evaluations yet
+					!Game1.player.mailReceived.Contains("6324reward4candle") && // They don't already have the flag
+					Utility.doesItemWithThisIndexExistAnywhere(160, true)) // They DO have an existing Statue of Perfection somewhere
+				{
+					Game1.player.mailReceived.Add("6324reward4candle"); // Assume the existing statue belongs to this Host player
+				}
 			}
 		}
 	}
