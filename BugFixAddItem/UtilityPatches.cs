@@ -35,7 +35,7 @@ namespace BugFixAddItem
                     // Find any null value appearing as the last argument of a ItemGrabMenu.behaviorOnItemSelect delegate method call
                     if (codes[i].opcode == OpCodes.Ldnull &&
                         codes[i + 1].opcode == OpCodes.Callvirt &&
-                        codes[i + 1].operand.ToString() == "callvirt instance void StardewValley.Menus.ItemGrabMenu/behaviorOnItemSelect::Invoke(class StardewValley.Item, class StardewValley.Farmer)")
+                        codes[i + 1].operand.ToString() == "instance void StardewValley.Menus.ItemGrabMenu/behaviorOnItemSelect::Invoke(class StardewValley.Item, class StardewValley.Farmer)")
                     {
                         // change (Farmer) null to Game1.player
                         codes[i].opcode = OpCodes.Ldsfld;
