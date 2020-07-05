@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowItemQuality", "ShowItem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngryGrandpa", "AngryGrandpa\AngryGrandpa.csproj", "{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFixAddItem", "BugFixAddItem\BugFixAddItem.csproj", "{977DF13B-B4D7-4203-99A7-004A8DE555FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,14 @@ Global
 		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Release|x86.ActiveCfg = Release|Any CPU
 		{FE4AF28D-7696-4E9E-9CBB-69DD4F7AF8C0}.Release|x86.Build.0 = Release|Any CPU
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Debug|x86.ActiveCfg = Debug|x86
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Debug|x86.Build.0 = Debug|x86
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Release|x86.ActiveCfg = Release|Any CPU
+		{977DF13B-B4D7-4203-99A7-004A8DE555FD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
