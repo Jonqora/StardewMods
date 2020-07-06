@@ -1,8 +1,8 @@
 {
     "Name": "Angry Grandpa",
     "Author": "Jonqora",
-    "Version": "0.14.11-beta.1-AddItemTest",
-    "Description": "Restores the old, harsher dialogue for grandpa's evaluation in year 3.",
+    "Version": "0.14.12-beta.1-AddItemTest",
+    "Description": "Overhauls grandpa's evaluation with new dialogues, content, and features!",
     "UniqueID": "Jonqora.AngryGrandpa",
     "EntryDll": "AngryGrandpa.dll",
     "MinimumApiVersion": "3.0.0",

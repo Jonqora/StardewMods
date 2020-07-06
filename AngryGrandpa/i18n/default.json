@@ -444,21 +444,21 @@
         #$b#The future of %farm Farm is in your hands, now...{{gpaNeutral}}",
 
     "4CandleResult.Nuclear": "@, my boy...^@, my dear...{{gpaFrown}}
-        #$b#You are an absolute fucking legend.{{gpaJoy}}
+        #$b#You are an absolute fucking legend.{{gpaLove}}
         #$b#Is... this really the same farm I left to you? I hardly recognize it!{{gpaShock}}
         #$b#The work you've done on the place is incredible! You've become a better farmer than I ever was.{{gpaJoy}}
         #$b#Such commitment to excellence... This is why you're my favorite grandchild, you know.{{gpaLove}}{{fifthCandle}}
-        #$b#Ah yes...{{gpaNeutral}}
+        #$b#Ah yes...{{gpaHappy}}
         #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaSurprise}}
         #$b#...{{gpaHappy}}
         #$b#The future of %farm Farm is in your very capable hands...{{gpaJoy}}
         #$b#Please call on me any time; I would love to see your continued progress.{{gpaLove}}",
     "4CandleResult.Nuclear-gn": "@, my child...{{gpaFrown}}
-        #$b#You are an absolute fucking legend.{{gpaJoy}}
+        #$b#You are an absolute fucking legend.{{gpaLove}}
         #$b#Is... this really the same farm I left to you? I hardly recognize it!{{gpaShock}}
         #$b#The work you've done on the place is incredible! You've become a better farmer than I ever was.{{gpaJoy}}
         #$b#Such commitment to excellence... This is why you're my favorite grandchild, you know.{{gpaLove}}{{fifthCandle}}
-        #$b#Ah yes...{{gpaNeutral}}
+        #$b#Ah yes...{{gpaHappy}}
         #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaSurprise}}
         #$b#...{{gpaHappy}}
         #$b#The future of %farm Farm is in your very capable hands...{{gpaJoy}}
