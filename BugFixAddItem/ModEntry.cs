@@ -22,6 +22,7 @@ namespace BugFixAddItem
             // Apply Harmony patches.
             Harmony = HarmonyInstance.Create(ModManifest.UniqueID);
             UtilityPatches.Apply();
+            ItemGrabMenuPatches.Apply();
         }
     }
 }
