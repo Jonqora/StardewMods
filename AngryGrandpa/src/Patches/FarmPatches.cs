@@ -168,7 +168,11 @@ namespace AngryGrandpa
 
         private static void grandpa1CandleCallback(Item item, Farmer who)
         {
-            //who = Game1.player;
+            if (who == null)
+            {
+                Monitor.Log("Who is NULL.", LogLevel.Debug);
+            }
+            who = Game1.player;
             if (item == null
                 || !(item is Object)
                 || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 114)
@@ -177,6 +181,7 @@ namespace AngryGrandpa
                 Monitor.Log("Callback conditions not satisfied.", LogLevel.Debug);
                 return;
             }
+            Monitor.Log("Callback conditions satisfied!", LogLevel.Debug);
             if (!who.mailReceived.Contains("6324reward1candle"))
             {
                 who.mailReceived.Add("6324reward1candle");
@@ -185,7 +190,11 @@ namespace AngryGrandpa
 
         private static void grandpa2CandleCallback(Item item, Farmer who)
         {
-            //who = Game1.player; 
+            if(who == null)
+            {
+                Monitor.Log("Who is NULL.", LogLevel.Debug);
+            }
+            who = Game1.player; 
             if (item == null
                 || !(item is Object)
                 || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 107)
@@ -194,6 +203,7 @@ namespace AngryGrandpa
                 Monitor.Log("Callback conditions not satisfied.", LogLevel.Debug);
                 return;
             }
+            Monitor.Log("Callback conditions satisfied!", LogLevel.Debug);
             if (!who.mailReceived.Contains("6324reward2candle"))
             {
                 who.mailReceived.Add("6324reward2candle");
@@ -202,7 +212,11 @@ namespace AngryGrandpa
 
         private static void grandpa3CandleCallback(Item item, Farmer who)
         {
-            //who = Game1.player;
+            if (who == null)
+            {
+                Monitor.Log("Who is NULL.", LogLevel.Debug);
+            }
+            who = Game1.player;
             if (item == null
                 || !(item is Object)
                 || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 74)
@@ -211,6 +225,7 @@ namespace AngryGrandpa
                 Monitor.Log("Callback conditions not satisfied.", LogLevel.Debug);
                 return;
             }
+            Monitor.Log("Callback conditions satisfied!", LogLevel.Debug);
             if (!who.mailReceived.Contains("6324reward3candle"))
             {
                 who.mailReceived.Add("6324reward3candle");
@@ -219,6 +234,10 @@ namespace AngryGrandpa
 
         private static void grandpa4CandleCallback(Item item, Farmer who)
         {
+            if (who == null)
+            {
+                Monitor.Log("Who is NULL.", LogLevel.Debug);
+            }
             who = Game1.player;
             if (item == null
                 || !(item is Object)
