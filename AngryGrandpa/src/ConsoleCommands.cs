@@ -1,130 +1,18 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using StardewModdingAPI;
-using StardewModdingAPI.Events;
 using StardewValley;
-using Harmony;
-using Netcode;
-using StardewValley.Locations;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AngryGrandpa
 {
-    /// <summary>The mod entry point.</summary>
-    public class ModEntry : Mod
+    public class ConsoleCommands
     {
-        internal static ModEntry Instance { get; private set; }
-        internal HarmonyInstance Harmony { get; private set; }
-        internal protected static ModConfig Config => ModConfig.Instance;
-
-        /// <summary>Whether the next tick is the first one.</summary>
-        private bool IsFirstTick = true;
-
-        private int CurrentYear; // Monitor for changes
-
-
-        /*********
-        ** Accessors 
-        *********/
-        /// <summary>Provides methods for interacting with the mod directory.</summary>
-        //public static IModHelper ModHelper { get; private set; }
-
-
-        /*********
-        ** Public methods
-        *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides simplified APIs for writing mods.</param>
-        public override void Entry(IModHelper helper)
-        {
-            // Make resources available.
-            Instance = this;
-            ModConfig.Load();
-
-            // Apply Harmony patches.
-            Harmony = HarmonyInstance.Create(ModManifest.UniqueID);
-            EventPatches.Apply();
-            FarmPatches.Apply();
-            ObjectPatches.Apply();
-            UtilityPatches.Apply();
-
-            // Add console commands.
-            ConsoleCommands.Apply();
-
-            // Listen for game events. (Make these into an event handler thing?)
-            helper.Events.GameLoop.GameLaunched += this.onGameLaunched;
-            helper.Events.GameLoop.UpdateTicked += this.onUpdateTicked;
-            helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
-            helper.Events.GameLoop.DayStarted += this.onDayStarted;
-
-            // Set up portrait asset editor. This one is added early since it never changes.
-            helper.Content.AssetEditors.Add(new PortraitEditor());
-        }
-
-
-        /*********
-        ** Private methods
-        *********/
-        /// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
-        private void onGameLaunched(object sender, GameLaunchedEventArgs e)
-        {
-            // Set up Generic Mod Config Menu if available.
-            ModConfig.SetUpMenu();
-        }
-
-        private void onUpdateTicked(object sender, UpdateTickedEventArgs e)
-        {
-            if (this.IsFirstTick)
-            {
-                this.IsFirstTick = false;
-            }
-            else // Is second update tick
-            {
-                Instance.Helper.Events.GameLoop.UpdateTicked -= this.onUpdateTicked; // Don't check again
-
-                // Set up asset loaders/editors.
-                Instance.Helper.Content.AssetEditors.Add(new GrandpaNoteEditor());
-                Instance.Helper.Content.AssetEditors.Add(new EventEditor());
-                Instance.Helper.Content.AssetEditors.Add(new EvaluationEditor());
-            }
-        }
-
-        private void onSaveLoaded(object sender, SaveLoadedEventArgs e)
-        {
-            if (Game1.getFarm().hasSeenGrandpaNote
-                && Game1.player.mailReceived[0] != "6324grandpaNoteMail" ) // Missing (or misplaced) AG mail flag?
-            {
-                Game1.player.mailReceived.Remove("6324grandpaNoteMail");
-                Game1.player.mailReceived.Insert(0, "6324grandpaNoteMail"); // Insert grandpa note first on mail tab
-            }
-            CurrentYear = Game1.year; // Track year for updating cached Events
-        }
-
-        private void onDayStarted(object sender, DayStartedEventArgs e)
-        {
-            resetEventsCacheIfYearChanged();
-        }
-
-        private void onWarped(object sender, WarpedEventArgs e)
-        {
-            resetEventsCacheIfYearChanged();
-        }
-
-        private void resetEventsCacheIfYearChanged()
-        {
-            if (Game1.year != CurrentYear) // Invalidate cache to reload assets that contain references to years passed
-            {
-                CurrentYear = Game1.year; // Update tracked value
-                Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
-                => asset.AssetNameEquals("Data\\Events\\Farmhouse")
-                || asset.AssetNameEquals("Data\\Events\\Farm"));
-            }
-        }
-
-        private void addConsoleCommands()
+        protected static IModHelper Helper => ModEntry.Instance.Helper;
+        protected static IMonitor Monitor => ModEntry.Instance.Monitor;
+        protected static ModConfig Config => ModConfig.Instance;
+        
+        public static void Apply()
         {
             Helper.ConsoleCommands.Add("grandpa_score",
                 "Estimates the result of a farm evaluation using grandpa's scoring criteria.\n\nUsage: grandpa_score",
@@ -143,7 +31,7 @@ namespace AngryGrandpa
         /// <summary>Gives a farm evaluation in console output when the 'grandpa_score' command is invoked.</summary>
         /// <param name="command">The name of the command invoked.</param>
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdGrandpaScore(string command, string[] args)
+        private static void cmdGrandpaScore(string _command, string[] _args)
         {
             try
             {
@@ -166,7 +54,7 @@ namespace AngryGrandpa
         /// <summary>Resets all event flags related to grandpa's evaluation(s) when the 'reset_evaluation' command is invoked.</summary>
         /// <param name="command">The name of the command invoked.</param>
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdResetEvaluation(string command, string[] args)
+        private static void cmdResetEvaluation(string _command, string[] _args)
         {
             try
             {
@@ -219,7 +107,7 @@ namespace AngryGrandpa
         /// <summary>Prints the active Angry Grandpa config settings to the console.</summary>
         /// <param name="command">The name of the command invoked.</param>
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdGrandpaConfig(string command, string[] args)
+        private static void cmdGrandpaConfig(string _command, string[] _args)
         {
             ModConfig.Print(); // Print config values to console
         }
@@ -227,7 +115,7 @@ namespace AngryGrandpa
         /// <summary>Prints config and score data with some extra debugging info.</summary>
         /// <param name="command">The name of the command invoked.</param>
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdGrandpaDebug(string command, string[] args)
+        private static void cmdGrandpaDebug(string _command, string[] _args)
         {
             cmdGrandpaConfig("grandpa_config", null);
             cmdGrandpaScore("grandpa_score", null);
