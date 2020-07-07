@@ -87,7 +87,7 @@ namespace AngryGrandpa
 						local = true,
 						position = new Vector2((float)(Game1.viewport.Width / 2) - Game1.dialogueFont.MeasureString(displayText).X / 2f, (float)(Game1.tileSize / 2)), // was originally /4,  
 						color = Color.White,
-						interval = 15000f, // Lasts for 15 seconds
+						interval = 20000f, // Lasts for 15 seconds -> changed to 20
 						layerDepth = 1f,
 						animationLength = 1,
 						initialParentTileIndex = 1,
@@ -95,6 +95,7 @@ namespace AngryGrandpa
 						totalNumberOfLoops = 1
 					});
 				}
+				Monitor.Log($"Ran patch for evaluation event: {nameof(grandpaEvaluations_Postfix)}", LogLevel.Debug);
 			}
 			catch (Exception ex)
 			{
