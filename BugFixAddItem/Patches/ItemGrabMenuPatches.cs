@@ -19,26 +19,26 @@ using System.Reflection;
 namespace BugFixAddItem
 {
     class ItemGrabMenuPatches
-	{
-		private static IModHelper Helper => ModEntry.Instance.Helper;
-		private static IMonitor Monitor => ModEntry.Instance.Monitor;
+    {
+        private static IModHelper Helper => ModEntry.Instance.Helper;
+        private static IMonitor Monitor => ModEntry.Instance.Monitor;
 
-		private static HarmonyInstance Harmony => ModEntry.Instance.Harmony;
+        private static HarmonyInstance Harmony => ModEntry.Instance.Harmony;
 
 
-		public static void Apply()
-		{
+        public static void Apply()
+        {
             // Add an inventory.onAddItem call if Game1.player.addItemToInventoryBool();
             Harmony.Patch(
-				original: AccessTools.Method(typeof(ItemGrabMenu), nameof(ItemGrabMenu.receiveLeftClick)),
+                original: AccessTools.Method(typeof(ItemGrabMenu), nameof(ItemGrabMenu.receiveLeftClick)),
                 prefix: new HarmonyMethod(AccessTools.Method(typeof(ItemGrabMenuPatches), nameof(ItemGrabMenuPatches.receiveLeftClick_Prefix))),
                 transpiler: new HarmonyMethod(AccessTools.Method(typeof(ItemGrabMenuPatches), nameof(ItemGrabMenuPatches.receiveLeftClick_Transpiler)))
-			);
+            );
             // Add an inventory.onAddItem call if Game1.player.addItemToInventoryBool();
             Harmony.Patch(
                 original: AccessTools.Method(typeof(ItemGrabMenu), nameof(ItemGrabMenu.receiveRightClick)),
-                prefix: new HarmonyMethod(AccessTools.Method(typeof(ItemGrabMenuPatches), nameof(ItemGrabMenuPatches.receiveRightClick_Prefix)))
-                //transpiler: new HarmonyMethod(AccessTools.Method(typeof(ItemGrabMenuPatches), nameof(ItemGrabMenuPatches.receiveRightClick_Transpiler)))
+                prefix: new HarmonyMethod(AccessTools.Method(typeof(ItemGrabMenuPatches), nameof(ItemGrabMenuPatches.receiveRightClick_Prefix))),
+                transpiler: new HarmonyMethod(AccessTools.Method(typeof(ItemGrabMenuPatches), nameof(ItemGrabMenuPatches.receiveRightClick_Transpiler)))
             );
             // Print console output on Android to see if this method is the problem.
             Harmony.Patch(
@@ -48,10 +48,8 @@ namespace BugFixAddItem
            );
         }
 
-        // Need to replace: base (MenuWithInventory)
-        // Need to access: .sourceItem, .poof .behaviourFunction, .essential
         public static bool receiveLeftClick_Prefix(int x, int y, bool playSound, // Original arguments
-            ref Item ___sourceItem, ref TemporaryAnimatedSprite ___poof, 
+            ref Item ___sourceItem, ref TemporaryAnimatedSprite ___poof,
             ItemGrabMenu.behaviorOnItemSelect ___behaviorFunction, bool ___essential, // Private fields
             ItemGrabMenu __instance) // Special
         {
@@ -245,29 +243,35 @@ namespace BugFixAddItem
                 return true; // Run original code
             }
         }
-        
+
+        // Insertable check for OnAddItem behaviour where missing in game code.
+        public static void OnAddItemCheck_Hook(ItemGrabMenu grabMenu, Farmer who)
+        {
+            try
+            {
+                if (grabMenu.inventory.onAddItem != null)
+                {
+                    grabMenu.inventory.onAddItem(grabMenu.heldItem, who);
+                    Monitor.Log($"Ran patch for bug in game code: {nameof(OnAddItemCheck_Hook)}", LogLevel.Debug);
+                }
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Failed in {nameof(OnAddItemCheck_Hook)}:\n{ex}", LogLevel.Error);
+            }
+        }
+
         public static IEnumerable<CIL> receiveLeftClick_Transpiler(IEnumerable<CIL> instructions, ILGenerator gen)
         {
             try
             {
                 var codes = new List<CodeInstruction>(instructions);
 
-                /**IL_0065: ldarg.0
-	            IL_0066: ldfld class StardewValley.Menus.InventoryMenu StardewValley.Menus.MenuWithInventory::inventory
-	            IL_006b: ldfld class StardewValley.Menus.ItemGrabMenu/behaviorOnItemSelect StardewValley.Menus.InventoryMenu::onAddItem
-	            IL_0070: brfalse.s IL_008d
-
-	            IL_0072: ldarg.0
-	            IL_0073: ldfld class StardewValley.Menus.InventoryMenu StardewValley.Menus.MenuWithInventory::inventory
-	            IL_0078: ldfld class StardewValley.Menus.ItemGrabMenu/behaviorOnItemSelect StardewValley.Menus.InventoryMenu::onAddItem
-	            IL_007d: ldarg.0
-	            IL_007e: ldfld class StardewValley.Item StardewValley.Menus.MenuWithInventory::heldItem
-	            IL_0083: call class StardewValley.Farmer StardewValley.Game1::get_player()
-	            IL_0088: callvirt instance void StardewValley.Menus.ItemGrabMenu/behaviorOnItemSelect::Invoke(class StardewValley.Item, class StardewValley.Farmer)**/
-
-                for (int i = 0; i < codes.Count - 6; i++)
+                for (int i = 0; i < codes.Count - 8; i++)
                 {
-                    // Find any null value appearing as the last argument of a ItemGrabMenu.behaviorOnItemSelect delegate method call
+                    // Find any sequence matching if(Game1.player.addItemToInventoryBool(this.heldItem, false)
+                    //     which is followed by this.heldItem = null assignment if true.
+                    
                     if (//call class StardewValley.Farmer StardewValley.Game1::get_player()
                         codes[i].opcode == OpCodes.Call &&
                         (MethodInfo)codes[i].operand == typeof(Game1).GetProperty("player").GetGetMethod() &&
@@ -281,36 +285,33 @@ namespace BugFixAddItem
                         //callvirt instance bool StardewValley.Farmer::addItemToInventoryBool(class StardewValley.Item, bool)
                         codes[i + 4].opcode == OpCodes.Callvirt &&
                         (MethodInfo)codes[i + 4].operand == typeof(Farmer).GetMethod("addItemToInventoryBool") &&
-                        //brfalse IL_05dc
-                        codes[i + 5].opcode == OpCodes.Brfalse)
+                        //brfalse IL_05dc || brfalse.s IL_02f0 (return)
+                        (codes[i + 5].opcode == OpCodes.Brfalse || codes[i + 5].opcode == OpCodes.Brfalse_S) &&
+                        //ldarg.0
+                        codes[i + 6].opcode == OpCodes.Ldarg_0 && // INSERT NEW CODES AT THIS INDEX
+                        //ldnull
+                        codes[i + 7].opcode == OpCodes.Ldnull &&
+                        //stfld class StardewValley.Item StardewValley.Menus.MenuWithInventory::heldItem
+                        codes[i + 8].opcode == OpCodes.Stfld &&
+                        (FieldInfo)codes[i + 8].operand == typeof(MenuWithInventory).GetField("heldItem"))
                     {
-                        Monitor.Log($"Found jump target: {codes[i + 6]}\n" +
-                            $"opcode: {codes[i + 6].opcode}\n" +
-                            $"operand: {codes[i + 6].operand}\n" +
-                            $"labels: {string.Join(", ", codes[i + 6].labels)}", LogLevel.Debug);
-                        var jumpTarget = codes[i + 6].labels;
-                        Monitor.Log($"Found a location to insert codes: {codes[i + 4]}\njumpTarget: {string.Join(", ",jumpTarget)}", LogLevel.Debug);
+                        Monitor.Log($"Found a location to insert codes: {codes[i + 6]}", LogLevel.Debug);
 
                         // Compose the new instructions to inject
                         var codesToInsert = new List<CodeInstruction>
                         {
                             new CIL(OpCodes.Ldarg_0),
-                            new CIL(OpCodes.Ldfld, typeof(MenuWithInventory).GetField("inventory")),
-                            new CIL(OpCodes.Ldfld, typeof(InventoryMenu).GetField("onAddItem")),
-                            new CIL(OpCodes.Brfalse, jumpTarget),
-                            new CIL(OpCodes.Ldarg_0),
-                            new CIL(OpCodes.Ldfld, typeof(MenuWithInventory).GetField("inventory")),
-                            new CIL(OpCodes.Ldfld, typeof(InventoryMenu).GetField("onAddItem")),
-                            new CIL(OpCodes.Ldarg_0),
-                            new CIL(OpCodes.Ldfld, typeof(MenuWithInventory).GetField("heldItem")),
                             new CIL(OpCodes.Call, typeof(Game1).GetProperty("player").GetGetMethod()),
-                            new CIL(OpCodes.Callvirt, AccessTools.Method(typeof(ItemGrabMenu), nameof(ItemGrabMenu.behaviorOnItemSelect)))
+                            new CIL(OpCodes.Call, Helper.Reflection.GetMethod(
+                                typeof(ItemGrabMenuPatches),nameof(OnAddItemCheck_Hook)).MethodInfo)
                         };
 
+                        // Inject the instructions
+                        codes.InsertRange(i + 6, codesToInsert);
                         foreach (CIL cil in codesToInsert)
-                            Monitor.Log($"{cil}", LogLevel.Debug);
-
-                        Monitor.Log($"Did not insert OpCodes yet.", LogLevel.Debug);
+                        {
+                            Monitor.Log($"Inserted new OpCode: {cil}", LogLevel.Debug);
+                        }
                     }
                 }
                 return codes.AsEnumerable();
@@ -347,19 +348,51 @@ namespace BugFixAddItem
             {
                 var codes = new List<CodeInstruction>(instructions);
 
-                for (int i = 0; i < codes.Count - 3; i++)
+                for (int i = 0; i < codes.Count - 8; i++)
                 {
-                    // Find any null value appearing as the last argument of a ItemGrabMenu.behaviorOnItemSelect delegate method call
-                    if (codes[i].opcode == OpCodes.Ldarg_3 &&
-                        codes[i + 1].opcode == OpCodes.Ldarg_0 &&
-                        codes[i + 2].opcode == OpCodes.Ldnull && // The (Farmer) null value we want to change
-                        codes[i + 3].opcode == OpCodes.Callvirt &&
-                        codes[i + 3].operand.ToString() == "Void Invoke(StardewValley.Item, StardewValley.Farmer)")
-                    {
-                        // change (Farmer) null to Game1.player
-                        codes[i + 2] = new CodeInstruction(OpCodes.Call, typeof(Game1).GetProperty("player").GetGetMethod());
+                    // Find any sequence matching if(Game1.player.addItemToInventoryBool(this.heldItem, false)
+                    //     which is followed by this.heldItem = null assignment if true.
 
-                        Monitor.Log($"Edited OpCode: {codes[i + 2]}", LogLevel.Debug);
+                    if (//call class StardewValley.Farmer StardewValley.Game1::get_player()
+                        codes[i].opcode == OpCodes.Call &&
+                        (MethodInfo)codes[i].operand == typeof(Game1).GetProperty("player").GetGetMethod() &&
+                        //ldarg.0
+                        codes[i + 1].opcode == OpCodes.Ldarg_0 &&
+                        //ldfld class StardewValley.Item StardewValley.Menus.MenuWithInventory::heldItem
+                        codes[i + 2].opcode == OpCodes.Ldfld &&
+                        (FieldInfo)codes[i + 2].operand == typeof(MenuWithInventory).GetField("heldItem") &&
+                        //ldc.i4.0
+                        codes[i + 3].opcode == OpCodes.Ldc_I4_0 &&
+                        //callvirt instance bool StardewValley.Farmer::addItemToInventoryBool(class StardewValley.Item, bool)
+                        codes[i + 4].opcode == OpCodes.Callvirt &&
+                        (MethodInfo)codes[i + 4].operand == typeof(Farmer).GetMethod("addItemToInventoryBool") &&
+                        //befalse IL_05dc || brfalse.s IL_02f0 (return)
+                        (codes[i + 5].opcode == OpCodes.Brfalse || codes[i + 5].opcode == OpCodes.Brfalse_S) &&
+                        //ldarg.0
+                        codes[i + 6].opcode == OpCodes.Ldarg_0 && // INSERT NEW CODES AT THIS INDEX
+                        //ldnull
+                        codes[i + 7].opcode == OpCodes.Ldnull &&
+                        //stfld class StardewValley.Item StardewValley.Menus.MenuWithInventory::heldItem
+                        codes[i + 8].opcode == OpCodes.Stfld &&
+                        (FieldInfo)codes[i + 8].operand == typeof(MenuWithInventory).GetField("heldItem"))
+                    {
+                        Monitor.Log($"Found a location to insert codes: {codes[i + 6]}", LogLevel.Debug);
+
+                        // Compose the new instructions to inject
+                        var codesToInsert = new List<CodeInstruction>
+                        {
+                            new CIL(OpCodes.Ldarg_0),
+                            new CIL(OpCodes.Call, typeof(Game1).GetProperty("player").GetGetMethod()),
+                            new CIL(OpCodes.Call, Helper.Reflection.GetMethod(
+                                typeof(ItemGrabMenuPatches),nameof(OnAddItemCheck_Hook)).MethodInfo)
+                        };
+
+                        // Inject the instructions
+                        codes.InsertRange(i + 6, codesToInsert);
+                        foreach (CIL cil in codesToInsert)
+                        {
+                            Monitor.Log($"Inserted new OpCode: {cil}", LogLevel.Debug);
+                        }
                     }
                 }
                 return codes.AsEnumerable();
