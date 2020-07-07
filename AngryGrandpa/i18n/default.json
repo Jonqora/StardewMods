@@ -183,8 +183,8 @@
         /speak Grandpa \"My dear boy...^My dearest grand-daughter...{{gpaHappy}}
             #$b#It's been so long since we last spoke. You were just a little boy... Do you remember?
             ^It's been so long since we last spoke. You were just a little girl... Do you remember?{{gpaNeutral}}
-            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.{{gpaFrown}}
-            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaStern}}
+            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.{{gpaStern}}
+            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaFrown}}
             #$b#Perhaps your own work on the farm will finally allow me to find peace.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 3000
         /speak Grandpa \"You've been here {{countYears}}.{{gpaNeutral}}
@@ -196,8 +196,8 @@
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"My dear child...{{gpaHappy}}
             #$b#It's been so long since we last spoke. You were just a wee child... Do you remember?{{gpaNeutral}}
-            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.{{gpaFrown}}
-            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaStern}}
+            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.{{gpaStern}}
+            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaFrown}}
             #$b#Perhaps your own work on the farm will finally allow me to find peace.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 3000
         /speak Grandpa \"You've been here {{countYears}}.{{gpaNeutral}}
@@ -465,7 +465,7 @@
         #$b#Please call on me any time; I would love to see your continued progress.{{gpaLove}}",
 
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
-    "1CandleReevaluation.Nuclear": "I thought maybe I was too harsh last time, so I came back to have a look...{{gpaLove}}
+    "1CandleReevaluation.Nuclear": "I thought maybe I was too harsh last time, so I came back to have a look...{{gpaSurprise}}
         #$b#But here I am, and you've still accomplished fuck-all.{{gpaRage}}
         #$b#Your cousin %rival's progress on his farm would put you to shame.
         ^Your cousin %rival's progress on her farm would put you to shame.{{gpaAngry}}
@@ -473,7 +473,7 @@
         #$b#...{{gpaSigh}}
         #$b#I'm leaving... don't summon me again unless you have something worth seeing.{{gpaFrown}}
         #$b#%Wow, grandpa is really angry. I better not disappoint him again.",
-    "1CandleReevaluation.Nuclear-gn": "I thought maybe I was too harsh last time, so I came back to have a look...{{gpaLove}}
+    "1CandleReevaluation.Nuclear-gn": "I thought maybe I was too harsh last time, so I came back to have a look...{{gpaSurprise}}
         #$b#But here I am, and you've still accomplished fuck-all.{{gpaRage}}
         #$b#Your cousin %rival's progress on their farm would put you to shame.{{gpaAngry}}
         #$b#This visit was a waste of time.{{gpaFrown}}

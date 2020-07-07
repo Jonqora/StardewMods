@@ -1,7 +1,7 @@
 {
     "Name": "Angry Grandpa",
     "Author": "Jonqora",
-    "Version": "0.14.12-beta.1-AddItemTest",
+    "Version": "0.14.13-beta.1-AddItemTest",
     "Description": "Overhauls grandpa's evaluation with new dialogues, content, and features!",
     "UniqueID": "Jonqora.AngryGrandpa",
     "EntryDll": "AngryGrandpa.dll",
