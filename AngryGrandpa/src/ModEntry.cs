@@ -55,7 +55,6 @@ namespace AngryGrandpa
             // Listen for game events. (Make these into an event handler thing?)
             helper.Events.GameLoop.GameLaunched += this.onGameLaunched;
             helper.Events.GameLoop.UpdateTicked += this.onUpdateTicked;
-            helper.Events.Input.ButtonPressed += this.onButtonPressed;
             helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
             helper.Events.GameLoop.DayStarted += this.onDayStarted;
 
@@ -91,14 +90,6 @@ namespace AngryGrandpa
                 Instance.Helper.Content.AssetEditors.Add(new EventEditor());
                 Instance.Helper.Content.AssetEditors.Add(new EvaluationEditor());
             }
-        }
-
-        private void onButtonPressed(object sender, ButtonPressedEventArgs e)
-        {
-            if (e.Button != SButton.O)
-                return;
-
-            ModConfig.Print(); // Print config values to console when "O" key is pressed.
         }
 
         private void onSaveLoaded(object sender, SaveLoadedEventArgs e)
@@ -141,51 +132,47 @@ namespace AngryGrandpa
             Helper.ConsoleCommands.Add("reset_evaluation",
                 "Removes all event flags related to grandpa's evaluation(s).\n\nUsage: reset_evaluation",
                 cmdResetEvaluation);
+            Helper.ConsoleCommands.Add("grandpa_config",
+                "Prints the active Angry Grandpa config settings to the console.\n\nUsage: grandpa_config",
+                cmdGrandpaConfig);
+            Helper.ConsoleCommands.Add("grandpa_debug",
+                "Activates grandpa_config and grandpa_score commands, plus useful debugging information.\n\nUsage: grandpa_debug",
+                cmdGrandpaDebug);
         }
 
         /// <summary>Gives a farm evaluation in console output when the 'grandpa_score' command is invoked.</summary>
         /// <param name="command">The name of the command invoked.</param>
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdGrandpaScore(string _command, string[] args)
+        private void cmdGrandpaScore(string command, string[] args)
         {
             try
             {
                 if (!Context.IsWorldReady)
                 {
-                    throw new Exception("Cannot evaluate score without an active save.");
+                    throw new Exception("An active save is required.");
                 }
                 int grandpaScore = Utility.getGrandpaScore();
                 int maxScore = Config.GetMaxScore();
                 int candles = Utility.getGrandpaCandlesFromScore(grandpaScore);
                 Monitor.Log($"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors\nNumber of candles earned: {candles}\nScoring system: \"{Config.ScoringSystem}\"\nCandle score thresholds: [{Config.GetScoreForCandles(1)}, {Config.GetScoreForCandles(2)}, {Config.GetScoreForCandles(3)}, {Config.GetScoreForCandles(4)}]",
                     LogLevel.Info);
-                int farmScore = Game1.getFarm().grandpaScore.Value;
-                Monitor.Log($"DEBUG", LogLevel.Debug);
-                Monitor.Log($"Actual current Farm.grandpaScore value: {farmScore}", LogLevel.Debug);
-                bool farmNote = Game1.getFarm().hasSeenGrandpaNote;
-                Monitor.Log($"Actual current Farm.hasSeenGrandpaNote value: {farmNote}", LogLevel.Debug); 
-                List<int> eventsAG = new List<int> { 558291, 558292, 2146991, 321777 };
-                List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled", "6324hasDoneModdedEvaluation" };
-                Monitor.Log($"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}", LogLevel.Debug);
-                Monitor.Log($"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
             }
             catch (Exception ex)
             {
-                Monitor.Log($"grandpa_score failed:\n{ex}",
-                    LogLevel.Error);
+                Monitor.Log($"grandpa_score failed:\n{ex}", LogLevel.Warn);
             }
         }
 
         /// <summary>Resets all event flags related to grandpa's evaluation(s) when the 'reset_evaluation' command is invoked.</summary>
         /// <param name="command">The name of the command invoked.</param>
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdResetEvaluation(string _command, string[] args)
+        private void cmdResetEvaluation(string command, string[] args)
         {
             try
             {
                 if (!Context.IsWorldReady)
                 {
-                    throw new Exception("Cannot remove event flags without an active save.");
+                    throw new Exception("An active save is required.");
                 }
                 var eventsToRemove = new List<int>
                 {
@@ -225,7 +212,44 @@ namespace AngryGrandpa
             }
             catch (Exception ex)
             {
-                Monitor.Log($"reset_evaluation failed:\n{ex}", LogLevel.Error);
+                Monitor.Log($"reset_evaluation failed:\n{ex}", LogLevel.Warn);
+            }
+        }
+        
+        /// <summary>Prints the active Angry Grandpa config settings to the console.</summary>
+        /// <param name="command">The name of the command invoked.</param>
+        /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
+        private void cmdGrandpaConfig(string command, string[] args)
+        {
+            ModConfig.Print(); // Print config values to console
+        }
+
+        /// <summary>Prints config and score data with some extra debugging info.</summary>
+        /// <param name="command">The name of the command invoked.</param>
+        /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
+        private void cmdGrandpaDebug(string command, string[] args)
+        {
+            cmdGrandpaConfig("grandpa_config", null);
+            cmdGrandpaScore("grandpa_score", null);
+
+            try
+            {
+                if (!Context.IsWorldReady)
+                {
+                    throw new Exception("An active save is required.");
+                }
+                Monitor.Log($"DEBUG", LogLevel.Debug);
+                Monitor.Log($"Actual current Farm.grandpaScore value: {Game1.getFarm().grandpaScore.Value}", LogLevel.Debug);
+                Monitor.Log($"Actual current Farm.hasSeenGrandpaNote value: {Game1.getFarm().hasSeenGrandpaNote}", LogLevel.Debug);
+                List<int> eventsAG = new List<int> { 558291, 558292, 2146991, 321777 };
+                List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled", "6324hasDoneModdedEvaluation" };
+                Monitor.Log($"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}", LogLevel.Debug);
+                Monitor.Log($"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"grandpa_debug failed:\n{ex}",
+                    LogLevel.Error);
             }
         }
     }

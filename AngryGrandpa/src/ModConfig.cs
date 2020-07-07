@@ -334,6 +334,7 @@ namespace AngryGrandpa
                 $"YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}\n" +
                 $"ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}\n" +
                 $"BonusRewards: {Instance.BonusRewards.ToString().ToLower()}\n" +
+                $"StatuesForFarmhands: {Instance.StatuesForFarmhands.ToString().ToLower()}\n" +
                 $"====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
         }
     }
