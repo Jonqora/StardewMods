@@ -44,8 +44,8 @@ namespace AngryGrandpa
 			Harmony.Patch(
 				original: AccessTools.Method(typeof(Event),
 					nameof(Event.skipEvent)),
-				postfix: new HarmonyMethod(typeof(EventPatches),
-					nameof(EventPatches.skipEvent_Postfix))
+				prefix: new HarmonyMethod(typeof(EventPatches),
+					nameof(EventPatches.skipEvent_Prefix))
 			);
 		}
 
@@ -103,7 +103,7 @@ namespace AngryGrandpa
 			}
 		}
 
-		public static void skipEvent_Postfix(Event __instance)
+		public static void skipEvent_Prefix(Event __instance)
 		{
 			try
 			{
@@ -119,11 +119,14 @@ namespace AngryGrandpa
 							Game1.player.mailReceived.Add("6324hasDoneModdedEvaluation"); // Activate bonus rewards
 						}
 						break;
+					default:
+						break;
 				}
+				Monitor.Log($"Ran patch for skip event logic: {nameof(skipEvent_Prefix)}", LogLevel.Debug);
 			}
 			catch (Exception ex)
 			{
-				Monitor.Log($"Failed in {nameof(skipEvent_Postfix)}:\n{ex}",
+				Monitor.Log($"Failed in {nameof(skipEvent_Prefix)}:\n{ex}",
 					LogLevel.Error);
 			}
 		}

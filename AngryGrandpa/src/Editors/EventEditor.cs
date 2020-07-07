@@ -87,6 +87,7 @@ namespace AngryGrandpa
 				Regex regex = new Regex(@"^55829(1|2)\/.*"); // Match events starting with "558291/" or "558292/"
 				List<string> todelete = data.Keys.Where(k => regex.Match(k).Success).ToList();
 				todelete.ForEach(k => data.Remove(k)); // Remove the old event scripts completely
+				todelete.ForEach(k => Monitor.Log($"Removed event key: {k}", LogLevel.Debug));
 
 				// Organize the keys and values with corrected event preconditions
 
@@ -105,6 +106,7 @@ namespace AngryGrandpa
 					{
 						gameKey = Regex.Replace( gameKey, @"/y [0-9]+", "" );
 					}
+					Monitor.Log($"New event key for {entry}: {gameKey}", LogLevel.Debug);
 					string value = i18n.Get(modKey, allEventTokens);
 
 					data[gameKey] = value; // Insert the new event data.

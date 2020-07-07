@@ -138,11 +138,9 @@ namespace AngryGrandpa
                         if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore == 0 && Game1.year > Config.YearsBeforeEvaluation)
                         {
                             Game1.player.eventsSeen.Remove(558292); // Remove re-evaluation event
-                            if (Game1.player.eventsSeen.Contains(558291) // Has done first evaluation? (If not, it can still trigger)
-                                && !Game1.player.eventsSeen.Contains(321777)) // Re-evaluation request
+                            if (!Game1.player.eventsSeen.Contains(321777)) // Re-evaluation request
                             {
                                 Game1.player.eventsSeen.Add(321777);
-                                break;
                             }
                             break;
                         }

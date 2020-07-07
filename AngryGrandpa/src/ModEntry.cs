@@ -176,7 +176,7 @@ namespace AngryGrandpa
                 }
                 var eventsToRemove = new List<int>
                 {
-                    558291, 558292, 321777, // Initial eval, Re-eval, and Evaluation request
+                    558291, 558292, 321777 // Initial eval, Re-eval, and Evaluation request
                 };
                 foreach (int e in eventsToRemove)
                 {
