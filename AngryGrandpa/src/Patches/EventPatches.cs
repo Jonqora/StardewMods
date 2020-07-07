@@ -44,8 +44,8 @@ namespace AngryGrandpa
 			Harmony.Patch(
 				original: AccessTools.Method(typeof(Event),
 					nameof(Event.skipEvent)),
-				prefix: new HarmonyMethod(typeof(EventPatches),
-					nameof(EventPatches.skipEvent_Prefix))
+				postfix: new HarmonyMethod(typeof(EventPatches),
+					nameof(EventPatches.skipEvent_Postfix))
 			);
 		}
 
@@ -68,8 +68,10 @@ namespace AngryGrandpa
 			try
 			{
 				CheckWorldForStatueOfPerfection(); // Add reward flag to host if any pre-existing statue
-				Game1.player.eventsSeen.Remove(2146991); // Candles event removal needed for initial evaluation after a reset command
-				Game1.player.eventsSeen.Remove(321777); // Remove re-evaluation request flag
+				foreach (int e in new List<int> { 2146991, 321777 }) // Remove candles event, re-evaluation flag
+				{
+					while (Game1.player.eventsSeen.Contains(e)) { Game1.player.eventsSeen.Remove(e); }
+				}
 				// Add a mail flag the FIRST time this mod is used for any evaluation. This activates bonus rewards.
 				if (!Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation"))
 				{
@@ -104,7 +106,7 @@ namespace AngryGrandpa
 			}
 		}
 
-		public static void skipEvent_Prefix(Event __instance)
+		public static void skipEvent_Postfix(Event __instance)
 		{
 			try
 			{
@@ -113,8 +115,10 @@ namespace AngryGrandpa
 					case 558291: // Initial
 					case 558292: // Reevaluation
 						CheckWorldForStatueOfPerfection(); // Add reward flag to host if any pre-existing statue
-						Game1.player.eventsSeen.Remove(2146991); // Candles event removal for initial eval after a reset cmd
-						Game1.player.eventsSeen.Remove(321777); // Remove re-evaluation request flag
+						foreach (int e in new List<int> { 2146991, 321777 }) // Remove candles event, re-evaluation flag
+						{
+							while (Game1.player.eventsSeen.Contains(e)) { Game1.player.eventsSeen.Remove(e); }
+						}
 						if (!Game1.player.mailReceived.Contains("6324hasDoneModdedEvaluation"))
 						{
 							Game1.player.mailReceived.Add("6324hasDoneModdedEvaluation"); // Activate bonus rewards
@@ -123,11 +127,11 @@ namespace AngryGrandpa
 					default:
 						break;
 				}
-				Monitor.Log($"Ran patch for skip event logic: {nameof(skipEvent_Prefix)}", LogLevel.Debug);
+				Monitor.Log($"Ran patch for skip event logic: {nameof(skipEvent_Postfix)}", LogLevel.Debug);
 			}
 			catch (Exception ex)
 			{
-				Monitor.Log($"Failed in {nameof(skipEvent_Prefix)}:\n{ex}",
+				Monitor.Log($"Failed in {nameof(skipEvent_Postfix)}:\n{ex}",
 					LogLevel.Error);
 			}
 		}

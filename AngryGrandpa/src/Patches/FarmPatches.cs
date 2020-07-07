@@ -137,10 +137,15 @@ namespace AngryGrandpa
                         // Uh-oh, if somehow an evaluation is needed, request one for free.
                         if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore == 0 && Game1.year > Config.YearsBeforeEvaluation)
                         {
-                            Game1.player.eventsSeen.Remove(558292); // Remove re-evaluation event
-                            if (!Game1.player.eventsSeen.Contains(321777)) // Re-evaluation request
+                            while (Game1.player.eventsSeen.Contains(558292))
+                            {
+                                Game1.player.eventsSeen.Remove(558292); // Remove re-evaluation event
+                            }
+                            if (Game1.player.eventsSeen.Contains(558291) && // If have not seen original, can still trigger
+                                !Game1.player.eventsSeen.Contains(321777)) // Re-evaluation request
                             {
                                 Game1.player.eventsSeen.Add(321777);
+                                break;
                             }
                             break;
                         }
