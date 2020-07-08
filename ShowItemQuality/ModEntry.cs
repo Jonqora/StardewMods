@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Harmony;
+using CIL = Harmony.CodeInstruction;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using System.Reflection.Emit;
+using System.Reflection;
+using System.Threading;
 
 namespace ShowItemQuality
 {
@@ -34,14 +37,18 @@ namespace ShowItemQuality
 
             // Apply the patch to show item quality when drawing in HUD
             harmony.Patch(
-                original: AccessTools.Method(typeof(StardewValley.HUDMessage), nameof(StardewValley.HUDMessage.draw)),
+                original: AccessTools.Method(typeof(HUDMessage), nameof(HUDMessage.draw)),
                 transpiler: new HarmonyMethod(AccessTools.Method(typeof(HUDPatch), nameof(HUDPatch.HUDMessageDraw_Transpiler)))
             );
-
             // Apply the patch to use most recent item in a stack to display HUD icon
             harmony.Patch(
-                original: AccessTools.Method(typeof(StardewValley.Game1), nameof(StardewValley.Game1.addHUDMessage)),
+                original: AccessTools.Method(typeof(Game1), nameof(Game1.addHUDMessage)),
                 postfix: new HarmonyMethod(AccessTools.Method(typeof(HUDPatch), nameof(HUDPatch.addHUDMessage_Postfix)))
+            );
+            // Apply the patch to avoid the usual method of drawing initial stack values in HUD
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Farmer), nameof(Farmer.addItemToInventoryBool)),
+                transpiler: new HarmonyMethod(AccessTools.Method(typeof(FarmerPatch), nameof(FarmerPatch.addItemToInventoryBool_Transpiler)))
             );
         }
         /*********
@@ -102,6 +109,66 @@ namespace ShowItemQuality
                 catch (Exception ex)
                 {
                     ModMonitor.Log($"Failed in {nameof(addHUDMessage_Postfix)}:\n{ex}", LogLevel.Error);
+                }
+            }
+        }
+
+        internal class FarmerPatch
+        {
+            public static IEnumerable<CIL> addItemToInventoryBool_Transpiler(IEnumerable<CIL> instructions)
+            {
+                try
+                {
+                    var codes = new List<CodeInstruction>(instructions);
+
+                    for (int i = 0; i < codes.Count - 9; i++)
+                    {
+                        // This is the line of code we want to find and change:
+                        //     Game1.addHUDMessage(new HUDMessage(displayName, Math.Max(1, item.Stack), true, color, item));
+                        //     Game1.addHUDMessage(new HUDMessage(displayName, 1, true, color, item));
+                        // We can most easily do this by replacing several instructions with nop
+
+                        if (//ldloc.3
+                            codes[i].opcode == OpCodes.Ldloc_3 &&
+                            //ldc.i4.1                             // Replace with nop
+                            codes[i + 1].opcode == OpCodes.Ldc_I4_1 &&
+                            //ldarg.1                                // Replace with nop
+                            codes[i + 2].opcode == OpCodes.Ldarg_1 &&
+                            //callvirt instance int32 StardewValley.Item::get_Stack() // Replace with nop
+                            codes[i + 3].opcode == OpCodes.Callvirt &&
+                            (MethodInfo)codes[i + 3].operand == typeof(Item).GetMethod("get_Stack") &&
+                            //call int32 [mscorlib]System.Math::Max(int32, int32) // Replace with Ldc_I4_1
+                            codes[i + 4].opcode == OpCodes.Call &&
+                            (MethodInfo)codes[i + 4].operand == typeof(Math).GetMethod("Max", types: new Type[] { typeof(int), typeof(int) }) &&
+                            //ldc.i4.1
+                            codes[i + 5].opcode == OpCodes.Ldc_I4_1 &&
+                            //ldloc.2
+                            codes[i + 6].opcode == OpCodes.Ldloc_2 &&
+                            //ldarg.1
+                            codes[i + 7].opcode == OpCodes.Ldarg_1 &&
+                            //newobj instance void StardewValley.HUDMessage::.ctor(string, int32, bool, valuetype [Microsoft.Xna.Framework]Microsoft.Xna.Framework.Color, class StardewValley.Item)
+                            codes[i + 8].opcode == OpCodes.Newobj &&
+                            (ConstructorInfo)codes[i + 8].operand == typeof(HUDMessage).GetConstructor(
+                                types: new Type[] { typeof(string), typeof(int), typeof(bool), typeof(Color), typeof(Item) }) &&
+                            //call void StardewValley.Game1::addHUDMessage(class StardewValley.HUDMessage)
+                            codes[i + 9].opcode == OpCodes.Call &&
+                            (MethodInfo)codes[i + 9].operand == typeof(Game1).GetMethod("addHUDMessage"))
+                        {
+                            ModMonitor.Log($"Found a location to replace codes!", LogLevel.Debug);
+
+                            // Compose the new instructions to use as replacements
+                            codes[i + 1] = new CIL(OpCodes.Nop);
+                            codes[i + 2] = new CIL(OpCodes.Nop);
+                            codes[i + 3] = new CIL(OpCodes.Nop);
+                            codes[i + 4] = new CIL(OpCodes.Ldc_I4_1);
+                        }
+                    }
+                    return codes.AsEnumerable();
+                }
+                catch (Exception ex)
+                {
+                    ModMonitor.Log($"Failed in {nameof(addItemToInventoryBool_Transpiler)}:\n{ex}", LogLevel.Error);
+                    return instructions; // use original code
                 }
             }
         }
