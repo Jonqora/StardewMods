@@ -18,10 +18,8 @@ namespace ShowItemQuality
     /// <summary>The mod entry point.</summary>
     public class ModEntry : Mod
     {
-        /*********
-        ** Accessors 
-        *********/
-        /// <summary>Provides methods for logging to the console.</summary>
+        internal static ModEntry Instance { get; private set; }
+        internal HarmonyInstance Harmony { get; private set; }
         public static IMonitor ModMonitor { get; private set; }
 
         /*********
@@ -31,22 +29,23 @@ namespace ShowItemQuality
         /// <param name="helper">Provides simplified APIs for writing mods.</param>
         public override void Entry(IModHelper helper)
         {
+            // Make resources available.
+            Instance = this; 
             ModMonitor = this.Monitor;
-
-            HarmonyInstance harmony = HarmonyInstance.Create(this.ModManifest.UniqueID);
+            Harmony = HarmonyInstance.Create(this.ModManifest.UniqueID);
 
             // Apply the patch to show item quality when drawing in HUD
-            harmony.Patch(
+            Harmony.Patch(
                 original: AccessTools.Method(typeof(HUDMessage), nameof(HUDMessage.draw)),
                 transpiler: new HarmonyMethod(AccessTools.Method(typeof(HUDPatch), nameof(HUDPatch.HUDMessageDraw_Transpiler)))
             );
             // Apply the patch to use most recent item in a stack to display HUD icon
-            harmony.Patch(
+            Harmony.Patch(
                 original: AccessTools.Method(typeof(Game1), nameof(Game1.addHUDMessage)),
                 postfix: new HarmonyMethod(AccessTools.Method(typeof(HUDPatch), nameof(HUDPatch.addHUDMessage_Postfix)))
             );
             // Apply the patch to avoid the usual method of drawing initial stack values in HUD
-            harmony.Patch(
+            Harmony.Patch(
                 original: AccessTools.Method(typeof(Farmer), nameof(Farmer.addItemToInventoryBool)),
                 transpiler: new HarmonyMethod(AccessTools.Method(typeof(FarmerPatch), nameof(FarmerPatch.addItemToInventoryBool_Transpiler)))
             );
@@ -115,6 +114,25 @@ namespace ShowItemQuality
 
         internal class FarmerPatch
         {
+            // Insertable, altered constructor for HUDMessage where needed in game code.
+            public static HUDMessage FixedHUDMessage_Hook(string displayName, int number, bool add, Color color, Item item)
+            {
+                try
+                {
+                    if (item.Stack > 1)
+                    {
+                        item.Stack = 1;
+                    }
+                    ModMonitor.Log($"Ran patch for HUDMessage creation in game code: {nameof(FixedHUDMessage_Hook)}", LogLevel.Debug);
+                    return new HUDMessage(displayName, number, add, color, item);
+                }
+                catch (Exception ex)
+                {
+                    ModMonitor.Log($"Failed in {nameof(FixedHUDMessage_Hook)}:\n{ex}", LogLevel.Error);
+                    return new HUDMessage(displayName, number, add, color, item);
+                }
+            }
+
             public static IEnumerable<CIL> addItemToInventoryBool_Transpiler(IEnumerable<CIL> instructions)
             {
                 try
@@ -157,10 +175,8 @@ namespace ShowItemQuality
                             ModMonitor.Log($"Found a location to replace codes!", LogLevel.Debug);
 
                             // Compose the new instructions to use as replacements
-                            codes[i + 1] = new CIL(OpCodes.Nop);
-                            codes[i + 2] = new CIL(OpCodes.Nop);
-                            codes[i + 3] = new CIL(OpCodes.Nop);
-                            codes[i + 4] = new CIL(OpCodes.Ldc_I4_1);
+                            codes[i + 8] = new CIL(OpCodes.Call, Instance.Helper.Reflection.GetMethod(
+                                typeof(FarmerPatch), nameof(FixedHUDMessage_Hook)).MethodInfo); // Call my function that returns a fixed HUDMessage
                         }
                     }
                     return codes.AsEnumerable();
