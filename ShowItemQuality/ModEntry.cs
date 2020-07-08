@@ -2,16 +2,16 @@
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Harmony;
 using CIL = Harmony.CodeInstruction;
 using StardewModdingAPI;
-using StardewModdingAPI.Events;
-using StardewModdingAPI.Utilities;
 using StardewValley;
 using System.Reflection.Emit;
 using System.Reflection;
-using System.Threading;
+using StardewValley.Objects;
+using Object = StardewValley.Object;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace ShowItemQuality
 {
@@ -50,6 +50,7 @@ namespace ShowItemQuality
                 transpiler: new HarmonyMethod(AccessTools.Method(typeof(FarmerPatch), nameof(FarmerPatch.addItemToInventoryBool_Transpiler)))
             );
         }
+
         /*********
         ** Harmony patches
         *********/
@@ -72,6 +73,7 @@ namespace ShowItemQuality
                         {
                             // change to Enum value 1 (StackDrawType.Draw)
                             codes[i].opcode = OpCodes.Ldc_I4_1;
+                            ModMonitor.LogOnce($"Changed StackDrawType Enum in HUDMessage.draw method: {nameof(HUDMessageDraw_Transpiler)}", LogLevel.Trace);
                             break;
                         }
                     }
@@ -89,7 +91,7 @@ namespace ShowItemQuality
                 try
                 {
                     if (message.type != null || message.whatType != 0)
-                    {
+                    {   
                         for (int index = 0; index < Game1.hudMessages.Count; ++index)
                         {
                             if (message.type != null && Game1.hudMessages[index].type != null && (Game1.hudMessages[index].type.Equals(message.type) && Game1.hudMessages[index].add == message.add))
@@ -100,6 +102,8 @@ namespace ShowItemQuality
                                 // Replace the old HUDMessage with the new one, instead of keeping the old.
                                 Game1.hudMessages.RemoveAt(index);
                                 Game1.hudMessages.Insert(index, message);
+
+                                ModMonitor.LogOnce($"Ran patch for Game1.addHUDMessage method in game code: {nameof(addHUDMessage_Postfix)}", LogLevel.Trace);
                                 return;
                             }
                         }
@@ -114,17 +118,15 @@ namespace ShowItemQuality
 
         internal class FarmerPatch
         {
-            // Insertable, altered constructor for HUDMessage where needed in game code.
+            /// <summary>Insertable, altered HUDMessage constructor that uses a single-stack clone of the original object.</summary>
             public static HUDMessage FixedHUDMessage_Hook(string displayName, int number, bool add, Color color, Item item)
             {
                 try
                 {
-                    if (item.Stack > 1)
-                    {
-                        item.Stack = 1;
-                    }
-                    ModMonitor.Log($"Ran patch for HUDMessage creation in game code: {nameof(FixedHUDMessage_Hook)}", LogLevel.Debug);
-                    return new HUDMessage(displayName, number, add, color, item);
+                    Item hudItem = item.getOne(); // Grabs a clone of the item to display in HUDMessage
+
+                    ModMonitor.LogOnce($"Ran patch for HUDMessage creation in Farmer.addItemToInventoryBool method: {nameof(FixedHUDMessage_Hook)}", LogLevel.Trace);
+                    return new HUDMessage(displayName, number, add, color, hudItem);
                 }
                 catch (Exception ex)
                 {
@@ -133,6 +135,7 @@ namespace ShowItemQuality
                 }
             }
 
+            /// <summary>Adds a hook that calls FixedHUDMessage_Hook inside the game's addItemToInventoryBool method.</summary>
             public static IEnumerable<CIL> addItemToInventoryBool_Transpiler(IEnumerable<CIL> instructions)
             {
                 try
@@ -172,11 +175,10 @@ namespace ShowItemQuality
                             codes[i + 9].opcode == OpCodes.Call &&
                             (MethodInfo)codes[i + 9].operand == typeof(Game1).GetMethod("addHUDMessage"))
                         {
-                            ModMonitor.Log($"Found a location to replace codes!", LogLevel.Debug);
-
                             // Compose the new instructions to use as replacements
                             codes[i + 8] = new CIL(OpCodes.Call, Instance.Helper.Reflection.GetMethod(
                                 typeof(FarmerPatch), nameof(FixedHUDMessage_Hook)).MethodInfo); // Call my function that returns a fixed HUDMessage
+                            ModMonitor.LogOnce($"Added hook to Farmer.addItemToInventoryBool method: {nameof(addItemToInventoryBool_Transpiler)}", LogLevel.Trace);
                         }
                     }
                     return codes.AsEnumerable();
