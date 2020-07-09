@@ -5,14 +5,26 @@ using static System.Math;
 
 namespace AngryGrandpa
 {
+	/// <summary>The class for editing grandpaEvaluation data assets.</summary>
 	internal class EvaluationEditor : IAssetEditor
 	{
+		/*********
+        ** Accessors
+        *********/
 		protected static IModHelper Helper => ModEntry.Instance.Helper;
 		protected static IMonitor Monitor => ModEntry.Instance.Monitor;
 		protected static ModConfig Config => ModConfig.Instance;
 
+
+		/*********
+        ** Fields
+        *********/
 		protected static ITranslationHelper i18n = Helper.Translation;
 
+		/****
+        ** Constants
+        ****/
+		/// <summary>A list of i18n data keys (base) for the evaluation and re-evaluation dialogue scripts</summary>
 		public static readonly List<string> EvaluationStrings =
 			new List<string>
 		{
@@ -26,11 +38,22 @@ namespace AngryGrandpa
 			"4CandleReevaluation"
 		};
 
+
+		/*********
+        ** Public methods
+        *********/
+		/// <summary>Get whether this instance can edit the given asset.</summary>
+		/// <typeparam name="_T">The asset Type.</typeparam>
+		/// <param name="asset">Basic metadata about the asset being loaded.</param>
+		/// <returns>true for asset Strings\StringsFromCSFiles, false otherwise</returns>
 		public bool CanEdit<_T> (IAssetInfo asset)
 		{
 			return asset.AssetNameEquals($"Strings\\StringsFromCSFiles");
 		}
 
+		/// <summary>Edit the evaluation entries in Strings\StringsFromCSFiles with new dialogues and tokens.</summary>
+		/// <typeparam name="_T">The asset Type</typeparam>
+		/// <param name="asset">A helper which encapsulates metadata about an asset and enables changes to it</param>
 		public void Edit<_T> (IAssetData asset)
 		{
 			// Can't edit these assets without an active game for spouse, NPC, and year info
@@ -90,8 +113,6 @@ namespace AngryGrandpa
 					data[gameKey] = value;
 				}
 			}
-
-			Monitor.Log($"Edited {asset.AssetName}", LogLevel.Debug);
 		}
 	}
 }

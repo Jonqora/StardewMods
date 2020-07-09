@@ -7,20 +7,42 @@ using static System.Math;
 
 namespace AngryGrandpa
 {
+	/// <summary>The class for editing Event data assets.</summary>
 	internal class EventEditor : IAssetEditor
 	{
+		/*********
+        ** Accessors
+        *********/
 		protected static IModHelper Helper => ModEntry.Instance.Helper;
 		protected static IMonitor Monitor => ModEntry.Instance.Monitor;
 		protected static ModConfig Config => ModConfig.Instance;
 
+
+		/*********
+        ** Fields
+        *********/
 		protected static ITranslationHelper i18n = Helper.Translation;
 
+
+		/*********
+        ** Public methods
+        *********/
+		/// <summary>Get whether this instance can edit the given asset.</summary>
+		/// <typeparam name="_T">The asset Type.</typeparam>
+		/// <param name="asset">Basic metadata about the asset being loaded.</param>
+		/// <returns>true for asset Data\Events\Farm or Data\Events\Farmhouse, false otherwise</returns>
 		public bool CanEdit<_T> (IAssetInfo asset)
 		{
 			return asset.AssetNameEquals($"Data\\Events\\Farm") ||
 				asset.AssetNameEquals($"Data\\Events\\Farmhouse");
 		}
 
+		/// <summary>
+		/// Edit the Farmhouse (re)evaluation events and Farm candles event.
+		/// Change both values and keys if necessary (to correct y 3 preconditions).
+		/// </summary>
+		/// <typeparam name="_T">The asset Type</typeparam>
+		/// <param name="asset">A helper which encapsulates metadata about an asset and enables changes to it</param>
 		public void Edit<_T> (IAssetData asset)
 		{
 			var data = asset.AsDictionary<string, string>().Data;
@@ -87,7 +109,7 @@ namespace AngryGrandpa
 				Regex regex = new Regex(@"^55829(1|2)\/.*"); // Match events starting with "558291/" or "558292/"
 				List<string> todelete = data.Keys.Where(k => regex.Match(k).Success).ToList();
 				todelete.ForEach(k => data.Remove(k)); // Remove the old event scripts completely
-				todelete.ForEach(k => Monitor.Log($"Removed event key: {k}", LogLevel.Debug));
+				todelete.ForEach(k => Monitor.Log($"Removed event key: {k}", LogLevel.Trace));
 
 				// Organize the keys and values with corrected event preconditions
 
@@ -106,15 +128,13 @@ namespace AngryGrandpa
 					{
 						gameKey = Regex.Replace( gameKey, @"/y [0-9]+", "" );
 					}
-					Monitor.Log($"New event key for {entry}: {gameKey}", LogLevel.Debug);
+					Monitor.Log($"New event key for {entry}: {gameKey}", LogLevel.Trace);
 					string value = i18n.Get(modKey, allEventTokens);
 
 					data[gameKey] = value; // Insert the new event data.
 				}
 			}
 			else { return; }
-
-			Monitor.Log($"Edited {asset.AssetName}", LogLevel.Debug);
 		}
 	}
 }
