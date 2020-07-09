@@ -16,6 +16,9 @@ namespace AngryGrandpa
 
         protected static ITranslationHelper i18n = Helper.Translation;
 
+        static readonly string NL = Environment.NewLine;
+
+
         #region Properties and Fields for config values
         /// <summary>Changes the dialogue used during evaluation and re-evaluation events.</summary>
         public string GrandpaDialogue 
@@ -281,73 +284,64 @@ namespace AngryGrandpa
 
             var manifest = ModEntry.Instance.ModManifest;
             api.RegisterModConfig(manifest, Reset, Save);
-            string NL = Environment.NewLine;
 
-            api.RegisterLabel(manifest, "Dialogue Options", "");
+            api.RegisterLabel(manifest, i18n.Get("DialogueOptions.title"), "");
 
-            api.RegisterChoiceOption(manifest,
-                    "Choose grandpa's dialogue style",
-                    $"Changes the dialogue used during evaluation and re-evaluation events.{NL}" +
-                    $"  Original - Harsher dialogue found in early versions of the game{NL}" +
-                    $"  Vanilla - Normal dialogue used in the game ever since version 1.05{NL}" +
-                    $"  Nuclear - Grandpa is very enthusiastic about his opinions. WARNING:Profanity!",
-                    () => Instance.GrandpaDialogue,
-                    (string val) => Instance.GrandpaDialogue = val,
-                    ModConfig.GrandpaDialogueChoices);
+            api.RegisterChoiceOption(manifest, 
+                i18n.Get("GrandpaDialogue.name"),
+                i18n.Get("GrandpaDialogue.description", new { NL } ),
+                () => Instance.GrandpaDialogue,
+                (string val) => Instance.GrandpaDialogue = val,
+                ModConfig.GrandpaDialogueChoices);
 
             api.RegisterSimpleOption(manifest,
-                    "Use gender-neutral dialogue",
-                    "Removes references to player gender from dialogue strings",
-                    () => Instance.GenderNeutrality,
-                    (bool val) => Instance.GenderNeutrality = val);
+                i18n.Get("GenderNeutrality.name"),
+                i18n.Get("GenderNeutrality.description"),
+                () => Instance.GenderNeutrality,
+                (bool val) => Instance.GenderNeutrality = val);
 
             api.RegisterSimpleOption(manifest,
-                    "Expressive dialogue portraits",
-                    "Gives grandpa a variety of new facial expressions",
-                    () => Instance.ExpressivePortraits,
-                    (bool val) => Instance.ExpressivePortraits = val);
+                i18n.Get("ExpressivePortraits.name"),
+                i18n.Get("ExpressivePortraits.description"),
+                () => Instance.ExpressivePortraits,
+                (bool val) => Instance.ExpressivePortraits = val);
 
             api.RegisterLabel(manifest, "", "");
-            api.RegisterLabel(manifest, "Scoring Options", "");
+            api.RegisterLabel(manifest, i18n.Get("ScoringOptions.title"), "");
 
             api.RegisterChoiceOption(manifest,
-                    "Choose scoring system",
-                    $"Changes how points are scored and how many are required to earn 4 candles:{NL}" +
-                    $"  Original - Original game evaluation: 13 possible points, 12+ earns 4 candles{NL}" +
-                    $"  Vanilla - Normal game evaluation: 21 possible points, 12+ earns 4 candles{NL}" +
-                    $"  Hard - Harder scoring option: needs 18/21 points to earn 4 candles{NL}" +
-                    $"  Expert - Hardest scoring option: needs all 21 points for 4 candles!",
-                    () => Instance.ScoringSystem,
-                    (string val) => Instance.ScoringSystem = val,
-                    ModConfig.ScoringSystemChoices);
+                i18n.Get("ScoringSystem.name"),
+                i18n.Get("ScoringSystem.description", new { NL }),
+                () => Instance.ScoringSystem,
+                (string val) => Instance.ScoringSystem = val,
+                ModConfig.ScoringSystemChoices);
 
             api.RegisterSimpleOption(manifest,
-                    "Years before evaluation",
-                    $"How many in-game years to wait before grandpa's first visit{NL}" +
-                    $"  Default is [2] - grandpa will appear Spring 1 of Year 3",
-                    () => Instance.YearsBeforeEvaluation,
-                    (int val) => Instance.YearsBeforeEvaluation = val);
+                i18n.Get("YearsBeforeEvaluation.name"),
+                i18n.Get("YearsBeforeEvaluation.description", new { NL }),
+                () => Instance.YearsBeforeEvaluation,
+                (int val) => Instance.YearsBeforeEvaluation = val);
 
             api.RegisterSimpleOption(manifest,
-                    "Show points total",
-                    "Displays your raw score during the evaluation",
-                    () => Instance.ShowPointsTotal,
-                    (bool val) => Instance.ShowPointsTotal = val);
+                i18n.Get("ShowPointsTotal.name"),
+                i18n.Get("ShowPointsTotal.description"),
+                () => Instance.ShowPointsTotal,
+                (bool val) => Instance.ShowPointsTotal = val);
 
             api.RegisterLabel(manifest, "", "");
-            api.RegisterLabel(manifest, "Bonus Rewards", "");
+            api.RegisterLabel(manifest, i18n.Get("Rewards.title"), "");
 
             api.RegisterSimpleOption(manifest,
-                    "Enable bonus rewards",
-                    "Gives new bonus rewards for earning 1-3 candles",
-                    () => Instance.BonusRewards,
-                    (bool val) => Instance.BonusRewards = val);
+                i18n.Get("BonusRewards.name"),
+                i18n.Get("BonusRewards.description"),
+                () => Instance.BonusRewards,
+                (bool val) => Instance.BonusRewards = val);
 
             api.RegisterSimpleOption(manifest,
-                    "Give statues to all farmhands",
-                    "In a multiplayer game, allows each farmhand to receive their own Statue of Perfection.",
-                    () => Instance.StatuesForFarmhands,
-                    (bool val) => Instance.StatuesForFarmhands = val);
+                i18n.Get("StatuesForFarmhands.name"),
+                i18n.Get("StatuesForFarmhands.description"),
+                () => Instance.StatuesForFarmhands,
+                (bool val) => Instance.StatuesForFarmhands = val);
 
             Monitor.Log("Added Angry Grandpa Config to GMCM", LogLevel.Info);
         }
@@ -358,16 +352,16 @@ namespace AngryGrandpa
         {
             Monitor.Log(
                 $"CONFIG\n" +
-                $"====================\n" +
-                $"GrandpaDialogue: \"{Instance.GrandpaDialogue}\"\n" +
-                $"GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}\n" +
-                $"ExpressivePortraits: {Instance.ExpressivePortraits.ToString().ToLower()}\n" +
-                $"ScoringSystem: \"{Instance.ScoringSystem}\"\n" +
-                $"YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}\n" +
-                $"ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}\n" +
-                $"BonusRewards: {Instance.BonusRewards.ToString().ToLower()}\n" +
-                $"StatuesForFarmhands: {Instance.StatuesForFarmhands.ToString().ToLower()}\n" +
-                $"====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
+                $"    ====================\n" +
+                $"    GrandpaDialogue: \"{Instance.GrandpaDialogue}\"\n" +
+                $"    GenderNeutrality: {Instance.GenderNeutrality.ToString().ToLower()}\n" +
+                $"    ExpressivePortraits: {Instance.ExpressivePortraits.ToString().ToLower()}\n" +
+                $"    ScoringSystem: \"{Instance.ScoringSystem}\"\n" +
+                $"    YearsBeforeEvaluation: {Instance.YearsBeforeEvaluation}\n" +
+                $"    ShowPointsTotal: {Instance.ShowPointsTotal.ToString().ToLower()}\n" +
+                $"    BonusRewards: {Instance.BonusRewards.ToString().ToLower()}\n" +
+                $"    StatuesForFarmhands: {Instance.StatuesForFarmhands.ToString().ToLower()}\n" +
+                $"    ====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
         }
     }
 }

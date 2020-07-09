@@ -1,18 +1,26 @@
 ﻿{
-    // Hello! If you are here to help create a new translation file, thank you so much!
-    // These links might be helpful:
+    // NOTE TO TRANSLATORS: If you are here to help create a new translation file, thank you so much!
+    // I prefer to publish all translations as part of the main mod to keep everything up to date.
+    
+    // Please prepare your translation following the stardewvalleywiki Translation guide linked below.
+    // You can send me your work on Discord (Jonqora#8597) or on GitHub (Jonqora) and I will include it
+    // in the next mod update.
+
+    // HELPFUL LINKS
     // https://stardewvalleywiki.com/Modding:Translations (translation guide)
     // https://github.com/StardewModders/mod-translations (requests board)
-    // https://discord.gg/stardewvalley (ask for help on discord)
+    // https://discord.gg/stardewvalley (ask for help on discord, my username is Jonqora#8597)
     // https://github.com/Jonqora/StardewMods/ (github repo for my mods, including this one)
     
+    // IMPORTANT NOTES
     // Some data entries below include event scripts and dialogue with keys or symbols that should not be changed or removed.
     // Please be careful not to remove symbols, dialogue keys, or special character sequences (like \" or _ or #$b# or $y) when translating.
     // For example, @ is a placeholder for player name, %farm is a placeholder for farm name, and %rival gives a random same-gender name.
     // https://stardewvalleywiki.com/Modding:Event_data (how Stardew event scripts work)
     // https://stardewvalleywiki.com/Modding:Dialogue#Format (Stardew dialogue formatting)
 
-    // If you are creating a new translation, making gender-neutral "-gn" dialogue variants dialogue is optional! 
+    // If you are creating a new translation, making gender-neutral "-gn" dialogue variants dialogue is optional.
+    // It's easier in some langauges than others, and not everyone is familiar with gender-neutral grammar alteratives used in their language.
     // Feel free to submit a partial translation with only standard dialogue keys. Someone else can add the -gn variant later.
 
 
@@ -529,10 +537,10 @@
     // These are extra; they just allow error messages, command output, and config options to be translated.
     // If you are creating a new translation, feel free to submit your file with or without these entries!
 
-    // [TODO: add stuff here later]
+    // {{NL}} tokens are replaced with a newline in the code.
 
-  // =======================
-  // CONFIG OPTIONS FOR GMCM
+  // ===================
+  // GMCM CONFIG OPTIONS
 
     // These descriptions are visible if players install Generic Mod Config Menu (optional) 
     // and view or change their config settings from the lower left button in the game's main menu.
@@ -540,10 +548,7 @@
     "DialogueOptions.title": "Dialogue Options", // Category title
 
     "GrandpaDialogue.name": "Choose grandpa's dialogue style",
-    "GrandpaDialogue.description": "Changes the dialogue used during evaluation and re-evaluation events.
-    {{NL}}  Original - Harsher dialogue found in early versions of the game
-    {{NL}}  Vanilla - Normal dialogue used in the game ever since version 1.05
-    {{NL}}  Nuclear - Grandpa is very enthusiastic about his opinions. WARNING:Profanity!",
+    "GrandpaDialogue.description": "Changes the dialogue used during evaluation and re-evaluation events:{{NL}}  Original - Harsher dialogue found in early versions of the game{{NL}}  Vanilla - Normal dialogue used in the game ever since version 1.05{{NL}}  Nuclear - Grandpa is very enthusiastic about his opinions. WARNING:Profanity!",
     // Note to translators - do not translate the option names Original/Vanilla/Nuclear
 
     "GenderNeutrality.name": "Use gender-neutral dialogue",
@@ -555,16 +560,14 @@
     "ScoringOptions.title": "Scoring Options", // Category title
 
     "ScoringSystem.name": "Choose scoring system",
-    "ScoringSystem.description": "Changes how points are scored and how many are required to earn 4 candles:
-    {{NL}}  Original - Original game evaluation: 13 possible points, 12+ earns 4 candles
-    {{NL}}  Vanilla - Normal game evaluation: 21 possible points, 12+ earns 4 candles
-    {{NL}}  Hard - Harder scoring option: needs 18/21 points to earn 4 candles
-    {{NL}}  Expert - Hardest scoring option: needs all 21 points for 4 candles!",
+    "ScoringSystem.description": "Changes how points are scored and how many are required to earn 4 candles:{{NL}}  Original - Original game evaluation: 13 possible points, 12+ earns 4 candles{{NL}}  Vanilla - Normal game evaluation: 21 possible points, 12+ earns 4 candles{{NL}}  Hard - Harder scoring option: needs 18/21 points to earn 4 candles{{NL}}  Expert - Hardest scoring option: needs all 21 points for 4 candles!",
     // Note to translators - do not translate the option names Original/Vanilla/Hard/Expert
 
     "YearsBeforeEvaluation.name": "Years before evaluation",
-    "YearsBeforeEvaluation.description": "How many in-game years to wait before grandpa's first visit
-    {{NL}}  Default is [2] - grandpa will appear Spring 1 of Year 3",
+    "YearsBeforeEvaluation.description": "How many in-game years to wait before grandpa's first visit:{{NL}}  Default is [2] - grandpa will appear Spring 1 of Year 3",
+
+    "ShowPointsTotal.name": "Show points total",
+    "ShowPointsTotal.description": "Displays your raw score during the evaluation",
 
     "Rewards.title": "Rewards", // Category title
 
@@ -572,7 +575,7 @@
     "BonusRewards.description": "Gives new bonus rewards for earning 1-3 candles",
 
     "StatuesForFarmhands.name": "Give statues to all farmhands",
-    "StatuesForFarmhands.description": "In a multiplayer game, allows each farmhand to receive their own Statue of Perfection.",
+    "StatuesForFarmhands.description": "In a multiplayer game, allows each farmhand to receive their own Statue of Perfection",
 
   // =====================
   // CONFIG ERROR MESSAGES
@@ -582,25 +585,39 @@
     // IMPORTANT: to make sure error messages match the Config file, please do not change
     // the property names (e.g. GrandpaDialogue, YearsBeforeEvaluation)
 
-    "GrandpaDialogue.error": "Invalid config value \"{{value}}\" for GrandpaDialogue.\n
-    Accepted values are [{{listGrandpaDialogueChoices}}].\n
+    "GrandpaDialogue.error": "Invalid config value \"{{value}}\" for GrandpaDialogue.
+    Accepted values are [{{listGrandpaDialogueChoices}}].
     GrandpaDialogue has been reset to default value \"{{fallback}}\"",
 
-    "ScoringSystem.error": "Invalid config value \"{{value}}\" for ScoringSystem.\n
-    Accepted values are [{{listScoringSystemChoices}}].\n
+    "ScoringSystem.error": "Invalid config value \"{{value}}\" for ScoringSystem.
+    Accepted values are [{{listScoringSystemChoices}}].
     ScoringSystem has been reset to default value \"{{fallback}}\"",
 
-    "YearsBeforeEvaluation.error": "Invalid config value [{{value}}] for YearsBeforeEvaluation.\n
-    You must enter a non-negative integer.\n
+    "YearsBeforeEvaluation.error": "Invalid config value [{{value}}] for YearsBeforeEvaluation.
+    You must enter a non-negative integer.
     YearsBeforeEvaluation has been reset to default value [{{_yearsBeforeEvaluation}}].",
 
-    "CustomCandleScores.error.wrongLengthOrNotZero": "Invalid config entry [{{valueList}}] for CustomCandleScores.\n
-    You must enter a list of four numbers with the first number equal to 0.\n
+    "CustomCandleScores.error.wrongLengthOrNotZero": "Invalid config entry [{{valueList}}] for CustomCandleScores.
+    You must enter a list of four numbers with the first number equal to 0.
     CustomCandleScores has been reset.",
 
-    "CustomCandleScores.error.notAscendingOrder": "Invalid config entry [{{valueList}}] for CustomCandleScores.\n
-    You must enter a list of four numbers in increasing order.\n
+    "CustomCandleScores.error.notAscendingOrder": "Invalid config entry [{{valueList}}] for CustomCandleScores.
+    You must enter a list of four numbers in increasing order.
     CustomCandleScores has been reset.",
+
+  // ================
+  // CONSOLE COMMANDS
+    
+    // Players can view these command descriptions if they use the help command in the SMAPI console.
+
+    "reset_evaluation.description": "Resets all grandpa evaluations and mail/event flags, allowing you to re-experience the initial and re-evaluation events on an existing late-game save.",
+
+    "grandpa_config.description": "Prints the active Angry Grandpa config settings to the console.",
+    
+    "grandpa_score.description": "Estimates the result of a farm evaluation using grandpa's scoring criteria.",
+
+    "grandpa_debug.description": "Activates grandpa_config and grandpa_score commands, plus useful debugging information.",
+    // Note: do not change grandpa_config or grandpa_score as these are commands.
 
 
 // =======================================

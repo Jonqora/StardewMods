@@ -15,7 +15,13 @@ namespace AngryGrandpa
         protected static IModHelper Helper => ModEntry.Instance.Helper;
         protected static IMonitor Monitor => ModEntry.Instance.Monitor;
         protected static ModConfig Config => ModConfig.Instance;
-        
+
+
+        /*********
+        ** Fields
+        *********/
+        protected static ITranslationHelper i18n = Helper.Translation;
+
 
         /*********
         ** Public methods
@@ -25,17 +31,19 @@ namespace AngryGrandpa
         /// </summary>
         public static void Apply()
         {
-            Helper.ConsoleCommands.Add("grandpa_score",
-                "Estimates the result of a farm evaluation using grandpa's scoring criteria.\n\nUsage: grandpa_score",
-                cmdGrandpaScore);
+            string NL = Environment.NewLine;
+
             Helper.ConsoleCommands.Add("reset_evaluation",
-                "Removes all event flags related to grandpa's evaluation(s).\n\nUsage: reset_evaluation",
+                i18n.Get("reset_evaluation.description") + NL + "Usage: reset_evaluation",
                 cmdResetEvaluation);
             Helper.ConsoleCommands.Add("grandpa_config",
-                "Prints the active Angry Grandpa config settings to the console.\n\nUsage: grandpa_config",
+                i18n.Get("grandpa_config.description") + NL + "Usage: grandpa_config",
                 cmdGrandpaConfig);
+            Helper.ConsoleCommands.Add("grandpa_score",
+                i18n.Get("grandpa_score.description") + NL + "Usage: grandpa_score",
+                cmdGrandpaScore);
             Helper.ConsoleCommands.Add("grandpa_debug",
-                "Activates grandpa_config and grandpa_score commands, plus useful debugging information.\n\nUsage: grandpa_debug",
+                i18n.Get("grandpa_debug.description") + NL + "Usage: grandpa_debug",
                 cmdGrandpaDebug);
         }
 
@@ -57,10 +65,11 @@ namespace AngryGrandpa
                 int grandpaScore = Utility.getGrandpaScore();
                 int maxScore = Config.GetMaxScore();
                 int candles = Utility.getGrandpaCandlesFromScore(grandpaScore);
-                Monitor.Log($"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors\n" +
-                    $"Number of candles earned: {candles}\n" +
-                    $"Scoring system: \"{Config.ScoringSystem}\"\n" +
-                    $"Candle score thresholds: [{Config.GetScoreForCandles(1)}, {Config.GetScoreForCandles(2)}, {Config.GetScoreForCandles(3)}, {Config.GetScoreForCandles(4)}]",
+                Monitor.Log($"SCORE ESTIMATE\n" +
+                    $"    Grandpa's Score: {grandpaScore} of {maxScore} Great Honors\n" +
+                    $"    Number of candles earned: {candles}\n" +
+                    $"    Scoring system: \"{Config.ScoringSystem}\"\n" +
+                    $"    Candle score thresholds: [{Config.GetScoreForCandles(1)}, {Config.GetScoreForCandles(2)}, {Config.GetScoreForCandles(3)}, {Config.GetScoreForCandles(4)}]",
                     LogLevel.Info);
             }
             catch (Exception ex)
@@ -114,7 +123,7 @@ namespace AngryGrandpa
                     Game1.player.eventsSeen.Add(2146991); // Make sure they can't see candle event before the next evaluation.
                 }
 
-                Monitor.Log($"Reset grandpaScore and associated event and mail flags.", LogLevel.Info);
+                Monitor.Log($"Reset grandpaScore and associated event and mail flags for all evaluations.", LogLevel.Info);
             }
             catch (Exception ex)
             {
@@ -157,10 +166,10 @@ namespace AngryGrandpa
                 List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled", "6324hasDoneModdedEvaluation" };
 
                 Monitor.Log($"DEBUG\n" +
-                    $"Actual current Farm.grandpaScore value: {Game1.getFarm().grandpaScore.Value}\n" +
-                    $"Actual current Farm.hasSeenGrandpaNote value: {Game1.getFarm().hasSeenGrandpaNote}\n" +
-                    $"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}\n" +
-                    $"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
+                    $"    Actual current Farm.grandpaScore value: {Game1.getFarm().grandpaScore.Value}\n" +
+                    $"    Actual current Farm.hasSeenGrandpaNote value: {Game1.getFarm().hasSeenGrandpaNote}\n" +
+                    $"    List of eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}\n" +
+                    $"    List of mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
             }
             catch (Exception ex)
             {
