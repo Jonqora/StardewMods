@@ -187,7 +187,7 @@
             #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaFrown}}
             #$b#Perhaps your own work on the farm will finally allow me to find peace.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 3000
-        /speak Grandpa \"You've been here {{countYears}}.{{gpaNeutral}}
+        /speak Grandpa \"You've been here {{countYears}}...{{gpaNeutral}}
             #$b#Let's see...{{gpaStern}}\"
         /grandpaEvaluation/pause 2000
         /speak Grandpa \"Farewell!{{gpaStern}}\"
@@ -200,7 +200,7 @@
             #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaFrown}}
             #$b#Perhaps your own work on the farm will finally allow me to find peace.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 3000
-        /speak Grandpa \"You've been here {{countYears}}.{{gpaNeutral}}
+        /speak Grandpa \"You've been here {{countYears}}...{{gpaNeutral}}
             #$b#Let's see...{{gpaStern}}\"
         /grandpaEvaluation/pause 2000
         /speak Grandpa \"Farewell!{{gpaStern}}\"

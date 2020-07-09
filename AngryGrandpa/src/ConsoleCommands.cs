@@ -6,12 +6,23 @@ using System.Linq;
 
 namespace AngryGrandpa
 {
+    /// <summary>Class containing the mod's console commands.</summary>
     public class ConsoleCommands
     {
+        /*********
+        ** Accessors
+        *********/
         protected static IModHelper Helper => ModEntry.Instance.Helper;
         protected static IMonitor Monitor => ModEntry.Instance.Monitor;
         protected static ModConfig Config => ModConfig.Instance;
         
+
+        /*********
+        ** Public methods
+        *********/
+        /// <summary>
+        /// Use the Mod Helper to register the commands in this class.
+        /// </summary>
         public static void Apply()
         {
             Helper.ConsoleCommands.Add("grandpa_score",
@@ -28,6 +39,10 @@ namespace AngryGrandpa
                 cmdGrandpaDebug);
         }
 
+
+        /*********
+        ** Private methods
+        *********/
         /// <summary>Gives a farm evaluation in console output when the 'grandpa_score' command is invoked.</summary>
         /// <param name="command">The name of the command invoked.</param>
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
@@ -42,12 +57,15 @@ namespace AngryGrandpa
                 int grandpaScore = Utility.getGrandpaScore();
                 int maxScore = Config.GetMaxScore();
                 int candles = Utility.getGrandpaCandlesFromScore(grandpaScore);
-                Monitor.Log($"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors\nNumber of candles earned: {candles}\nScoring system: \"{Config.ScoringSystem}\"\nCandle score thresholds: [{Config.GetScoreForCandles(1)}, {Config.GetScoreForCandles(2)}, {Config.GetScoreForCandles(3)}, {Config.GetScoreForCandles(4)}]",
+                Monitor.Log($"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors\n" +
+                    $"Number of candles earned: {candles}\n" +
+                    $"Scoring system: \"{Config.ScoringSystem}\"\n" +
+                    $"Candle score thresholds: [{Config.GetScoreForCandles(1)}, {Config.GetScoreForCandles(2)}, {Config.GetScoreForCandles(3)}, {Config.GetScoreForCandles(4)}]",
                     LogLevel.Info);
             }
             catch (Exception ex)
             {
-                Monitor.Log($"grandpa_score failed:\n{ex}", LogLevel.Warn);
+                Monitor.Log($"Command grandpa_score failed:\n{ex}", LogLevel.Warn);
             }
         }
 
@@ -100,7 +118,7 @@ namespace AngryGrandpa
             }
             catch (Exception ex)
             {
-                Monitor.Log($"reset_evaluation failed:\n{ex}", LogLevel.Warn);
+                Monitor.Log($"Command reset_evaluation failed:\n{ex}", LogLevel.Warn);
             }
         }
         
@@ -109,7 +127,15 @@ namespace AngryGrandpa
         /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
         private static void cmdGrandpaConfig(string _command, string[] _args)
         {
-            ModConfig.Print(); // Print config values to console
+            try
+            {
+                ModConfig.Print(); // Print config values to console
+            }
+            catch (Exception ex)
+            {
+                Monitor.Log($"Command grandpa_config failed:\n{ex}",
+                    LogLevel.Error);
+            }
         }
 
         /// <summary>Prints config and score data with some extra debugging info.</summary>
@@ -126,17 +152,19 @@ namespace AngryGrandpa
                 {
                     throw new Exception("An active save is required.");
                 }
-                Monitor.Log($"DEBUG", LogLevel.Debug);
-                Monitor.Log($"Actual current Farm.grandpaScore value: {Game1.getFarm().grandpaScore.Value}", LogLevel.Debug);
-                Monitor.Log($"Actual current Farm.hasSeenGrandpaNote value: {Game1.getFarm().hasSeenGrandpaNote}", LogLevel.Debug);
+
                 List<int> eventsAG = new List<int> { 558291, 558292, 2146991, 321777 };
                 List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled", "6324hasDoneModdedEvaluation" };
-                Monitor.Log($"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}", LogLevel.Debug);
-                Monitor.Log($"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
+
+                Monitor.Log($"DEBUG\n" +
+                    $"Actual current Farm.grandpaScore value: {Game1.getFarm().grandpaScore.Value}\n" +
+                    $"Actual current Farm.hasSeenGrandpaNote value: {Game1.getFarm().hasSeenGrandpaNote}\n" +
+                    $"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}\n" +
+                    $"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
             }
             catch (Exception ex)
             {
-                Monitor.Log($"grandpa_debug failed:\n{ex}",
+                Monitor.Log($"Command grandpa_debug failed:\n{ex}",
                     LogLevel.Error);
             }
         }

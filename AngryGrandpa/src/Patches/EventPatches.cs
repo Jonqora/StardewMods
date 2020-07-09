@@ -2,27 +2,35 @@
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Characters;
-using Netcode;
 using System;
-
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
 
 namespace AngryGrandpa
 {
+	/// <summary>The class for patching methods on the StardewValley.Event class.</summary>
 	class EventPatches
 	{
+		/*********
+        ** Accessors
+        *********/
 		private static IModHelper Helper => ModEntry.Instance.Helper;
 		private static IMonitor Monitor => ModEntry.Instance.Monitor;
 		private static ModConfig Config => ModConfig.Instance;
 		private static HarmonyInstance Harmony => ModEntry.Instance.Harmony;
 
+
+		/*********
+        ** Fields
+        *********/
 		protected static ITranslationHelper i18n = Helper.Translation;
 
+
+		/*********
+        ** Public methods
+        *********/
+		/// <summary>
+		/// Applies the harmony patches defined in this class.
+		/// </summary>
 		public static void Apply()
 		{
 			Harmony.Patch(
@@ -49,6 +57,10 @@ namespace AngryGrandpa
 			);
 		}
 
+		/// <summary>
+		/// Invalidates cached assets for grandpaEvaluations right before they are used.
+		/// This ensures that the correct dialogue (for years, fifthCandle etc.) is applied for the event.
+		/// </summary>
 		public static void grandpaEvaluations_Prefix()
 		{
 			var game = Game1.game1;
@@ -62,7 +74,13 @@ namespace AngryGrandpa
 					LogLevel.Error);
 			}
 		}
-		
+
+		/// <summary>
+		/// Displays the points total on the screen during evaluation events.
+		/// Also handles event flag removal, mail flag assignment, and checks for a host-owned Statue of Perfection (including for skipped events).
+		/// Called after grandpaEvaluation, grandpaEvaluation2, or when any event is skipped.
+		/// </summary>
+		/// <param name="__instance">The Event instance (Always containing grandpaEvaluation/grandpaEvaluation2, or any skipped event)</param>
 		public static void grandpaEvaluations_Postfix(Event __instance)
 		{
 			try
@@ -102,7 +120,7 @@ namespace AngryGrandpa
 								totalNumberOfLoops = 1
 							});
 						}
-						Monitor.Log($"Ran patch for evaluation event: {nameof(grandpaEvaluations_Postfix)}", LogLevel.Debug);
+						Monitor.Log($"Ran patch for evaluation or re-evaluation event: {nameof(grandpaEvaluations_Postfix)}", LogLevel.Trace);
 						break;
 					default:
 						break;
@@ -115,7 +133,15 @@ namespace AngryGrandpa
 			}
 		}
 
-		public static void CheckWorldForStatueOfPerfection()
+
+		/*********
+        ** Private methods
+        *********/
+		/// <summary>
+		/// Searches for any pre-existing statue of perfection in the world. If found, it assigns a mail flag.
+		/// The search is only done for main (host) players, and not if a modded grandpa evaluation event has already occurred.
+		/// </summary>
+		private static void CheckWorldForStatueOfPerfection()
 		{
 			if (Game1.player.IsMainPlayer) // Host will always be present for evaluation events
 			{
@@ -124,6 +150,7 @@ namespace AngryGrandpa
 					Utility.doesItemWithThisIndexExistAnywhere(160, true)) // They DO have an existing Statue of Perfection somewhere
 				{
 					Game1.player.mailReceived.Add("6324reward4candle"); // Assume the existing statue belongs to this Host player
+					Monitor.Log($"Found existing Statue of Perfection in world: {nameof(CheckWorldForStatueOfPerfection)}", LogLevel.Trace);
 				}
 			}
 		}

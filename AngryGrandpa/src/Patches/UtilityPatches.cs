@@ -1,26 +1,28 @@
 ﻿using Harmony;
-using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Characters;
-using Netcode;
 using System;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AngryGrandpa
 {
+	/// <summary>The class for patching methods on the StardewValley.Utility class.</summary>
 	class UtilityPatches
 	{
+		/*********
+        ** Accessors
+        *********/
 		private static IModHelper Helper => ModEntry.Instance.Helper;
 		private static IMonitor Monitor => ModEntry.Instance.Monitor;
 		private static ModConfig Config => ModConfig.Instance;
-
 		private static HarmonyInstance Harmony => ModEntry.Instance.Harmony;
 
+
+		/*********
+        ** Public methods
+        *********/
+		/// <summary>
+		/// Applies the harmony patches defined in this class.
+		/// </summary>
 		public static void Apply()
 		{
 			Harmony.Patch(
@@ -37,6 +39,11 @@ namespace AngryGrandpa
 			);
 		}
 
+		/// <summary>
+		/// Alters the points scoring for grandpa's evaluation if config ScoringSystem: "Original"
+		/// </summary>
+		/// <param name="__result">The original result returned by Utility.getGrandpaScore</param>
+		/// <returns>Integer result of raw points score</returns>
 		public static int getGrandpaScore_Postfix(int __result)
 		{
 			try
@@ -131,9 +138,15 @@ namespace AngryGrandpa
 				Monitor.Log($"Failed in {nameof(getGrandpaScore_Postfix)}:\n{ex}",
 					LogLevel.Error);
 			}
-			return __result;
+			return __result; // Return original calculated score
 		}
 
+		/// <summary>
+		/// Alters the conversion of raw points score to candle number depending on a user's config.
+		/// </summary>
+		/// <param name="__result">The original result returned by Utility.getGrandpaCandlesFromScore</param>
+		/// <param name="score">The raw points score out of 21 (or 13 if ScoringSystem: "Original")</param>
+		/// <returns>Number of grandpa candles from 1-4</returns>
 		public static int getGrandpaCandlesFromScore_Postfix(int __result, int score)
 		{
 			try

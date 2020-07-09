@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management.Instrumentation;
 
 namespace AngryGrandpa
 {
+    /// <summary>The mod configuration model.</summary>
     public class ModConfig
     {
         protected static IModHelper Helper => ModEntry.Instance.Helper;
@@ -14,6 +14,7 @@ namespace AngryGrandpa
         internal static ModConfig Instance { get; private set; }
 
         #region Properties and Fields for config values
+        /// <summary>Changes the dialogue used during evaluation and re-evaluation events.</summary>
         public string GrandpaDialogue 
         { 
             get { return _grandpaDialogue; } 
@@ -34,6 +35,7 @@ namespace AngryGrandpa
         private static readonly string GrandpaDialogueDefault = GrandpaDialogueChoices[0]; // Default to "Original"
         private string _grandpaDialogue = GrandpaDialogueDefault;
 
+        /// <summary>Removes references to player gender from dialogue strings.</summary>
         public bool GenderNeutrality
         {
             get 
@@ -58,6 +60,7 @@ namespace AngryGrandpa
         }
         private bool? _genderNeutrality = null; // Initialized with null before determining which default setting to use
 
+        /// <summary>Gives grandpa a variety of new facial expressions.</summary>
         public bool ExpressivePortraits
         {
             get { return _expressivePortraits; }
@@ -69,6 +72,7 @@ namespace AngryGrandpa
         }
         private bool _expressivePortraits; // Initialize this one in the constructor
 
+        /// <summary>Changes how points are scored and how many are required to earn 4 candles.</summary>
         public string ScoringSystem
         {
             get { return _scoringSystem; }
@@ -89,6 +93,7 @@ namespace AngryGrandpa
         private static readonly string ScoringSystemDefault = ScoringSystemChoices[1]; // Default to "Vanilla"
         private string _scoringSystem = ScoringSystemDefault;
 
+        /// <summary>How many in-game years to wait before grandpa's first visit.</summary>
         public int YearsBeforeEvaluation 
         {
             get { return _yearsBeforeEvaluation; }
@@ -105,12 +110,16 @@ namespace AngryGrandpa
         }
         private int _yearsBeforeEvaluation = 2;
 
+        /// <summary>Displays your raw score during the evaluation.</summary>
         public bool ShowPointsTotal { get; set; } = true;
 
+        /// <summary>Gives new bonus rewards for earning 1-3 candles.</summary>
         public bool BonusRewards { get; set; } = true;
 
+        /// <summary>In a multiplayer game, allows each farmhand to receive their own Statue of Perfection.</summary>
         public bool StatuesForFarmhands { get; set; } = true;
 
+        /// <summary>(Unimplemented) Allow custom score thresholds for earning candles.</summary>
         private int[] CustomCandleScores // Change this to public when I update to allow custom configs
         { 
             get { return _customCandleScores; }
@@ -137,6 +146,7 @@ namespace AngryGrandpa
         #endregion
 
         #region ModConfig constructor
+        /// <summary>Constructor will let ExpressivePortraits default to true.</summary>
         public ModConfig()
         {
             ExpressivePortraits = true; // This makes sure setPortraitTokens runs on setup
@@ -218,6 +228,7 @@ namespace AngryGrandpa
         #endregion
 
         #region Generic Mod Config Menu helper functions
+        /// <summary>Load user config options from file using smapi's Config API.</summary>
         internal static void Load() 
         { 
             Instance = Helper.ReadConfig<ModConfig>();
@@ -234,14 +245,15 @@ namespace AngryGrandpa
                 || asset.AssetNameEquals("Portraits\\Grandpa"));
         }
 
+        /// <summary>Reset all config options to their default values.</summary>
         internal static void Reset()
         {
             Instance = new ModConfig();
         }
 
+        /// <summary>Register API stuff for Generic Mod Config Menu.</summary>
         internal static void SetUpMenu()
         {
-            // Register API stuff for Generic Mod Config Menu
             var api = Helper.ModRegistry.GetApi<GenericModConfigMenu.IApi>
                 ("spacechase0.GenericModConfigMenu");
 
@@ -272,7 +284,7 @@ namespace AngryGrandpa
 
             api.RegisterSimpleOption(manifest,
                     "Expressive dialogue portraits",
-                    "Grandpa gets a variety of new facial expressions",
+                    "Gives grandpa a variety of new facial expressions",
                     () => Instance.ExpressivePortraits,
                     (bool val) => Instance.ExpressivePortraits = val);
 
@@ -314,7 +326,7 @@ namespace AngryGrandpa
 
             api.RegisterSimpleOption(manifest,
                     "Give statues to all farmhands",
-                    "In a multiplayer game, each farmhand can receive their own Statue of Perfection.",
+                    "In a multiplayer game, allows each farmhand to receive their own Statue of Perfection.",
                     () => Instance.StatuesForFarmhands,
                     (bool val) => Instance.StatuesForFarmhands = val);
 
@@ -322,6 +334,7 @@ namespace AngryGrandpa
         }
         #endregion
 
+        /// <summary>Prints current config values to the console.</summary>
         internal static void Print()
         {
             Monitor.Log(

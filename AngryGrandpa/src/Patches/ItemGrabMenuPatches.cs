@@ -1,11 +1,8 @@
 ﻿using Harmony;
 using CIL = Harmony.CodeInstruction;
-using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
-using Object = StardewValley.Object;
-using Netcode;
 
 using System;
 using System.Collections.Generic;
@@ -15,16 +12,26 @@ using System.Reflection;
 
 namespace AngryGrandpa
 {
+    /// <summary>The class for patching methods on the StardewValley.Menus.ItemGrabMenu class.</summary>
     class ItemGrabMenuPatches
     {
+        /*********
+        ** Accessors
+        *********/
         private static IModHelper Helper => ModEntry.Instance.Helper;
         private static IMonitor Monitor => ModEntry.Instance.Monitor;
-
         private static HarmonyInstance Harmony => ModEntry.Instance.Harmony;
 
 
+        /*********
+        ** Public methods
+        *********/
+        /// <summary>
+        /// Applies the harmony patches defined in this class.
+        /// </summary>
         public static void Apply()
         {
+            // No need to apply this patch if BugFixAddItem in installed:
             if (Helper.ModRegistry.IsLoaded("Jonqora.BugFixAddItem"))
             {
                 Monitor.Log($"BugFixAddItem Mod detected. Angry Grandpa will not harmony patch ItemGrabMenu methods; BugFixAddItem already takes care of this.", LogLevel.Debug);
@@ -51,7 +58,7 @@ namespace AngryGrandpa
                 if (grabMenu.inventory.onAddItem != null)
                 {
                     grabMenu.inventory.onAddItem(grabMenu.heldItem, who);
-                    Monitor.Log($"Ran patch for bug in game code: {nameof(OnAddItemCheck_Hook)}", LogLevel.Debug);
+                    Monitor.Log($"Ran patch for bug in game code: {nameof(OnAddItemCheck_Hook)}", LogLevel.Trace);
                 }
             }
             catch (Exception ex)
@@ -115,7 +122,7 @@ namespace AngryGrandpa
                         patched = true;
                     }
                 }
-                if (patched) { Monitor.LogOnce($"Applied harmony patch to ItemGrabMenu: {nameof(receiveLeftClick_Transpiler)}", LogLevel.Debug); }
+                if (patched) { Monitor.LogOnce($"Applied harmony patch to ItemGrabMenu: {nameof(receiveLeftClick_Transpiler)}", LogLevel.Trace); }
                 else { Monitor.Log($"Couldn't apply harmony patch to ItemGrabMenu: {nameof(receiveLeftClick_Transpiler)}" +
                     $"This will not severely affect the game, but collecting rewards from grandpa's shrine might not register correctly.", LogLevel.Warn); }
 

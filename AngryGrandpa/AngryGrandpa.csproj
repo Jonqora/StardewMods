@@ -77,6 +77,7 @@
     <Compile Include="src\ModEntry.cs" />
     <Compile Include="src\Patches\EventPatches.cs" />
     <Compile Include="src\Patches\FarmPatches.cs" />
+    <Compile Include="src\Patches\ItemGrabMenuPatches.cs" />
     <Compile Include="src\Patches\ObjectPatches.cs" />
     <Compile Include="src\Patches\UtilityPatches.cs" />
   </ItemGroup>
