@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace AngryGrandpa
 {
@@ -12,6 +13,8 @@ namespace AngryGrandpa
         protected static IMonitor Monitor => ModEntry.Instance.Monitor;
 
         internal static ModConfig Instance { get; private set; }
+
+        protected static ITranslationHelper i18n = Helper.Translation;
 
         #region Properties and Fields for config values
         /// <summary>Changes the dialogue used during evaluation and re-evaluation events.</summary>
@@ -25,9 +28,14 @@ namespace AngryGrandpa
                 {
                     string fallback = GrandpaDialogueDefault;
                     _grandpaDialogue = fallback;
-                    Monitor.Log($"Invalid config value \"{value}\" for GrandpaDialogue.\n" + 
-                        $"Accepted values are [{string.Join(", ", GrandpaDialogueChoices)}].\n" + 
-                        $"GrandpaDialogue has been reset to default value \"{fallback}\"", LogLevel.Warn);
+                    Monitor.Log(i18n.Get(
+                        "GrandpaDialogue.error",
+                        new
+                        {
+                            value,
+                            listGrandpaDialogueChoices = string.Join(", ", GrandpaDialogueChoices),
+                            fallback
+                        }), LogLevel.Warn);
                 }
             } 
         }
@@ -83,9 +91,14 @@ namespace AngryGrandpa
                 {
                     string fallback = ScoringSystemDefault;
                     _scoringSystem = fallback;
-                    Monitor.Log($"Invalid config value \"{value}\" for ScoringSystem.\n" + 
-                        $"Accepted values are [{string.Join(", ", ScoringSystemChoices)}].\n" + 
-                        $"ScoringSystem has been reset to default value \"{fallback}\"", LogLevel.Warn);
+                    Monitor.Log(i18n.Get(
+                        "ScoringSystem.error",
+                        new
+                        {
+                            value,
+                            listScoringSystemChoices = string.Join(", ", ScoringSystemChoices),
+                            fallback
+                        }), LogLevel.Warn);
                 }
             }
         }
@@ -102,9 +115,13 @@ namespace AngryGrandpa
                 else
                 {
                     _yearsBeforeEvaluation = 2; // Default to 2 years
-                    Monitor.Log($"Invalid config value [{value}] for YearsBeforeEvaluation.\n" + 
-                        $"You must enter a non-negative integer.\n" + 
-                        $"YearsBeforeEvaluation has been reset to default value [{_yearsBeforeEvaluation}].", LogLevel.Warn);
+                    Monitor.Log(i18n.Get(
+                        "YearsBeforeEvaluation.error",
+                        new
+                        {
+                            value,
+                            _yearsBeforeEvaluation
+                        }), LogLevel.Warn); 
                 }
             }
         }
@@ -127,16 +144,18 @@ namespace AngryGrandpa
             { 
                 if ( !(value.Length == 4 && value[0] == 0) ) // Wrong length or first number not zero
                 {
-                    Monitor.Log($"Invalid config entry [{value}] for CustomCandleScores.\n" +
-                        $"You must enter a list of four numbers with the first number equal to 0.\n" +
-                        $"CustomCandleScores has been reset.", LogLevel.Warn);
+                    Monitor.Log(i18n.Get(
+                        "CustomCandleScores.error.wrongLengthOrNotZero",
+                        new { valueList = string.Join(", ", value) }
+                        ), LogLevel.Warn);
                     return;
                 }
                 else if ( !(value[0] <= value[1] && value[1] <= value[2] && value[2] <= value[3]) ) // Not in ascending order
                 {
-                    Monitor.Log($"Invalid config entry [{value}] for CustomCandleScores.\n" +
-                        $"You must enter a list of four numbers in increasing order.\n" +
-                        $"CustomCandleScores has been reset.", LogLevel.Warn);
+                    Monitor.Log(i18n.Get(
+                        "CustomCandleScores.error.notAscendingOrder",
+                        new { valueList = string.Join(", ", value) }
+                        ), LogLevel.Warn);
                     return;
                 }
                 _customCandleScores = value;

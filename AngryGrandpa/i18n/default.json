@@ -377,7 +377,7 @@
         #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaLove}}{{fifthCandle}}
         #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
     
-  // ==========================x
+  // ==========================
   // "NUCLEAR" DIALOGUE VARIANT
     
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
@@ -392,12 +392,12 @@
         #$b#The future of %farm Farm is in your hands, now...{{gpaFrown}}
         #$b#unfortunately.{{gpaSigh}}
         #$b#$y '
-            _Well fuck you too, grandpa.
-                _% Grandpa is affronted.{{gpaShock}}
+            _[say nothing]
+                _[There is an awkward silence]{{gpaFrown}}
             _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
                 _Well I'm sorry if my death inconvenienced your inheritance... asshole.{{gpaRage}}
-            _[say nothing]
-                _% There is an awkward silence.{{gpaFrown}}'",
+            _Well fuck you too, grandpa.
+                _[Grandpa is affronted]{{gpaShock}}'",
     "1CandleResult.Nuclear-gn": "What goddamn fuckery have you been up to {{pastYears}}?{{gpaShock}}
         #$b#Really, @...{{gpaFrown}}
         #$b#You call this a farm?{{gpaAngry}}
@@ -409,12 +409,12 @@
         #$b#The future of %farm Farm is in your hands, now...{{gpaFrown}}
         #$b#unfortunately.{{gpaSigh}}
         #$b#$y '
-            _Well fuck you too, grandpa.
-                _% Grandpa is affronted.{{gpaShock}}
+            _[say nothing]
+                _[There is an awkward silence]{{gpaFrown}}
             _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
                 _Well I'm sorry if my death inconvenienced your inheritance... asshole.{{gpaRage}}
-            _[say nothing]
-                _% There is an awkward silence.{{gpaFrown}}'",
+            _Well fuck you too, grandpa.
+                _[Grandpa is affronted]{{gpaShock}}'",
 
     "2CandleResult.Nuclear": "Is this all you've managed to accomplish in {{pastYears}}?{{gpaAngry}}
         #$b#...{{gpaFrown}}
@@ -531,12 +531,83 @@
 
     // [TODO: add stuff here later]
 
+  // =======================
+  // CONFIG OPTIONS FOR GMCM
+
+    // These descriptions are visible if players install Generic Mod Config Menu (optional) 
+    // and view or change their config settings from the lower left button in the game's main menu.
+    
+    "DialogueOptions.title": "Dialogue Options", // Category title
+
+    "GrandpaDialogue.name": "Choose grandpa's dialogue style",
+    "GrandpaDialogue.description": "Changes the dialogue used during evaluation and re-evaluation events.
+    {{NL}}  Original - Harsher dialogue found in early versions of the game
+    {{NL}}  Vanilla - Normal dialogue used in the game ever since version 1.05
+    {{NL}}  Nuclear - Grandpa is very enthusiastic about his opinions. WARNING:Profanity!",
+    // Note to translators - do not translate the option names Original/Vanilla/Nuclear
+
+    "GenderNeutrality.name": "Use gender-neutral dialogue",
+    "GenderNeutrality.description": "Removes references to player gender from dialogue strings",
+
+    "ExpressivePortraits.name": "Expressive dialogue portraits",
+    "ExpressivePortraits.description": "Gives grandpa a variety of new facial expressions",
+
+    "ScoringOptions.title": "Scoring Options", // Category title
+
+    "ScoringSystem.name": "Choose scoring system",
+    "ScoringSystem.description": "Changes how points are scored and how many are required to earn 4 candles:
+    {{NL}}  Original - Original game evaluation: 13 possible points, 12+ earns 4 candles
+    {{NL}}  Vanilla - Normal game evaluation: 21 possible points, 12+ earns 4 candles
+    {{NL}}  Hard - Harder scoring option: needs 18/21 points to earn 4 candles
+    {{NL}}  Expert - Hardest scoring option: needs all 21 points for 4 candles!",
+    // Note to translators - do not translate the option names Original/Vanilla/Hard/Expert
+
+    "YearsBeforeEvaluation.name": "Years before evaluation",
+    "YearsBeforeEvaluation.description": "How many in-game years to wait before grandpa's first visit
+    {{NL}}  Default is [2] - grandpa will appear Spring 1 of Year 3",
+
+    "Rewards.title": "Rewards", // Category title
+
+    "BonusRewards.name": "Enable bonus rewards",
+    "BonusRewards.description": "Gives new bonus rewards for earning 1-3 candles",
+
+    "StatuesForFarmhands.name": "Give statues to all farmhands",
+    "StatuesForFarmhands.description": "In a multiplayer game, allows each farmhand to receive their own Statue of Perfection.",
+
+  // =====================
+  // CONFIG ERROR MESSAGES
+    
+    // These helpful messages are printed as warnings to the console if a player enters an invalid config value.
+
+    // IMPORTANT: to make sure error messages match the Config file, please do not change
+    // the property names (e.g. GrandpaDialogue, YearsBeforeEvaluation)
+
+    "GrandpaDialogue.error": "Invalid config value \"{{value}}\" for GrandpaDialogue.\n
+    Accepted values are [{{listGrandpaDialogueChoices}}].\n
+    GrandpaDialogue has been reset to default value \"{{fallback}}\"",
+
+    "ScoringSystem.error": "Invalid config value \"{{value}}\" for ScoringSystem.\n
+    Accepted values are [{{listScoringSystemChoices}}].\n
+    ScoringSystem has been reset to default value \"{{fallback}}\"",
+
+    "YearsBeforeEvaluation.error": "Invalid config value [{{value}}] for YearsBeforeEvaluation.\n
+    You must enter a non-negative integer.\n
+    YearsBeforeEvaluation has been reset to default value [{{_yearsBeforeEvaluation}}].",
+
+    "CustomCandleScores.error.wrongLengthOrNotZero": "Invalid config entry [{{valueList}}] for CustomCandleScores.\n
+    You must enter a list of four numbers with the first number equal to 0.\n
+    CustomCandleScores has been reset.",
+
+    "CustomCandleScores.error.notAscendingOrder": "Invalid config entry [{{valueList}}] for CustomCandleScores.\n
+    You must enter a list of four numbers in increasing order.\n
+    CustomCandleScores has been reset.",
+
 
 // =======================================
 // NO TRANSLATION NEEDED FOR THESE ENTRIES
 // =======================================
 
-    // DO NOT copy the entries in this section to new translation files. These are important data and their values should never change.
+    // DO NOT COPY the entries in this section to new translation files. These are important data and their values should never change.
     "GrandpaNote.gameKey": "Farm_GrandpaNote",
     "GrandpaNoteMail.gameKey": "6324grandpaNoteMail",
 
