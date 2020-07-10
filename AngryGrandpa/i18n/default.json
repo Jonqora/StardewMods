@@ -401,11 +401,11 @@
         #$b#unfortunately.{{gpaSigh}}
         #$b#$y '
             _[say nothing]
-                _[There is an awkward silence]{{gpaFrown}}
+                _...there is an awkward silence.{{gpaFrown}}
             _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
                 _Well I'm sorry if my death inconvenienced your inheritance... asshole.{{gpaRage}}
             _Well fuck you too, grandpa.
-                _[Grandpa is affronted]{{gpaShock}}'",
+                _...Grandpa is affronted.{{gpaShock}}'",
     "1CandleResult.Nuclear-gn": "What goddamn fuckery have you been up to {{pastYears}}?{{gpaShock}}
         #$b#Really, @...{{gpaFrown}}
         #$b#You call this a farm?{{gpaAngry}}
@@ -418,11 +418,11 @@
         #$b#unfortunately.{{gpaSigh}}
         #$b#$y '
             _[say nothing]
-                _[There is an awkward silence]{{gpaFrown}}
+                _...there is an awkward silence.{{gpaFrown}}
             _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
                 _Well I'm sorry if my death inconvenienced your inheritance... asshole.{{gpaRage}}
             _Well fuck you too, grandpa.
-                _[Grandpa is affronted]{{gpaShock}}'",
+                _...Grandpa is affronted.{{gpaShock}}'",
 
     "2CandleResult.Nuclear": "Is this all you've managed to accomplish in {{pastYears}}?{{gpaAngry}}
         #$b#...{{gpaFrown}}
