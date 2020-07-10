@@ -552,7 +552,7 @@
     // Note to translators - do not translate the option names Original/Vanilla/Nuclear
 
     "GenderNeutrality.name": "Use gender-neutral dialogue",
-    "GenderNeutrality.description": "Removes references to player gender from dialogue strings",
+    "GenderNeutrality.description": "Removes all references to player gender in grandpa's dialogue",
 
     "ExpressivePortraits.name": "Expressive dialogue portraits",
     "ExpressivePortraits.description": "Gives grandpa a variety of new facial expressions",
