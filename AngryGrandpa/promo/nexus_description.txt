@@ -75,7 +75,7 @@ This set of criteria is used for AngryGrandpa's [code]"Vanilla"[/code], [code]"H
 You can also customize the schedule for grandpa's initial visit, which usually happens at the beginning of Year 3. If you want grandpa to whip you into shape as soon as you arrive on the farm, you can even set the value to zero. Or if you want to delay grandpa's visit for 90 years... I guess you can do that too!
 
 [b][size=3]Display Points Total[/size][/b]
-A re-added feature from early game versions. You can now see your exact point total during evaluations (out of 21 or 13 possible points). As well, you can use a diamond to request a re-evaluation and see your new score at [u]any[/u] time, even after earning 4 candles. This feature can be disabled in the config.
+A re-added feature from early game versions. You can now see your exact point total during evaluations (out of 21 or 13 possible points). This feature can be disabled in the config. As well, you can use a diamond to request a re-evaluation and see your new score at [u]any[/u] time, even after earning 4 candles.
 
 [img]https://staticdelivery.nexusmods.com/mods/1303/images/6324/6324-1594426474-29273827.png[/img]
 

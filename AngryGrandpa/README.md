@@ -18,7 +18,7 @@ Choose from the `"Original"` (pre-SDV v1.05) game dialogue, `"Vanilla"` normal g
 ### Expressive Portraits
 Grandpa gets a lot more personality with new, expressive portraits edited by [TayLindsey](https://www.nexusmods.com/users/84157593)! A total of **eleven** new facial expressions are used to give flavor and variety to all dialogues. Some portraits are only used in certain dialogue variants. (If you want to experience all of them, I suggest choosing `"Nuclear"` dialogue with a higher difficulty setting.)
 
-![New expressive portrait samples: Angry, Shocked, Stern, Pleased](promo/grandpa_expressions_four.png "and many more...")
+![New expressive portrait samples: Angry, Shocked, Stern, Pleased](promo/grandpa_expressions_four_big.png "and many more...")
 
 ### Scoring System Overhaul
 Choose your difficulty setting with different point thresholds. Go back to the earliest versions of the game with only 13 possible grandpa points available to earn... or use the new evaluation system with all 21 available points, but harder thresholds for earning a 4-candle result. This setting defaults to `"Vanilla"`, so you'll need to change it if you want more of a challenge!
