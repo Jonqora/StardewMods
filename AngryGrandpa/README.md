@@ -1,4 +1,6 @@
 # Angry Grandpa
+*He's only angry when you've earned it!*
+
 In early 2016 versions of Stardew Valley, grandpa's evaluation was much tougher. There were fewer ways to earn points (13 total), and 12 points were required to obtain 4 candles. If you disappointed grandpa, his original dialogue was pretty harsh...
 <details>
   <summary><i>Original 1-candle result:</i></summary>
@@ -6,7 +8,7 @@ In early 2016 versions of Stardew Valley, grandpa's evaluation was much tougher.
   !["Maybe I should've left the farm to one of the other grandkids..."](promo/original_dialogue_1400x400.png "yikes!")
 </details>
 
-Angry Grandpa mod gives a huge overhaul to the evaluation system! Restore the original dialogue, keep it as is, or use new `"Nuclear"` dialogue, all with new portrait expressions to match! You can see your actual points total during evaluations, customize the scoring system used, re-evaluate even after earning 4 candles, reschedule grandpa's visit to happen earlier or later in the game, and even earn new rewards for achieving a 1, 2, or 3 candle result.
+Angry Grandpa mod gives a huge overhaul to the evaluation system! Restore the original dialogue, keep it as is, or use new `"Nuclear"` dialogue, all with new portrait expressions to match! You can see your actual points total during evaluations, customize the scoring system used, re-evaluate even after earning 4 candles, reschedule grandpa's visit to happen earlier or later in the game, and earn new rewards for achieving a 1, 2, or 3 candle result.
 
 **Can be used on existing late-game saves:** Angry Grandpa comes with a `reset_evaluation` console command. You can use this command to redo all evaluations on an existing save and experience everything new from scratch.
 
@@ -16,12 +18,12 @@ Angry Grandpa mod gives a huge overhaul to the evaluation system! Restore the or
 Choose from the `"Original"` (pre-SDV v1.05) game dialogue, `"Vanilla"` normal game dialogue, or creative *new* `"Nuclear"` dialogue for grandpa's evaluation response! **Warning: `"Nuclear"` dialogue includes profanity and a lot of sass.** All dialogue variants can be made gender-neutral with an optional setting.
 
 ### Expressive Portraits
-Grandpa gets a lot more personality with new, expressive portraits edited by [TayLindsey](https://www.nexusmods.com/users/84157593)! A total of **eleven** new facial expressions are used to give flavor and variety to all dialogues. Some portraits are only used in certain dialogue variants. (If you want to experience all of them, I suggest choosing `"Nuclear"` dialogue with a higher difficulty setting.)
+Grandpa gets a lot more personality with new, expressive portraits edited by [TayLindsey](https://www.nexusmods.com/users/84157593)! A total of **eleven** new facial expressions are used to give flavor and variety to all dialogues. (Some portraits are only used in certain dialogue variants. If you want to experience them all, choose `"Nuclear"` dialogue with a higher difficulty setting.)
 
 ![New expressive portrait samples: Angry, Shocked, Stern, Pleased](promo/grandpa_expressions_four_big.png "and many more...")
 
 ### Scoring System Overhaul
-Choose your difficulty setting with different point thresholds. Go back to the earliest versions of the game with only 13 possible grandpa points available to earn... or use the new evaluation system with all 21 available points, but harder thresholds for earning a 4-candle result. This setting defaults to `"Vanilla"`, so you'll need to change it if you want more of a challenge!
+Choose your difficulty setting with different point thresholds. Relive the earliest versions of Stardew Valley with only 13 possible grandpa points available to earn... or use the new evaluation system with all 21 available points, but harder thresholds for earning a 4-candle result. This setting defaults to `"Vanilla"`, so you'll need to change it if you want more of a challenge!
 
 **Choose from:** `"Original"`, `"Vanilla"`, `"Hard"` or `"Expert"`
 
@@ -86,10 +88,10 @@ This set of criteria is used for AngryGrandpa's `"Vanilla"`, `"Hard"`, and `"Exp
   </details>
 </details><br/>
 
-You can also customize the schedule for grandpa's initial visit, which usually happens at the beginning of Year 3. If you want grandpa to whip you into shape as soon as you arrive on the farm, you can even set the value to zero. Or if you want to delay grandpa's visit for 90 years... I guess you can do that too!
+You can customize the schedule for grandpa's initial visit, which usually happens at the beginning of Year 3. If you choose, grandpa can whip you into shape as soon as you arrive on the farm... or you can delay his visit for decades!
 
 ### Display Points Total
-A re-added feature from early game versions. You can now see your exact point total during evaluations (out of 21 or 13 possible points). As well, you can use a diamond to request a re-evaluation and see your new score at *any* time, even after earning 4 candles. This feature can be disabled in the config.
+A re-added feature from early game versions. You can now see your exact point total during evaluations (out of 21 or 13 possible points). You can use a diamond to request a re-evaluation and see your new score at *any* time, even after earning 4 candles.
 
 ![Grandpa's Score: 14 of 21 Great Honors](promo/showpointstotal.png "Score display during evaluation event")
 
@@ -112,7 +114,7 @@ In vanilla multiplayer games, scoring is done individually, but only one Statue 
 If you install this mod on an existing save, it will assume that any existing Statue of Perfection in the game world belongs to the host. The host player will not be able to receive extra statues by using the `reset_evaluation` command.
 
 ### Translation Support
-No translations are available yet, but the mod is designed with full language support! If you would like to help translate this mod, you can contribute here [[ADD LINK]]. Submitted translations will be included in future mod updates.
+No translations are available yet, but the mod is designed with full language support! If you would like to help translate this mod, you can [contribute here](https://github.com/StardewModders/mod-translations/issues/31). Submitted translations will be included in future mod updates.
 
 
 ## User Information
@@ -202,5 +204,6 @@ These are not the mod's default settings, but I think they give the most interes
 * Thanks to those who provided help and support in the [Stardew Valley Discord](https://discordapp.com/invite/StardewValley) #making-mods channel.
 
 ### SEE ALSO
+* Help [translate](https://github.com/StardewModders/mod-translations/issues/31) this mod to other languages
 * Source code on [GitHub](https://github.com/Jonqora/StardewMods/tree/master/AngryGrandpa]GitHub)
 * Check out [my other mods](https://www.nexusmods.com/users/88107803?tab=user+files)!
