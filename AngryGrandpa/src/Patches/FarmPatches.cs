@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Characters;
 using StardewValley.Locations;
 using StardewValley.Menus;
 using StardewValley.Network;
@@ -11,22 +10,26 @@ using Netcode;
 using System;
 using xTile.Dimensions;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-
 namespace AngryGrandpa
 {
+    /// <summary>The class for patching methods on the StardewValley.Farm class.</summary>
 	class FarmPatches
 	{
-		private static IModHelper Helper => ModEntry.Instance.Helper;
+        /*********
+        ** Accessors
+        *********/
+        private static IModHelper Helper => ModEntry.Instance.Helper;
 		private static IMonitor Monitor => ModEntry.Instance.Monitor;
 		private static ModConfig Config => ModConfig.Instance;
-
 		private static HarmonyInstance Harmony => ModEntry.Instance.Harmony;
 
+
+        /*********
+        ** Public methods
+        *********/
+        /// <summary>
+        /// Applies the harmony patches defined in this class.
+        /// </summary>
 		public static void Apply()
 		{
 			Harmony.Patch(
@@ -43,6 +46,16 @@ namespace AngryGrandpa
             );
         }
 
+        /// <summary>
+        /// Reimplements (almost) the entire Farm.checkAction() logic when a player checks for an action on the tiles of grandpa's shrine.
+        /// Includes new logic to add mail, grant bonus rewards, allow infinite re-evalualtions, and give each farmhand their own Statue of Perfection.
+        /// </summary>
+        /// <param name="tileLocation">The tile location being checked to see if an action is possible.</param>
+        /// <param name="viewport">The viewport of the screen.</param>
+        /// <param name="who">The player performing an action.</param>
+        /// <param name="__instance">The Farm location where the player is acting on the world.</param>
+        /// <param name="__result">The result returned by checkAction. Assign true if an action is possible, false if no action is possible.</param>
+        /// <returns>true if the original checkAction method is allowed to run; false if blocked</returns>
 		public static bool farmCheckAction_Prefix(Location tileLocation, xTile.Dimensions.Rectangle viewport, Farmer who, Farm __instance, ref bool __result)
 		{
 			try
@@ -97,6 +110,7 @@ namespace AngryGrandpa
                             {
                                 who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 160, false), new ItemGrabMenu.behaviorOnItemSelect(grandpa4CandleCallback));
                                 __result = true;
+                                Monitor.Log($"Used modifed logic to grant Statue of Perfection: {nameof(farmCheckAction_Prefix)}", LogLevel.Trace);
                                 return false; // Alter __result, don't run original code.
                             }
                         }
@@ -106,6 +120,7 @@ namespace AngryGrandpa
                             {
                                 who.addItemByMenuIfNecessaryElseHoldUp((Item)new Object(Vector2.Zero, 160, false), new ItemGrabMenu.behaviorOnItemSelect(__instance.grandpaStatueCallback));
                                 __result = true;
+                                Monitor.Log($"Used vanilla game logic to grant Statue of Perfection: {nameof(farmCheckAction_Prefix)}", LogLevel.Trace);
                                 return false; // Alter __result, don't run original code.
                             }
                         }
@@ -137,16 +152,19 @@ namespace AngryGrandpa
                         // Uh-oh, if somehow an evaluation is needed, request one for free.
                         if ((int)(NetFieldBase<int, NetInt>)__instance.grandpaScore == 0 && Game1.year > Config.YearsBeforeEvaluation)
                         {
-                            Game1.player.eventsSeen.Remove(558292); // Remove re-evaluation event
-                            if (Game1.player.eventsSeen.Contains(558291) // Has done first evaluation? (If not, it can still trigger)
-                                && !Game1.player.eventsSeen.Contains(321777)) // Re-evaluation request
+                            while (Game1.player.eventsSeen.Contains(558292))
+                            {
+                                Game1.player.eventsSeen.Remove(558292); // Remove re-evaluation event
+                            }
+                            if (Game1.player.eventsSeen.Contains(558291) && // If have not seen original, can still trigger
+                                !Game1.player.eventsSeen.Contains(321777)) // Re-evaluation request
                             {
                                 Game1.player.eventsSeen.Add(321777);
                                 break;
                             }
                             break;
                         }
-                        break;
+                        break; // Exit to baseMethod logic below
                     default:
                         return true; // Run original code if not one of the shrine tiles
                 }
@@ -166,94 +184,10 @@ namespace AngryGrandpa
 			}
 		}
 
-        private static void grandpa1CandleCallback(Item item, Farmer who)
-        {
-            if (who == null)
-            {
-                Monitor.Log("Who is NULL.", LogLevel.Debug);
-            }
-            who = Game1.player;
-            if (item == null
-                || !(item is Object)
-                || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 114)
-                || who == null)
-            {
-                Monitor.Log("Callback conditions not satisfied.", LogLevel.Debug);
-                return;
-            }
-            Monitor.Log("Callback conditions satisfied!", LogLevel.Debug);
-            if (!who.mailReceived.Contains("6324reward1candle"))
-            {
-                who.mailReceived.Add("6324reward1candle");
-            }
-        }
-
-        private static void grandpa2CandleCallback(Item item, Farmer who)
-        {
-            if(who == null)
-            {
-                Monitor.Log("Who is NULL.", LogLevel.Debug);
-            }
-            who = Game1.player; 
-            if (item == null
-                || !(item is Object)
-                || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 107)
-                || who == null)
-            {
-                Monitor.Log("Callback conditions not satisfied.", LogLevel.Debug);
-                return;
-            }
-            Monitor.Log("Callback conditions satisfied!", LogLevel.Debug);
-            if (!who.mailReceived.Contains("6324reward2candle"))
-            {
-                who.mailReceived.Add("6324reward2candle");
-            }
-        }
-
-        private static void grandpa3CandleCallback(Item item, Farmer who)
-        {
-            if (who == null)
-            {
-                Monitor.Log("Who is NULL.", LogLevel.Debug);
-            }
-            who = Game1.player;
-            if (item == null
-                || !(item is Object)
-                || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 74)
-                || who == null)
-            {
-                Monitor.Log("Callback conditions not satisfied.", LogLevel.Debug);
-                return;
-            }
-            Monitor.Log("Callback conditions satisfied!", LogLevel.Debug);
-            if (!who.mailReceived.Contains("6324reward3candle"))
-            {
-                who.mailReceived.Add("6324reward3candle");
-            }
-        }
-
-        private static void grandpa4CandleCallback(Item item, Farmer who)
-        {
-            if (who == null)
-            {
-                Monitor.Log("Who is NULL.", LogLevel.Debug);
-            }
-            who = Game1.player;
-            if (item == null
-                || !(item is Object)
-                || !((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 160)
-                || who == null)
-                return;
-            if (!who.mailReceived.Contains("6324reward4candle"))
-            {
-                who.mailReceived.Add("6324reward4candle");
-            }
-            if (!who.mailReceived.Contains("grandpaPerfect"))
-            {
-                who.mailReceived.Add("grandpaPerfect");
-            }
-        }
-
+        /// <summary>
+        /// Gets rid of extra candlestick sprites before lighting candles, but leaves unlit candlesticks alone after an evaluation request.
+        /// </summary>
+        /// <param name="__instance">The Farm locations where candles are being added</param>
         public static void addGrandpaCandles_Prefix(Farm __instance)
         {
             try
@@ -270,6 +204,10 @@ namespace AngryGrandpa
             }
         }
 
+        /// <summary>
+        /// Removes all candlestick TemporaryAnimatedSprites from a farm location.
+        /// </summary>
+        /// <param name="farm">The farm location to remove candlesticks from.</param>
         public static void RemoveCandlesticks(Farm farm)
         {
             Microsoft.Xna.Framework.Rectangle candlestickSourceRect = new Microsoft.Xna.Framework.Rectangle(577, 1985, 2, 5);
@@ -279,10 +217,110 @@ namespace AngryGrandpa
                 TemporaryAnimatedSprite sprite = farm.temporarySprites[index];
                 if (sprite.sourceRect == candlestickSourceRect
                     && Helper.Reflection.GetField<string>(sprite, "textureName").GetValue() == "LooseSprites\\Cursors")
-                    //&& candlestickPositions.Contains((int)sprite.Position.X, (int)sprite.Position.Y))
+                //&& candlestickPositions.Contains((int)sprite.Position.X, (int)sprite.Position.Y))
                 {
                     farm.temporarySprites.RemoveAt(index);
                 }
+            }
+        }
+
+
+        /*********
+        ** Private methods
+        *********/
+        /// <summary>
+        /// Adds "6324reward1candle" mail flag when player adds the 1 candle reward (ancient seed) to inventory.
+        /// </summary>
+        /// <param name="item">The item added to inventory</param>
+        /// <param name="who">The player who added the item</param>
+        private static void grandpa1CandleCallback(Item item, Farmer who)
+        {
+            who = Game1.player; // Fixes game code issue where the delegate function is called with argument (Farmer)null
+            if (item == null
+                || !(item is Object)
+                || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 114)
+                || who == null)
+            {
+                Monitor.Log($"Callback conditions NOT satisfied: {nameof(grandpa1CandleCallback)}", LogLevel.Trace);
+                return;
+            }
+            Monitor.Log($"Callback conditions satisfied: {nameof(grandpa1CandleCallback)}", LogLevel.Trace);
+            if (!who.mailReceived.Contains("6324reward1candle"))
+            {
+                who.mailReceived.Add("6324reward1candle");
+            }
+        }
+
+        /// <summary>
+        /// Adds "6324reward2candle" mail flag when player adds the 2 candle reward (dinosaur egg) to inventory.
+        /// </summary>
+        /// <param name="item">The item added to inventory</param>
+        /// <param name="who">The player who added the item</param>
+        private static void grandpa2CandleCallback(Item item, Farmer who)
+        {
+            who = Game1.player; // Fixes game code issue where the delegate function is called with argument (Farmer)null
+            if (item == null
+                || !(item is Object)
+                || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 107)
+                || who == null)
+            {
+                Monitor.Log($"Callback conditions NOT satisfied: {nameof(grandpa2CandleCallback)}", LogLevel.Trace);
+                return;
+            }
+            Monitor.Log($"Callback conditions satisfied: {nameof(grandpa2CandleCallback)}", LogLevel.Trace);
+            if (!who.mailReceived.Contains("6324reward2candle"))
+            {
+                who.mailReceived.Add("6324reward2candle");
+            }
+        }
+
+        /// <summary>
+        /// Adds "6324reward3candle" mail flag when player adds the 3 candle reward (prismatic shard) to inventory.
+        /// </summary>
+        /// <param name="item">The item added to inventory</param>
+        /// <param name="who">The player who added the item</param>
+        private static void grandpa3CandleCallback(Item item, Farmer who)
+        {
+            who = Game1.player; // Fixes game code issue where the delegate function is called with argument (Farmer)null
+            if (item == null
+                || !(item is Object)
+                || ((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 74)
+                || who == null)
+            {
+                Monitor.Log($"Callback conditions NOT satisfied: {nameof(grandpa3CandleCallback)}", LogLevel.Trace);
+                return;
+            }
+            Monitor.Log($"Callback conditions satisfied: {nameof(grandpa3CandleCallback)}", LogLevel.Trace);
+            if (!who.mailReceived.Contains("6324reward3candle"))
+            {
+                who.mailReceived.Add("6324reward3candle");
+            }
+        }
+
+        /// <summary>
+        /// Adds "6324reward4candle" mail flag when player adds the 4 candle reward (Statue of Perfection) to inventory.
+        /// </summary>
+        /// <param name="item">The item added to inventory</param>
+        /// <param name="who">The player who added the item</param>
+        private static void grandpa4CandleCallback(Item item, Farmer who)
+        {
+            who = Game1.player; // Fixes game code issue where the delegate function is called with argument (Farmer)null
+            if (item == null
+                || !(item is Object)
+                || !((bool)(NetFieldBase<bool, NetBool>)(item as Object).bigCraftable || (int)(NetFieldBase<int, NetInt>)(item as Object).parentSheetIndex != 160)
+                || who == null)
+            {
+                Monitor.Log($"Callback conditions NOT satisfied: {nameof(grandpa4CandleCallback)}", LogLevel.Trace);
+                return;
+            }
+            Monitor.Log($"Callback conditions satisfied: {nameof(grandpa4CandleCallback)}", LogLevel.Trace);
+            if (!who.mailReceived.Contains("6324reward4candle"))
+            {
+                who.mailReceived.Add("6324reward4candle");
+            }
+            if (!who.mailReceived.Contains("grandpaPerfect")) // Add the game's original flag for this too because why not
+            {
+                who.mailReceived.Add("grandpaPerfect");
             }
         }
     }

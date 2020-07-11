@@ -73,9 +73,11 @@
     <Compile Include="src\Editors\PortraitEditor.cs" />
     <Compile Include="src\Editors\GrandpaNoteEditor.cs" />
     <Compile Include="src\ModConfig.cs" />
+    <Compile Include="src\ConsoleCommands.cs" />
     <Compile Include="src\ModEntry.cs" />
     <Compile Include="src\Patches\EventPatches.cs" />
     <Compile Include="src\Patches\FarmPatches.cs" />
+    <Compile Include="src\Patches\ItemGrabMenuPatches.cs" />
     <Compile Include="src\Patches\ObjectPatches.cs" />
     <Compile Include="src\Patches\UtilityPatches.cs" />
   </ItemGroup>

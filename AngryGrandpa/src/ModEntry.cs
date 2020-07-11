@@ -14,21 +14,22 @@ namespace AngryGrandpa
     /// <summary>The mod entry point.</summary>
     public class ModEntry : Mod
     {
+        /*********
+        ** Fields
+        *********/
         internal static ModEntry Instance { get; private set; }
         internal HarmonyInstance Harmony { get; private set; }
-        internal protected static ModConfig Config => ModConfig.Instance;
 
         /// <summary>Whether the next tick is the first one.</summary>
         private bool IsFirstTick = true;
-
-        private int CurrentYear; // Monitor for changes
+        /// <summary>Monitor in-game year for changes.</summary>
+        private int CurrentYear;
 
 
         /*********
-        ** Accessors 
+        ** Accessors
         *********/
-        /// <summary>Provides methods for interacting with the mod directory.</summary>
-        //public static IModHelper ModHelper { get; private set; }
+        internal protected static ModConfig Config => ModConfig.Instance;
 
 
         /*********
@@ -46,18 +47,19 @@ namespace AngryGrandpa
             Harmony = HarmonyInstance.Create(ModManifest.UniqueID);
             EventPatches.Apply();
             FarmPatches.Apply();
+            ItemGrabMenuPatches.Apply();
             ObjectPatches.Apply();
             UtilityPatches.Apply();
 
             // Add console commands.
-            addConsoleCommands();
+            ConsoleCommands.Apply();
 
-            // Listen for game events. (Make these into an event handler thing?)
+            // Listen for game events.
             helper.Events.GameLoop.GameLaunched += this.onGameLaunched;
             helper.Events.GameLoop.UpdateTicked += this.onUpdateTicked;
-            helper.Events.Input.ButtonPressed += this.onButtonPressed;
             helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
             helper.Events.GameLoop.DayStarted += this.onDayStarted;
+            helper.Events.Player.Warped += this.onWarped;
 
             // Set up portrait asset editor. This one is added early since it never changes.
             helper.Content.AssetEditors.Add(new PortraitEditor());
@@ -67,15 +69,26 @@ namespace AngryGrandpa
         /*********
         ** Private methods
         *********/
-        /// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
+        /****
+        ** Event handlers
+        ****/
+        /// <summary>
+        /// Sets up the Generic Mod Config Menu integration if available.
+        /// Called after the game is launched, before the first update tick.
+        /// </summary>
         /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <param name="e">The event arguments.</param>
         private void onGameLaunched(object sender, GameLaunchedEventArgs e)
         {
-            // Set up Generic Mod Config Menu if available.
             ModConfig.SetUpMenu();
         }
 
+        /// <summary>
+        /// Loads asset editors on the second update tick, after Content Patcher has loaded most others.
+        /// Raised after the game state is updated. Only runs twice then unhooks itself.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void onUpdateTicked(object sender, UpdateTickedEventArgs e)
         {
             if (this.IsFirstTick)
@@ -86,21 +99,19 @@ namespace AngryGrandpa
             {
                 Instance.Helper.Events.GameLoop.UpdateTicked -= this.onUpdateTicked; // Don't check again
 
-                // Set up asset loaders/editors.
+                // Set up asset loaders/editors. PortraitEditor is added in the Entry method instead.
                 Instance.Helper.Content.AssetEditors.Add(new GrandpaNoteEditor());
                 Instance.Helper.Content.AssetEditors.Add(new EventEditor());
                 Instance.Helper.Content.AssetEditors.Add(new EvaluationEditor());
             }
         }
 
-        private void onButtonPressed(object sender, ButtonPressedEventArgs e)
-        {
-            if (e.Button != SButton.O)
-                return;
-
-            ModConfig.Print(); // Print config values to console when "O" key is pressed.
-        }
-
+        /// <summary>
+        /// Checks to place the grandpa note mail in collections if needed; Initialises tracking current game year.
+        /// Called after loading a save or connecting to a multiplayer world. 
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void onSaveLoaded(object sender, SaveLoadedEventArgs e)
         {
             if (Game1.getFarm().hasSeenGrandpaNote
@@ -112,112 +123,45 @@ namespace AngryGrandpa
             CurrentYear = Game1.year; // Track year for updating cached Events
         }
 
+        /// <summary>
+        /// Resets cache for affected Event assets if needed.
+        /// Raised after a new in-game day starts.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void onDayStarted(object sender, DayStartedEventArgs e)
         {
-            resetEventsCacheIfYearChanged();
+            ResetEventsCacheIfYearChanged();
         }
 
+        /// <summary>
+        /// Resets cache for affected Event assets if needed.
+        /// Raised after the current player moves to a new location.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void onWarped(object sender, WarpedEventArgs e)
         {
-            resetEventsCacheIfYearChanged();
+            ResetEventsCacheIfYearChanged();
         }
 
-        private void resetEventsCacheIfYearChanged()
+        /****
+        ** Helper methods
+        ****/
+        /// <summary>
+        /// If the in-game year has changed, resets the cache for affected Event assets so they can be reloaded.
+        /// Called by onDayStarted and onWarped.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void ResetEventsCacheIfYearChanged()
         {
-            if (Game1.year != CurrentYear) // Invalidate cache to reload assets that contain references to years passed
+            if (Game1.year != CurrentYear) // Need to reload assets that contain references to years passed
             {
                 CurrentYear = Game1.year; // Update tracked value
                 Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
                 => asset.AssetNameEquals("Data\\Events\\Farmhouse")
                 || asset.AssetNameEquals("Data\\Events\\Farm"));
-            }
-        }
-
-        private void addConsoleCommands()
-        {
-            Helper.ConsoleCommands.Add("grandpa_score",
-                "Estimates the result of a farm evaluation using grandpa's scoring criteria.\n\nUsage: grandpa_score",
-                cmdGrandpaScore);
-            Helper.ConsoleCommands.Add("reset_evaluation",
-                "Removes all event flags related to grandpa's evaluation(s).\n\nUsage: reset_evaluation",
-                cmdResetEvaluation);
-        }
-
-        /// <summary>Gives a farm evaluation in console output when the 'grandpa_score' command is invoked.</summary>
-        /// <param name="command">The name of the command invoked.</param>
-        /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdGrandpaScore(string _command, string[] args)
-        {
-            try
-            {
-                if (!Context.IsWorldReady)
-                {
-                    throw new Exception("Cannot evaluate score without an active save.");
-                }
-                int grandpaScore = Utility.getGrandpaScore();
-                int maxScore = Config.GetMaxScore();
-                int candles = Utility.getGrandpaCandlesFromScore(grandpaScore);
-                Monitor.Log($"Grandpa's Score: {grandpaScore} of {maxScore} Great Honors\nNumber of candles earned: {candles}\nScoring system: \"{Config.ScoringSystem}\"\nCandle score thresholds: [{Config.GetScoreForCandles(1)}, {Config.GetScoreForCandles(2)}, {Config.GetScoreForCandles(3)}, {Config.GetScoreForCandles(4)}]",
-                    LogLevel.Info);
-                int farmScore = Game1.getFarm().grandpaScore.Value;
-                Monitor.Log($"DEBUG", LogLevel.Debug);
-                Monitor.Log($"Actual current Farm.grandpaScore value: {farmScore}", LogLevel.Debug);
-                bool farmNote = Game1.getFarm().hasSeenGrandpaNote;
-                Monitor.Log($"Actual current Farm.hasSeenGrandpaNote value: {farmNote}", LogLevel.Debug); 
-                List<int> eventsAG = new List<int> { 558291, 558292, 2146991, 321777 };
-                List<string> mailAG = new List<string> { "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324bonusRewardsEnabled", "6324hasDoneModdedEvaluation" };
-                Monitor.Log($"Actual eventsSeen entries: {string.Join(", ", eventsAG.Where(Game1.player.eventsSeen.Contains).ToList())}", LogLevel.Debug);
-                Monitor.Log($"Actual mailReceived entries: {string.Join(", ", mailAG.Where(Game1.player.mailReceived.Contains).ToList())}", LogLevel.Debug);
-            }
-            catch (Exception ex)
-            {
-                Monitor.Log($"grandpa_score failed:\n{ex}",
-                    LogLevel.Error);
-            }
-        }
-
-        /// <summary>Resets all event flags related to grandpa's evaluation(s) when the 'reset_evaluation' command is invoked.</summary>
-        /// <param name="command">The name of the command invoked.</param>
-        /// <param name="args">The arguments received by the command. Each word after the command name is a separate argument.</param>
-        private void cmdResetEvaluation(string _command, string[] args)
-        {
-            try
-            {
-                if (!Context.IsWorldReady)
-                {
-                    throw new Exception("Cannot remove event flags without an active save.");
-                }
-                Game1.player.eventsSeen.Remove(558291); // Initial evaluation
-                Game1.player.eventsSeen.Remove(558292); // Re-evaluation
-                // Game1.player.eventsSeen.Remove(2146991); // Candle lighting (this is now removed by command_grandpaEvaluation postfix)
-                Game1.player.eventsSeen.Remove(321777); // Evaluation request
-                Game1.getFarm().hasSeenGrandpaNote = false; // Seen the note on the shrine
-                Game1.player.mailReceived.Remove("grandpaPerfect"); // Received the statue of perfection
-                Game1.getFarm().grandpaScore.Value = 0; // Reset grandpaScore
-                FarmPatches.RemoveCandlesticks(Game1.getFarm()); // Removes all candlesticks (not flames).
-                Game1.getFarm().removeTemporarySpritesWithIDLocal(6666f); // Removes candle flames.
-
-                // Remove flags added by this mod
-                var flagsToRemove = new List<string> 
-                {
-                    "6324bonusRewardsEnabled", "6324reward2candles", "6324reward3candles", // Old, outdated flags
-                    "6324grandpaNoteMail", "6324reward1candle", "6324reward2candle", "6324reward3candle", "6324reward4candle", "6324hasDoneModdedEvaluation", // Current used flags
-                };
-                foreach (string flag in Game1.player.mailReceived)
-                {
-                    if (flagsToRemove.Contains(flag)) { Game1.player.mailReceived.Remove(flag); }
-                }
-
-                if (!Game1.player.eventsSeen.Contains(2146991))
-                {
-                    Game1.player.eventsSeen.Add(2146991); // Make sure they can't see candle event before the next evaluation.
-                }
-
-                Monitor.Log($"Reset grandpaScore and associated event and mail flags.", LogLevel.Info);
-            }
-            catch (Exception ex)
-            {
-                Monitor.Log($"reset_evaluation failed:\n{ex}", LogLevel.Error);
             }
         }
     }
