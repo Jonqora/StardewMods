@@ -28,15 +28,15 @@ namespace ExtendedEmotes
             // Make resources available.
             Instance = this;
 
+            // Set up emote tilesheet asset editor/
+            helper.Content.AssetEditors.Add(new TileSheetEditor());
+
             // Apply Harmony patches.
             Harmony = HarmonyInstance.Create(ModManifest.UniqueID);
             EventCommandPatches.Apply();
 
             // Listen for game events.
             helper.Events.GameLoop.GameLaunched += this.onGameLaunched;
-
-            // Set up portrait asset editor. This one is added early since it never changes.
-            helper.Content.AssetEditors.Add(new TileSheetEditor());
         }
 
 
