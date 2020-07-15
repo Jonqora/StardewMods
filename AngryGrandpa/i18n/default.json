@@ -79,8 +79,6 @@
 
     // Keys ending with -gn are gender-neutral. These should stay as close as possible to the standard scripts, but anything
     // like "boy", "girl", "grand-daughter" that refers to the player should be replaced with a gender-neutral phrase.
-    
-    // TODO: Invalidate the cache at the start of each new year? Recalculate the values for "GrandpaCountYears" based on the lesser of YBE and actual Y? Also need to invalidate the cache on Spring 2 year 1 to wipe out the "Fifth Candle" additions. NOPE - just need to invalidate the StringsFromCSFiles cache *inside* the code of the grandpaEvaluation... I think that will do it.
 
   // ===========================
   // "ORIGINAL" DIALOGUE VARIANT
