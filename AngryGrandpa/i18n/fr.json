@@ -51,15 +51,15 @@
 // =====================================
 
     // These text entries are brand-new messages that appear when you collect a bonus reward from Grandpa's Shrine.
-    // In vanilla, finding the statue of perfection shows: "You found a peculiar statue behind Grandpa's Shrine."
+    // In vanilla, finding the statue of perfection shows: "Vous avez trouvé une drôle de statue derrière l'autel de grand-père."
 
-    "Object.cs.1CandleReward": "You found a very old seed on top the shrine.",
-    "Object.cs.2CandleReward": "You found a prehistoric egg tucked behind the shrine. Was that always there?",
-    "Object.cs.3CandleReward": "Something was glimmering under Grandpa's Shrine... a rare and powerful gemstone!",
+    "Object.cs.1CandleReward": "Vous avez trouvé une très vieille graine sur l'autel de grand-père.",
+    "Object.cs.2CandleReward": "Vous avez trouvé un œuf préhistorique derrière l'autel. Était-ce toujours là ?",
+    "Object.cs.3CandleReward": "Quelque chose scintillait sous l'autel de grand-père... un éclat puissant!",
 
     // Points score message displayed at the top of the screen during the evaluation events."
 
-    "Event.cs.ShowGrandpaScore": "Grandpa's Score: {{grandpaScore}} of {{maxScore}} Great Honors",
+    "Event.cs.ShowGrandpaScore": "Note de grand-père: {{grandpaScore}} sur {{maxScore}} grands honneurs",
 
 
 // ==================================
@@ -71,16 +71,14 @@
     
     // Token used in EvaluationEvent {{countYears}} when grandpa says long you've had the farm. E.g. "You've been here [four years now]..."
     // The first in list, "less than a year now", is used when Config.YearsBeforeEvaluation = 0
-    "GrandpaCountYears": "less than a year now|one year now|two years now|three years now|four years now|five years now|six years now|seven years now|eight years now|nine years now",
+    "GrandpaCountYears": "un petit moment maintenant|un an maintenant|deux ans maintenant|trois ans maintenant|quatre ans maintenant|cinq ans maintenant|six ans maintenant|sept ans maintenant|huit ans maintenant|neuf ans maintenant",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
-    "GrandpaCountManyYears": "many years now",
+    "GrandpaCountManyYears": "de nombreuses années maintenant",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
-    "GrandpaCountManyYears.Nuclear": "a really fucking long time",
+    "GrandpaCountManyYears.Nuclear": "très très longtemps putain",
 
     // Keys ending with -gn are gender-neutral. These should stay as close as possible to the standard scripts, but anything
     // like "boy", "girl", "grand-daughter" that refers to the player should be replaced with a gender-neutral phrase.
-    
-    // TODO: Invalidate the cache at the start of each new year? Recalculate the values for "GrandpaCountYears" based on the lesser of YBE and actual Y? Also need to invalidate the cache on Spring 2 year 1 to wipe out the "Fifth Candle" additions. NOPE - just need to invalidate the StringsFromCSFiles cache *inside* the code of the grandpaEvaluation... I think that will do it.
 
   // ===========================
   // "ORIGINAL" DIALOGUE VARIANT
@@ -88,48 +86,48 @@
     // Slightly different script from the earliest versions of Stardew Valley
     "EvaluationEvent.Original": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear boy...^My dearest grand-daughter...{{gpaHappy}}
-            #$b#It's been many years since we last spoke. You were just a little boy... Do you remember?
-            ^It's been many years since we last spoke. You were just a little girl... Do you remember?{{gpaNeutral}}
-            #$b#Look how far you've come!{{gpaSurprise}}
-            #$b#Though you may have forgotten me, I've been here all along.{{gpaStern}}
-            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.{{gpaNeutral}}\"
+        /speak Grandpa \"Mon cher garçon...^Ma chère petite-fille...{{gpaHappy}}
+            #$b#Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’un petit garçon à l’époque... Tu t'en souviens ?
+            ^Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’une petite fille à l’époque... Tu t'en souviens ?{{gpaNeutral}}
+            #$b#Regarde tout le chemin que tu as parcouru !{{gpaSurprise}}
+            #$b#Même si tu m’as oublié, je suis toujours resté près de toi.{{gpaStern}}
+            #$b#Mon corps a quitté ce monde, mais mon coeur restera toujours à Stardew Valley.{{gpaNeutral}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"You've been here {{countYears}}...{{gpaStern}}\"
+        /speak Grandpa \"Tu es ici depuis {{countYears}}...{{gpaStern}}\"
         /grandpaEvaluation/pause 3000
-        /speak Grandpa \"The future of %farm Farm is in your hands, now.{{gpaStern}}
-            #$b#Farewell!{{gpaNeutral}}\"
+        /speak Grandpa \"L’avenir de la ferme %farm est entre tes mains, maintenant.{{gpaStern}}
+            #$b#Adieu !{{gpaNeutral}}\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "EvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear child...{{gpaHappy}}
-            #$b#It's been many years since we last spoke. You were just a wee child... Do you remember?{{gpaNeutral}}
-            #$b#Look how far you've come!{{gpaSurprise}}
-            #$b#Though you may have forgotten me, I've been here all along.{{gpaStern}}
-            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.{{gpaNeutral}}\"
+        /speak Grandpa \"Man precieuxe enfant...{{gpaHappy}}
+            #$b#Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’an petis enfant à l’époque... Tu t'en souviens ?{{gpaNeutral}}
+            #$b#Regarde tout le chemin que tu as parcouru !{{gpaSurprise}}
+            #$b#Même si tu m’as oublié, je suis toujours resté près de toi.{{gpaStern}}
+            #$b#Mon corps a quitté ce monde, mais mon coeur restera toujours à Stardew Valley.{{gpaNeutral}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"You've been here {{countYears}}...{{gpaStern}}\"
+        /speak Grandpa \"Tu es ici depuis {{countYears}}...{{gpaStern}}\"
         /grandpaEvaluation/pause 3000
-        /speak Grandpa \"The future of %farm Farm is in your hands, now.{{gpaStern}}
-            #$b#Farewell!{{gpaNeutral}}\"
+        /speak Grandpa \"L’avenir de la ferme %farm est entre tes mains, maintenant.{{gpaStern}}
+            #$b#Adieu !{{gpaNeutral}}\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
     // Re-evaluations didn't exist in the original game, so this entry is creatively written to fit grandpa's old attitudes.
     "RepeatEvaluationEvent.Original": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear boy...^My dearest grand-daughter...{{gpaNeutral}}
-            #$b#I'm glad you summoned me. I am curious to see the progress you've made.{{gpaSurprise}}
-            #$b#I trust that you've been working hard since my last visit?{{gpaHappy}}\"
+        /speak Grandpa \"Mon cher garçon...^Ma chère petite-fille...{{gpaNeutral}}
+            #$b#Je suis heureux que tu m’aies appelé. Je suis curieux de voir quels progrès tu as réalisés.{{gpaSurprise}}
+            #$b#J'espère que t'as beaucoup travaillé depuis ma dernière visite ?{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"Let's see...{{gpaStern}}\"
+        /speak Grandpa \"Voyons voir...{{gpaStern}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "RepeatEvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear child...{{gpaNeutral}}
-            #$b#I'm glad you summoned me. I am curious to see the progress you've made.{{gpaSurprise}}
-            #$b#I trust that you've been working hard since my last visit?{{gpaHappy}}\"
+        /speak Grandpa \"Man precieuxe enfant...{{gpaNeutral}}
+            #$b#Je suis heureux que tu m’aies appelé. Je suis curieux de voir quels progrès tu as réalisés.{{gpaSurprise}}
+            #$b#J'espère que t'as beaucoup travaillé depuis ma dernière visite ?{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"Let's see...{{gpaStern}}\"
+        /speak Grandpa \"Voyons voir...{{gpaStern}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
   // ==========================
@@ -138,48 +136,48 @@
     // Normal event script found in the current game files => Data/Events/Farmhouse => "558291/y 3/H"
     "EvaluationEvent.Vanilla": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear boy...^My dearest grand-daughter...{{gpaHappy}}
-            #$b#It's been many years since we last spoke. You were just a little boy... Do you remember?
-            ^It's been many years since we last spoke. You were just a little girl... Do you remember?{{gpaNeutral}}
-            #$b#Look how far you've come!{{gpaSurprise}}
-            #$b#Though you may have forgotten me, I've been here all along.{{gpaStern}}
-            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.{{gpaNeutral}}\"
+        /speak Grandpa \"Mon cher garçon...^Ma chère petite-fille...{{gpaHappy}}
+            #$b#Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’un petit garçon à l’époque... Tu t'en souviens ?
+            ^Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’une petite fille à l’époque... Tu t'en souviens ?{{gpaNeutral}}
+            #$b#Regarde tout le chemin que tu as parcouru !{{gpaSurprise}}
+            #$b#Même si tu m’as oublié, je suis toujours resté près de toi.{{gpaStern}}
+            #$b#Mon corps a quitté ce monde, mais mon coeur restera toujours à Stardew Valley.{{gpaNeutral}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"You've been here {{countYears}}...{{gpaNeutral}}\"
+        /speak Grandpa \"Tu es ici depuis {{countYears}}...{{gpaNeutral}}\"
         /grandpaEvaluation/pause 3000
-        /speak Grandpa \"The future of %farm Farm is in your hands, now.{{gpaNeutral}}
-            #$b#Farewell!{{gpaHappy}}\"
+        /speak Grandpa \"L’avenir de la ferme %farm est entre tes mains, maintenant.{{gpaNeutral}}
+            #$b#Adieu !{{gpaHappy}}\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "EvaluationEvent.Vanilla-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear child...{{gpaHappy}}
-            #$b#It's been many years since we last spoke. You were just a wee child... Do you remember?{{gpaNeutral}}
-            #$b#Look how far you've come!{{gpaSurprise}}
-            #$b#Though you may have forgotten me, I've been here all along.{{gpaStern}}
-            #$b#You see... My body has departed this world, but my heart will always remain in Stardew Valley.{{gpaNeutral}}\"
+        /speak Grandpa \"Man precieuxe enfant...{{gpaHappy}}
+            #$b#Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’an petis enfant à l’époque... Tu t'en souviens ?{{gpaNeutral}}
+            #$b#Regarde tout le chemin que tu as parcouru !{{gpaSurprise}}
+            #$b#Même si tu m’as oublié, je suis toujours resté près de toi.{{gpaStern}}
+            #$b#Mon corps a quitté ce monde, mais mon coeur restera toujours à Stardew Valley.{{gpaNeutral}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"You've been here {{countYears}}...{{gpaNeutral}}\"
+        /speak Grandpa \"Tu es ici depuis {{countYears}}...{{gpaNeutral}}\"
         /grandpaEvaluation/pause 3000
-        /speak Grandpa \"The future of %farm Farm is in your hands, now.{{gpaNeutral}}
-            #$b#Farewell!{{gpaHappy}}\"
+        /speak Grandpa \"L’avenir de la ferme %farm est entre tes mains, maintenant.{{gpaNeutral}}
+            #$b#Adieu !{{gpaHappy}}\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
     // Normal event script found in the current game files => Data/Events/Farmhouse => "558292/e 321777/t 600 620/H"
     "RepeatEvaluationEvent.Vanilla": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear boy...^My dearest grand-daughter...{{gpaHappy}}
-            #$b#I'm glad you summoned me. I... was perhaps a little too harsh with you last time.{{gpaNeutral}}
-            #$b#Forgive me. You've been working very hard, and I'm proud of it.{{gpaSurprise}}\"
+        /speak Grandpa \"Mon cher garçon...^Ma chère petite-fille...{{gpaHappy}}
+            #$b#Je suis heureux que tu m’aies appelé. Je... J’étais peut-être un peu trop sévère avec toi la dernière fois que nous nous sommes parlé.{{gpaNeutral}}
+            #$b#Pardonne-moi. Tu as travaillé très dur et je suis très fier de toi.{{gpaSurprise}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"Let's see...{{gpaHappy}}\"
+        /speak Grandpa \"Voyons voir...{{gpaHappy}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "RepeatEvaluationEvent.Vanilla-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear child...{{gpaHappy}}
-            #$b#I'm glad you summoned me. I... was perhaps a little too harsh with you last time.{{gpaNeutral}}
-            #$b#Forgive me. You've been working very hard, and I'm proud of it.{{gpaSurprise}}\"
+        /speak Grandpa \"Man precieuxe enfant...{{gpaHappy}}
+            #$b#Je suis heureux que tu m’aies appelé. Je... J’étais peut-être un peu trop sévère avec toi la dernière fois que nous nous sommes parlé.{{gpaNeutral}}
+            #$b#Pardonne-moi. Tu as travaillé très dur et je suis très fier de toi.{{gpaSurprise}}\"
         /specificTemporarySprite grandpaNight/pause 4000
-        /speak Grandpa \"Let's see...{{gpaHappy}}\"
+        /speak Grandpa \"Voyons voir...{{gpaHappy}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
   // ==========================
@@ -188,48 +186,48 @@
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity.
     "EvaluationEvent.Nuclear": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear boy...^My dearest grand-daughter...{{gpaHappy}}
-            #$b#It's been so long since we last spoke. You were just a little boy... Do you remember?
-            ^It's been so long since we last spoke. You were just a little girl... Do you remember?{{gpaNeutral}}
-            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.{{gpaStern}}
-            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaFrown}}
-            #$b#Perhaps your own work on the farm will finally allow me to find peace.{{gpaHappy}}\"
+        /speak Grandpa \"Mon cher garçon...^Ma chère petite-fille...{{gpaHappy}}
+            #$b#Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’un petit garçon à l’époque... Tu t'en souviens ?
+            ^Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’une petite fille à l’époque... Tu t'en souviens ?{{gpaNeutral}}
+            #$b#Après tout ce temps, j'espère que t'aurais dû devenir quelqu'un et faire bon usage de la ferme que je t'ai laissée.{{gpaStern}}
+            #$b#Depuis ma mort, je n'ai pas pu prendre soin de la ferme %farm... mon esprit est troublée.{{gpaFrown}}
+            #$b#Peut-être que ton propre travail à la ferme me permettra enfin à détendre mon esprit.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 3000
-        /speak Grandpa \"You've been here {{countYears}}...{{gpaNeutral}}
-            #$b#Let's see...{{gpaStern}}\"
+        /speak Grandpa \"Tu es ici depuis {{countYears}}...{{gpaNeutral}}
+            #$b#Voyons voir...{{gpaStern}}\"
         /grandpaEvaluation/pause 2000
-        /speak Grandpa \"Farewell!{{gpaStern}}\"
+        /speak Grandpa \"Adieu !{{gpaStern}}\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "EvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear child...{{gpaHappy}}
-            #$b#It's been so long since we last spoke. You were just a wee child... Do you remember?{{gpaNeutral}}
-            #$b#I hope, in all this time, that you've made something of yourself and of the farm I left you.{{gpaStern}}
-            #$b#Since my death I have been unable to care for %farm Farm... and my spirit is troubled.{{gpaFrown}}
-            #$b#Perhaps your own work on the farm will finally allow me to find peace.{{gpaHappy}}\"
+        /speak Grandpa \"Man precieuxe enfant...{{gpaHappy}}
+            #$b#Ça fait de nombreuses années que nous ne nous sommes pas parlé. Tu n’étais qu’an petis enfant à l’époque... Tu t'en souviens ?{{gpaNeutral}}
+            #$b#Après tout ce temps, j'espère que t'aurais dû devenir quelqu'un et faire bon usage de la ferme que je t'ai laissée.{{gpaStern}}
+            #$b#Depuis ma mort, je n'ai pas pu prendre soin de la ferme %farm... mon esprit est troublée.{{gpaFrown}}
+            #$b#Peut-être que ton propre travail à la ferme me permettra enfin à détendre mon esprit.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 3000
-        /speak Grandpa \"You've been here {{countYears}}...{{gpaNeutral}}
-            #$b#Let's see...{{gpaStern}}\"
+        /speak Grandpa \"Tu es ici depuis {{countYears}}...{{gpaNeutral}}
+            #$b#Voyons voir...{{gpaStern}}\"
         /grandpaEvaluation/pause 2000
-        /speak Grandpa \"Farewell!{{gpaStern}}\"
+        /speak Grandpa \"Adieu !{{gpaStern}}\"
         /pause 1000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity.
     "RepeatEvaluationEvent.Nuclear": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear boy...^My dearest grand-daughter...{{gpaSurprise}}
-            #$b#I received your summons in the other world and came to see how the farm is doing.{{gpaNeutral}}
-            #$b#Have you made improvements since my last visit?{{gpaStern}}\"
+        /speak Grandpa \"Mon cher garçon...^Ma chère petite-fille...{{gpaSurprise}}
+            #$b#J'ai reçu ton appel dans l'autre monde et je suis venu voir comment va la ferme.{{gpaNeutral}}
+            #$b#As-tu apporté aucun amélioration depuis ma dernière visite ?{{gpaStern}}\"
         /specificTemporarySprite grandpaNight/pause 3000
-        /speak Grandpa \"Let's see what you've accomplished...{{gpaHappy}}\"
+        /speak Grandpa \"Voyons ce que tu as accompli...{{gpaHappy}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
     "RepeatEvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
-        /speak Grandpa \"My dear child...{{gpaSurprise}}
-            #$b#I received your summons in the other world and came to see how the farm is doing.{{gpaNeutral}}
-            #$b#Have you made improvements since my last visit?{{gpaStern}}\"
+        /speak Grandpa \"Man precieuxe enfant...{{gpaSurprise}}
+            #$b#J'ai reçu ton appel dans l'autre monde et je suis venu voir comment va la ferme.{{gpaNeutral}}
+            #$b#As-tu apporté aucun amélioration depuis ma dernière visite ?{{gpaStern}}\"
         /specificTemporarySprite grandpaNight/pause 3000
-        /speak Grandpa \"Let's see what you've accomplished...{{gpaHappy}}\"
+        /speak Grandpa \"Voyons ce que tu as accompli...{{gpaHappy}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
 
 
@@ -243,20 +241,20 @@
     // Token used in 1CandleResult.Original {{pastYears}} when grandpa talks about how long you've been there. 
     // E.g. "you haven't accomplished very much during [this past year]"
     // The first in list, "so far", is used if Config.YearsBeforeEvaluation = 0 (grandpa visits on the morning of 1 Spring year 1)
-    "GrandpaDuringPastYears": "this time|this past year|these past two years|these past three years|these past four years|these past five years|these past six years|these past seven years|these past eight years|these past nine years",
+    "GrandpaDuringPastYears": "cette période|la dernière année|ces deux années|ces trois années|ces quatre années|ces cinq années|ces six années|ces sept années|ces huit années|ces neuf années",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
-    "GrandpaDuringManyYears": "all these years",
+    "GrandpaDuringManyYears": "toutes ces années",
     // Token used for {{pastYears}} when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
-    "GrandpaDuringManyYears.Nuclear": "all these years?{{gpaShock}}
-        #$b#By Yoba, don't you realize it's been over a decade?",
+    "GrandpaDuringManyYears.Nuclear": "toutes ces années ?{{gpaShock}}
+        #$b#Au nom de Yoba, te rends-tu compte putain qu'une décennie s'est écoulée ?",
 
     //Special lines of text for {{fifthCandle}} token that are added to the 4-candle dialogue ONLY if a player earns all 21 grandpa points in one year.
-    "FifthCandle.Original": "#$b#You have even achieved the impossible.{{gpaShock}}
-        #$b#I wish I could light a fifth candle on my shrine in your honor.{{gpaJoy}}",
-    "FifthCandle.Vanilla": "#$b#You've truly achieved the impossible.{{gpaShock}}
-        #$b#I wish I could light a fifth candle on my shrine in your honor.{{gpaJoy}}",
-    "FifthCandle.Nuclear": "#$b#You have astounded me by achieving things I never thought possible.{{gpaShock}}
-        #$b#I wish I could light a fifth candle on my shrine in your honor!{{gpaJoy}}",
+    "FifthCandle.Original": "#$b#Tu as même réalisé l'impossible.{{gpaShock}}
+        #$b#Je voudrais pouvoir allumer une cinquième bougie au-dessus de l'autel en ton honneur.{{gpaJoy}}",
+    "FifthCandle.Vanilla": "#$b#Tu as vraiment réalisé l'impossible.{{gpaShock}}
+        #$b#Je voudrais pouvoir allumer une cinquième bougie au-dessus de l'autel en ton honneur.{{gpaJoy}}",
+    "FifthCandle.Nuclear": "#$b#Tu m'as étonné en réalisant ce que je n'aurais jamais cru possible.{{gpaShock}}
+        #$b#Je voudrais pouvoir allumer une cinquième bougie au-dessus de l'autel en ton honneur !{{gpaJoy}}",
 
     //The {{spouseOrLewis}} token is automatically generated and translated from game code. No need to translate this one.
 
@@ -267,277 +265,286 @@
   // "ORIGINAL" DIALOGUE VARIANT
 
     // Different, harsher scripts from the earliest versions of Stardew Valley
-    "1CandleResult.Original": "I'm sorry to say...  but you haven't accomplished very much during {{pastYears}}.{{gpaFrown}}
-        #$b#Maybe I should've left the farm to one of the other grandkids...{{gpaSigh}}",
-    "1CandleResult.Original-gn": "I'm sorry to say...  but you haven't accomplished very much during {{pastYears}}.{{gpaFrown}}
-        #$b#Maybe I should've left the farm to one of the other grandkids...{{gpaSigh}}",
+    "1CandleResult.Original": "Je suis attristé de voir que tu n'as pas accompli grand-chose au cours de {{pastYears}}.{{gpaFrown}}
+        #$b#J'aurais dû laisser la ferme à l'un de mes autres petits-enfants...{{gpaSigh}}",
+    "1CandleResult.Original-gn": "Je suis attristé de voir que tu n'as pas accompli grand-chose au cours de {{pastYears}}.{{gpaFrown}}
+        #$b#J'aurais dû laisser la ferme à l'un de mes autres petits-enfants...{{gpaSigh}}",
 
-    "2CandleResult.Original": "You've done a decent job with the place.{{gpaNeutral}}
-        #$b#It seems you've tried your best... that's all I can ask for.{{gpaStern}}",
-    "2CandleResult.Original-gn": "You've done a decent job with the place.{{gpaNeutral}}
-        #$b#It seems you've tried your best... that's all I can ask for.{{gpaStern}}",
+    "2CandleResult.Original": "Tu as fait un travail passable avec cet endroit.{{gpaNeutral}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... je ne peux te demander que ça.{{gpaStern}}",
+    "2CandleResult.Original-gn": "Tu as fait un travail passable avec cet endroit.{{gpaNeutral}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... je ne peux te demander que ça.{{gpaStern}}",
 
-    "3CandleResult.Original": "You've done well, my boy.^You've done well, my dear.{{gpaHappy}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaSurprise}}
-        #$b#Grandpa is pleased.{{gpaLove}}",
-    "3CandleResult.Original-gn": "You've done well, my child.{{gpaHappy}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaSurprise}}
-        #$b#Grandpa is pleased.{{gpaLove}}",
+    "3CandleResult.Original": "Tu as fait du bon travail, mon garçon.^Tu as fait du bon travail, ma petite.{{gpaHappy}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Ça fait honneur à la famille.{{gpaSurprise}}
+        #$b#Grand-père est content.{{gpaLove}}",
+    "3CandleResult.Original-gn": "Tu as fait du bon travail, man enfant.{{gpaHappy}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Ça fait honneur à la famille.{{gpaSurprise}}
+        #$b#Grand-père est content.{{gpaLove}}",
 
-    "4CandleResult.Original": "I'm so proud of you, my boy!^I'm so proud of you, my dear!{{gpaLove}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaSurprise}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
-    "4CandleResult.Original-gn": "I'm so proud of you, my child!{{gpaLove}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaSurprise}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
+    "4CandleResult.Original": "Je suis tellement fier de toi, mon garçon !^Je suis tellement fier de toi, ma petite !{{gpaLove}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois béni.
+        ^Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénie.{{gpaHappy}}",
+    "4CandleResult.Original-gn": "Je suis tellement fier de toi, man enfant !{{gpaLove}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénië.{{gpaHappy}}",
 
     // Re-evaluations didn't exist in the original game, so these entries are creatively altered to fit grandpa's old attitudes.
-    "1CandleReevaluation.Original": "I'm sorry to say...  but you still haven't accomplished very much.{{gpaFrown}}
-        #$b#My other grandkids would have taken better care of things...{{gpaSigh}}
-        #$b#I must return to the other world... call on me again if you have something worth seeing.{{gpaStern}}",
-    "1CandleReevaluation.Original-gn": "I'm sorry to say...  but you still haven't accomplished very much.{{gpaFrown}}
-        #$b#My other grandkids could have taken better care of things...{{gpaSigh}}
-        #$b#I must return to the other world... call on me again if you have something worth seeing.{{gpaStern}}",
+    "1CandleReevaluation.Original": "Je déplore le fait... mais tu n'as toujours pas beaucoup accompli.{{gpaFrown}}
+        #$b#Mes autres petits-enfants auraient mieux réussi, eux...{{gpaSigh}}
+        #$b#Je dois repartir dans l’autre monde... appelle-moi uniquement si tu as quelque chose à voir.{{gpaStern}}",
+    "1CandleReevaluation.Original-gn": "Je déplore le fait... mais tu n'as toujours pas beaucoup accompli.{{gpaFrown}}
+        #$b#Mes autres petits-enfants auraient mieux réussi, eux...{{gpaSigh}}
+        #$b#Je dois repartir dans l’autre monde... appelle-moi uniquement si tu as quelque chose à voir.{{gpaStern}}",
 
-    "2CandleReevaluation.Original": "You've done a decent job improving the place since we last spoke.{{gpaSurprise}}
-        #$b#It seems you've tried your best... that's all I can ask for.{{gpaNeutral}}
-        #$b#I must return to the other world, now... call on me again once you've made a little more progress.{{gpaStern}}",
-    "2CandleReevaluation.Original-gn": "You've done a decent job improving the place since we last spoke.{{gpaSurprise}}
-        #$b#It seems you've tried your best... that's all I can ask for.{{gpaNeutral}}
-        #$b#I must return to the other world, now... call on me again once you've made a little more progress.{{gpaStern}}",
+    "2CandleReevaluation.Original": "Tu as fait un travail passable en améliorant cet endroit depuis ma dernière visite.{{gpaSurprise}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... je ne peux te demander que ça.{{gpaNeutral}}
+        #$b#Je dois repartir dans l’autre monde... appelle-moi à nouveau lorsque tu as réalisé encore des progrès.{{gpaStern}}",
+    "2CandleReevaluation.Original-gn": "Tu as fait un travail passable en améliorant cet endroit depuis ma dernière visite.{{gpaSurprise}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... je ne peux te demander que ça.{{gpaNeutral}}
+        #$b#Je dois repartir dans l’autre monde... appelle-moi à nouveau lorsque tu as réalisé encore des progrès.{{gpaStern}}",
     
-    "3CandleReevaluation.Original": "You've done well, my boy.^You've done well, my dear.{{gpaHappy}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaSurprise}}
-        #$b#Grandpa is pleased.{{gpaLove}}
-        #$b#I must return to the other world, now... but feel free to call on me again any time.{{gpaNeutral}}",
-    "3CandleReevaluation.Original-gn": "You've done well, my child.{{gpaHappy}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaSurprise}}
-        #$b#Grandpa is pleased.{{gpaLove}}
-        #$b#I must return to the other world, now... but feel free to call on me again any time.{{gpaNeutral}}",
+    "3CandleReevaluation.Original": "Tu as fait du bon travail, mon garçon.^Tu as fait du bon travail, ma petite.{{gpaHappy}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Ça fait honneur à la famille.{{gpaSurprise}}
+        #$b#Grand-père est content.{{gpaLove}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaNeutral}}",
+    "3CandleReevaluation.Original-gn": "Tu as fait du bon travail, man enfant.{{gpaHappy}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Ça fait honneur à la famille.{{gpaSurprise}}
+        #$b#Grand-père est content.{{gpaLove}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaNeutral}}",
     
-    "4CandleReevaluation.Original": "I'm so proud of you, my boy!^I'm so proud of you, my dear!{{gpaLove}}
-        #$b#You've finally brought out %farm Farm's full potential!{{gpaJoy}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaSurprise}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
-    "4CandleReevaluation.Original-gn": "I'm so proud of you, my child!{{gpaLove}}
-        #$b#You've finally brought out %farm Farm's full potential!{{gpaJoy}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaSurprise}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
+    "4CandleReevaluation.Original": "Je suis tellement fier de toi, mon garçon !^Je suis tellement fier de toi, ma petite !{{gpaLove}}
+        #$b#Tu as enfin réussi à tirer pleinement profit de la ferme %farm !{{gpaJoy}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois béni.
+        ^Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénie.{{gpaHappy}}",
+    "4CandleReevaluation.Original-gn": "Je suis tellement fier de toi, man enfant !{{gpaLove}}
+        #$b#Tu as enfin réussi à tirer pleinement profit de la ferme %farm !{{gpaJoy}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénië.{{gpaHappy}}",
 
   // ==========================
   // "VANILLA" DIALOGUE VARIANT
 
     // From game files => Strings/StringsFromCSFiles => "Event.cs.1315", "Event.cs.1316", "Event.cs.1317", "Event.cs.1318"
-    "1CandleResult.Vanilla": "The farm hasn't changed much in {{pastYears}}... but that's okay.{{gpaStern}}
-        #$b#If you're enjoying your new life, that's all that matters to me...{{gpaHappy}}",
-    "1CandleResult.Vanilla-gn": "The farm hasn't changed much in {{pastYears}}... but that's okay.{{gpaStern}}
-        #$b#If you're enjoying your new life, that's all that matters to me...{{gpaHappy}}",
+    "1CandleResult.Vanilla": "La ferme n’a pas beaucoup changé au cours de {{pastYears}}... mais ce n’est pas grave.{{gpaStern}}
+        #$b#Si tu profites pleinement de ta nouvelle vie, c’est tout ce qui compte pour moi...{{gpaHappy}}",
+    "1CandleResult.Vanilla-gn": "La ferme n’a pas beaucoup changé au cours de {{pastYears}}... mais ce n’est pas grave.{{gpaStern}}
+        #$b#Si tu profites pleinement de ta nouvelle vie, c’est tout ce qui compte pour moi...{{gpaHappy}}",
 
-    "2CandleResult.Vanilla": "You've done a good job with the place.{{gpaHappy}}
-        #$b#It seems you've tried your best... that's all I can ask for. I'm proud of you.{{gpaSurprise}}",
-    "2CandleResult.Vanilla-gn": "You've done a good job with the place.{{gpaHappy}}
-        #$b#It seems you've tried your best... that's all I can ask for. I'm proud of you.{{gpaSurprise}}",
+    "2CandleResult.Vanilla": "Tu as fait du bon travail avec cet endroit.{{gpaHappy}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... c’est tout ce qui compte pour moi. Je suis fier de toi.{{gpaSurprise}}",
+    "2CandleResult.Vanilla-gn": "Tu as fait du bon travail avec cet endroit.{{gpaHappy}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... c’est tout ce qui compte pour moi. Je suis fier de toi.{{gpaSurprise}}",
 
-    "3CandleResult.Vanilla": "You've done well, my boy.^You've done well, my dear.{{gpaHappy}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaSurprise}}
-        #$b#Grandpa is pleased.{{gpaLove}}",
-    "3CandleResult.Vanilla-gn": "You've done well, my child.{{gpaHappy}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaSurprise}}
-        #$b#Grandpa is pleased.{{gpaLove}}",
+    "3CandleResult.Vanilla": "Tu as fait du bon travail, mon garçon.^Tu as fait du bon travail, ma petite.{{gpaHappy}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Ça fait honneur à la famille.{{gpaSurprise}}
+        #$b#Grand-père est content.{{gpaLove}}",
+    "3CandleResult.Vanilla-gn": "Tu as fait du bon travail, man enfant.{{gpaHappy}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Ça fait honneur à la famille.{{gpaSurprise}}
+        #$b#Grand-père est content.{{gpaLove}}",
 
-    "4CandleResult.Vanilla": "I'm so proud of you, my boy!^I'm so proud of you, my dear!{{gpaLove}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaJoy}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
-    "4CandleResult.Vanilla-gn": "I'm so proud of you, my child!{{gpaLove}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaJoy}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
+    "4CandleResult.Vanilla": "Je suis tellement fier de toi, mon garçon !^Je suis tellement fier de toi, ma petite !{{gpaLove}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaJoy}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois béni.
+        ^Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénie.{{gpaHappy}}",
+    "4CandleResult.Vanilla-gn": "Je suis tellement fier de toi, man enfant !{{gpaLove}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaJoy}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénië.{{gpaHappy}}",
 
     // More text from game files => Strings/StringsFromCSFiles => "Event.cs.1306", "Event.cs.1307", "Event.cs.1308", "Event.cs.1309"
-    "1CandleReevaluation.Vanilla": "The farm hasn't changed much all that much since we last spoke... but that's okay.{{gpaNeutral}}
-        #$b#If you're enjoying your new life, that's all that matters to me...{{gpaHappy}}
-        #$b#I must return to the other world, now... but feel free to call on me again when you're ready.{{gpaStern}}",
-    "1CandleReevaluation.Vanilla-gn": "The farm hasn't changed much all that much since we last spoke... but that's okay.{{gpaNeutral}}
-        #$b#If you're enjoying your new life, that's all that matters to me...{{gpaHappy}}
-        #$b#I must return to the other world, now... but feel free to call on me again when you're ready.{{gpaStern}}",
+    "1CandleReevaluation.Vanilla": "La ferme n’a pas beaucoup changé depuis ma dernière visite... mais c’est une bonne chose.{{gpaNeutral}}
+        #$b#Si tu profites pleinement de ta nouvelle vie, c’est tout ce qui compte pour moi...{{gpaHappy}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaStern}}",
+    "1CandleReevaluation.Vanilla-gn": "La ferme n’a pas beaucoup changé depuis ma dernière visite... mais c’est une bonne chose.{{gpaNeutral}}
+        #$b#Si tu profites pleinement de ta nouvelle vie, c’est tout ce qui compte pour moi...{{gpaHappy}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaStern}}",
 
-    "2CandleReevaluation.Vanilla": "You've done a good job improving the place since we last spoke.{{gpaSurprise}}
-        #$b#It seems you've tried your best... that's all I can ask for. I'm proud of you.{{gpaHappy}}
-        #$b#I must return to the other world, now... but feel free to call on me again when you're ready.{{gpaNeutral}}",
-    "2CandleReevaluation.Vanilla-gn": "You've done a good job improving the place since we last spoke.{{gpaSurprise}}
-        #$b#It seems you've tried your best... that's all I can ask for. I'm proud of you.{{gpaHappy}}
-        #$b#I must return to the other world, now... but feel free to call on me again when you're ready.{{gpaNeutral}}",
+    "2CandleReevaluation.Vanilla": "Tu as fait du bon travail en améliorant cet endroit depuis ma dernière visite.{{gpaSurprise}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... c’est tout ce qui compte pour moi. Je suis fier de toi.{{gpaHappy}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaNeutral}}",
+    "2CandleReevaluation.Vanilla-gn": "Tu as fait du bon travail en améliorant cet endroit depuis ma dernière visite.{{gpaSurprise}}
+        #$b#Tu as l'air d'avoir fait de ton mieux... c’est tout ce qui compte pour moi. Je suis fier de toi.{{gpaHappy}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaNeutral}}",
     
-    "3CandleReevaluation.Vanilla": "You've done well, my boy.^You've done well, my dear.{{gpaSurprise}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaJoy}}
-        #$b#Grandpa is pleased.{{gpaLove}}
-        #$b#I must return to the other world, now... but feel free to call on me again when you're ready.{{gpaHappy}}",
-    "3CandleReevaluation.Vanilla-gn": "You've done well, my child.{{gpaSurprise}}
-        #$b#%farm Farm has never looked better. It's an honor to the family name.{{gpaJoy}}
-        #$b#Grandpa is pleased.{{gpaLove}}
-        #$b#I must return to the other world, now... but feel free to call on me again when you're ready.{{gpaHappy}}",
+    "3CandleReevaluation.Vanilla": "Tu as fait du bon travail, mon garçon.^Tu as fait du bon travail, ma petite.{{gpaSurprise}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Tu fais honneur à la famille.{{gpaJoy}}
+        #$b#Grand-père est content.{{gpaLove}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaHappy}}",
+    "3CandleReevaluation.Vanilla-gn": "Tu as fait du bon travail, man enfant.{{gpaSurprise}}
+        #$b#La ferme %farm n’a jamais été aussi belle. Tu fais honneur à la famille.{{gpaJoy}}
+        #$b#Grand-père est content.{{gpaLove}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à faire appel à moi.{{gpaHappy}}",
     
-    "4CandleReevaluation.Vanilla": "I'm so proud of you, my boy!^I'm so proud of you, my dear!{{gpaJoy}}
-        #$b#You've really turned the place around since we last spoke!{{gpaShock}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaLove}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
-    "4CandleReevaluation.Vanilla-gn": "I'm so proud of you, my child!{{gpaJoy}}
-        #$b#You've really turned the place around since we last spoke!{{gpaShock}}
-        #$b#You're a better farmer than I ever was, and you've brought great honor to the family name.{{gpaLove}}{{fifthCandle}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaHappy}}",
+    "4CandleReevaluation.Vanilla": "Je suis tellement fier de toi, mon garçon !^Je suis tellement fier de toi, ma petite !{{gpaJoy}}
+        #$b#Tu as vraiment transformé cet endroit depuis ma dernière visite !{{gpaShock}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaLove}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois béni.
+        ^Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénie.{{gpaHappy}}",
+    "4CandleReevaluation.Vanilla-gn": "Je suis tellement fier de toi, man enfant !{{gpaJoy}}
+        #$b#Tu as vraiment transformé cet endroit depuis ma dernière visite !{{gpaShock}}
+        #$b#Tu travailles beaucoup mieux que moi et tu fais honneur à ta famille.{{gpaLove}}{{fifthCandle}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénië.{{gpaHappy}}",
     
   // ==========================
   // "NUCLEAR" DIALOGUE VARIANT
     
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
-    "1CandleResult.Nuclear": "What goddamn fuckery have you been up to {{pastYears}}?{{gpaShock}}
-        #$b#Really, @...{{gpaFrown}}
-        #$b#You call this a farm?{{gpaAngry}}
-        #$b#I've seen tidier plots of land in war zones.{{gpaRage}}
+    "1CandleResult.Nuclear": "Quelle putain de bordel de merde as-tu même fait pendant {{pastYears}} ?{{gpaShock}}
+        #$b#Voyons, @...{{gpaFrown}}
+        #$b#Tu penses appeler ça une ferme ?{{gpaAngry}}
+        #$b#J'ai vu de terrains plus propres parmi les zones de guerre.{{gpaRage}}
         #$b#...{{gpaStern}}
-        #$b#Giving you %farm Farm is my biggest regret in life...{{gpaNeutral}}
-        #$b#I should have given it to one of your cousins.{{gpaTears}}
+        #$b#Te laisser la ferme %farm est le pire regret de ma vie...{{gpaNeutral}}
+        #$b#J'aurais mieux fait de la laisser à l'un de tes cousins.{{gpaTears}}
         #$b#...{{gpaNeutral}}
-        #$b#The future of %farm Farm is in your hands, now...{{gpaFrown}}
-        #$b#unfortunately.{{gpaSigh}}
+        #$b#L’avenir de la ferme %farm reste entre tes mains...{{gpaFrown}}
+        #$b#malheureusement.{{gpaSigh}}
         #$b#$y '
-            _[say nothing]
-                _...there is an awkward silence.{{gpaFrown}}
-            _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
-                _Well I'm sorry if my death inconvenienced your inheritance... asshole.{{gpaRage}}
-            _Well fuck you too, grandpa.
-                _...Grandpa is affronted.{{gpaShock}}'",
-    "1CandleResult.Nuclear-gn": "What goddamn fuckery have you been up to {{pastYears}}?{{gpaShock}}
-        #$b#Really, @...{{gpaFrown}}
-        #$b#You call this a farm?{{gpaAngry}}
-        #$b#I've seen tidier plots of land in war zones.{{gpaRage}}
+            _[ne rien dire]
+                _...il y a un silence gênant.{{gpaFrown}}
+            _Cet endroit était un bordel de merde quand je l'ai eu. J'essaye de ranger le désordre que tu m'as laissé !
+                _Eh bien, je suis putain de désolé si ma mort a gêné ton héritage... connard.{{gpaRage}}
+            _Ben je t'emmerde aussi, grand-père.
+                _...Grand-père est offensé.{{gpaShock}}'",
+    "1CandleResult.Nuclear-gn": "Quelle putain de bordel de merde as-tu même fait pendant {{pastYears}} ?{{gpaShock}}
+        #$b#Voyons, @...{{gpaFrown}}
+        #$b#Tu penses appeler ça une ferme ?{{gpaAngry}}
+        #$b#J'ai vu de terrains plus propres parmi les zones de guerre.{{gpaRage}}
         #$b#...{{gpaStern}}
-        #$b#Giving you %farm Farm is my biggest regret in life...{{gpaNeutral}}
-        #$b#I should have given it to one of your cousins.{{gpaTears}}
+        #$b#Te laisser la ferme %farm est le pire regret de ma vie...{{gpaNeutral}}
+        #$b#J'aurais mieux fait de la laisser à l'un de tes cousins.{{gpaTears}}
         #$b#...{{gpaNeutral}}
-        #$b#The future of %farm Farm is in your hands, now...{{gpaFrown}}
-        #$b#unfortunately.{{gpaSigh}}
+        #$b#L’avenir de la ferme %farm reste entre tes mains...{{gpaFrown}}
+        #$b#malheureusement.{{gpaSigh}}
         #$b#$y '
-            _[say nothing]
-                _...there is an awkward silence.{{gpaFrown}}
-            _This place was a dump when I got it. I'm doing my best to clean up the mess you left!
-                _Well I'm sorry if my death inconvenienced your inheritance... asshole.{{gpaRage}}
-            _Well fuck you too, grandpa.
-                _...Grandpa is affronted.{{gpaShock}}'",
+            _[ne rien dire]
+                _...il y a un silence gênant.{{gpaFrown}}
+            _Cet endroit était un bordel de merde quand je l'ai eu. J'essaye de ranger le désordre que tu m'as laissé !
+                _Eh bien, je suis putain de désolé si ma mort a gêné ton héritage... connard.{{gpaRage}}
+            _Ben je t'emmerde aussi, grand-père.
+                _...Grand-père est offensé.{{gpaShock}}'",
 
-    "2CandleResult.Nuclear": "Is this all you've managed to accomplish in {{pastYears}}?{{gpaAngry}}
+    "2CandleResult.Nuclear": "Est-ce tout ce que t'as réussi à faire au cours de {{pastYears}} ?{{gpaAngry}}
         #$b#...{{gpaFrown}}
-        #$b#If I'm honest, the farm has certainly seen better days than this.{{gpaStern}}
-        #$b#It's really not what it used to be... but I suppose you did your best.{{gpaFrown}}
+        #$b#Franchement, la ferme %farm a connu des jours meilleurs.{{gpaStern}}
+        #$b#Elle n'est plus ce qu'elle était... mais je crois que t'as fait de ton mieux.{{gpaFrown}}
         #$b#...{{gpaSigh}}
-        #$b#For better or worse, the future of %farm Farm is in your hands, now...{{gpaFrown}}",
-    "2CandleResult.Nuclear-gn": "Is this all you've managed to accomplish in {{pastYears}}?{{gpaAngry}}
-        #$b#...{{gpaStern}}
-        #$b#If I'm honest, the farm has certainly seen better days than this.{{gpaStern}}
-        #$b#It's really not what it used to be... but I suppose you did your best.{{gpaFrown}}
+        #$b#Pour le meilleur ou le pire, l'avenir de la ferme %farm est entre tes mains, maintenant...{{gpaFrown}}",
+    "2CandleResult.Nuclear-gn": "Est-ce tout ce que t'as réussi à faire au cours de {{pastYears}} ?{{gpaAngry}}
+        #$b#...{{gpaFrown}}
+        #$b#Franchement, la ferme %farm a connu des jours meilleurs.{{gpaStern}}
+        #$b#Elle n'est plus ce qu'elle était... mais je crois que t'as fait de ton mieux.{{gpaFrown}}
         #$b#...{{gpaSigh}}
-        #$b#For better or worse, the future of %farm Farm is in your hands, now...{{gpaFrown}}", 
+        #$b#Pour le meilleur ou le pire, l'avenir de la ferme %farm est entre tes mains, maintenant...{{gpaFrown}}",
 
-    "3CandleResult.Nuclear": "The farm looks quite good, actually.{{gpaShock}}
-        #$b#I'm bloody surprised you've done so well with the place. Did {{spouseOrLewis}} help you with it?{{gpaSurprise}}
-        #$b#In any case, I'm pleased to see it's being put to good use.{{gpaHappy}}
-        #$b#There's room for improvement still, but you've done well, my boy.
-        ^There's room for improvement still, but you've done well, my dear.{{gpaNeutral}}
+    "3CandleResult.Nuclear": "La ferme a l'air vraiment bien, en fait.{{gpaShock}}
+        #$b#Je suis très surpris que tu as si bien réussi avec cet endroit. {{spouseOrLewis}} t'a aidé avec ça ?{{gpaSurprise}}
+        #$b#En tout cas, je suis heureux de voir que la ferme est mise bien à profit.{{gpaHappy}}
+        #$b#Il y a toujours place à amélioration... mais tu as bien fait, mon garçon !
+        ^Il y a toujours place à amélioration... mais tu as bien fait, ma petite !{{gpaNeutral}}
         #$b#...{{gpaHappy}}
-        #$b#The future of %farm Farm is in your hands, now...{{gpaNeutral}}",
-    "3CandleResult.Nuclear-gn": "The farm looks quite good, actually.
-        #$b#I'm bloody surprised you've done so well with the place. Did {{spouseOrLewis}} help you with it?{{gpaSurprise}}
-        #$b#In any case, I'm pleased to see it's being put to good use.{{gpaHappy}}
-        #$b#There's room for improvement still, but you've done well, my child.{{gpaNeutral}}
+        #$b#L'avenir de la ferme %farm est entre tes mains, maintenant...{{gpaNeutral}}",
+    "3CandleResult.Nuclear-gn": "La ferme a l'air vraiment bien, en fait.{{gpaShock}}
+        #$b#Je suis très surpris que tu as si bien réussi avec cet endroit. {{spouseOrLewis}} t'a aidé avec ça ?{{gpaSurprise}}
+        #$b#En tout cas, je suis heureux de voir que la ferme est mise bien à profit.{{gpaHappy}}
+        #$b#Il y a toujours place à amélioration... mais tu as bien fait, man enfant !{{gpaNeutral}}
         #$b#...{{gpaHappy}}
-        #$b#The future of %farm Farm is in your hands, now...{{gpaNeutral}}",
+        #$b#L'avenir de la ferme %farm est entre tes mains, maintenant...{{gpaNeutral}}",
 
-    "4CandleResult.Nuclear": "@, my boy...^@, my dear...{{gpaFrown}}
-        #$b#You are an absolute fucking legend.{{gpaLove}}
-        #$b#Is... this really the same farm I left to you? I hardly recognize it!{{gpaShock}}
-        #$b#The work you've done on the place is incredible! You've become a better farmer than I ever was.{{gpaJoy}}
-        #$b#Such commitment to excellence... This is why you're my favorite grandchild, you know.{{gpaLove}}{{fifthCandle}}
-        #$b#Ah yes...{{gpaHappy}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaSurprise}}
+    "4CandleResult.Nuclear": "@, mon trésor...{{gpaFrown}}
+        #$b#Tu es une putain de légende !{{gpaLove}}
+        #$b#Es... Est-ce vraiment la même ferme que je t'ai laissée ? J'ai du mal à la reconnaître !{{gpaShock}}
+        #$b#Ton bon travail à la ferme est incroyable. Tu travailles beaucoup mieux que je n'ai jamais réussi.{{gpaJoy}}
+        #$b#Quel niveau d'excellence ! Sans doute que c'est toi mon chouchou, hein ?
+        ^#$b#Quel niveau d'excellence ! Sans doute que c'est toi ma chouchoute, hein ?{{gpaLove}}{{fifthCandle}}
+        #$b#Ah oui...{{gpaHappy}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois béni.
+        ^Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénie.{{gpaSurprise}}
         #$b#...{{gpaHappy}}
-        #$b#The future of %farm Farm is in your very capable hands...{{gpaJoy}}
-        #$b#Please call on me any time; I would love to see your continued progress.{{gpaLove}}",
-    "4CandleResult.Nuclear-gn": "@, my child...{{gpaFrown}}
-        #$b#You are an absolute fucking legend.{{gpaLove}}
-        #$b#Is... this really the same farm I left to you? I hardly recognize it!{{gpaShock}}
-        #$b#The work you've done on the place is incredible! You've become a better farmer than I ever was.{{gpaJoy}}
-        #$b#Such commitment to excellence... This is why you're my favorite grandchild, you know.{{gpaLove}}{{fifthCandle}}
-        #$b#Ah yes...{{gpaHappy}}
-        #$b#I can feel it now... My spirit is finally put to rest. Bless you.{{gpaSurprise}}
+        #$b#L'avenir de la ferme %farm est entre tes mains adroites, maintenant...{{gpaJoy}}
+        #$b#N’hésite pas à faire appel à moi a tout moment; j'ai hâte de voir tes progrès continus.{{gpaLove}}",
+    "4CandleResult.Nuclear-gn": "@, mon trésor...{{gpaFrown}}
+        #$b#Tu es une putain de légende !{{gpaLove}}
+        #$b#Es... Est-ce vraiment la même ferme que je t'ai laissée ? J'ai du mal à la reconnaître !{{gpaShock}}
+        #$b#Ton bon travail à la ferme est incroyable. Tu travailles beaucoup mieux que je n'ai jamais réussi.{{gpaJoy}}
+        #$b#Quel niveau d'excellence ! Sans doute que c'est toi man chouchoue, hein ?{{gpaLove}}{{fifthCandle}}
+        #$b#Ah oui...{{gpaHappy}}
+        #$b#Je le sens à présent... Mon esprit peut enfin se reposer en paix. Sois bénië.{{gpaSurprise}}
         #$b#...{{gpaHappy}}
-        #$b#The future of %farm Farm is in your very capable hands...{{gpaJoy}}
-        #$b#Please call on me any time; I would love to see your continued progress.{{gpaLove}}",
+        #$b#L'avenir de la ferme %farm est entre tes mains adroites, maintenant...{{gpaJoy}}
+        #$b#N’hésite pas à faire appel à moi a tout moment; j'ai hâte de voir tes progrès continus.{{gpaLove}}",
 
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
-    "1CandleReevaluation.Nuclear": "I thought maybe I was too harsh last time, so I came back to have a look...{{gpaSurprise}}
-        #$b#But here I am, and you've still accomplished fuck-all.{{gpaRage}}
-        #$b#Your cousin %rival's progress on his farm would put you to shame.
-        ^Your cousin %rival's progress on her farm would put you to shame.{{gpaAngry}}
-        #$b#This visit was a waste of time.{{gpaFrown}}
+    "1CandleReevaluation.Nuclear": "Je me demandais si j'étais peut-être trop sévère avec toi la dernière fois que nous nous sommes parlé...{{gpaSurprise}}
+        #$b#Me voici alors : mais voyons, tu n'as encore rien de putain accompli.{{gpaRage}}
+        #$b#Les progrès de ton cousin %rival à sa ferme te feraient honte.
+        ^Les progrès de ta cousine %rival à sa ferme te feraient honte.{{gpaAngry}}
+        #$b#Quelle perte de temps.{{gpaFrown}}
         #$b#...{{gpaSigh}}
-        #$b#I'm leaving... don't summon me again unless you have something worth seeing.{{gpaFrown}}
-        #$b#%Wow, grandpa is really angry. I better not disappoint him again.",
-    "1CandleReevaluation.Nuclear-gn": "I thought maybe I was too harsh last time, so I came back to have a look...{{gpaSurprise}}
-        #$b#But here I am, and you've still accomplished fuck-all.{{gpaRage}}
-        #$b#Your cousin %rival's progress on their farm would put you to shame.{{gpaAngry}}
-        #$b#This visit was a waste of time.{{gpaFrown}}
+        #$b#Bon, j'y vais...{{gpaStern}}
+        #$b#Pour l’amour de Yoba, ne m'appelle pas à nouveau à moins que tu as quelque chose à voir.{{gpaFrown}}
+        #$b#%Wow, grand-père est tellement fâché contre moi. Je ferais mieux de ne pas le décevoir à nouveau.",
+    "1CandleReevaluation.Nuclear-gn": "Je me demandais si j'étais peut-être trop sévère avec toi la dernière fois que nous nous sommes parlé...{{gpaSurprise}}
+        #$b#Me voici alors : mais voyons, tu n'as encore rien de putain accompli.{{gpaRage}}
+        #$b#Les progrès de tan cousan %rival à sa ferme te feraient honte.{{gpaAngry}}
+        #$b#Quelle perte de temps.{{gpaFrown}}
         #$b#...{{gpaSigh}}
-        #$b#I'm leaving... don't summon me again unless you have something worth seeing.{{gpaFrown}}
-        #$b#%Wow, grandpa is really angry. I better not disappoint him again.",
+        #$b#Bon, j'y vais...{{gpaStern}}
+        #$b#Pour l’amour de Yoba, ne m'appelle pas à nouveau à moins que tu as quelque chose à voir.{{gpaFrown}}
+        #$b#%Wow, grand-père est tellement fâché contre moi. Je ferais mieux de ne pas le décevoir à nouveau.",
     
-    "2CandleReevaluation.Nuclear": "Is this all you have to show me?{{gpaNeutral}}
-        #$b#I was hoping for something a little more... I don't know.{{gpaStern}}
-        #$b#I'm not entirely disappointed, mind; you've clearly been putting in *some* effort.{{gpaFrown}}
-        #$b#Perhaps I was foolish to expect more from you.{{gpaNeutral}}
+    "2CandleReevaluation.Nuclear": "C'est tout a bordel ce que tu as à me montrer?{{gpaNeutral}}
+        #$b#J'espérais quelque chose d'un peu plus que ça... je-ne-sais-quoi.{{gpaStern}}
+        #$b#Pourtant, je ne suis pas terriblement déçu ; tu as évidemment fait quelques efforts.{{gpaFrown}}
+        #$b#J'étais peut-être le bête d'avoir attendu plus de toi.{{gpaNeutral}}
         #$b#...{{gpaSigh}}
-        #$b#I must return now... do try to make more progress around here before you summon me again.{{gpaStern}}",
-    "2CandleReevaluation.Nuclear-gn": "Is this all you have to show me?{{gpaNeutral}}
-        #$b#I was hoping for something a little more... I don't know.{{gpaStern}}
-        #$b#I'm not entirely disappointed, mind; you've clearly been putting in *some* effort.{{gpaFrown}}
-        #$b#Perhaps I was foolish to expect more from you.{{gpaNeutral}}
+        #$b#Je dois repartir dans l’autre monde. Merci de faire des progrès ici avant de m'appeler à nouveau.{{gpaStern}}",
+    "2CandleReevaluation.Nuclear-gn": "C'est tout a bordel ce que tu as à me montrer?{{gpaNeutral}}
+        #$b#J'espérais quelque chose d'un peu plus que ça... je-ne-sais-quoi.{{gpaStern}}
+        #$b#Cependant, je ne suis pas terriblement déçu ; tu as évidemment fait quelques efforts.{{gpaFrown}}
+        #$b#J'étais peut-être le bête d'avoir attendu plus de toi.{{gpaNeutral}}
         #$b#...{{gpaSigh}}
-        #$b#I must return now... do try to make more progress around here before you summon me again.{{gpaStern}}",
+        #$b#Je dois repartir dans l’autre monde. Merci de faire des progrès ici avant de m'appeler à nouveau.{{gpaStern}}",
     
-    "3CandleReevaluation.Nuclear": "The farm is looking very good these days.{{gpaHappy}}
-        #$b#I'm damn well surprised you've been able to make so much progress... did {{spouseOrLewis}} help you?{{gpaJoy}}
-        #$b#Either way, I'm happy to see the farm in good shape. You've done well.{{gpaLove}}
-        #$b#Although... there's still plenty of work to keep you busy in the coming years, if you really put the effort in.{{gpaHappy}}
+    "3CandleReevaluation.Nuclear": "La ferme a l'air vraiment bien en ce moment.{{gpaHappy}}
+        #$b#Je suis très surpris que tu aies pu faire autant de progrès. {{spouseOrLewis}} t'a aidé avec ça ?{{gpaJoy}}
+        #$b#Quoi qu'il en soit, je suis heureux de voir la ferme en pleine forme. Tu as bien fait.{{gpaLove}}
+        #$b#Cependant... il y reste encore beaucoup de travail pour s'occuper avec, si tu fais vraiment l'effort.{{gpaHappy}}
         #$b#...{{gpaStern}}
-        #$b#It's time for me to return to the other world... feel free to call on me again when you're ready.{{gpaNeutral}}",
-    "3CandleReevaluation.Nuclear-gn": "The farm is looking very good these days.{{gpaHappy}}
-        #$b#I'm damn well surprised you've been able to make so much progress... did {{spouseOrLewis}} help you?{{gpaJoy}}
-        #$b#Either way, I'm happy to see the farm in good shape. You've done well.{{gpaLove}}
-        #$b#Although... there's still plenty of work to keep you busy in the coming years, if you really put the effort in.{{gpaHappy}}
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à m'appeler à nouveau quand tu le veux.{{gpaNeutral}}",
+    "3CandleReevaluation.Nuclear-gn": "La ferme a l'air vraiment bien en ce moment.{{gpaHappy}}
+        #$b#Je suis très surpris que tu aies pu faire autant de progrès. {{spouseOrLewis}} t'a aidé avec ça ?{{gpaJoy}}
+        #$b#Quoi qu'il en soit, je suis heureux de voir la ferme en pleine forme. Tu as bien fait.{{gpaLove}}
+        #$b#Cependant... il y reste encore beaucoup de travail pour s'occuper avec, si tu fais vraiment l'effort.{{gpaHappy}}
         #$b#...{{gpaStern}}
-        #$b#It's time for me to return to the other world... feel free to call on me again when you're ready.{{gpaNeutral}}",
+        #$b#Je dois repartir dans l’autre monde, mais n’hésite pas à m'appeler à nouveau quand tu le veux.{{gpaNeutral}}",
     
-    "4CandleReevaluation.Nuclear": "@, my boy...^@, my dear{{gpaStern}}... 
-        #$b#You are an absolute fucking legend.{{gpaLove}}
-        #$b#%farm Farm looks amazing... the results of your hard work speak for themselves.{{gpaSurprise}}
-        #$b#Just look at the incredible progress you've made! I get overwhelmed thinking about how far you've come...{{gpaJoy}}
-        #$b#Aww shit, @... you're going to make me cry.{{gpaTears}}{{fifthCandle}}
-        #$b#Above all, you've brought me peace... My spirit is calmly at rest. Bless you.{{gpaHappy}}",
-    "4CandleReevaluation.Nuclear-gn": "@, my child...{{gpaStern}}
-        #$b#You are an absolute fucking legend.{{gpaLove}}
-        #$b#%farm Farm looks amazing... the results of your hard work speak for themselves.{{gpaSurprise}}
-        #$b#Just look at the incredible progress you've made! I get overwhelmed thinking about how far you've come...{{gpaJoy}}
-        #$b#Aww shit, @... you're going to make me cry.{{gpaTears}}{{fifthCandle}}
-        #$b#Above all, you've brought me peace... My spirit is calmly at rest. Bless you.{{gpaHappy}}",
+    "4CandleReevaluation.Nuclear": "@, mon trésor...{{gpaStern}}... 
+        #$b#Tu es une putain de légende !{{gpaLove}}
+        #$b#La ferme %farm est absolument magnifique... les résultats de ton travail parlent d'eux-mêmes.{{gpaSurprise}}
+        #$b#Regarde donc tous les merveilleux progrès que tu aies réalisés ! Ton chemin parcouru m'a touché profondément...{{gpaJoy}}
+        #$b#Ça alors ! @, tu viens de me faire pleurer.{{gpaTears}}{{fifthCandle}}
+        #$b#Surtout, tu m'as aidé à retrouver la paix... Mon esprit se repose enfin. Sois béni.
+        ^Surtout, tu m'as aidé à retrouver la paix... Mon esprit se repose enfin. Sois bénie.{{gpaHappy}}",
+    "4CandleReevaluation.Nuclear-gn": "@, mon trésor...{{gpaStern}}... 
+        #$b#Tu es une putain de légende !{{gpaLove}}
+        #$b#La ferme %farm est absolument magnifique... les résultats de ton travail parlent d'eux-mêmes.{{gpaSurprise}}
+        #$b#Regarde donc tous les merveilleux progrès que tu aies réalisés ! Ton chemin parcouru m'a touché profondément...{{gpaJoy}}
+        #$b#Ça alors ! @, tu viens de me faire pleurer.{{gpaTears}}{{fifthCandle}}
+        #$b#Surtout, tu m'as aidé à retrouver la paix... Mon esprit se repose enfin. Sois bénië.{{gpaHappy}}",
     
 
 // ================================================
 // TRANSLATIONS FOR UTILITIES AND CONFIG (OPTIONAL)
 // ================================================
 
-    // Translations below this point are not necessary to enjoy any content this mod adds to the game!
-    // These are extra; they just allow error messages, command output, and config options to be translated.
-    // If you are creating a new translation, feel free to submit your file with or without these entries!
+  // Translations below this point are not necessary to enjoy any content this mod adds to the game!
+  // These are extra; they just allow error messages, command output, and config options to be translated.
+  // If you are creating a new translation, feel free to submit your file with or without these entries!
 
-    // {{NL}} tokens are replaced with a newline in the code.
+  // {{NL}} tokens are replaced with a newline in the code.
 
   // ===================
   // GMCM CONFIG OPTIONS
@@ -545,37 +552,37 @@
     // These descriptions are visible if players install Generic Mod Config Menu (optional) 
     // and view or change their config settings from the lower left button in the game's main menu.
     
-    "DialogueOptions.title": "Dialogue Options", // Category title
+    "DialogueOptions.title": "Options de Dialogue", // Category title
 
-    "GrandpaDialogue.name": "Choose grandpa's dialogue style",
-    "GrandpaDialogue.description": "Changes the dialogue used during evaluation and re-evaluation events:{{NL}}  Original - Harsher dialogue found in early versions of the game{{NL}}  Vanilla - Normal dialogue used in the game ever since version 1.05{{NL}}  Nuclear - Grandpa is very enthusiastic about his opinions. WARNING:Profanity!",
+    "GrandpaDialogue.name": "Choisissez le dialogue de grand-père",
+    "GrandpaDialogue.description": "Modifie le dialogue utilisé lors des événements d'évaluation et de réévaluation :{{NL}}  Original - Dialogue sévère trouvé dans les premières versions du jeu{{NL}}  Vanilla - Dialogue normal du jeu depuis la version 1.05{{NL}}  Nuclear - Grand-père est très enthousiaste avec ses opinions. AVERTISSEMENT : grossièretés!",
     // Note to translators - do not translate the option names Original/Vanilla/Nuclear
 
-    "GenderNeutrality.name": "Use gender-neutral dialogue",
-    "GenderNeutrality.description": "Removes all references to player gender in grandpa's dialogue",
+    "GenderNeutrality.name": "Utilisez le neutre grammatical",
+    "GenderNeutrality.description": "Omet toute référence au sexe du joueur dans le dialogue de grand-père",
 
-    "ExpressivePortraits.name": "Expressive dialogue portraits",
-    "ExpressivePortraits.description": "Gives grandpa a variety of new facial expressions",
+    "ExpressivePortraits.name": "Portraits de dialogues expressifs",
+    "ExpressivePortraits.description": "Permet à grand-père plusieurs nouvelles expressions du visage",
 
-    "ScoringOptions.title": "Scoring Options", // Category title
+    "ScoringOptions.title": "Système de Notation", // Category title
 
-    "ScoringSystem.name": "Choose scoring system",
-    "ScoringSystem.description": "Changes how points are scored and how many are required to earn 4 candles:{{NL}}  Original - Original game evaluation: 13 possible points, 12+ earns 4 candles{{NL}}  Vanilla - Normal game evaluation: 21 possible points, 12+ earns 4 candles{{NL}}  Hard - Harder scoring option: needs 18/21 points to earn 4 candles{{NL}}  Expert - Hardest scoring option: needs all 21 points for 4 candles!",
+    "ScoringSystem.name": "Choisissez le système de points",
+    "ScoringSystem.description": "Modifie la façon dont les points sont marqués et le nombre requis pour gagner 4 bougies :{{NL}}  Original - Évaluation originale du jeu: 13 points possibles, 12+ rapporte 4 bougies{{NL}}  Vanilla - Évaluation normale du jeu: 21 points possibles, 12+ rapporte 4 bougies{{NL}}  Hard - Évaluation difficile: nécessite 18/21 points pour gagner 4 bougies{{NL}}  Expert - Évaluation très difficile: nécessite tous les 21 points pour gagner 4 bougies!",
     // Note to translators - do not translate the option names Original/Vanilla/Hard/Expert
 
-    "YearsBeforeEvaluation.name": "Years before evaluation",
-    "YearsBeforeEvaluation.description": "How many in-game years to wait before grandpa's first visit:{{NL}}  Default is [2] - grandpa will appear Spring 1 of Year 3",
+    "YearsBeforeEvaluation.name": "Années avant d'être évalué",
+    "YearsBeforeEvaluation.description": "Combien d'années attendre la première visite de grand-père :{{NL}}  Par défaut à [2] - grand-père apparaîtra au 1 printemps de l'année 3",
 
-    "ShowPointsTotal.name": "Show points total",
-    "ShowPointsTotal.description": "Displays your raw score during the evaluation",
+    "ShowPointsTotal.name": "Afficher les points",
+    "ShowPointsTotal.description": "Affiche votre score brut aux événements d'évaluation",
 
-    "Rewards.title": "Rewards", // Category title
+    "Rewards.title": "Options de Récompense", // Category title
 
-    "BonusRewards.name": "Enable bonus rewards",
-    "BonusRewards.description": "Gives new bonus rewards for earning 1-3 candles",
+    "BonusRewards.name": "Activer les prix bonus",
+    "BonusRewards.description": "Donne de nouveaux prix bonus pour gagner 1-3 bougies",
 
-    "StatuesForFarmhands.name": "Give statues to all farmhands",
-    "StatuesForFarmhands.description": "In a multiplayer game, allows each farmhand to receive their own Statue of Perfection",
+    "StatuesForFarmhands.name": "Statues pour joueurs supplémentaires",
+    "StatuesForFarmhands.description": "En mode multijoueur, permet à chaque joueur de recevoir sa propre 'statue de perfection'",
 
   // =====================
   // CONFIG ERROR MESSAGES
@@ -585,37 +592,37 @@
     // IMPORTANT: to make sure error messages match the Config file, please do not change
     // the property names (e.g. GrandpaDialogue, YearsBeforeEvaluation)
 
-    "GrandpaDialogue.error": "Invalid config value \"{{value}}\" for GrandpaDialogue.
-    Accepted values are [{{listGrandpaDialogueChoices}}].
-    GrandpaDialogue has been reset to default value \"{{fallback}}\"",
+    "GrandpaDialogue.error": "Valeur de configuration \"{{value}}\" non valide pour GrandpaDialogue.
+    Valeurs acceptées sont les suivantes : [{{listGrandpaDialogueChoices}}].
+    GrandpaDialogue a été réinitialisé à sa valeur par défaut : \"{{fallback}}\"",
 
-    "ScoringSystem.error": "Invalid config value \"{{value}}\" for ScoringSystem.
-    Accepted values are [{{listScoringSystemChoices}}].
-    ScoringSystem has been reset to default value \"{{fallback}}\"",
+    "ScoringSystem.error": "Valeur de configuration \"{{value}}\" non valide pour ScoringSystem.
+    Valeurs acceptées sont les suivantes : [{{listScoringSystemChoices}}].
+    ScoringSystem a été réinitialisé à sa valeur par défaut : \"{{fallback}}\"",
 
-    "YearsBeforeEvaluation.error": "Invalid config value [{{value}}] for YearsBeforeEvaluation.
-    You must enter a non-negative integer.
-    YearsBeforeEvaluation has been reset to default value [{{_yearsBeforeEvaluation}}].",
+    "YearsBeforeEvaluation.error": "Valeur de configuration [{{value}}] non valide pour YearsBeforeEvaluation.
+    Il faut saisir un nombre entier non négatif.
+    YearsBeforeEvaluation a été réinitialisé à sa valeur par défaut : [{{_yearsBeforeEvaluation}}].",
 
-    "CustomCandleScores.error.wrongLengthOrNotZero": "Invalid config entry [{{valueList}}] for CustomCandleScores.
-    You must enter a list of four numbers with the first number equal to 0.
-    CustomCandleScores has been reset.",
+    "CustomCandleScores.error.wrongLengthOrNotZero": "Entrée de configuration [{{valueList}}] non valide pour CustomCandleScores.
+    Il faut saisir une liste de quatre nombres dont le premier nombre est 0.
+    CustomCandleScores a été réinitialisé.",
 
-    "CustomCandleScores.error.notAscendingOrder": "Invalid config entry [{{valueList}}] for CustomCandleScores.
-    You must enter a list of four numbers in increasing order.
-    CustomCandleScores has been reset.",
+    "CustomCandleScores.error.notAscendingOrder": "Entrée de configuration [{{valueList}}] non valide pour CustomCandleScores.
+    Il faut saisir une liste de quatre nombres en ordre croissant.
+    CustomCandleScores a été réinitialisé.",
 
   // ================
   // CONSOLE COMMANDS
     
     // Players can view these command descriptions if they use the help command in the SMAPI console.
 
-    "reset_evaluation.description": "Resets all grandpa evaluations and mail/event flags, allowing you to re-experience the initial and re-evaluation events on an existing late-game save.",
+    "reset_evaluation.description": "Réinitialise toutes évaluations de grand-père et les données associés, vous permettant de revivre tous les événements d'évaluation et de réévaluation sur une sauvegarde existante.",
 
-    "grandpa_config.description": "Prints the active Angry Grandpa config settings to the console.",
+    "grandpa_config.description": "Affiche les paramètres de configuration 'Angry Grandpa' actuels à la console de SMAPI.",
     
-    "grandpa_score.description": "Estimates the result of a farm evaluation using grandpa's scoring criteria.",
+    "grandpa_score.description": "Estime le résultat d'une évaluation en utilisant les critères de notation de grand-père.",
 
-    "grandpa_debug.description": "Activates grandpa_config and grandpa_score commands, plus useful debugging information.",
+    "grandpa_debug.description": "Déclenche les commandes grandpa_config et grandpa_score ainsi que des informations de débogage utiles.",
     // Note: do not change grandpa_config or grandpa_score as these are commands.
 }
