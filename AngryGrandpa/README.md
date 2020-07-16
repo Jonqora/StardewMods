@@ -1,3 +1,12 @@
+<details>
+  <summary><i>TRANSLATION INFO:</i></summary>
+  
+  - Traduction française incluse! (mes propres efforts) | [informations de configuration](https://www.nexusmods.com/stardewvalley/articles/460)
+  - Tradução para o português incluída, graças ao [Nathan2076](https://www.nexusmods.com/users/80828368)! | [informações de configuração](https://www.nexusmods.com/stardewvalley/articles/461)
+</details>
+
+---
+
 # Angry Grandpa
 *He's only angry when you've earned it!*
 
@@ -111,7 +120,7 @@ If you earn 4 candles in your first evaluation, you will be given all three bonu
 ### Farmhand Rewards
 In vanilla multiplayer games, scoring is done individually, but only one Statue of Perfection (the 4-candle reward) can be obtained from grandpa's shrine. With the `StatuesForFarmhands` setting enabled, Angry Grandpa now allows every player in a game to receive their own statue once they've earned 4 candles.
 
-If you install this mod on an existing save, it will assume that any existing Statue of Perfection in the game world belongs to the host. The host player will not be able to receive extra statues by using the `reset_evaluation` command.
+If you install this mod on an existing save, it will assume that any existing Statue of Perfection in the game world belongs to the host. The host player will **not** be able to receive extra statues by using the `reset_evaluation` command.
 
 ### Translation Support
 No translations are available yet, but the mod is designed with full language support! If you would like to help translate this mod, you can [contribute here](https://github.com/StardewModders/mod-translations/issues/31). Submitted translations will be included in future mod updates.
