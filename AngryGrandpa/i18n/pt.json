@@ -555,7 +555,7 @@
     "DialogueOptions.title": "Opções de Diálogo", // Category title
 
     "GrandpaDialogue.name": "Escolher o estilo do diálogo do vovô",
-    "GrandpaDialogue.description": "Muda o diálogo durante os eventos de avaliação e re-avaliação:{{NL}}  Original - Diálogo rigoroso encontrado nas primeiras versões do jogo{{NL}}  Vanilla - Diálogo normal usado no jogo depois da versão 1.05{{NL}}  Nuclear - O vovô é muito entusiasmado sobre suas opiniões. AVISO:Palavrões!",
+    "GrandpaDialogue.description": "Muda o diálogo durante os eventos de avaliação e re-avaliação:{{NL}}  Original - Diálogo rigoroso encontrado nas primeiras versões do jogo{{NL}}  Vanilla - Diálogo normal usado no jogo depois da versão 1.05{{NL}}  Nuclear - O vovô é muito entusiasmado sobre suas opiniões. AVISO: Palavrões!",
     // Note to translators - do not translate the option names Original/Vanilla/Nuclear
 
     "GenderNeutrality.name": "Usar diálogo de gênero neutro",
