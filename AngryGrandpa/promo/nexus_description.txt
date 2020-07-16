@@ -1,3 +1,7 @@
+Traduction française incluse! (mes propres efforts) | [url=https://www.nexusmods.com/stardewvalley/articles/460]informations de configuration[/url]
+Tradução para o português incluída, graças ao [url=https://www.nexusmods.com/users/80828368]Nathan2076[/url]! | [url=https://www.nexusmods.com/stardewvalley/articles/461]informações de configuração[/url]
+[line]
+
 [size=6][b]Angry Grandpa[/b][/size]
 [i]He's only angry when you've earned it!
 [/i]
@@ -23,11 +27,11 @@ Choose your difficulty setting with different point thresholds. Relive the earli
 [b]Choose from:[/b] [code]"Original"[/code], [code]"Vanilla"[/code], [code]"Hard"[/code] or [code]"Expert"[/code]
 
 [i]How many points are required to get candles?[/i]
-[spoiler][code]  result  | "Original" | "Vanilla" | "Hard" | "Expert" |
-1 candle  |     0      |     0     |   0    |    0     |
-2 candles |     4      |     4     |   10   |    15    |
-3 candles |     8      |     8     |   14   |    18    |
-4 candles |     12     |     12    |   18   |    21    |
+[spoiler][code]  result |"Original"|"Vanilla"|"Hard"|"Expert"|
+1 candle |    0     |    0    |  0   |   0    |
+2 candles|    4     |    4    |  10  |   15   |
+3 candles|    8     |    8    |  14  |   18   |
+4 candles|    12    |    12   |  18  |   21   |
 [/code][/spoiler]
 [i]How do you earn grandpa points?[/i]
 [spoiler][b]In early versions of Stardew Valley, there were 13 points available to earn.[/b]
@@ -92,7 +96,7 @@ If you earn 4 candles in your first evaluation, you will be given all three bonu
 [b][size=3]Farmhand Rewards[/size][/b]
 In vanilla multiplayer games, scoring is done individually, but only one Statue of Perfection (the 4-candle reward) can be obtained from grandpa's shrine. With the [code]StatuesForFarmhands[/code] setting enabled, Angry Grandpa now allows every player in a game to receive their own statue once they've earned 4 candles.
 
-If you install this mod on an existing save, it will assume that any existing Statue of Perfection in the game world belongs to the host. The host player will not be able to receive extra statues by using the [code]reset_evaluation[/code] command.
+If you install this mod on an existing save, it will assume that any existing Statue of Perfection in the game world belongs to the host. The host player will [b]not[/b] be able to receive extra statues by using the [code]reset_evaluation[/code] command.
 
 [b][size=3]Translation Support[/size][/b]
 No translations are available yet, but the mod is designed with full language support! If you would like to help translate this mod, you can [url=https://github.com/StardewModders/mod-translations/issues/31]contribute here[/url]! Submitted translations will be included in future mod updates.
@@ -108,7 +112,7 @@ No translations are available yet, but the mod is designed with full language su
 [list=1]
 [*][url=https://smapi.io/]Install the latest version of SMAPI.[/url]
 [*]Download this mod from the link in the header above.
-[*]Unzip the mod and place the [code]AngryGrandpa[/code] folder inside you [code]Mods[/code] folder.
+[*]Unzip the mod and place the [code]AngryGrandpa[/code] folder inside your [code]Mods[/code] folder.
 [*]Run the game using SMAPI.
 [/list]
 [size=4][b]USING THE MOD[/b][/size]
@@ -124,7 +128,7 @@ If you are using this mod on an EXISTING save (grandpa has already visited), you
 [/list]
 [left][b]PLEASE NOTE: to activate the Bonus Rewards or Statues for Farmhands features, you must complete a grandpa evaluation OR re-evaluation event with this mod installed.[/b][/left]
 
-[b][size=5][center]Multiplayer[/center][/size][/b]Angry Grandpa mod is HIGHLY customizable in multiplayer. As long as you don't change [code]YearsBeforeEvaluation[/code], all features of this mod should work even if you are the only person who uses it! This mod only affects gameplay for players who install it.
+[center][b][size=5]Multiplayer[/size][/b][/center]Angry Grandpa mod is HIGHLY customizable in multiplayer. As long as you don't change [code]YearsBeforeEvaluation[/code], all features of this mod should work even if you are the only person who uses it! This mod only affects gameplay for players who install it.
 
 If multiple players install this mod, each player can have personalized settings. You can set individual dialogue variants, portrait use, scoring settings, and even bonus rewards! Farmhands can use the [code]StatuesForFarmhands[/code] feature even if the host player does not have this mod installed. (Warning: if the host player has not installed this mod, they can only obtain a Statue of Perfection if they are the [b]first[/b] player to collect it.)
 
@@ -151,8 +155,8 @@ If you install this mod on an existing multiplayer save and want to redo past ev
 }[/spoiler]
 [b][size=3]GrandpaDialogue:[/size][/b]
 Choose the dialogue used during evaluation and re-evaluation events. Default is [code]"Original"[/code].[list]
-[*][code]"Original"[/code] - Harsher dialogue found in early versions of the game
-[*][code]"Vanilla"[/code] - Normal dialogue used in the game ever since version 1.05 was released
+[*][code]"Original"[/code] - Harsher dialogue found in early versions of the game.
+[*][code]"Vanilla"[/code] - Normal dialogue used in the game ever since version 1.05 was released.
 [*][code]"Nuclear"[/code] - Grandpa is [i]very[/i] enthusiastic about his opinions, good or bad. [b][color=#ff0000]Warning: profanity![/color][/b]
 [/list][b][size=3]GenderNeutrality:[/size][/b]
 Removes all references to player gender in grandpa's dialogue. Defaults to [code]true[/code] if [url=https://www.nexusmods.com/stardewvalley/mods/722]Gender Neutrality mod[/url] is installed. Otherwise defaults to [code]false[/code].
@@ -179,6 +183,7 @@ In a multiplayer game, allows each farmhand to receive their own Statue of Perfe
 [*]Immense kudos go to [url=https://www.nexusmods.com/users/84157593]TayLindsey[/url] whose pixel art brings great new variety to grandpa's portraits!
 [*]Much gratitude to ConcernedApe and [url=https://www.nexusmods.com/stardewvalley/users/1552317?tab=user+files]Pathoschild[/url] !
 [*]Thanks to those who provided help and support in the [url=https://discordapp.com/invite/StardewValley]Stardew Valley Discord[/url] #making-mods channel.
+[*]Many thanks to [url=https://www.nexusmods.com/users/80828368]Nathan2076[/url] for translating!
 [/list]
 [size=4][b]SEE ALSO[/b][/size]
 [list]
