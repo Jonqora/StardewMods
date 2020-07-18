@@ -1,0 +1,63 @@
+﻿{
+// ========================================
+// TRANSLATION TEXT FOR GRANDPA'S CHECKLIST
+// ========================================
+
+    // These text entries are seen in a "improvements" note that appears on grandpa's shrine after each evaluation.
+    // The note contains comments on each method of earning grandpa points, depending on the player's progress in that area.
+
+    "Checklist.Money.null": "",
+    "Checklist.Money.50k": "", // Only used in 21-point criteria
+    "Checklist.Money.100k": "",
+    "Checklist.Money.200k": "",
+    "Checklist.Money.300k": "",
+    "Checklist.Money.500k": "",
+    "Checklist.Money.1mil": "", // Worth 2 points in 21-point criteria
+
+    "Checklist.Skills.null": "",
+    "Checklist.Skills.30levels": "", // Only used in 21-point criteria
+    "Checklist.Skills.50levels": "",
+
+    "Checklist.SpouseHouse.null": "", // live all alone in that tiny house?
+    "Checklist.SpouseHouse.UpgradeNoSpouse": "", // nice work on the farmhouse. You think about marriage yet?
+    "Checklist.SpouseHouse.UpgradeMarried": "", // thought about kids at all? could probably expand the house to make room
+    "Checklist.SpouseHouse.NurseryNoSpouse": "", // what are you doing all alone in that big house??
+    "Checklist.SpouseHouse.NurseryMarried": "", // yay you get a point
+
+    "Checklist.Villagers.null": "", 
+    "Checklist.Villagers.Five8hearts": "", // Only used in 21-point criteria
+    "Checklist.Villagers.Ten8hearts": "", 
+
+    // All of these only used in 21-point criteria
+    "Checklist.Pet.null": "What ever happened to my beloved farm {{dogOrCat}}... do you know?",
+    "Checklist.Pet.HasPet": "%pet is looking a little scrawny...", // How to determine cat or dog? Token? Or separate i18n strings?
+    "Checklist.Pet.LovedPet": "%pet is looking very healthy and well-cared for!",
+
+    // All of these only used in 21-point criteria
+    "Checklist.RustyKey.null": "Have you explored the sewers beneath town yet? I'm sure one of the villagers has a key.",
+    "Checklist.RustyKey.Found": "Ah, I see you've gained a key to the sewers! Say hello to Krobus from me next time you're there.",
+
+    // All of these only used in 21-point criteria
+    "Checklist.SkullKey.null": "Venturing deeper in the mines may help you gain access to new areas.",
+    "Checklist.SkullKey.Found": "",
+
+    "Checklist.CC.null": "The old Community Center in town looks completely run down! Such a shame.",
+    "Checklist.CC.Some": "", // need to implement own check for this
+    "Checklist.CC.DoneButNoCutscene": "", // Only used in 21-point criteria
+    "Checklist.CC.Completed": "",
+
+    "Checklist.Museum.null": "",
+    "Checklist.Museum.Achievement": "",
+    
+    "Checklist.Fishing.null": "",
+    "Checklist.Fishing.Achievement": "",
+    
+    "Checklist.Shipping.null": "",
+    "Checklist.Shipping.Achievement": "",
+
+    // All of these only used in 13-point criteria
+    "Checklist.Stardrops.null": "",
+    "Checklist.Stardrops.Some": "", // need to implement own check for this
+    "Checklist.Stardrops.All": "",
+
+}

@@ -15,7 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <EnableHarmony>true</EnableHarmony>
-    <IgnoreModFilePatterns>\.xcf$</IgnoreModFilePatterns>
+    <IgnoreModFilePatterns>\.xcf$, [/\\]extras\.json$</IgnoreModFilePatterns>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,6 +82,9 @@
     <Compile Include="src\Patches\UtilityPatches.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="i18n\extras.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="i18n\default.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
