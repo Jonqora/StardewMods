@@ -20,7 +20,7 @@
       "RareHappyNickname7-FemalePlayer": { "Default": "Peach" },
       
       "RareHappyNickname8-MalePlayer": { "Default": "Handsome" },
-      "RareHappyNickname8-FemalePlayer": { "Default": "Darling" },
+      "RareHappyNickname8-FemalePlayer": { "Default": "Darling" }
    },
 
    "Changes": [
@@ -48,7 +48,7 @@
             
             "NPC.cs.4519": "{{OtherNickname1}}",
             "NPC.cs.4522": "{{OtherNickname2}}",
-            "NPC.cs.4523": "{{OtherNickname3}}",
+            "NPC.cs.4523": "{{OtherNickname3}}"
          }
       }
    ]

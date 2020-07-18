@@ -13,7 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFixAddItem", "BugFixAddI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedEmotes", "ExtendedEmotes\ExtendedEmotes.csproj", "{40C620E4-3444-4DC4-862F-64414F58F0A6}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomSpouseNicknames", "CustomSpouseNicknames\CustomSpouseNicknames.shproj", "{6126B448-B95C-4E13-B35E-BF73ECB5B964}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CustomSpouseNicknames\CustomSpouseNicknames.projitems*{6126b448-b95c-4e13-b35e-bf73ecb5b964}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
