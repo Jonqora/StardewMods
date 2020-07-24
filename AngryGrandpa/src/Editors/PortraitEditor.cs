@@ -19,7 +19,7 @@ namespace AngryGrandpa
         *********/
 		protected static ITranslationHelper i18n = Helper.Translation;
 
-		private bool OverrideEdits;
+		private readonly bool OverrideEdits;
 
 
 		/*********
