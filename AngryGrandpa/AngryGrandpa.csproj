@@ -91,6 +91,7 @@
     <None Include="i18n\fr.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="i18n\it.json" />
     <None Include="i18n\pt.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
