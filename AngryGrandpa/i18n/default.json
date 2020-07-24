@@ -591,6 +591,10 @@
     Accepted values are [{{listGrandpaDialogueChoices}}].
     GrandpaDialogue has been reset to default value \"{{fallback}}\"",
 
+    "PortraitStyle.error": "Invalid config value \"{{value}}\" for PortraitStyle.
+    Accepted values are [{{listPortraitStyleChoices}}].
+    PortraitStyle has been reset to default value \"{{fallback}}\"",
+
     "ScoringSystem.error": "Invalid config value \"{{value}}\" for ScoringSystem.
     Accepted values are [{{listScoringSystemChoices}}].
     ScoringSystem has been reset to default value \"{{fallback}}\"",

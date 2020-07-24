@@ -600,6 +600,10 @@
     Valores aceitos são [{{listGrandpaDialogueChoices}}].
     GrandpaDialogue foi redefinido para o valor padrão \"{{fallback}}\"",
 
+    "PortraitStyle.error": "Valor de configuração inválido \"{{value}}\" para PortraitStyle.
+    Valores aceitados são [{{listPortraitStyleChoices}}].
+    PortraitStyle foi redefinido para o valor padrão \"{{fallback}}\"",
+
     "ScoringSystem.error": "Valor de configuração inválido \"{{value}}\" para ScoringSystem.
     Valores aceitados são [{{listScoringSystemChoices}}].
     ScoringSystem foi redefinido para o valor padrão \"{{fallback}}\"",

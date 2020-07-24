@@ -590,11 +590,15 @@
 
     "GrandpaDialogue.error": "Valore configurabile incorretto \"{{value}}\" per GrandpaDialogue.
     Valori accetabili sono [{{listGrandpaDialogueChoices}}].
-    GrandpaDialogue è stato resettato \"{{fallback}}\"",
+    GrandpaDialogue è stato resettato a \"{{fallback}}\"",
+
+    "PortraitStyle.error": "Valore configurabile incorretto \"{{value}}\" per PortraitStyle.
+    Valori accetabili sono [{{listPortraitStyleChoices}}].
+    PortraitStyle è stato resettato a \"{{fallback}}\"",
 
     "ScoringSystem.error": "Valore configurabile incorretto \"{{value}}\" per ScoringSystem.
     Valori accetabili sono [{{listScoringSystemChoices}}].
-    ScoringSystem è stato resettato \"{{fallback}}\"",
+    ScoringSystem è stato resettato a \"{{fallback}}\"",
 
     "YearsBeforeEvaluation.error": "Valore configurabile incorretto \"{{value}}\" per YearsBeforeEvaluation.
     Bisogna inserire un valore integrale positivo.
