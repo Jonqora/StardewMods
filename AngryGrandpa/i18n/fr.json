@@ -564,6 +564,10 @@
     "ExpressivePortraits.name": "Portraits de dialogues expressifs",
     "ExpressivePortraits.description": "Permet à grand-père plusieurs nouvelles expressions du visage",
 
+    "PortraitStyle.name": "Choisissez le style artistique",
+    "PortraitStyle.description": "Modifie le style artistique des portraits expressifs de grand-père :{{NL}}  auto - Vérifie s'il existe des mods de portrait et utilise un style correspondant si disponible{{NL}}  Vanilla - Correspond au style artistique original même si d'autres mods de portrait sont installés{{NL}}  Poltergeister - Correspond au style artistique de Poltergeister, quels que soient les mods de portrait installés",
+    // Note to translators - do not translate the option names auto/Vanilla/Poltergeister
+
     "ScoringOptions.title": "Système de Notation", // Category title
 
     "ScoringSystem.name": "Choisissez le système de points",

@@ -564,6 +564,10 @@
     "ExpressivePortraits.name": "Retratos expressivos ao diálogo",
     "ExpressivePortraits.description": "Dá uma variedade de novas expressões faciais ao vovô",
 
+    "PortraitStyle.name": "Escolha a arte do retrato do vovô",
+    "PortraitStyle.description": "Modifica o estilo artístico usado para os retratos expressivos do vovô:{{NL}}  auto - Procura mods de retrato compatíveis e usa um estilo correspondente, se disponível{{NL}}  Vanilla - Corresponde ao estilo artístico original, mesmo que outros mods de retrato estejam instalados{{NL}}  Poltergeister - Corresponde ao estilo artístico de Poltergeister, independentemente dos mods de retrato instalados",
+    // Note to translators - do not translate the option names auto/Vanilla/Poltergeister
+
     "ScoringOptions.title": "Opções de Pontuação", // Category title
 
     "ScoringSystem.name": "Escolher sistema de pontuação",

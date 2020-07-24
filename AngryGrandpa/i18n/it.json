@@ -188,7 +188,7 @@
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Mio caro ragazzo...^Mia carissima nipote...{{gpaHappy}}
             #$b#Sono passati tanti anni dall'ultima volta che abbiamo parlato. Eri solo un bambino, allora... Ricordi?
-            ^Sono passati molti anni dall'ultima volta che ci siamo parlati. Eri solo una bambina, allora... Ricordi?{{gpaNeutral}}
+            ^Sono passati tanti anni dall'ultima volta che abbiamo parlato. Eri solo una bambina, allora... Ricordi?{{gpaNeutral}}
             #$b#Spero che, in tutto questo tempo, tu sia diventato qualcuno ed abbia fatto qualcosa con la fattoria che ti ho lasciato.{{gpaStern}}
             #$b#Da quando sono morto non ho potuto tener cura alla fattoria %farm... e il mio spirito rimane agitato.{{gpaFrown}}
             #$b#Forse il tuo lavoro alla fattoria mi permetterá finalmente di riposare in pace.{{gpaHappy}}\"
@@ -418,7 +418,7 @@
             _[non dire nulla]
                 _...c'è un silenzio imbarazzante.{{gpaFrown}}
             _Questo posto era un cesso quando l'ho ricevuto. Sto facendo del mio meglio a migliorarlo!
-                _Beh scusami se la mia morte ti scomoda l'eredità... stronzo.{{gpaRage}}
+                _Beh scusami se la mia morte ti scomoda l'eredità... deficente.{{gpaRage}}
             _Beh, fanculo anche a te, nonno.
                 _...il Nonno è offeso.{{gpaShock}}'",
 
@@ -464,7 +464,7 @@
         #$b#Tu sei un cazzo di genio.{{gpaLove}}
         #$b#Questa... è davvero la stessa fattoria che ti ho lasciato? La riconosco a malapena!{{gpaShock}}
         #$b#Il lavoro che hai fatto a questo posto è incredibile! Sei diventato un contadino migliore di quanto io possa mai potuto essere.{{gpaJoy}}
-        #$b#Tanto impegno per eccellere... Questa è la ragione percui sei il mi* nipote preferit*, sai.{{gpaLove}}{{fifthCandle}}
+        #$b#Tanto impegno per eccellere... Questa è la ragione percui sei il nipote migliore, sai.{{gpaLove}}{{fifthCandle}}
         #$b#Ah sì...{{gpaHappy}}
         #$b#Lo posso sentire adesso... Il mio spirito è finalmente in pace. Ti auguro ogni benedizione.{{gpaSurprise}}
         #$b#...{{gpaHappy}}
@@ -555,6 +555,10 @@
 
     "ExpressivePortraits.name": "Figure espressive",
     "ExpressivePortraits.description": "Dà al Nonno delle espressioni facciali espressive",
+
+    "PortraitStyle.name": "Scegli lo stile artistico",
+    "PortraitStyle.description": "Cambia lo stile artistico dei ritratti espressivi del nonno:{{NL}}  auto - Controlla se ci sono mod ritratto e usa uno stile corrispondente se disponibile{{NL}}  Vanilla - Abbina lo stile artistico originale anche se sono installate altre mod di ritratto{{NL}}  Poltergeister - Abbina lo stile artistico di Poltergeister, indipendentemente dalle mod di ritratto installate",
+    // Note to translators - do not translate the option names auto/Vanilla/Poltergeister
 
     "ScoringOptions.title": "Opzioni di Punteggio", // Category title
 

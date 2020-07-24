@@ -555,6 +555,10 @@
     "ExpressivePortraits.name": "Expressive dialogue portraits",
     "ExpressivePortraits.description": "Gives grandpa a variety of new facial expressions",
 
+    "PortraitStyle.name": "Choose grandpa's portrait art",
+    "PortraitStyle.description": "Changes the art style used for grandpa's expressive portraits:{{NL}}  auto - Checks for compatible portrait mods and uses a matching style if available{{NL}}  Vanilla - Grandpa matches the vanilla art style even if other portrait mods are installed{{NL}}  Poltergeister - Matches Poltergeister's art style no matter what portrait mods are installed",
+    // Note to translators - do not translate the option names auto/Vanilla/Poltergeister
+
     "ScoringOptions.title": "Scoring Options", // Category title
 
     "ScoringSystem.name": "Choose scoring system",
