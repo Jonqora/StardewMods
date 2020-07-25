@@ -90,6 +90,7 @@ namespace AngryGrandpa
 			}
 			catch //Default back to vanilla in case we can't find the right asset
 			{
+				Monitor.LogOnce($"Loading grandpa portrait asset at {filepath} failed. Reverting to default mod asset.", LogLevel.Warn);
 				sourceImage = Helper.Content.Load<Texture2D>("assets\\Grandpa.png", ContentSource.ModFolder);
 			}
 
