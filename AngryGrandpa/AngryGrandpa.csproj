@@ -82,16 +82,15 @@
     <Compile Include="src\Patches\UtilityPatches.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="i18n\extras.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="i18n\default.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="i18n\fr.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="i18n\it.json" />
+    <None Include="i18n\it.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="i18n\pt.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -104,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\Grandpa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\Poltergeister\Grandpa.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="promo\nexus_description.txt" />
