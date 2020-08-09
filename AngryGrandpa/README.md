@@ -251,5 +251,5 @@ These are not the mod's default settings, but I think they give the most interes
 
 ### SEE ALSO
 * Help [translate](https://github.com/StardewModders/mod-translations/issues/31) this mod to other languages
-* Source code on [GitHub](https://github.com/Jonqora/StardewMods/tree/master/AngryGrandpa]GitHub)
+* Source code on [GitHub](https://github.com/Jonqora/StardewMods/tree/master/AngryGrandpa)
 * Check out [my other mods](https://www.nexusmods.com/users/88107803?tab=user+files)!
