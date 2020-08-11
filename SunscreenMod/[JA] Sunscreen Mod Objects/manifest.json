@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Sunscreen Mod",
+  "Author": "Jonqora",
+  "Version": "1.0.0",
+  "Description": "Adds new Json Assets items for Sunscreen Mod",
+  "UniqueID": "Jonqora.JA.SunscreenMod",
+  "MinimumApiVersion": "3.5.0",
+  "UpdateKeys": [ "Nexus:" ],
+  "ContentPackFor": {
+    "UniqueID": "spacechase0.JsonAssets"
+  }
+}

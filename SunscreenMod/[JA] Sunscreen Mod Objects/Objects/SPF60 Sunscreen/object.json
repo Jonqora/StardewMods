@@ -1,0 +1,9 @@
+﻿{
+  "Name": "SPF60 Sunscreen",
+  "Price": 100,
+  "Description": "Protects the user from sunburn. Reapply often.",
+  "Category": "Crafting",
+  "CategoryTextOverride": "Lotion",
+  "Edibility": -300,
+  "Recipe": null,
+}

@@ -1,0 +1,16 @@
+﻿{
+  "Name": "Sunscreen Mod",
+  "Author": "Jonqora",
+  "Version": "1.0.0",
+  "Description": "Apply sunscreen on sunny summer days... or you'll get sunburnt!",
+  "UniqueID": "Jonqora.SunscreenMod",
+  "EntryDll": "SunscreenMod.dll",
+  "MinimumApiVersion": "3.5.0",
+  "UpdateKeys": [ "Nexus:" ],
+  "Dependencies": [
+    {
+      "UniqueID": "Jonqora.JA.SunscreenMod",
+      "MinimumVersion": "1.0.0"
+    }
+  ]
+}
