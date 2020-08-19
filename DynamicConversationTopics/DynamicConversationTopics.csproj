@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="promo\" />
+    <Folder Include="src\Patches\" />
   </ItemGroup>
 
 </Project>

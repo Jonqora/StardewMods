@@ -158,12 +158,15 @@ These dialogue keys allow new NPC dialogue responses based around certain festiv
 <details>
   <summary>Click to expand list of festival dialogue keys. <b>WARNING: SPOILERS</b></summary><br/>
 
+`DCT.Festival.EggHunt`  
 `DCT.Festival.EggHunt-lose` (Abigail wins the egg hunt)  
 `DCT.Festival.EggHunt-win` (you win the egg hunt)  
 
+`DCT.Festival.FlowerDance`  
 `DCT.Festival.FlowerDance-dance` (you participate with a partner in the Flower Dance)  
 `DCT.Festival.FlowerDance-solo` (you don't dance with a partner)  
 
+`DCT.Festival.Luau`  
 `DCT.Festival.Luau-missing` (at least one player didn't add anything to the Soup)  
 `DCT.Festival.Luau-best` (best soup ever)  
 `DCT.Festival.Luau-good` (very pleasant soup)  
@@ -172,15 +175,23 @@ These dialogue keys allow new NPC dialogue responses based around certain festiv
 `DCT.Festival.Luau-worst` (vile, poisonous soup)  
 `DCT.Festival.Luau-shorts` (Lewis' shorts are in the soup)  
 
-`DCT.Festival.GrangeDisplay-lose` (Pierre wins the grange display content)  
-`DCT.Festival.GrangeDisplay-win` (you win the the grange display content)  
+`DCT.Festival.Jellies`  
+
+`DCT.Festival.GrangeDisplay`
+`DCT.Festival.GrangeDisplay-lose` (Pierre wins the grange display contest)  
+`DCT.Festival.GrangeDisplay-win` (you win the the grange display contest)  
 `DCT.Festival.GrangeDisplay-shorts` (you put Lewis' shorts in your grange display)
 
+`DCT.Festival.SpiritsEve`  
+
+`DCT.Festival.IceFishing`  
 `DCT.Festival.IceFishing-lose` (Willy wins the ice fishing contest)  
-`DCT.Festival.IceFishing-player` (another player wins the ice fishing contest)????  
+`DCT.Festival.IceFishing-player` (another player wins the ice fishing contest)  
 `DCT.Festival.IceFishing-win` (you win the ice fishing contest)  
 
+`DCT.Festival.WinterStar`  
 `DCT.Festival.WinterStar-prep` (lasts from Winter 18-24 in the leadup to the Feast of the Winter Star)  
+`DCT.Festival.WinterStar-gifts` (participate in the gift exchange)
 
 ---
 </details>
@@ -208,6 +219,8 @@ These dialogue keys allow new NPC dialogue responses after a player views an NPC
 - `DCT.Event.Alex10Heart-reject` (reject Alex)  
 
 `DCT.Event.Alex14Heart1` (Farm Alex asks for money for a secret project)  
+- `DCT.Event.Alex14Heart1-cheapskate` (refuse to give Alex the money)      
+- `DCT.Event.Alex14Heart1-givemoney` (give Alex 5,000g for his project)
 `DCT.Event.Alex14Heart2` (Town a message pops up to check out the Saloon) - worldstate change  
 `DCT.Event.Alex14Heart3` (Saloon Alex shows off the new sports room)  
 
@@ -222,18 +235,22 @@ These dialogue keys allow new NPC dialogue responses after a player views an NPC
 - `DCT.Event.Elliott6Heart-extrahelp` (tell Elliott he should come live on the farm and help out)  
 
 `DCT.Event.Elliott8Heart` (ArchaeologyHouse book reading)  
+- `DCT.Event.Elliott8Heart` (mystery book)  
+- `DCT.Event.Elliott8Heart` (romance book)  
+- `DCT.Event.Elliott8Heart` (sci-fi book)  
 `DCT.Event.Elliott10Heart` (Beach boat ride) #CH fork1 NoToElliott, $q $r event_boat1 2 fork tooBold  
-- `DCT.Event.Elliott10Heart-no` (reject Elliott's offer of a boat ride)  
+- `DCT.Event.Elliott10Heart-no` (reject Elliott's offer of a boat ride) (end dialogue Elliott)  
 - `DCT.Event.Elliott10Heart-happy` (tell Elliott you're trembling with happiness)  
-- `DCT.Event.Elliott10Heart-reject` (tell Elliott you're uncomfortable)  
+- `DCT.Event.Elliott10Heart-reject` (tell Elliott you're uncomfortable) (end dialogue Elliott)  
 
-`DCT.Event.Elliott14Heart` (Farm book tour) addConversationTopic elliottGone (+7 more)  
+`DCT.Event.Elliott14Heart1` (Farm book tour) addConversationTopic elliottGone (end dialogue Elliott) (+7 more)  
+`DCT.Event.Elliott14Heart2` (FarmHouse return from book tour) (end dialogue Elliott)
 
 ---
 #### Harvey Heart Events
 `DCT.Event.Harvey2Heart` (JoshHouse George's checkup) #CH $q 84 $r event_george1 2  
 `DCT.Event.Harvey4Heart` (Hospital doctor checkup) #CH $q 86 $r event_heart1 2 3  
-`DCT.Event.Harvey6Heart` (SeedShop aerobics) #CH $q -1 $r event_aerobics1 2  
+`DCT.Event.Harvey6Heart` (SeedShop aerobics) #CH $q -1 $r event_aerobics1 2 (end dialogue Harvey)  
 `DCT.Event.Harvey8Heart` (Hospital radio pilot) #CH question fork1 normal  
 - `DCT.Event.Harvey8Heart-flustered` (ask Harvey why he's all flustered)  
 - `DCT.Event.Harvey8Heart-normal` (pretend like everything's normal)  
@@ -247,15 +264,15 @@ These dialogue keys allow new NPC dialogue responses after a player views an NPC
 ---
 #### Sam Heart Events
 `DCT.Event.Sam2Heart` (SamHouse music genre) #CH $q 76 $r Event_band1 2 3 4  
-`DCT.Event.Sam3Heart` (Beach vincent kent gone) #CH question null splitSpeak ~  
-`DCT.Event.Sam4Heart` (SamHouse egg drop) #CH $q 80 $r event_snack1 2 3  
+`DCT.Event.Sam3Heart` (Beach vincent kent gone) #CH question null splitSpeak ~ (end dialogue Sam)  
+`DCT.Event.Sam4Heart` (SamHouse egg drop) #CH $q 80 $r event_snack1 2 3 (end dialogue Sam)  
 `DCT.Event.Sam6Heart` (Town skateboard) #CH question null splitSpeak Sam Lewis Sam  
-`DCT.Event.Sam8Heart1` (Farm band invite)  
+`DCT.Event.Sam8Heart1` (Farm band invite) (end dialogue Sam)  
 `DCT.Event.Sam8Heart2` (BusStop band show) cutscene bandFork poppy/heavy/techno/honkytonk (end dialogue Sam)  
-- `DCT.Event.Sam8Heart2-poppy` (Sam's band plays cheerful pop music)  
-- `DCT.Event.Sam8Heart2-heavy` (Sam's band plays experimental noise rock)  
-- `DCT.Event.Sam8Heart2-techno` (Sam's band plays hi-energy dance music)  
-- `DCT.Event.Sam8Heart2-honkytonk` (Sam's band plays honky-tonky country music)  
+- `DCT.Event.Sam8Heart2-poppy` (Sam's band plays cheerful pop music) (end dialogue Sam)   
+- `DCT.Event.Sam8Heart2-heavy` (Sam's band plays experimental noise rock) (end dialogue Sam)   
+- `DCT.Event.Sam8Heart2-techno` (Sam's band plays hi-energy dance music) (end dialogue Sam)   
+- `DCT.Event.Sam8Heart2-honkytonk` (Sam's band plays honky-tonky country music) (end dialogue Sam)   
 
 `DCT.Event.Sam10Heart` (Town sleep over) #CH question fork1 stayPut, fork1 rejectSam  
 - `DCT.Event.Sam10Heart-stayput` (stay put in the bed after Jodi leaves)  
@@ -275,7 +292,7 @@ These dialogue keys allow new NPC dialogue responses after a player views an NPC
 - `DCT.Event.Sebastian2Heart-work` (ask Sebastian what he's working on)  
 - `DCT.Event.Sebastian2Heart-decor` (compliment the decor in Sebastian's room)  
 - `DCT.Event.Sebastian2Heart-career` (after Robin leaves: ask about his career goals)  
-- `DCT.Event.Sebastian2Heart-nofriends` (after Robin leaves: ask why he doesn't want to see his friends)  
+- `DCT.Event.Sebastian2Heart-nofriends` (after Robin leaves: ask why he doesn't see his friends)  
 
 `DCT.Event.Sebastian4Heart` (Mountain motorcycle work) #CH $q -1 $r event_garage1 2 3  
 `DCT.Event.Sebastian6Heart` (SebastianRoom game) #CH question chooseCharacter (fork warrior|fork healer) addMailReceived (choseWarrior | choseHealer | choseWizard) switchEvent opening
@@ -299,12 +316,12 @@ finalBossWarrior: resetVariable question fork0 chargeAhead addMailReceived saved
 ---
 #### Shane Heart Events
 `DCT.Event.Shane2Heart` (Forest share beer)  
-`DCT.Event.Shane4Heart` (AnimalHouse passed out)  
-`DCT.Event.Shane6Heart1` (Forest cliffs suicidal) #CH question shaneCliffs Event.cs.1760, 1761, 1763, 1764  
+`DCT.Event.Shane4Heart` (AnimalShop passed out)  
+`DCT.Event.Shane6Heart1` (Forest cliffs suicidal) #CH question shaneCliffs Event.cs.1760, 1761, 1763, 1764 (end invisible Shane)  
 `DCT.Event.Shane6Heart2` (Farm apology, counselling) #CH $q -1 $r event_apologize1 2 3  
-`DCT.Event.Shane7Heart` (AnimalHouse sparkling water)  
-`DCT.Event.Shane7HeartEmilyClint2Heart` (Town Joja contest) (end dialogue Shane)  
-`DCT.Event.Shane8Heart` (AnimalHouse blue chickens)  
+`DCT.Event.Shane7Heart` (AnimalShop sparkling water)  
+`DCT.Event.Shane7HeartClintEmily2Heart` (Town Joja contest) (end dialogue Shane)  
+`DCT.Event.Shane8Heart` (AnimalShop blue chickens)  
 `DCT.Event.Shane10Heart1` (Farm gridball invite)  
 `DCT.Event.Shane10Heart2` (BusStop gridball game) #CH $q -1 $r event_stadium1 2  
 `DCT.Event.Shane14Heart1` (Town saloon) addConversationTopic shaneSaloon1
@@ -313,8 +330,8 @@ finalBossWarrior: resetVariable question fork0 chargeAhead addMailReceived saved
                                               (end dialogue Shane)  
 `DCT.Event.Shane14Heart3` (Town arcade) #CH question fork0 wewereworried
                                               (end dialogue Shane)  
-- `DCT.Event.Shane14Heart3-worried` (tell Shane you had been worried about him)  
-- `DCT.Event.Shane14Heart3-sorry` (apologize to Shane for not believing him)  
+- `DCT.Event.Shane14Heart3-worried` (tell Shane you had been worried about him) (end dialogue Shane)  
+- `DCT.Event.Shane14Heart3-sorry` (apologize to Shane for not believing him) (end dialogue Shane)  
 
 ---
 #### Abigail Heart Events
@@ -336,15 +353,18 @@ finalBossWarrior: resetVariable question fork0 chargeAhead addMailReceived saved
 `DCT.Event.Emily6Heart` (HaleyHouse dance performance) #CH $q 213 $r event_dance1 2 1 (end dialogue Emily)  
 `DCT.Event.Emily8Heart` (ManorHouse clothing therapy)  
 `DCT.Event.Emily10Heart` (Woods camping trip)  
-`DCT.Event.Emily14Heart1` (Farm fiber - Errand for your Wife quest hook)  
-`DCT.Event.Emily14Heart2` (FarmHouse new outfit)  
+`DCT.Event.Emily14Heart1` (Farm fiber - Errand for your Wife quest hook) (end dialogue Emily)  
+`DCT.Event.Emily14Heart2` (FarmHouse new outfit) (end dialogue Emily)  
 
 ---
 #### Haley Heart Events
-`DCT.Event.Haley2Heart` (HaleyHouse chores fight) #CH $q 45 $r Event_clean2 1 3  
+`DCT.Event.Haley2Heart` (HaleyHouse chores fight) #CH $q 45 $r Event_clean2 1 3 fork haleyWontDoIt
+haleyWontDoIt:
+- `DCT.Event.Haley2Heart-will` (Haley agrees to clean under the cushions)
+- `DCT.Event.Haley2Heart-wont` (Haley won't do the cleaning)
 `DCT.Event.Haley4Heart` (HaleyHouse open jar) #CH $q 47 $r Event_jar1 2  
-`DCT.Event.Haley6Heart` (Beach lost bracelet) #CH $q $r Event_beach1 2  
-`DCT.Event.Haley8Heart` (Forest cow photos)  
+`DCT.Event.Haley6Heart` (Beach lost bracelet) #CH $q $r Event_beach1 2 (end dialogue Haley)  
+`DCT.Event.Haley8Heart` (Forest cow photos) (end dialogue Haley)  
 `DCT.Event.Haley10Heart` (HaleyHouse dark room) #CH $q -1 Event_darkroom1 2 3 question haleyDarkRoom fork decorate fork leave (end dialogue Haley)
 decorate: (end dialogue Haley)
 leave: (end dialogue Haley)  
@@ -352,7 +372,7 @@ leave: (end dialogue Haley)
 - `DCT.Event.Haley10Heart-leave` (make an excuse and leave)  
 - `DCT.Event.Haley10Heart-kiss` (try to kiss Haley)  
 
-`DCT.Event.Haley14Heart1` (Town cake idea) addConversationTopic haleyCakewalk1 0  
+`DCT.Event.Haley14Heart1` (Town cake idea) addConversationTopic haleyCakewalk1 0 (end dialogue Haley)  
 `DCT.Event.Haley14Heart2` (FarmHouse request - Haley's Cake-Walk quest hook) #CH quickQuestion (end dialogue Haley) addConversationTopic haleyCakewalk2 0  
 `DCT.Event.Haley14Heart3` (Town cake walk event)  
 
@@ -384,7 +404,7 @@ artShowSuggest: (end warpOut)
 - `DCT.Event.Leah10Heart-nopunch` (you don't punch Kel, and Leah does instead)  
 
 `DCT.Event.Leah14Heart1` (Farm painting idea addConversationTopic leahPaint 0 (end dialogue Leah)  
-`DCT.Event.Leah14Heart2` (Forest painting class) #CH quickQuestion addWorldState m_painting0, m_painting1, m_painting2 quickQuestion (end dialogue Leah)  
+`DCT.Event.Leah14Heart2` (Forest painting class) #CH quickQuestion addWorldState m_painting0, m_painting1, m_painting2 quickQuestion (end dialogue Leah) (can I insert with \\addConversationTopic country retro modern)  
 
 ---
 #### Maru Heart Events
@@ -417,18 +437,18 @@ choseFarming: question fork0 (vegetables, animals) fork choseAnimals (Vincent as
 choseMinerals: (Vincent asks monsters) switchEvent fieldTripEnd
 choseAnimals: (Vincent asks saddle cowboy) switchEvent fieldTripEnd
 fieldTripEnd: $q -1 $r event_speaker_kids1 2 3 4 5 6 (end dialogue Penny)  
-- `DCT.Event.Penny8Heart-hatekids` (refuse Penny's request and tell her you can't stand kids)  
-- `DCT.Event.Penny8Heart-vegetables` (choose farming, vegetables; Vincent talks about Penny and Sam)  
-- `DCT.Event.Penny8Heart-animals` (choose farming, animals; Vincent wants to be a cowboy)  
-- `DCT.Event.Penny8Heart-minerals` (choose gathering, minerals; Vincent asks about goblins)  
-- `DCT.Event.Penny8Heart-seafoodlumber` (choose gathering, seafood/lumber; Vincent asks about your love life)  
+- `DCT.Event.Penny8Heart-hatekids` (refuse Penny's request and tell her you can't stand kids) (end dialogue Penny)  
+- `DCT.Event.Penny8Heart-vegetables` (choose farming, vegetables; Vincent talks about Penny and Sam) (end dialogue Penny)  
+- `DCT.Event.Penny8Heart-animals` (choose farming, animals; Vincent wants to be a cowboy) (end dialogue Penny)  
+- `DCT.Event.Penny8Heart-minerals` (choose gathering, minerals; Vincent asks about goblins) (end dialogue Penny)  
+- `DCT.Event.Penny8Heart-seafoodlumber` (choose gathering, seafood/lumber; Vincent asks about your love life) (end dialogue Penny)  
 
 `DCT.Event.Penny10Heart` (BathHouse_Pool pool meeting) #CH $q -1 $r event_pool1 2 3 $q -1 $r event_pool4 5 (5 has the %fork) fork pennyHeartbroken (end warpOut)
 pennyHeartbroken: (end warpOut)  
 - `DCT.Event.Penny10Heart-feelings` (tell Penny you feel the same way)  
 - `DCT.Event.Penny10Heart-reject` (reject Penny)  
 
-`DCT.Event.Penny14Heart1` (FarmHouse redecorate question) #CH quickQuestion (3) quickQuestion (addConversationTopic pennyRedecorating 2\\addMailReceived pennyQuilt0 | addConversationTopic pennyRedecorating 2\\addMailReceived pennyQuilt1 | addConversationTopic pennyRedecorating 2\\addMailReceived pennyQuilt2 | addMailReceived noQuilt  
+`DCT.Event.Penny14Heart1` (FarmHouse redecorate question) #CH quickQuestion (3) quickQuestion (addConversationTopic pennyRedecorating 2\\addMailReceived pennyQuilt0 | addConversationTopic pennyRedecorating 2\\addMailReceived pennyQuilt1 | addConversationTopic pennyRedecorating 2\\addMailReceived pennyQuilt2 | addMailReceived noQuilt (end dialogue Penny)  
 `DCT.Event.Penny14Heart2` (FarmHouse redecorate finished) #CH quickQuestion  
 
 ---
@@ -453,9 +473,9 @@ lifestyleChoice: (dump girls 4)
 ---
 #### Other Villager Heart Events
 `DCT.Event.Caroline2Heart` (Sunroom tea bushes) #CH quickQuestion a/b/c/d, Y/N  
-`DCT.Event.Caroline6Heart` (SeedShop argues with Abigail)  
+`DCT.Event.Caroline6Heart` (SeedShop argues with Abigail) (end dialogue Abigail)  
 `DCT.Event.Clint3Heart` (Saloon advice re. girls) #CH $q $r event_advice1 1 2 1  
-`DCT.Event.Clint6Heart` (Town - from Forest - asks Emily out)  
+`DCT.Event.Clint6Heart` (Town - from Forest - asks Emily out) (end dialogue Clint)  
 `DCT.Event.Demetrius6Heart` (ScienceHouse tomato) #CH $q 59 $r Event_tomato1 2  
 `DCT.Event.Dwarf50Point` (Sewer krobus fight)  
 `DCT.Event.Evelyn4Heart` (JoshHouse baking cookies) #CH$q $r Event_cookies1 2  
@@ -463,7 +483,7 @@ lifestyleChoice: (dump girls 4)
 `DCT.Event.Gus4HeartPam2Heart` (Saloon Pam pays her tab) #CH $q $r event_credit1 2  
 `DCT.Event.Gus5Heart` (Farm mini-jukebox)  
 `DCT.Event.JasVincent8Heart` (Forest spring onions)  
-`DCT.Event.Jodi4Heart` (Farm Fish Casserole quest hook?)  
+`DCT.Event.Jodi4Heart` (Farm Fish Casserole quest hook?) (end dialogue Jodi)  
 `DCT.Event.Kent3Heart` (SamHouse popcorn) #CH $q $r event_popcorn1 2 3  
 `DCT.Event.Krobus14Heart` (Beach sea monster ride)  
 `DCT.Event.LewisMarnie6Heart` (Town gossip) #CH $q $r event_secret1 2  
@@ -473,7 +493,7 @@ lifestyleChoice: (dump girls 4)
 - `DCT.Event.Linus8Heart-well` (say you're just pleased to see that Linus is doing well)  
 - `DCT.Event.Linus8Heart-livefarm` (invite Linus to live on the farm with you)  
 
-`DCT.Event.Marnie3Heart` (Farm cave carrot Marnie's Request quest hook)  
+`DCT.Event.Marnie3Heart` (Farm cave carrot Marnie's Request quest hook) (end dialogue Marnie)  
 `DCT.Event.Pam9Heart` (Trailer_Big praying to Yoba) #CH question fork0 positive  
 - `DCT.Event.Pam9Heart-hopeful` (say you're glad that Pam is feeling hopeful)  
 - `DCT.Event.Pam9Heart-noyoba` (tell Pam that Yoba isn't real)  
@@ -492,7 +512,7 @@ These dialogue keys allow new NPC dialogue responses after a player completes a 
   <summary>Click to expand list of quest dialogue keys. <b>WARNING: SPOILERS</b></summary><br/>
 
 `DCT.Quest.Introductions` (meet 28 villagers)  
-`DCT.Quest.HowtoWinFriends` (give someone a gift)  
+`DCT.Quest.HowToWinFriends` (give someone a gift)  
 `DCT.Quest.GettingStarted` (harvest a parsnip)  
 `DCT.Quest.ToTheBeach` (visit Willy at the beach)  
 `DCT.Quest.RaisingAnimals` (build a coop)  
@@ -500,12 +520,14 @@ These dialogue keys allow new NPC dialogue responses after a player completes a 
 `DCT.Quest.ExploreTheMine` (reach level 5 in the mines)  
 `DCT.Quest.DeeperInTheMine` (reach level 40 in the mines)  
 `DCT.Quest.ToTheBottom` (reach the bottom of the mines) \*\*also a Steam achievement  
-`DCT.Quest.Archaeology` (donate an item to the museum)  
+`DCT.Quest.Archaeology.Part1` (visit Gunther at the museum)  
+`DCT.Quest.Archaeology.Part2` (donate an item to the museum)  
 `DCT.Quest.RatProblem` (examine the golden scroll in the Community Center)  
-`DCT.Quest.MeettheWizard` (enter the Wizard's tower after recieving letter)  
+`DCT.Quest.MeetTheWizard` (enter the Wizard's tower after recieving letter)  
 `DCT.Quest.ForgingAhead` (craft a furnace)  
 `DCT.Quest.Smelting` (smelt a copper bar)  
-`DCT.Quest.Initiation` (slay 10 slimes in the mines)  
+`DCT.Quest.Initiation.Part1` (slay 10 slimes in the mines)  
+`DCT.Quest.Initiation.Part2` (enter the Adventurer's Guild)  
 `DCT.Quest.RobinsLostAxe` (return Robin's lost axe)  
 `DCT.Quest.JodisRequest` (bring Jodi a cauliflower)  
 `DCT.Quest.MayorsShorts` (return the mayor's shorts)  
@@ -535,12 +557,12 @@ These dialogue keys allow new NPC dialogue responses after a player completes a 
 `DCT.Quest.WantedLobster` (bring Gus a lobster)  
 `DCT.Quest.PamNeedsJuice` (bring Pam a battery pack)  
 `DCT.Quest.FishCasserole` (bring a largemouth bass to Jodi's house) \*\*quest hook is a Heart Event  
-`DCT.Quest.CatchaSquid` (bring Willy a squid)  
+`DCT.Quest.CatchASquid` (bring Willy a squid)  
 `DCT.Quest.FishStew` (bring Gus an Albacore)  
 `DCT.Quest.PierresNotice` (bring Pierre sashimi)  
 `DCT.Quest.ClintsAttempt` (bring Emily an amethyst)  
-`DCT.Quest.A FavorForClint` (bring Clint an iron bar)  
-`DCT.Quest.StaffofPower` (bring the Wizard an iridium bar)  
+`DCT.Quest.AFavorForClint` (bring Clint an iron bar)  
+`DCT.Quest.StaffOfPower` (bring the Wizard an iridium bar)  
 `DCT.Quest.GrannysGift` (bring Evelyn a leek)  
 `DCT.Quest.ExoticSpirits` (bring Gus a coconut)  
 `DCT.Quest.CatchaLingcod` (bring Willy a lingcod)  
@@ -556,6 +578,7 @@ These dialogue keys allow new NPC dialogue responses after a player finishes a t
 <details>
   <summary>Click to expand list of secret note dialogue keys. <b>WARNING: SPOILERS</b></summary><br/>
 
+  // Note10 (see DCT.Quest.CrypticNote)
 `DCT.Secret.Note13` (junimo plush by playground)  
 `DCT.Secret.Note14` (stone junimo statue behind CC)  
 `DCT.Secret.Note15` (pearl from mermaid show)  
@@ -569,8 +592,10 @@ These dialogue keys allow new NPC dialogue responses after a player finishes a t
 `DCT.Secret.Note20` (special charm from bus driver)  
 `DCT.Secret.Note21` (Marnie and Lewis in the bush)  
 `DCT.Secret.Note22` (place battery pack in bus tunnel - here? or under Quests?)  
-`DCT.Secret.Note23` (may-pal serrup - already a quest?????)  
+  // Note23 (see DCT.Quest.StrangeNote) may-pal serrup  
 `DCT.Secret.Note25` (return necklace to Abigail or Caroline)  
+- `DCT.Secret.Note25-abigail` (return necklace to Abigail)  
+- `DCT.Secret.Note25-caroline` (return necklace to Caroline)
 
 ---
 </details>
@@ -583,26 +608,33 @@ These dialogue keys allow new NPC dialogue responses after various in-game event
 
 **Note:** this category is **very** subject to change, and I will add the easiest ones first.
 
-`DCT.Story.Marriage` (get married... 14 days?)  
-`DCT.Story.Marriage{{SpouseName}}` (maybe have the topic custom by spouse, for better compatibility with Multiple Spouses mod? and easier congratulations after re-marriage?)  
+`DCT.Story.MarriageNPC-{{SpouseName}}` (maybe have the topic custom by spouse, for better compatibility with Multiple Spouses mod? and easier congratulations after re-marriage?)  
+`DCT.Story.MarriagePlayer` (get married to another player... 14 days?)  
+`DCT.Story.DivorceNPC-{{SpouseName}}` (e.g. `DCT.Story.DivorceHaley` or `DCT.Story.DivorceBartholomew`; these are made custom so that you can write in-law and friend responses)  
+`DCT.Story.DivorcePlayer` (get divorced from a player)  
+`DCT.Story.WipeMemory{{SpouseName}}` (e.g. `DCT.Story.WipeMemoryHaley` or `DCT.Story.WipeMemoryBartholomew`; these are made custom so that you can write in-law and friend responses)  
 `DCT.Story.FirstChild` (first child is born or adopted)  \*\*Can I distinguish between adoption and birth??
 `DCT.Story.SecondChild` (second child is born or adopted)  
 `DCT.Story.DoveKids` (turn your kids to doves :c) \*\*need to wipe all active \*Child topics and all past \*Child and DoveKids dialogue responses.  
-`DCT.Story.Divorce{{SpouseName}}` (e.g. `DCT.Story.DivorceHaley` or `DCT.Story.DivorceBartholomew`; these are made custom so that you can write in-law and friend responses)  
 `DCT.Story.AdoptPet` (adopt a pet from Marnie)  
 - `DCT.Story.AdoptPet-cat` (adopt a cat)  
 - `DCT.Story.AdoptPet-dog` (adopt a dog)  
-- `DCT.Story.AdoptPet-refuse` (refuse to adopt the pet)  
+- `DCT.Story.AdoptPet-nocat` (refuse to adopt the cat)  
+- `DCT.Story.AdoptPet-nodog` (refuse to adopt the pet)  
 
-`DCT.Story.DemetriusCave` (visit from Demetrius about using the cave)  
+`DCT.Story.RustySword` (Marlon gives you a rusty sword to use in the mines) (end dialogue Demetrius) 
+`DCT.Story.DemetriusCave` (visit from Demetrius about using the cave) (end dialogue Demetrius)  
 - `DCT.Story.DemetriusCave-mushrooms` (choose mushrooms)  
 - `DCT.Story.DemetriusCave-bats` (choose fruit bats)  
 
 `DCT.Story.EmilyCloth` (Emily visits to tell you about her sewing machine)  
+`DCT.Story.JasVincentSewer` (Vincent and Jas are playing near the sewer door)  
 `DCT.Story.RustyKey` (Gunther visits and gives you the Rusty Key)  
 `DCT.Story.KentReturn` (Kent returns to the valley)  
 `DCT.Story.SlimeHutch` (Marlon comes to talk about slimes)  
-`DCT.Story.TrashBear-appear` (trash bear arrives in Y3)  
+`DCT.Story.PierreSeeds` (Pierre will be selling new seed varieties next year)  
+`DCT.Story.TrashBear-arrive` (trash bear arrives in Y3)  
+`DCT.Story.TrashBear-feed` (give trash bear food)  
 `DCT.Story.TrashBear-clean` (trash bear is appeased and cleans up the trash)  
 `DCT.Story.Cellar` (third house upgrade)  
 `DCT.Story.Rarecrows` (letter from Rarecrow Society & deluxe scarecrow recipe)  
@@ -612,7 +644,6 @@ These dialogue keys allow new NPC dialogue responses after various in-game event
 `DCT.Story.WoodsVisit` (first visit to the Secret Woods)  
 `DCT.Story.RailroadVisit` (first visit to the Railroad)  
 `DCT.Story.SpaVisit` (first visit to the Spa/Bathhouse)  
-`DCT.Story.CasinoVisit` (first visit to the Casino)  
 `DCT.Story.WitchVisit` (first visit to the Witch's Hut)  
 `DCT.Story.SewerVisit` (first visit to the Sewer)  
 `DCT.Story.CartVisit` (first visit to the Travelling Cart)??  
@@ -635,7 +666,22 @@ These dialogue keys allow new NPC dialogue responses after various in-game event
 
 #### More Ideas
 Not sure yet if or how I'm going to implement these.
+- Pierre is stocking new fertilizers (event 706, 707... mail triggers)
+- Very first event Robin & Lewis? 60367 (do they have Introductions dialogue?) Vanilla!!!!
 
+- Mail from mom, dad, tribune ids 68-76
+- Emily mail trigger clothing therapy 2111194
+- Emily mail trigger camping 2111294
+- Grandpa candles 2146991 (nope)
+- Alex mail trigger saloon date 2346091
+- Sam mail trigger visit house 2346092
+- Harvey mail trigger baloon ride 2346093
+- Elliott mail trigger boat ride 2346094
+- Elliott mail trigger book reading 2346095
+- Penny mail trigger bath house 2346096
+- Abigail mail trigger spirit board 2346097
+- Pierre mail trigger new hours 3333094
+- Elliott book tour mail triggers 3912126 3912127 3912128 3912129 3912130 3912131
 - Bus fixed? (in vanilla) ...I think vanilla already has Conversation Topics for these?  
 - PlayerKilled cutscenes (Events/Hospital and Events/Mine) can I add a counter?  
 - First time passing out and/or dying?
