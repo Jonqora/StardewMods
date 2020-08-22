@@ -1,0 +1,8 @@
+﻿{
+	"Name": "UV Index (new items)",
+	"Author": "Jonqora",
+	"Version": "0.1.0",
+	"Description": "Json Assets items for UV Index (sunscreen mod)",
+	"UniqueID": "Jonqora.JA.SunscreenMod",
+	"ContentPackFor": { "UniqueID": "spacechase0.JsonAssets" }
+}

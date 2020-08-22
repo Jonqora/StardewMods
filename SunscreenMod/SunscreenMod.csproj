@@ -15,7 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="[JA] Sunscreen Mod Objects\manifest.json">
+    <None Update="assets\JA\Objects\Aloe Vera Gel\object.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\JA\Objects\Aloe Vera Gel\object.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\JA\Objects\SPF60 Sunscreen\object.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\JA\Objects\SPF60 Sunscreen\object.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

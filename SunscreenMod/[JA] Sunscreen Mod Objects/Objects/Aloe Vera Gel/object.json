@@ -1,9 +1,0 @@
-﻿{
-  "Name": "Aloe Vera Gel",
-  "Price": 500,
-  "Description": "Soothes and lessens the effects of sunburn. Apply once a day to sunburned areas.",
-  "Category": "Crafting",
-  "CategoryTextOverride": "Lotion",
-  "Edibility": -300,
-  "Recipe": null,
-}
