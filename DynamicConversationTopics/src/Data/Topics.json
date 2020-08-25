@@ -2252,7 +2252,7 @@
   //Maru
     {
         "Category": "Event",
-        "Context": "Maru2Heart",
+        "Context": "Maru2Heart", //There might be extra dialogue set for Maru and Demetrius? Strings\\StringsFromCSFiles:Event.cs.1018, 1020
         "Description": "Maru and Demetrius are testing some soil samples.",
         "ClearHistory": {"ALL RELATED TOPICS"},
         "Type": "EventScript",
@@ -3284,7 +3284,7 @@
         "Category": "Quest",
         "Context": "TheMysteriousQi",
         "Sequence": "Part4",
-        "Description": "Search your lumber pile for the club card.",
+        "Description": "Search your lumber pile for the club card.", //Hard-coded new dialogue in CS files for Sandy and Mister Qi Data\\ExtraDialogue
         "Type": "QuestComplete",
         "QuestID": 5
     },

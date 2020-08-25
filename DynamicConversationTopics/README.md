@@ -666,6 +666,26 @@ These dialogue keys allow new NPC dialogue responses after various in-game event
 
 #### More Ideas
 Not sure yet if or how I'm going to implement these.
+- Congradulations on high scores in games (definitely code needed here)
+- Individual monster slayer goals
+- New attractions to the museum (certain items?)
+- respond to you dating someone (when relationship status changes? monitor it or Harmony patch the setter?)
+- breakups - if you gave someone the wilted bonquet and their friends attack you for it 
+- breakups (adults) "Aw, I'm sad you and __ broke up. You two were cute together."
+- breakups "How dare you violate my friend!$a" "How dare you break my friends heart, you turd? >:'(" (depending if they are dating you or no?)
+- More talk and events at the community center could be nice other than yayyy we used to all come here and have fun daily! no one enters in weeks when you fix it
+- Wish more people talked about joja leaving
+- 
+
+
+- have more natural conversations such as having more options for you to respond to them
+- react to slimes being into town 
+- what if they noticed you ignoring them "Who are you again"
+- talk about crops you sell in your shipping bin instead of just to Pierre
+- Opinion on other people, which can get back to other people which then makes em annoyed at you
+- Make Pam get mad when you beat her at ice fishing (Festival.IceFishing)
+
+
 - Pierre is stocking new fertilizers (event 706, 707... mail triggers)
 - Very first event Robin & Lewis? 60367 (do they have Introductions dialogue?) Vanilla!!!!
 
@@ -695,9 +715,9 @@ Not sure yet if or how I'm going to implement these.
 - Tool Upgrades (so that Clint can ask about how they're working for you, maybe Robin too)
 - First time cooking a recipe (eep probably too many of these...)
 - Skill upgrades (comments on profession choice) hmmm
-- Individual monster slayer goals
 - Using the sewing machine and/or dye pots for the first time
 - When you miss festivals entirely (they might ask where you were, or talk about what you missed)
+- Opinion on other people, which can get back to other people which then makes em annoyed at you
 
 ---
 </details>
