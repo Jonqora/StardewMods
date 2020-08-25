@@ -4,6 +4,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
+using System;
 using System.IO;
 using static SunscreenMod.Flags;
 
@@ -18,12 +19,14 @@ namespace SunscreenMod
         internal HarmonyInstance Harmony { get; private set; }
         internal JsonAssets.IApi JA { get; private set; }
 
-        private Lotions Lotion;
-        private SunscreenProtection Sunscreen;
-        private Sunburn Burn;
         private Reactions Reacts;
+        private Lotions Lotion;
+        public SunscreenProtection Sunscreen;
+        public Sunburn Burn;
 
         internal bool IsSaveReady = false;
+
+        private int TotalUVExposure = 0;
 
         /*********
         ** Accessors
@@ -56,12 +59,17 @@ namespace SunscreenMod
             helper.Events.GameLoop.SaveLoaded += this.onSaveLoaded;
             helper.Events.GameLoop.DayStarted += this.onDayStarted;
             helper.Events.GameLoop.DayEnding += this.onDayEnding;
-            helper.Events.GameLoop.Saving += this.onSaving;
             helper.Events.GameLoop.OneSecondUpdateTicked += this.onOneSecondUpdateTicked;
+            helper.Events.GameLoop.TimeChanged += this.onTimeChanged;
 
             helper.Events.Player.Warped += this.onWarped;
 
             helper.Events.Input.ButtonPressed += this.onButtonPressed;
+
+            // Set up asset editors
+
+            helper.Content.AssetEditors.Add(new UVIndex());
+            helper.Content.AssetEditors.Add(new SkinColors());
         }
 
 
@@ -101,6 +109,7 @@ namespace SunscreenMod
         {
             //clear any previous data from other saves? Initialize zeros and all?
             IsSaveReady = false;
+
             Reacts = null;
             Sunscreen = null;
             Burn = null;
@@ -116,8 +125,11 @@ namespace SunscreenMod
             //clear any previous data from other saves
             //initialize new instances of Burn and Sunscreen
             Reacts = new Reactions();
+            Lotion = new Lotions();
             Sunscreen = new SunscreenProtection();
             Burn = new Sunburn();
+
+            Helper.Content.InvalidateCache("Strings\\StringsFromCSFiles"); //Refresh TV weather info
 
             IsSaveReady = true;
         }
@@ -143,21 +155,17 @@ namespace SunscreenMod
         /// <param name="e">The event arguments.</param>
         private void onDayEnding(object sender, DayEndingEventArgs e)
         {
-            //decrease active sunburn level by 1 (ready for next day)
-            //add new burn to current burn level, max 3 - discard new burn data??? (want to alert next day? on save loaded or game started?)
-            //clear burn debuffs
-            AddFlag("NewDay");
-        }
+            //clear burn debuffs???
 
-        /// <summary>
-        /// SUMMARY
-        /// </summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event arguments.</param>
-        private void onSaving(object sender, SavingEventArgs e)
-        {
-            //write current burn level to flags (if not already)
-            //write new burn level to flags (if not already)
+            //change skin color back to normal
+            int? normalSkin = Burn.GetNormalSkinFlag();
+            if (normalSkin != null)
+            {
+                int normalSkinIndex = (int)normalSkin - 1;
+                Game1.player.changeSkinColor(normalSkinIndex, true);
+            }
+
+            AddFlag("NewDay");
         }
 
         /// <summary>
@@ -171,8 +179,43 @@ namespace SunscreenMod
             {
                 return; //Ignore this before a save is loaded.
             }
-            // bool Game1.player.swimming!
-            Reacts.NearbyNPCsReact();
+
+            if (Game1.activeClickableMenu == null &&
+                Game1.currentMinigame == null &&
+                !Game1.eventUp && !Game1.dialogueUp && //Don't do this during events or when you can't see
+                Config.VillagerReactions && //Config setting
+                Burn.IsSunburnt()) //Only react if sunburnt
+            {
+                Reacts.NearbyNPCsReact();
+            }
+        }
+
+        /// <summary>
+        /// SUMMARY HERE
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void onTimeChanged(object sender, TimeChangedEventArgs e)
+        {
+            SDVTime time = SDVTime.CurrentTime;
+            int UV = UVIndex.UVIntensityAt(time);
+            int uvIndex = Convert.ToInt32((double)UV / 25);
+            TotalUVExposure += UV;
+            if (Config.DebugMode)
+            {
+                Monitor.Log($"Time is {time.Get12HourTime()} - current UV strength is {UV} or index {uvIndex}. Total exposure is {TotalUVExposure}", LogLevel.Debug);
+            }
+
+            Sunscreen.UpdateStatus(); //Checks if it has worn off or washed off
+
+            if (Config.EnableSunburn &&
+                Config.SunburnPossible(SDate.Now()) && //Check config settings
+                e.NewTime != e.OldTime && e.NewTime % 10 == 0 &&
+                Game1.currentLocation.IsOutdoors &&
+                !Sunscreen.IsProtected()) // Outdoors and not protected by sunscreen
+            {
+                Burn.CheckForBurnDamage(time);
+            }
         }
 
 
@@ -213,7 +256,7 @@ namespace SunscreenMod
             if (Game1.didPlayerJustRightClick() || //Did we use the right button to apply a lotion?
                 (Constants.TargetPlatform == GamePlatform.Android && e.Button == SButton.MouseLeft)) //Android support
             {
-                if (CanUseItem() && HoldingNonEdibleObject() && TappedOnFarmer(e.Cursor))
+                if (CanUseItem() && HoldingNonEdibleObject() && TappedOnFarmerIfAndroid(e.Cursor))
                 {
                     Item itemToUse = (Item)Game1.player.ActiveObject;
                     if (Lotion.IsLotion(itemToUse))
@@ -242,7 +285,7 @@ namespace SunscreenMod
             return Game1.player.ActiveObject != null && //Player is holding something, it is an Object
                 Game1.player.ActiveObject.Edibility == -300; //It is not an edible object
         }
-        private bool TappedOnFarmer(ICursorPosition cursor)
+        private bool TappedOnFarmerIfAndroid(ICursorPosition cursor)
         {
             int x = (int)cursor.AbsolutePixels.X;
             int y = (int)cursor.AbsolutePixels.Y;
@@ -252,13 +295,37 @@ namespace SunscreenMod
             }
             else
             {
-                return Game1.player.GetBoundingBox().Contains(x, y);
+                return true; //Game1.player.GetBoundingBox().Contains(x, y);
             }
         }
         //Stuff for onDayStarted and onSaveLoaded
         private void DoNewDayStuff()
         {
-            Monitor.Log("Doing new day stuff.", LogLevel.Info);
+            if (Config.DebugMode) Monitor.Log("Doing new day stuff.", LogLevel.Info);
+            Helper.Content.InvalidateCache("Strings\\StringsFromCSFiles"); //Refresh TV weather info
+
+            TotalUVExposure = 0;
+
+            Lotion.HasAppliedAloeToday = false;
+            Sunscreen.RemoveSunscreen();
+
+            int initialLevel = Burn.SunburnLevel; //Yesterday's sunburn severity level
+
+            Burn.UpdateForNewDay();
+
+            int burnLevel = Burn.SunburnLevel;
+            Farmer who = Game1.player;
+            who.health -= Config.HealthLossPerLevel * burnLevel; //Lose health at the start of a day
+            who.Stamina -= Config.EnergyLossPerLevel * burnLevel; //Lose energy at the start of a day
+            if (Config.DebugMode) Monitor.Log($"Current health: {who.health}/{who.maxHealth} | Current stamina: {who.Stamina}/{who.MaxStamina}", LogLevel.Info);
+
+            //if has sunburn, or healed existing sunburn from yesterday
+            if (burnLevel > 0 ||
+                (initialLevel != burnLevel && burnLevel == 0))
+            {
+                Burn.DisplaySunburnStatus(); //Info: new sunburn level, or healed if healed
+            }
+
             RemoveFlag("NewDay");
         }
     }

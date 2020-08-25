@@ -16,40 +16,39 @@ namespace SunscreenMod
         //ACCESSORS
         protected static IModHelper Helper => ModEntry.Instance.Helper;
         protected static IMonitor Monitor => ModEntry.Instance.Monitor;
-        private static ModConfig Config => ModConfig.Instance;
 
         protected static ITranslationHelper i18n = Helper.Translation;
 
         //CONSTANTS
-        private static string Ah = i18n.Get("Reaction.Ah"); // "Ah!"
-        private static string DearMe = i18n.Get("Reaction.DearMe"); // "Dear me"
-        private static string DearYoba = i18n.Get("Reaction.DearYoba"); // "Dear Yoba..."
-        private static string DotDotDot = i18n.Get("Reaction.DotDotDot"); // "..."
-        private static string Eek = i18n.Get("Reaction.Eek"); // "Eek!"
-        private static string ExclMarks = i18n.Get("Reaction.ExclMarks"); // "!!!"
-        private static string Gasp = i18n.Get("Reaction.Gasp"); // "*gasp*"
-        private static string HaHaHa = i18n.Get("Reaction.HaHaHa"); // "Ha ha ha!"
-        private static string HolyCrap = i18n.Get("Reaction.HolyCrap"); // "Holy crap"
-        private static string HolyYoba = i18n.Get("Reaction.HolyYoba"); // "Holy Yoba!"
-        private static string Lobster = i18n.Get("Reaction.Lobster"); // "As red as a lobster!"
-        private static string LOL = i18n.Get("Reaction.LOL"); // "LOL"
-        private static string NiceTan = i18n.Get("Reaction.NiceTan"); // "Nice "tan"..."
-        private static string OhDear = i18n.Get("Reaction.OhDear"); // "Oh dear"
-        private static string OhMy = i18n.Get("Reaction.OhMy"); // "Oh my"
-        private static string OhMyGoodness = i18n.Get("Reaction.OhMyGoodness"); // "Oh my goodness!"
-        private static string OhNo = i18n.Get("Reaction.OhNo"); // "Oh no!"
-        private static string Oof = i18n.Get("Reaction.Oof"); // "Oof..."
-        private static string Ouch = i18n.Get("Reaction.Ouch"); // "Ouch!"
-        private static string PoorName = i18n.Get("Reaction.PoorName", new { name = Game1.player.Name }); // "Poor {{name}}..."
-        private static string SurfaceDweller = i18n.Get("Reaction.SurfaceDweller"); // "Hehe... surface dweller"
-        private static string SweetYoba = i18n.Get("Reaction.SweetYoba"); // "Sweet Yoba!"
-        private static string ThatsGottaHurt = i18n.Get("Reaction.ThatsGottaHurt"); // "That's gotta hurt"
-        private static string Tomato = i18n.Get("Reaction.Tomato"); // "A tomato!?"
-        private static string TooMuchSun = i18n.Get("Reaction.TooMuchSun"); // "Too much sun?"
-        private static string Wow = i18n.Get("Reaction.Wow"); // "Wow!"
-        private static string WowName = i18n.Get("Reaction.WowName", new {name = Game1.player.Name} ); // "Wow, {{name}}..."
-        private static string WTF = i18n.Get("Reaction.WTF"); // "What the Ferngill?!"
-        private static string Yikes = i18n.Get("Reaction.Yikes"); // "Yikes"
+        private static readonly string Ah = i18n.Get("Reaction.Ah"); // "Ah!"
+        private static readonly string DearMe = i18n.Get("Reaction.DearMe"); // "Dear me"
+        private static readonly string DearYoba = i18n.Get("Reaction.DearYoba"); // "Dear Yoba..."
+        private static readonly string DotDotDot = i18n.Get("Reaction.DotDotDot"); // "..."
+        private static readonly string Eek = i18n.Get("Reaction.Eek"); // "Eek!"
+        private static readonly string ExclMarks = i18n.Get("Reaction.ExclMarks"); // "!!!"
+        private static readonly string Gasp = i18n.Get("Reaction.Gasp"); // "*gasp*"
+        private static readonly string HaHaHa = i18n.Get("Reaction.HaHaHa"); // "Ha ha ha!"
+        private static readonly string HolyCrap = i18n.Get("Reaction.HolyCrap"); // "Holy crap"
+        private static readonly string HolyYoba = i18n.Get("Reaction.HolyYoba"); // "Holy Yoba!"
+        private static readonly string Lobster = i18n.Get("Reaction.Lobster"); // "As red as a lobster!"
+        private static readonly string LOL = i18n.Get("Reaction.LOL"); // "LOL"
+        private static readonly string NiceTan = i18n.Get("Reaction.NiceTan"); // "Nice "tan"..."
+        private static readonly string OhDear = i18n.Get("Reaction.OhDear"); // "Oh dear"
+        private static readonly string OhMy = i18n.Get("Reaction.OhMy"); // "Oh my"
+        private static readonly string OhMyGoodness = i18n.Get("Reaction.OhMyGoodness"); // "Oh my goodness!"
+        private static readonly string OhNo = i18n.Get("Reaction.OhNo"); // "Oh no!"
+        private static readonly string Oof = i18n.Get("Reaction.Oof"); // "Oof..."
+        private static readonly string Ouch = i18n.Get("Reaction.Ouch"); // "Ouch!"
+        private static readonly string PoorName = i18n.Get("Reaction.PoorName", new { name = Game1.player.Name }); // "Poor {{name}}..."
+        private static readonly string SurfaceDweller = i18n.Get("Reaction.SurfaceDweller"); // "Hehe... surface dweller"
+        private static readonly string SweetYoba = i18n.Get("Reaction.SweetYoba"); // "Sweet Yoba!"
+        private static readonly string ThatsGottaHurt = i18n.Get("Reaction.ThatsGottaHurt"); // "That's gotta hurt"
+        private static readonly string Tomato = i18n.Get("Reaction.Tomato"); // "A tomato!?"
+        private static readonly string TooMuchSun = i18n.Get("Reaction.TooMuchSun"); // "Too much sun?"
+        private static readonly string Wow = i18n.Get("Reaction.Wow"); // "Wow!"
+        private static readonly string WowName = i18n.Get("Reaction.WowName", new {name = Game1.player.Name} ); // "Wow, {{name}}..."
+        private static readonly string WTF = i18n.Get("Reaction.WTF"); // "What the Ferngill?!"
+        private static readonly string Yikes = i18n.Get("Reaction.Yikes"); // "Yikes"
 
         private static Dictionary<string, string[]> VillagerReactions { get; } = new Dictionary<string, string[]>()
         {
@@ -160,20 +159,20 @@ namespace SunscreenMod
             } }
         };
 
-        private static string[] ChildReactions = new string[] {
+        private static readonly string[] ChildReactions = new string[] {
             Eek, Wow, ExclMarks, Gasp, Ah, DotDotDot, HaHaHa
         }; 
         
-        private static string[] GenericReactions = new string[] {
+        private static readonly string[] GenericReactions = new string[] {
             Ouch, Wow, ExclMarks, OhNo, Ah, DotDotDot, TooMuchSun
         };
 
-        private static int ReactRadius = 12;
+        private static readonly int ReactRadius = 12;
 
         //FIELDS
-        private Random rnd = new Random();
+        private readonly Random rnd = new Random();
 
-        private List<string> NPCsWhoReacted = new List<string>();
+        private readonly List<string> NPCsWhoReacted = new List<string>();
 
         //PRIVATE METHODS
         private T PickOne<T>(T[] array)

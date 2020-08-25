@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SunscreenMod.Flags;
+using Object = StardewValley.Object;
 
 namespace SunscreenMod
 {
@@ -22,6 +24,29 @@ namespace SunscreenMod
         protected static JsonAssets.IApi JA = ModEntry.Instance.JA;
 
         public int[] LotionIDs { get; private set; }
+
+        //If character has already applied aloe gel today
+        public bool HasAppliedAloeToday
+        {
+            get
+            {
+                if (_hasAppliedAloeToday == null) _hasAppliedAloeToday = false;
+                return (bool)_hasAppliedAloeToday;
+            }
+            set
+            {
+                if (value == true)
+                {
+                    AddFlag("HasAppliedAloeToday");
+                }
+                else
+                {
+                    RemoveFlag("HasAppliedAloeToday");
+                }
+                _hasAppliedAloeToday = value;
+            }
+        }
+        private bool? _hasAppliedAloeToday = null;
 
         //Lotion types this mod adds to the game
         public bool IsLotion(Item item)
@@ -46,10 +71,17 @@ namespace SunscreenMod
         //Called when a user clicks on their player while holding a lotion bottle
         public void ApplyQuestion(Item item)
         {
-            //TODO: Check if it can be applied (Aloe Vera Gel can only be applied once a day)
-            if (false)
+            //Check if it can be applied (Aloe Vera Gel can only be applied once a day)
+            if (item.ParentSheetIndex == JA.GetObjectId("Aloe Vera Gel") && HasAppliedAloeToday)
             {
-                Game1.drawDialogueNoTyping(i18n.Get("Error.AlreadyUsedLotionToday"));
+                Game1.drawDialogueNoTyping(i18n.Get("Error.AlreadyUsedLotionToday", new { lotionName = item.DisplayName }));
+                return;
+            }
+
+            //Check if it can be applied (Sunscreen can be applied once every 30 minutes, unless it washed off)
+            if (item.ParentSheetIndex == JA.GetObjectId("SPF60 Sunscreen") && ModEntry.Instance.Sunscreen.AppliedSunscreenRecently())
+            {
+                Game1.drawDialogueNoTyping(i18n.Get("Error.UsedLotionVeryRecently", new { lotionName = item.DisplayName }));
                 return;
             }
 
@@ -62,7 +94,7 @@ namespace SunscreenMod
 
         public void ApplyLotionAnswer(Farmer who, string whichAnswer)
         {
-            Monitor.Log($"Player chose answer: {whichAnswer}", LogLevel.Debug);
+            if (Config.DebugMode) Monitor.Log($"Player chose answer: {whichAnswer}", LogLevel.Debug);
             if (whichAnswer == "No")
             {
                 return; //Don't use any lotion
@@ -70,36 +102,51 @@ namespace SunscreenMod
 
             if (Game1.player.ActiveObject.ParentSheetIndex == JA.GetObjectId("SPF60 Sunscreen"))
             {
-                ApplySunscreen(who);
+                ApplySunscreen();
             }
-            else if (Game1.player.ActiveObject.ParentSheetIndex == JA.GetObjectId("SPF60 Sunscreen"))
+            else if (Game1.player.ActiveObject.ParentSheetIndex == JA.GetObjectId("Aloe Vera Gel"))
             {
-                ApplyAloeGel(who);
+                ApplyAloeGel();
             }
             //remove one from the stack
-            Game1.player.reduceActiveItemByOne();
-            Game1.player.jump(4.0f); //Default jump is 8f
-            DelayedAction.playSoundAfterDelay("slimedead", 500);
+            who.reduceActiveItemByOne();
+            who.jump(4.0f); //Default jump is 8f
+            DelayedAction.playSoundAfterDelay("slimedead", 100);
             //sound effect and/or animation? OOH slimeHit, slimedead, cavedrip, shadowHit, killAnimal, fishSlap, harvest, hitEnemy, dropItemInWater, pullItemFromWater, bob, waterSlosh, slosh, 
             //Candidates: slimeHit, slimedead, fishSlap, bob
         }
 
-        public void ApplySunscreen(Farmer who)
+        public void ApplySunscreen()
         {
             //apply the sunscreen's effects
-            Game1.addHUDMessage(new HUDMessage(i18n.Get("Apply.Sunscreen"), Color.OrangeRed, 5250f));
+            ModEntry.Instance.Sunscreen.ApplySunscreen();
+            Game1.addHUDMessage(new HUDMessage(i18n.Get("Apply.Sunscreen", new { hours = Config.SunscreenDuration }), 2)); //Exclamation mark message type
 
-            //make skin briefly white????
+            //TODO: make skin briefly white????
         }
 
-        public void ApplyAloeGel(Farmer who)
+        public void ApplyAloeGel(Farmer who = null)
         {
-            //apply the gel's effects
-            who.Stamina = Math.Min((float)who.MaxStamina, who.Stamina + (float)Config.EnergyLossPerLevel);
-            Game1.addHUDMessage(new HUDMessage(i18n.Get("Apply.AloeGel"), 4)); //stamina_type HUD message
+            who = who ?? Game1.player;
+            Sunburn burn = ModEntry.Instance.Burn;
 
-            //make skin briefly green????
-            
+            int initialLevel = burn.SunburnLevel;
+
+            //apply the gel's effects
+            burn.SunburnLevel -= 1;
+
+            //if the gel had an effect
+            if (initialLevel != burn.SunburnLevel)
+            {
+                who.health = Math.Min(who.maxHealth, who.health + Config.HealthLossPerLevel);
+                who.Stamina += (float)Config.EnergyLossPerLevel;
+                if (Config.DebugMode) Monitor.Log($"Current health: {who.health}/{who.maxHealth} | Current stamina: {who.Stamina}/{who.MaxStamina}", LogLevel.Info);
+                Item gel = Game1.player.ActiveObject;
+                Game1.addHUDMessage(new HUDMessage(i18n.Get("Apply.AloeGel", new { lotionName = gel.DisplayName }), 4)); //stamina_type HUD message
+                burn.DisplaySunburnStatus(); //Info: new sunburn level, or healed if healed
+            }
+
+            //TODO: make skin briefly green????
         }
     }
 }

@@ -43,14 +43,14 @@ namespace SunscreenMod
                         new
                         {
                             value,
-                            listGrandpaDialogueChoices = string.Join(", ", SunburnSeasonsChoices),
+                            listSunburnSeasonsChoices = string.Join(", ", SunburnSeasonsChoices),
                             fallback
                         }), LogLevel.Warn);
                 }
             }
         }
         private static readonly string[] SunburnSeasonsChoices = new string[] { "SummerOnly", "SpringSummerFall", "AllSeasons" };
-        private static readonly string SunburnSeasonsDefault = SunburnSeasonsChoices[0]; // Default to "SummerOnly"
+        private static readonly string SunburnSeasonsDefault = SunburnSeasonsChoices[2]; // Default to "AllSeasons"
         private string _sunburnSeasons = SunburnSeasonsDefault;
 
         /// <summary>Reports tomorrow's UV Index on the TV weather channel.</summary>
@@ -59,14 +59,14 @@ namespace SunscreenMod
         /// <summary>Changes skin display color to red when sunburnt.</summary>
         public bool SkinColorChange { get; set; } = true;
 
-        /// <summary>Villagers react when they see a badly sunburt player.</summary>
+        /// <summary>Villagers react in shock when they see a sunburnt player.</summary>
         public bool VillagerReactions { get; set; } = true;
 
 
         //==ADVANCED SETTINGS==
 
-        /// <summary>How many in-game hours (in normal game speed) sunscreen lasts before wearing off.</summary>
-        public float SunscreenDuration
+        /// <summary>How many in-game hours sunscreen lasts before wearing off.</summary>
+        public int SunscreenDuration
         {
             get { return _sunscreenDuration; }
             set
@@ -74,7 +74,7 @@ namespace SunscreenMod
                 if (value > 0) _sunscreenDuration = value;
                 else
                 {
-                    _sunscreenDuration = 3.0f; // Default to 3 hours
+                    _sunscreenDuration = 3; // Default to 3 hours
                     Monitor.Log(i18n.Get(
                         "SunscreenDuration.error",
                         new
@@ -85,7 +85,7 @@ namespace SunscreenMod
                 }
             }
         }
-        private float _sunscreenDuration = 3.0f;
+        private int _sunscreenDuration = 3;
 
         /// <summary>Loss in new day starting health per level of sunburn damage.</summary>
         public int HealthLossPerLevel
@@ -96,7 +96,7 @@ namespace SunscreenMod
                 if (value >= 0) _healthLossPerLevel = value;
                 else
                 {
-                    _healthLossPerLevel = 30; // Default to 30 health points
+                    _healthLossPerLevel = 20; // Default to 20 health points
                     Monitor.Log(i18n.Get(
                         "HealthLossPerLevel.error",
                         new
@@ -107,9 +107,9 @@ namespace SunscreenMod
                 }
             }
         }
-        private int _healthLossPerLevel = 30;
+        private int _healthLossPerLevel = 20;
 
-        /// <summary>Loss in new day starting energy/max energy per level of sunscreen damage.</summary>
+        /// <summary>Loss in new day starting energy per level of sunscreen damage.</summary>
         public int EnergyLossPerLevel
         {
             get { return _energyLossPerLevel; }
@@ -118,7 +118,7 @@ namespace SunscreenMod
                 if (value >= 0) _energyLossPerLevel = value;
                 else
                 {
-                    _energyLossPerLevel = 80; // Default to 80 stamina points
+                    _energyLossPerLevel = 50; // Default to 50 stamina points
                     Monitor.Log(i18n.Get(
                         "EnergyLossPerLevel.error",
                         new
@@ -129,7 +129,32 @@ namespace SunscreenMod
                 }
             }
         }
-        private int _energyLossPerLevel = 80;
+        private int _energyLossPerLevel = 50;
+
+        /// <summary>Active sunburn (no matter what severity) gives a -1 speed debuff.</summary>
+        public bool SunburnSpeedDebuff { get; set; } = true;
+
+        /*/// <summary>Debuff to defense stat per level of sunscreen damage.</summary>
+        public int DefenseLossPerLevel
+        {
+            get { return _defenseLossPerLevel; }
+            set
+            {
+                if (value >= 0) _defenseLossPerLevel = value;
+                else
+                {
+                    _defenseLossPerLevel = 1; // Default to 1 defense stat
+                    Monitor.Log(i18n.Get(
+                        "DefenseLossPerLevel.error",
+                        new
+                        {
+                            value,
+                            _defenseLossPerLevel
+                        }), LogLevel.Warn);
+                }
+            }
+        }
+        private int _defenseLossPerLevel = 1;
 
         /// <summary>How many days to heal one level of sunburn damage naturally, without treatment.</summary>
         public int RecoveryDaysPerLevel
@@ -153,7 +178,7 @@ namespace SunscreenMod
         }
         private int _recoveryDaysPerLevel = 1;
 
-        /*/// <summary>How many levels of sunburn damage can stack with additive effects.</summary>
+        /// <summary>How many levels of sunburn damage can stack with additive effects.</summary>
         public int MaximumSeverity //DON'T USE???
         {
             get { return _maximumSeverity; }
@@ -203,7 +228,7 @@ namespace SunscreenMod
                 _burnSkinColorIndex = value;
             }
         }
-        private int[] _burnSkinColorIndex = new int[3] { 10, 14, 19 };
+        private int[] _burnSkinColorIndex = new int[3] { 19, 20, 21 };
 
         //These getters and setters used in GMCM settings menu
         private int SkinColorIndex1
@@ -214,8 +239,8 @@ namespace SunscreenMod
                 if (!(value >= 1 && value <= 24)) // Out of range for skin index
                 {
                     Monitor.Log(i18n.Get(
-                        "SkinColorIndex1.error.outOfRange",
-                        new { valueList = value }
+                        "SkinColorIndex.error.outOfRange",
+                        new { value }
                         ), LogLevel.Warn);
                     return;
                 }
@@ -231,8 +256,8 @@ namespace SunscreenMod
                 if (!(value >= 1 && value <= 24)) // Out of range for skin index
                 {
                     Monitor.Log(i18n.Get(
-                        "SkinColorIndex2.error.outOfRange",
-                        new { valueList = value }
+                        "SkinColorIndex.error.outOfRange",
+                        new { value }
                         ), LogLevel.Warn);
                     return;
                 }
@@ -248,8 +273,8 @@ namespace SunscreenMod
                 if (!(value >= 1 && value <= 24)) // Out of range for skin index
                 {
                     Monitor.Log(i18n.Get(
-                        "SkinColorIndex3.error.outOfRange",
-                        new { valueList = value }
+                        "SkinColorIndex.error.outOfRange",
+                        new { value }
                         ), LogLevel.Warn);
                     return;
                 }
@@ -257,10 +282,15 @@ namespace SunscreenMod
             }
         }
 
+        //==DEVELOPER OPTIONS==
+
+        /// <summary>Enable noisy console debug messages.</summary>
+        public bool DebugMode { get; set; } = false;
+
         #endregion
 
         #region ModConfig constructor
-        /// <summary>Constructor will let ExpressivePortraits default to true.</summary>
+        /// <summary>Currently empty constructor method.</summary>
         public ModConfig()
         {
             
@@ -293,10 +323,10 @@ namespace SunscreenMod
         {
             Helper.WriteConfig(Instance);
             ModConfig.Print();
-            /*Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
-                => asset.AssetNameEquals("Strings\\Locations")
-                || asset.AssetNameEquals("Data\\mail")
-                || asset.AssetNameEquals("Data\\Events\\Farmhouse")
+            Helper.Content.InvalidateCache(asset // Trigger changed assets to reload on next use.
+                => asset.AssetNameEquals("Characters\\Farmer\\skinColors")
+                || asset.AssetNameEquals("Strings\\StringsFromCSFiles"));
+                /*|| asset.AssetNameEquals("Data\\Events\\Farmhouse")
                 || asset.AssetNameEquals("Data\\Events\\Farm")
                 || asset.AssetNameEquals("Portraits\\Grandpa"));*/
         }
@@ -320,6 +350,12 @@ namespace SunscreenMod
             api.RegisterModConfig(manifest, Reset, Save);
 
             api.RegisterLabel(manifest, i18n.Get("BasicFeatures.title"), "");
+
+            api.RegisterSimpleOption(manifest,
+                i18n.Get("EnableSunburn.name"),
+                i18n.Get("EnableSunburn.description"),
+                () => Instance.EnableSunburn,
+                (bool val) => Instance.EnableSunburn = val);
 
             api.RegisterChoiceOption(manifest,
                 i18n.Get("SunburnSeasons.name"),
@@ -352,7 +388,7 @@ namespace SunscreenMod
                 i18n.Get("SunscreenDuration.name"),
                 i18n.Get("SunscreenDuration.description", new { NL }),
                 () => Instance.SunscreenDuration,
-                (float val) => Instance.SunscreenDuration = val);
+                (int val) => Instance.SunscreenDuration = val);
 
             api.RegisterSimpleOption(manifest,
                 i18n.Get("HealthLossPerLevel.name"),
@@ -367,12 +403,24 @@ namespace SunscreenMod
                 (int val) => Instance.EnergyLossPerLevel = val);
 
             api.RegisterSimpleOption(manifest,
+                i18n.Get("SunburnSpeedDebuff.name"),
+                i18n.Get("SunburnSpeedDebuff.description"),
+                () => Instance.SunburnSpeedDebuff,
+                (bool val) => Instance.SunburnSpeedDebuff = val);
+
+            /*api.RegisterSimpleOption(manifest,
+                i18n.Get("DefenseLossPerLevel.name"),
+                i18n.Get("DefenseLossPerLevel.description", new { NL }),
+                () => Instance.DefenseLossPerLevel,
+                (int val) => Instance.DefenseLossPerLevel = val);
+
+            api.RegisterSimpleOption(manifest,
                 i18n.Get("RecoveryDaysPerLevel.name"),
                 i18n.Get("RecoveryDaysPerLevel.description", new { NL }),
                 () => Instance.RecoveryDaysPerLevel,
                 (int val) => Instance.RecoveryDaysPerLevel = val);
 
-            /*api.RegisterSimpleOption(manifest,
+            api.RegisterSimpleOption(manifest,
                 i18n.Get("MaximumSeverity.name"),
                 i18n.Get("MaximumSeverity.description", new { NL }),
                 () => Instance.MaximumSeverity,
@@ -398,7 +446,15 @@ namespace SunscreenMod
                 () => Instance.SkinColorIndex3,
                 (int val) => Instance.SkinColorIndex3 = val);
 
-            Monitor.Log("Added UV Index Config to GMCM", LogLevel.Info);
+            api.RegisterLabel(manifest, i18n.Get("DeveloperOptions.title"), "");
+
+            api.RegisterSimpleOption(manifest,
+                i18n.Get("DebugMode.name"),
+                i18n.Get("DebugMode.description", new { NL }),
+                () => Instance.DebugMode,
+                (bool val) => Instance.DebugMode = val);
+
+            Monitor.Log("Added UV Index (Sunscreen Mod) config to GMCM", LogLevel.Info);
         }
         #endregion
 
@@ -408,15 +464,17 @@ namespace SunscreenMod
             Monitor.Log(
                 $"CONFIG\n" +
                 $"    ====================\n" +
+                $"    EnableSunburn: {Instance.EnableSunburn.ToString().ToLower()}\n" +
                 $"    SunburnSeasons: \"{Instance.SunburnSeasons}\"\n" +
                 $"    WeatherReport: {Instance.WeatherReport.ToString().ToLower()}\n" +
                 $"    SkinColorChange: {Instance.SkinColorChange.ToString().ToLower()}\n" +
-                $"    VillagerReactions: \"{Instance.VillagerReactions.ToString().ToLower()}\"\n" +
+                $"    VillagerReactions: {Instance.VillagerReactions.ToString().ToLower()}\n" +
                 $"    SunscreenDuration: {Instance.SunscreenDuration}\n" +
                 $"    HealthLossPerLevel: {Instance.HealthLossPerLevel}\n" +
                 $"    EnergyLossPerLevel: {Instance.EnergyLossPerLevel}\n" +
-                $"    RecoveryDaysPerLevel: {Instance.RecoveryDaysPerLevel}\n" +
+                $"    SunburnSpeedDebuff: {Instance.SunburnSpeedDebuff.ToString().ToLower()}\n" +
                 $"    BurnSkinColorIndex: [ {string.Join(", ", Instance.BurnSkinColorIndex)} ]\n" +
+                $"    DebugMode: {Instance.DebugMode.ToString().ToLower()}\n" +
                 $"    ====================", LogLevel.Debug); // Use .ToLower to make bool capitalization match config.json format
         }
     }

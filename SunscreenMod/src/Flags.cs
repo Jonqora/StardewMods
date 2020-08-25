@@ -13,15 +13,17 @@ namespace SunscreenMod
     {
         protected static IMonitor Monitor => ModEntry.Instance.Monitor;
 
-        static string FlagBase { get; } = "6676SunscreenMod.";
+        public static string FlagBase { get; } = "6676SunscreenMod.";
         static string[] FlagList { get; } = {
             "NewDay",
+            "HasAppliedAloeToday",
             "SunburnLevel_1",
             "SunburnLevel_2",
             "SunburnLevel_3",
             "NewBurnDamageLevel_1",
             "NewBurnDamageLevel_2",
-            "NewBurnDamageLevel_3"
+            "NewBurnDamageLevel_3",
+            "NormalSkinColor_1" //And all the others
         };
 
         public static bool IsFlag(string flagName)
@@ -33,50 +35,55 @@ namespace SunscreenMod
             return fullFlagName.StartsWith(FlagBase) && FlagList.Contains(fullFlagName.Skip(FlagBase.Length));
         }
 
-        public static bool HasFlag(string flagName)
+        public static bool HasFlag(string flagName, Farmer who = null)
         {
+            who = who ?? Game1.player; //Default to the current player
             if (!IsFlag(flagName))
             {
-                Monitor.Log($"ERROR: flag {flagName} does not exist in the Flags list.", LogLevel.Error);
+                Monitor.Log($"ERROR: flag {flagName} does not exist in the Flags list.", LogLevel.Warn);
                 return false;
             }
-            return Game1.player.mailReceived.Contains(FlagBase + flagName);
+            return who.mailReceived.Contains(FlagBase + flagName);
         }
 
-        public static void AddFlag(string flagName)
+        public static void AddFlag(string flagName, Farmer who = null)
         {
+            who = who ?? Game1.player; //Default to the current player
             if (!IsFlag(flagName))
             {
-                Monitor.Log($"ERROR: flag {flagName} does not exist in the Flags list.", LogLevel.Error);
+                Monitor.Log($"ERROR: flag {flagName} does not exist in the Flags list.", LogLevel.Warn);
                 return;
             }
-            if (!Game1.player.mailReceived.Contains(FlagBase + flagName))
+            if (!who.mailReceived.Contains(FlagBase + flagName))
             {
-                Game1.player.mailReceived.Add(FlagBase + flagName);
+                who.mailReceived.Add(FlagBase + flagName);
             }
         }
 
-        public static void AddFlags(List<string> flagNames)
+        public static void AddFlags(List<string> flagNames, Farmer who = null)
         {
-            foreach (string flag in flagNames) { AddFlag(flag); }
+            who = who ?? Game1.player; //Default to the current player
+            foreach (string flag in flagNames) { AddFlag(flag, who); }
         }
 
-        public static void RemoveFlag(string flagName)
+        public static void RemoveFlag(string flagName, Farmer who = null)
         {
+            who = who ?? Game1.player; //Default to the current player
             if (!IsFlag(flagName))
             {
-                Monitor.Log($"ERROR: flag {flagName} does not exist in the Flags list.", LogLevel.Error);
+                Monitor.Log($"ERROR: flag {flagName} does not exist in the Flags list.", LogLevel.Warn);
                 return;
             }
-            while (Game1.player.mailReceived.Contains(FlagBase + flagName))
+            while (who.mailReceived.Contains(FlagBase + flagName))
             {
-                Game1.player.mailReceived.Remove(FlagBase + flagName);
+                who.mailReceived.Remove(FlagBase + flagName);
             }
         }
 
-        public static void RemoveFlags(List<string> flagNames)
+        public static void RemoveFlags(List<string> flagNames, Farmer who = null)
         {
-            foreach (string flag in flagNames) { RemoveFlag(flag); }
+            who = who ?? Game1.player; //Default to the current player
+            foreach (string flag in flagNames) { RemoveFlag(flag, who); }
         }
     }
 }

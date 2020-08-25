@@ -1,12 +1,12 @@
 ﻿{
-  "Name": "UV Index",
+  "Name": "UV Index (Sunscreen Mod)",
   "Author": "Jonqora",
-  "Version": "0.2.4",
-  "Description": "Apply sunscreen on sunny days... or you'll get sunburnt!",
-  "UniqueID": "Jonqora.SunscreenMod",
+  "Version": "1.0.0",
+  "Description": "(Sunscreen Mod) Apply sunscreen on sunny days... or you'll get sunburnt!",
+  "UniqueID": "Jonqora.UVIndex",
   "EntryDll": "SunscreenMod.dll",
   "MinimumApiVersion": "3.5.0",
-  "UpdateKeys": [ "Nexus:" ],
+  "UpdateKeys": [ "Nexus:6676" ],
   "Dependencies": [
     { "UniqueID": "spacechase0.JsonAssets", "MinimumVersion": "1.3.0"  },
 	{ "UniqueID": "spacechase0.GenericModConfigMenu", "IsRequired": false }
