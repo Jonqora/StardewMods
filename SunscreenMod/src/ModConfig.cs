@@ -217,6 +217,14 @@ namespace SunscreenMod
                         ), LogLevel.Warn);
                     return;
                 }
+                else if (value[0] == value[1] || value[0] == value[2] || value[1] == value[2]) // Not unique
+                {
+                    Monitor.Log(i18n.Get(
+                        "BurnSkinColorIndex.error.notUnique",
+                        new { valueList = string.Join(", ", value) }
+                        ), LogLevel.Warn);
+                    return;
+                }
                 else if (!value.All(num => num >= 1 && num <= 24)) // Out of range for skin index
                 {
                     Monitor.Log(i18n.Get(

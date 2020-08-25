@@ -180,10 +180,13 @@
     MaximumSeverity has been reset to default value [{{_maximumSeverity}}].", //Unused
     "BurnSkinColorIndex.error.wrongLength": "Invalid config entry [{{valueList}}] for BurnSkinColorIndex.
     You must enter a list of three integer skin color values.
-    BurnSkinColorIndex has been reset.",
+    BurnSkinColorIndex is unchanged from its previous value.",
+    "BurnSkinColorIndex.error.notUnique": "Invalid config entry [{{valueList}}] for BurnSkinColorIndex.
+    Each integer skin color value must be a different number.
+    BurnSkinColorIndex is unchanged from its previous value.",
     "BurnSkinColorIndex.error.outOfRange": "Invalid config entry [{{valueList}}] for BurnSkinColorIndex.
     Each skin color value must be an integer between 1 and 24.
-    BurnSkinColorIndex has been reset.",
+    BurnSkinColorIndex is unchanged from its previous value.",
     "SkinColorIndex.error.outOfRange": "Invalid config entry [{{value}}] for a SkinColorIndex.
     Each skin color value must be an integer between 1 and 24.
     The skin color index is unchanged from its previous value."
