@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdviceGrandpa", "AdviceGran
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicConversationTopics", "DynamicConversationTopics\DynamicConversationTopics.csproj", "{A5CFC56E-5B83-40C2-9E6F-FDE58341AD5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunscreenMod", "SunscreenMod\SunscreenMod.csproj", "{ACF868E4-8EE5-409F-BFBE-2F5AD63A61ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SunscreenMod", "SunscreenMod\SunscreenMod.csproj", "{ACF868E4-8EE5-409F-BFBE-2F5AD63A61ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoGrandpaGhost", "NoGrandpaGhost\NoGrandpaGhost.csproj", "{E31F626E-8C37-465D-A4C6-262D9915D389}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoGrandpaGhost", "NoGrandpaGhost\NoGrandpaGhost.csproj", "{E31F626E-8C37-465D-A4C6-262D9915D389}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontEnablePam", "DontEnablePam\DontEnablePam.csproj", "{40692A05-4031-471E-B4D7-92366F73A008}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -98,6 +100,12 @@ Global
 		{E31F626E-8C37-465D-A4C6-262D9915D389}.Release|Any CPU.ActiveCfg = Release|x86
 		{E31F626E-8C37-465D-A4C6-262D9915D389}.Release|x86.ActiveCfg = Release|x86
 		{E31F626E-8C37-465D-A4C6-262D9915D389}.Release|x86.Build.0 = Release|x86
+		{40692A05-4031-471E-B4D7-92366F73A008}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{40692A05-4031-471E-B4D7-92366F73A008}.Debug|x86.ActiveCfg = Debug|x86
+		{40692A05-4031-471E-B4D7-92366F73A008}.Debug|x86.Build.0 = Debug|x86
+		{40692A05-4031-471E-B4D7-92366F73A008}.Release|Any CPU.ActiveCfg = Release|x86
+		{40692A05-4031-471E-B4D7-92366F73A008}.Release|x86.ActiveCfg = Release|x86
+		{40692A05-4031-471E-B4D7-92366F73A008}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

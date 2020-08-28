@@ -1,0 +1,160 @@
+{
+  "Format": "1.15",
+
+  "ConfigSchema": {
+    "QuestLetterFrom": {
+      "AllowValues": "Pam, Penny",
+      "Default": "Pam"
+    },
+    "DebugMode_ForceNewQuestLetter": {
+      "AllowValues": "true, false",
+      "Default": "false"
+    }
+  },
+
+  "DynamicTokens": [
+    //Quest description variants
+    {
+      "Name": "QuestDescription",
+      "Value": "Pam is trying to drink more juice instead of just beer and pale ale. You can make your own juice by putting any vegetable in a keg.",
+      "When": {
+        "QuestLetterFrom": "Pam"
+      }
+    },
+    {
+      "Name": "QuestDescription",
+      "Value": "Penny is trying to get Pam to drink juice more often. You can make your own juice by putting any vegetable in a keg.",
+      "When": {
+        "QuestLetterFrom": "Penny"
+      }
+    },
+    //Quest end dialogue variants
+    {
+      "Name": "QuestEndDialogue",
+      "Value": "Gimme that. *slurp*... Ahh, that hits the spot.#$b#It's real nice and cool... very refreshing, and mildly sweet with a pleasant bite to the flavor.#$b#Thanks, kid. It means a lot to me. This stuff is pretty good affer all!$h",
+      "When": {
+        "QuestLetterFrom": "Pam"
+      }
+    },
+    {
+      "Name": "QuestEndDialogue",
+      "Value": "Gimme that. *slurp*... Ahh, that's surprisingly good.#$b#It's real nice and cool... very refreshing, and mildly sweet with a pleasant bite to the flavor.#$b#Thanks, kid. This means a lot to me. I'll have to thank Penny, too.$h",
+      "When": {
+        "QuestLetterFrom": "Penny"
+      }
+    },
+    //Quest mail variants (replacement version)
+    {
+      "Name": "QuestMailContent",
+      "Value": "Hey Kid,^^My throat's about as dry as a desert bone. I'm real thirsty for a pale ale, but Penny is trying to get me to drink more juice instead. Do you have any?^^I've been meaning to try some parsnip juice, but any vegetable juice will do.^^   -Pam%item quest 103 %%[#]Pam's Request",
+      "When": {
+        "QuestLetterFrom": "Pam"
+      }
+    },
+    {
+      "Name": "QuestMailContent",
+      "Value": "Hi @,^I've been trying to get my mom to drink juice more often, but we don't have any in the house. Do you think you could deliver some juice to her?^   -Penny^^P.S. Parsnip is probably her favorite, but any vegetable juice will do.%item quest 103 %%[#]Penny's Request",
+      "When": {
+        "QuestLetterFrom": "Penny"
+      }
+    },
+    //Quest mail variants (new mail received version)
+    {
+      "Name": "QuestAddNewMailContent",
+      "Value": "Hey Kid,^^I know I asked you for a pale ale earlier, but Penny is trying to get me to drink more juice these days. Do you have any?^^I've been meaning to try some parsnip juice, but any vegetable juice will do.^^   -Pam%item quest 103 %%[#]Pam's New Request",
+      "When": {
+        "QuestLetterFrom": "Pam"
+      }
+    },
+    {
+      "Name": "QuestAddNewMailContent",
+      "Value": "Hi @,^My mom's been craving pale ale, but I'm trying to encourage her to drink more juice instead. We don't have any juice in the house, though. Do you think you could deliver some to her?^   -Penny^^P.S. I think she'd enjoy parsnip juice the most, but any vegetable juice will do.%item quest 103 %%[#]Penny's Request",
+      "When": {
+        "QuestLetterFrom": "Penny"
+      }
+    },
+
+    //Boolean for replacing OG mail data
+    {
+      "Name": "ReplaceOriginalMail",
+      "Value": "true" //Always replace if OG mail never read, also replace if it was read but event 67210001 was seen prior to reading the mail
+    },
+    {
+      "Name": "ReplaceOriginalMail",
+      "Value": "false",
+      "When": {
+        "HasReadLetter": "summer_14_1",
+        "HasSeenEvent": "67210002" //This event id adds the new mail, and is a precondition for e 67210003 to wipe the old quest immediately after
+      }
+    }
+  ],
+
+  "Changes": [
+
+    {
+      "LogName": "Change Pam Is Thirsty quest details",
+      "Action": "EditData",
+      "Target": "Data/Quests",
+      "Fields": {
+        "103": {
+          2: "{{QuestDescription}}",
+          3: "Bring Pam any juice.",
+          4: "Pam 350",
+          9: "{{QuestEndDialogue}}"
+        }
+      }
+      // "When": Always (if they have the old quest, events to remove it should immmediately trigger anyways)
+    },
+    {
+      "LogName": "Change Pam Is Thirsty quest mail",
+      "Action": "EditData",
+      "Target": "Data/mail",
+      "Entries": {
+        "summer_14_1": "{{QuestMailContent}}"
+      },
+      "When": {
+        "ReplaceOriginalMail": "true" //if mail has not been read yet, OR
+        //after mail is read, so long as the "already recieved OG mail" event 67210002 hasn't triggered
+      },
+      //"Update": "OnLocationChange" //...apparently it's not needed to switch true -> false when you leave farmhouse after 67210002/67210003 events?
+    },
+    {
+      "LogName": "Add new Pam Is Thirsty quest mail #2",
+      "Action": "EditData",
+      "Target": "Data/mail",
+      "Entries": {
+        "6721DontEnablePam_NewMail": "{{QuestAddNewMailContent}}"
+      }
+      // "When": Always (no harm in loading the new mail even if it's never received)
+    },
+    {
+      "LogName": "Add tracking flags and invisible event triggers",
+      "Action": "EditData",
+      "Target": "Data/Events/FarmHouse",
+      "Entries": {
+
+        //Flag for not having read the OG mail
+        "67210001/k 67210002/l summer_14_1/j 41/x 6721DontEnablePam_Replace%&NL&%": "null", //Silent event (mail with %&NL&% adds no letter)
+        
+        //Flag for having already read the OG mail
+        "67210002/k 67210001/n summer_14_1/x 6721DontEnablePam_NewMail true": "null", //Silent event, puts new letter in your mailbox immediately
+        
+        //Mini event that removes the quest if you read the OG mail
+        "67210003/e 67210002": "continue/-1000 -1000/farmer 100 100 2/removeQuest 103/fade unfade/end" //Removes old version from your quest log
+      }
+    },
+    {
+      "LogName": "Debug mode to force new quest letter",
+      "Action": "EditData",
+      "Target": "Data/Events/FarmHouse",
+      "Entries": {
+        //No pre-requisite version of 67210002 to add new mail (and trigger 67210003 old quest removal) 
+        "67210002/x 6721DontEnablePam_NewMail true": "null", //Silent event, puts new letter in your mailbox immediately
+      },
+      "When": {
+        "DebugMode_ForceNewQuestLetter": "true"
+      }
+    }
+
+  ]
+}
