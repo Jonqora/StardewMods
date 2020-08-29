@@ -47,7 +47,7 @@ Story version - choose which character should send you the updated quest letter.
 
 [b][size=5][center]Notes[/center][/size][/b][size=4][b]ACKNOWLEDGEMENTS[/b][/size]
 [list]
-[*]Much gratitude to ConcernedApe and [url=https://www.nexusmods.com/stardewvalley/users/1552317?tab=user+files]Pathoschild[/url] !
+[*]Much gratitude to ConcernedApe and [url=https://www.nexusmods.com/stardewvalley/users/1552317?tab=user+files]Pathoschild[/url]!
 [*]Thanks to those who provided help and support in the [url=https://discordapp.com/invite/StardewValley]Stardew Valley Discord[/url] #making-mods channel.
 [*]Hat-tip to discussion in the #seasoned-farmers channel that originally inspired the idea for this mod!
 [/list]
