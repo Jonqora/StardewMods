@@ -1,5 +1,5 @@
 ﻿{
-  //PORTUGUESE-BR
+  //ENGLISH (DEFAULT)
   "Changes": [
 
     //Quest Details
@@ -16,6 +16,7 @@
       },
       "When": {
         "QuestLetterFrom": "Pam"
+        //Always (if they have the old quest, events to remove it should immmediately trigger anyways)
       }
     },
     {
@@ -31,6 +32,7 @@
       },
       "When": {
         "QuestLetterFrom": "Penny"
+        //Always (if they have the old quest, events to remove it should immmediately trigger anyways)
       }
     },
     
@@ -44,8 +46,10 @@
       },
       "When": {
         "QuestLetterFrom": "Pam",
-        "ReplaceOriginalMail": "true"
+        "ReplaceOriginalMail": "true" //if mail has not been read yet, OR
+        //after mail is read, so long as the "already recieved OG mail" event 67210002 hasn't triggered
       }
+      //"Update": "OnLocationChange" //...apparently it's not needed to switch true -> false when you leave farmhouse after 67210002/67210003 events?
     },
     {
       "LogName": "Change Pam Is Thirsty quest mail (Penny)",
@@ -56,8 +60,10 @@
       },
       "When": {
         "QuestLetterFrom": "Penny",
-        "ReplaceOriginalMail": "true"
+        "ReplaceOriginalMail": "true" //if mail has not been read yet, OR
+        //after mail is read, so long as the "already recieved OG mail" event 67210002 hasn't triggered
       }
+      //"Update": "OnLocationChange" //...apparently it's not needed to switch true -> false when you leave farmhouse after 67210002/67210003 events?
     },
     
     //Quest Mail (if delivering new quest mail)
@@ -70,6 +76,7 @@
       },
       "When": {
         "QuestLetterFrom": "Pam"
+        //Always (no harm in loading the new mail even if it's never received)
       }
     },
     {
@@ -81,6 +88,7 @@
       },
       "When": {
         "QuestLetterFrom": "Penny"
+        //Always (no harm in loading the new mail even if it's never received)
       }
     }
   ]

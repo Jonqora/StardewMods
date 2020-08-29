@@ -1,5 +1,5 @@
 {
-  "Format": "1.15",
+  "Format": "1.16",
 
   "ConfigSchema": {
     "QuestLetterFrom": {
@@ -73,7 +73,7 @@
   //ENGLISH
     {
       "Action": "Include",
-      "FromFile": "i18n/default.json",
+      "FromFile": "assets/i18n/default.json",
       "When": {
         "HasFile:i18n/{{language}}.json": false
       }
@@ -82,7 +82,7 @@
   //OTHER LANGUAGES
     {
       "Action": "Include",
-      "FromFile": "i18n/{{language}}.json",
+      "FromFile": "assets/i18n/{{language}}.json",
       "When": {
         "HasFile:{{FromFile}}": true
       }

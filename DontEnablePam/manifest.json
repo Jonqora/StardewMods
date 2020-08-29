@@ -8,6 +8,6 @@
   "UpdateKeys": [ "Nexus:6721" ],
   "ContentPackFor": {
     "UniqueID": "Pathoschild.ContentPatcher",
-    "MinimumVersion": "1.15.0"
+    "MinimumVersion": "1.16.0"
   }
 }
