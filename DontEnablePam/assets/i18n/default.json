@@ -16,7 +16,7 @@
       },
       "When": {
         "QuestLetterFrom": "Pam"
-        //Always (if they have the old quest, events to remove it should immmediately trigger anyways)
+        //Always (if they have the old quest, events to remove it should immediately trigger anyways)
       }
     },
     {
@@ -32,7 +32,7 @@
       },
       "When": {
         "QuestLetterFrom": "Penny"
-        //Always (if they have the old quest, events to remove it should immmediately trigger anyways)
+        //Always (if they have the old quest, events to remove it should immediately trigger anyways)
       }
     },
     

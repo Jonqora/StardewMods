@@ -39,7 +39,7 @@
           4: "Pam 350" //This makes the quest accept juice instead.
         }
       }
-      //When: Always (if they have the old quest, events to remove it should immmediately trigger anyways)
+      //When: Always (if they have the old quest, events to remove it should immediately trigger anyways)
     },
     {
       "LogName": "Add tracking flags and invisible event triggers",
