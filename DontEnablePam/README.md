@@ -1,5 +1,7 @@
 <details>
   <summary><i>TRANSLATION INFO:</i></summary>
+
+  [Visit this link](https://github.com/StardewModders/mod-translations/issues/32) if you would like to help translate this mod!
   
   - Traduction française incluse! (mes propres efforts)
   - Tradução para o português incluída, graças ao [YuugenKyungMi2SV](https://www.nexusmods.com/users/96648753)!
