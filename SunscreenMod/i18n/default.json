@@ -88,34 +88,34 @@
   //These are seen as speech bubbles above the heads of villagers who react to sunburn.
 
     "Reaction.Ah": "Ah!",
-    "Reaction.DearMe": "Dear me",
-    "Reaction.DearYoba": "Dear Yoba...",
+    "Reaction.DearMe": "Dear me", //Evelyn, Marnie
+    "Reaction.DearYoba": "Dear Yoba...", //Jodi
     "Reaction.DotDotDot": "...",
-    "Reaction.Eek": "Eek!",
+    "Reaction.Eek": "Eek!", //Penny, Haley, Jas, children
     "Reaction.ExclMarks": "!!!",
     "Reaction.Gasp": "*gasp*",
-    "Reaction.HaHaHa": "Ha ha ha!",
-    "Reaction.HolyCrap": "Holy crap",
-    "Reaction.HolyYoba": "Holy Yoba!",
-    "Reaction.Lobster": "As red as a lobster!",
-    "Reaction.LOL": "LOL",
-    "Reaction.NiceTan": "Nice \"tan\"...", // *snicker*
+    "Reaction.HaHaHa": "Ha ha ha!", //Vincent, children
+    "Reaction.HolyCrap": "Holy crap", //Sam, Leah
+    "Reaction.HolyYoba": "Holy Yoba!", //Demetrius, Emily, Krobus
+    "Reaction.Lobster": "As red as a lobster!", //Willy
+    "Reaction.LOL": "LOL", //Abigail, Alex, Haley, Maru, Sam
+    "Reaction.NiceTan": "Nice \"tan\"...", //Alex, Sebastian
     "Reaction.OhDear": "Oh dear",
-    "Reaction.OhMy": "Oh my",
-    "Reaction.OhMyGoodness": "Oh my goodness!",
+    "Reaction.OhMy": "Oh my", //Elliott, Wizard
+    "Reaction.OhMyGoodness": "Oh my goodness!", //Caroline, Jodi, Penny, Sandy
     "Reaction.OhNo": "Oh no!",
-    "Reaction.Oof": "Oof...",
+    "Reaction.Oof": "Oof...", //Alex, Clint, Kent, Pam, Sebastian, Willy
     "Reaction.Ouch": "Ouch!",
     "Reaction.PoorName": "Poor {{name}}...",
-    "Reaction.SurfaceDweller": "Hehe... surface dweller",
-    "Reaction.SweetYoba": "Sweet Yoba!",
+    "Reaction.SurfaceDweller": "Hehe... surface dweller", //Dwarf
+    "Reaction.SweetYoba": "Sweet Yoba!", //Demetrius, Pam
     "Reaction.ThatsGottaHurt": "That's gotta hurt",
-    "Reaction.Tomato": "A tomato!?",
+    "Reaction.Tomato": "A tomato!?", //Demetrius
     "Reaction.TooMuchSun": "Too much sun?",
     "Reaction.Wow": "Wow!",
     "Reaction.WowName": "Wow, {{name}}...",
-    "Reaction.WTF": "What the Ferngill?!",
-    "Reaction.Yikes": "Yikes",
+    "Reaction.WTF": "What the Ferngill?!", //Leah, Pierre, Shane
+    "Reaction.Yikes": "Yikes", //Abigail, Clint, Leah, Pierre, Robin, Shane
 
 
 // ================================================
