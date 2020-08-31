@@ -66,5 +66,6 @@ After running SMAPI at least once with Don't Enable Pam (and Content Patcher) in
 * Many thanks to [YuugenKyungMi2SV](https://www.nexusmods.com/users/96648753)﻿ for doing translations!
 
 ### SEE ALSO
+* Help [translate](https://github.com/StardewModders/mod-translations/issues/32) this mod to other languages
 * This mod on [GitHub](https://github.com/Jonqora/StardewMods/tree/master/DontEnablePam)
 * Check out [my other mods](https://www.nexusmods.com/users/88107803?tab=user+files)!
