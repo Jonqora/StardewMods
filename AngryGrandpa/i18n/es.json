@@ -37,12 +37,12 @@
     "GrandpaOrdinalYears": "primer|segundo|tercer|cuarto|quinto|sexto|séptimo|octavo|noveno|décimo",
     
     // Do not change {{ordinalYear}} tokens; these will automatically use an appropriate word from the list above.
-    "GrandpaNote": "{0}-\n\nEspera mi regreso en los albores del {{ordinalYear}} año.\n\n-Abuelo",
+    "GrandpaNote": "{0}-\n\nEspera mi regreso en los albores del {{ordinalYear}} año.\n\n-Tu abuelo",
     "GrandpaNoteMail": "@-^^Espera mi regreso en los albores del {{ordinalYear}} año.^^-Abuelo[#]Nota del abuelo",
 
     // Do not change {{smapiSDate}} tokens; these automatically generate a translated date string.
     // smapiSDate example: "Spring 1 in year 15" or "le 1 printemps de l'année 12"
-    "GrandpaNoteTenPlusYears": "{0}-\n\nEspera mi regreso en {{smapiSDate}}.\n\n-Abuelo",
+    "GrandpaNoteTenPlusYears": "{0}-\n\nEspera mi regreso en {{smapiSDate}}.\n\n-Tu abuelo",
     "GrandpaNoteMailTenPlusYears": "@-^^Espera mi regreso en {{smapiSDate}}.^^-Abuelo[#]Nota del abuelo",
     
 
@@ -116,7 +116,7 @@
     "RepeatEvaluationEvent.Original": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Mi querido muchacho...^Mi querida nieta...{{gpaNeutral}}
-            #$b#Me alegra que me hayas llamado. Estoy ansioso de ver el progreso que has hecho.{{gpaSurprise}}
+            #$b#Me alegro de que me hayas invocado. Estoy ansioso de ver el progreso que has hecho.{{gpaSurprise}}
             #$b#Confío en que has estado trabajando duro desde mi última visita.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 4000
         /speak Grandpa \"Veamos...{{gpaStern}}\"
@@ -124,7 +124,7 @@
     "RepeatEvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Mi queride niñe...{{gpaNeutral}}
-            #$b#Me alegra que me hayas llamado. Estoy ansioso de ver el progreso que has hecho.{{gpaSurprise}}
+            #$b#Me alegro de que me hayas invocado. Estoy ansioso de ver el progreso que has hecho.{{gpaSurprise}}
             #$b#Confío en que has estado trabajando duro desde mi última visita.{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 4000
         /speak Grandpa \"Veamos...{{gpaStern}}\"
@@ -201,7 +201,7 @@
     "EvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Mi queride niete...{{gpaHappy}}
-            #$b#Han pasado muchos años desde que hablamos por última vez. Eras solo una niña... ¿Lo recuerdas?{{gpaNeutral}}
+            #$b#Han pasado muchos años desde que hablamos por última vez. Eras solo un niñe... ¿Lo recuerdas?{{gpaNeutral}}
             #$b#Espero que, durante este tiempo, hayas trabajado en ti y en la granja que te dejé.{{gpaStern}}
             #$b#Desde mi muerte no he sido capaz de cuidar de la granja %farm... y mi alma está algo molesta por ello.{{gpaFrown}}
             #$b#Tal vez tu trabajo en la granja me deje finalmente descansar en paz.{{gpaHappy}}\"
@@ -245,8 +245,8 @@
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
     "GrandpaDuringManyYears": "todos estos años",
     // Token used for {{pastYears}} when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
-    "GrandpaDuringManyYears.Nuclear": "todos estos años...{{gpaShock}}
-        #$b#Por el amor de Yoba, ¿no te das cuenta de que ha pasado más de una década?",
+    "GrandpaDuringManyYears.Nuclear": "todos estos años?{{gpaShock}}
+        #$b#Por el amor de Yoba, ¿no te das cuenta de que ha pasado más de una década",
 
     //Special lines of text for {{fifthCandle}} token that are added to the 4-candle dialogue ONLY if a player earns all 21 grandpa points in one year.
     "FifthCandle.Original": "#$b#Vaya, parece que has logrado incluso lo imposible.{{gpaShock}}
@@ -271,23 +271,23 @@
         #$b#Debería haberle dejado la granja a otro de mis nietos...{{gpaSigh}}",
 
     "2CandleResult.Original": "Has hecho un trabajo decente con este sitio.{{gpaNeutral}}
-        #$b#Lo has hecho lo mejor que has podido... supongo que eso es suficiente.{{gpaStern}}",
+        #$b#Parece que has hecho lo mejor que has podido... supongo que eso es suficiente.{{gpaStern}}",
     "2CandleResult.Original-gn": "Has hecho un trabajo decente con este sitio.{{gpaNeutral}}
-        #$b#Lo has hecho lo mejor que has podido... supongo que eso es suficiente.{{gpaStern}}",
+        #$b#Parece que has hecho lo mejor que has podido... supongo que eso es suficiente.{{gpaStern}}",
 
-    "3CandleResult.Original": "Lo has hecho bien, muchacho mío.^Lo has hecho bien, querida.{{gpaHappy}}
-        #$b#La granja %farm nunca ha estado mejor. Es un honor para nuestra familia.{{gpaSurprise}}
+    "3CandleResult.Original": "Lo has hecho genial, querido.^Lo has hecho bien, querida.{{gpaHappy}}
+        #$b#La granja %farm nunca había tenido mejor aspecto. Eres todo un orgullo para la familia.{{gpaSurprise}}
         #$b#Has hecho feliz a tu abuelo.{{gpaLove}}",
-    "3CandleResult.Original-gn": "Lo has hecho bien, mi niñe.{{gpaHappy}}
-        #$b#La granja %farm nunca ha estado mejor. Es un honor para nuestra familia.{{gpaSurprise}}
+    "3CandleResult.Original-gn": "Lo has hecho genial, queride.{{gpaHappy}}
+        #$b#La granja %farm nunca había tenido mejor aspecto. Eres todo un orgullo para la familia.{{gpaSurprise}}
         #$b#Has hecho feliz a tu abuelo.{{gpaLove}}",
 
-    "4CandleResult.Original": "¡Estoy muy orgulloso de ti, muchacho mío!^¡Estoy muy orgulloso de ti, querida!{{gpaLove}}
-        #$b#Eres mejor granjero de lo que yo nunca fui, y tu esfuerzo supone un orgullo enorme para nuestra familia.^Eres mejor granjera de lo que yo nunca fui, y tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
-        #$b#Ahora puedo sentirlo... Mi alma por fin puede descansar. Te deseo lo mejor.{{gpaHappy}}",
-    "4CandleResult.Original-gn": "¡Estoy muy orgulloso de ti, mi niñe!{{gpaLove}}
-        #$b#Eres mejor granjere de lo que yo nunca fui, y tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
-        #$b#Ahora puedo sentirlo... Mi alma por fin puede descansar. Te deseo lo mejor.{{gpaHappy}}",
+    "4CandleResult.Original": "¡Qué orgulloso estoy de ti, querido!^¡Qué orgulloso estoy de ti, querida!{{gpaLove}}
+        #$b#Yo jamás fui tan buen granjero como tú. Tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Puedo sentirlo... Mi espíritu está listo para descansar. Te deseo lo mejor.{{gpaHappy}}",
+    "4CandleResult.Original-gn": "¡Qué orgulloso estoy de ti, queride!{{gpaLove}}
+        #$b#Yo jamás fui tan buen granjero como tú. Tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Puedo sentirlo... Mi espíritu está listo para descansar. Te deseo lo mejor.{{gpaHappy}}",
 
     // Re-evaluations didn't exist in the original game, so these entries are creatively altered to fit grandpa's old attitudes.
     "1CandleReevaluation.Original": "Siento tener que decir esto... pero todavía no has logrado mucho.{{gpaFrown}}
@@ -304,23 +304,23 @@
         #$b#Parece que lo has hecho lo mejor que has podido... eso es todo lo que puedo pedir.{{gpaNeutral}}
         #$b#Debo volver al otro mundo ahora... invócame de nuevo cuando hayas progresado más.{{gpaStern}}",
     
-    "3CandleReevaluation.Original": "Has hecho un buen trabajo, muchacho mío.^Has hecho un buen trabajo, querida.{{gpaHappy}}
-        #$b#La granja %farm nunca ha estado mejor. Es todo un honor para la familia.{{gpaSurprise}}
+    "3CandleReevaluation.Original": "Lo has hecho genial, querido.^Lo has hecho genial, querida.{{gpaHappy}}
+        #$b#La granja %farm nunca había tenido mejor aspecto. Eres todo un orgullo para la familia.{{gpaSurprise}}
         #$b#Has hecho feliz a tu abuelo.{{gpaLove}}
         #$b#Ahora debo volver al otro mundo... pero puedes volver a llamarme cuando quieras.{{gpaNeutral}}",
-    "3CandleReevaluation.Original-gn": "Has hecho un buen trabajo, mi niñe.{{gpaHappy}}
-        #$b#La granja %farm nunca ha estado mejor. Es todo un honor para la familia.{{gpaSurprise}}
+    "3CandleReevaluation.Original-gn": "Lo has hecho genial, queride.{{gpaHappy}}
+        #$b#La granja %farm nunca había tenido mejor aspecto. Eres todo un orgullo para la familia.{{gpaSurprise}}
         #$b#Has hecho feliz a tu abuelo.{{gpaLove}}
         #$b#Ahora debo volver al otro mundo... pero puedes volver a llamarme cuando quieras.{{gpaNeutral}}",
     
-    "4CandleReevaluation.Original": "¡Estoy muy orgulloso de ti, muchacho mío!^¡Estoy muy orgulloso de ti, querida!{{gpaLove}}
+    "4CandleReevaluation.Original": "¡Qué orgulloso estoy de ti, querido!^¡Qué orgulloso estoy de ti, querida!{{gpaLove}}
         #$b#¡Por fin has podido sacar todo el potencial de la granja %farm!{{gpaJoy}}
-        #$b#Eres mejor granjero de lo que yo nunca fui, y tu esfuerzo supone un orgullo enorme para nuestra familia.^Eres mejor granjera de lo que yo nunca fui, y tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
-        #$b#Por fin puedo sentirlo... Mi alma puede descansar finalmente. Te deseo lo mejor.{{gpaHappy}}",
-    "4CandleReevaluation.Original-gn": "¡Estoy muy orgulloso de ti, mi niñe!{{gpaLove}}
+        #$b#Yo jamás fui tan buen granjero como tú. Tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Puedo sentirlo... Mi alma puede descansar finalmente. Te deseo lo mejor.{{gpaHappy}}",
+    "4CandleReevaluation.Original-gn": "¡Qué orgulloso estoy de ti, queride!{{gpaLove}}
         #$b#¡Por fin has podido sacar todo el potencial de la granja %farm!{{gpaJoy}}
-        #$b#Eres mejor granjere de lo que yo nunca fui, y tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
-        #$b#Por fin puedo sentirlo... Mi alma puede descansar finalmente. Te deseo lo mejor.{{gpaHappy}}",
+        #$b#Yo jamás fui tan buen granjero como tú. Tu esfuerzo supone un orgullo enorme para nuestra familia.{{gpaSurprise}}{{fifthCandle}}
+        #$b#Puedo sentirlo... Mi alma puede descansar finalmente. Te deseo lo mejor.{{gpaHappy}}",
 
   // ==========================
   // "VANILLA" DIALOGUE VARIANT
@@ -473,7 +473,7 @@
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
     "1CandleReevaluation.Nuclear": "Creo que fui demasiado duro contigo la última vez, así que he vuelto para echar un vistazo...{{gpaSurprise}}
         #$b#Pero parece que aún no has hecho jodidamente nada.{{gpaRage}}
-        #$b#Tu primo %rival y su granja te dejan por los suelos.{{gpaAngry}}
+        #$b#Tu primo %rival y su granja te dejan por los suelos.^Tu prima %rival y su granja te dejan por los suelos.{{gpaAngry}}
         #$b#Esto está siendo una pérdida de tiempo.{{gpaFrown}}
         #$b#...{{gpaSigh}}
         #$b#Me voy... no me vuelvas a invocar a no ser que tengas algo que merezca la pena ver.{{gpaFrown}}
@@ -565,7 +565,7 @@
     // Note to translators - do not translate the option names Original/Vanilla/Hard/Expert
 
     "YearsBeforeEvaluation.name": "Años antes de la evaluación",
-    "YearsBeforeEvaluation.description": "Años dentro del juego que quedan para la primera visita del abuelo:{{NL}}  El valor por defecto es [2] - el abuelo aparecerá el día 3 de primavera del año 3",
+    "YearsBeforeEvaluation.description": "Años dentro del juego que quedan para la primera visita del abuelo:{{NL}}  El valor por defecto es [2] - el abuelo aparecerá el día 1 de primavera del año 3",
 
     "ShowPointsTotal.name": "Mostrar puntos totales",
     "ShowPointsTotal.description": "Muestra tu puntuación obtenida en la evaluación",
