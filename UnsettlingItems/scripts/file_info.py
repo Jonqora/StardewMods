@@ -1,6 +1,6 @@
 files_to_convert = [
     # filename, separator, name index (-1 if none), description index
-    ['Achievements', "^", 0, 1],
+    # ['Achievements', "^", 0, 1],
     ['BigCraftablesInformation', "/", 0, 4],
     ['Blueprints', "/", 8, 9],
     ['Boots', "/", 0, 1],

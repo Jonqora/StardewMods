@@ -1,46 +1,6 @@
 {
   "Changes": [
     {
-      "LogName": "Edit Achievements descriptions",
-      "Action": "EditData",
-      "Target": "Data/Achievements",
-      "Fields": {
-        "2": {
-          "1": "Hoard riches for yourself: earn 250,000g"
-        },
-        "3": {
-          "1": "Succumb to the sweet allure of capitalism: earn 1,000,000g"
-        },
-        "4": {
-          "1": "Join the 1%: earn 10,000,000g"
-        },
-        "6": {
-          "1": "Fool some poor sap into thinking you're a decent person. (5 hearts)"
-        },
-        "7": {
-          "1": "Bribe your way into someone's heart. (10 hearts)"
-        },
-        "9": {
-          "1": "Bribe your way into the hearts of 8 people. (10 hearts)"
-        },
-        "11": {
-          "1": "Fool 4 people into thinking you're a decent person. (5 hearts)"
-        },
-        "12": {
-          "1": "Fool 10 people into thinking you're a decent person. (5 hearts)"
-        },
-        "13": {
-          "1": "Fool 20 people into thinking you're a decent person. (5 hearts)"
-        },
-        "18": {
-          "1": "Increase your carbon footprint: upgrade your house."
-        },
-        "19": {
-          "1": "Embrace materialism: upgrade your house to the maximum size."
-        }
-      }
-    },
-    {
       "LogName": "Edit BigCraftablesInformation descriptions",
       "Action": "EditData",
       "Target": "Data/BigCraftablesInformation",
