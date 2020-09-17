@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smapiTV", "smapiTV\smapiTV.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Mods", "Tests.Mods\Tests.Mods.csproj", "{54AF9F0D-471F-4D1B-B0A8-76B0FF90F448}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnsettlingDescriptions", "UnsettlingItems\UnsettlingDescriptions.csproj", "{CDD22A50-945D-4238-9318-7710DA83E00D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnsettlingDescriptions", "UnsettlingDescriptions\UnsettlingDescriptions.csproj", "{CDD22A50-945D-4238-9318-7710DA83E00D}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
