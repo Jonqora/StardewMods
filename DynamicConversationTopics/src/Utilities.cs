@@ -13,6 +13,7 @@ namespace DynamicConversationTopics
     public class Utilities
     {
         private static IMonitor Monitor => ModEntry.Instance.Monitor;
+        internal protected static ModConfig Config => ModConfig.Instance;
 
         /// <summary>
         /// Checks if a given game asset is a dialogue file (string, string dictionary) from Characters/Dialogue/-NAME-
@@ -106,7 +107,7 @@ namespace DynamicConversationTopics
                         if (!ATarget.opcode.Equals(BMatch.opcode) ||
                             (BMatch.operand != null && !ATarget.operand.Equals(BMatch.operand)))
                         {
-                            Monitor.Log($"ATarget | {ATarget.opcode} | {ATarget.operand}\n" +
+                            if (Config.DebugMode) Monitor.Log($"ATarget | {ATarget.opcode} | {ATarget.operand}\n" +
                                 $"BMatch | {BMatch.opcode} | {BMatch.operand}\n", LogLevel.Debug);
                             foundMatch = false;
                             break;
@@ -117,6 +118,52 @@ namespace DynamicConversationTopics
                         foundMatch = false;
                         break;
                     }
+                }
+                if (foundMatch)
+                {
+                    return i + returnOffset;
+                }
+            }
+            return null; //No match found
+        }
+
+        /// <summary>
+        /// Searches a list (e.g., of CodeInstructions) for a sublist that matches a set of criteria. 
+        /// </summary>
+        /// <param name="target">The list to search through</param>
+        /// <param name="criteria">The list of criteria (lambdas returning bool) to evaluate sublists in the target</param>
+        /// <param name="startPos">Zero-indexed search start point in the target list</param>
+        /// <param name="returnOffset">Zero-indexed entry in the match list to return the target index of, if found</param>
+        /// <returns>null if no match found, else returns the index of the match (with offset if specified)</returns>
+        public static int? findSublist<T>(List<T> target, List<Func<T,bool>> criteria, int startPos = 0, int returnOffset = 0)
+        {
+            if (startPos > target.Count - criteria.Count)
+            {
+                //Not enough room to find match in remaining list
+                return null;
+            }
+            for (int i = startPos; i <= target.Count - criteria.Count; i++)
+            {
+                bool foundMatch = true;
+                for (int j = 0; j < criteria.Count; j++)
+                {
+                    var targetItem = target[i + j];
+                    var criteriaItem = criteria[j];
+
+                    if (!criteriaItem(targetItem)) //Call the criteria function to evaluate the target item
+                    {
+                        if (Config.DebugMode && j > 0) Monitor.Log($"Returned false on target[{i + j}], criteria[{j}]\n" +
+                            (targetItem is CIL ?
+                            $"targetItem | {((CIL)(object)targetItem).opcode} | {((CIL)(object)targetItem).operand}" :
+                            $"targetItem | {targetItem}"), LogLevel.Debug);
+
+                        foundMatch = false;
+                        break;
+                    }
+                    if (Config.DebugMode && targetItem is CIL) Monitor.Log($"Returned TRUE on target[{i + j}], criteria[{j}]\n" +
+                            (targetItem is CIL ?
+                            $"targetItem | {((CIL)(object)targetItem).opcode} | {((CIL)(object)targetItem).operand}" :
+                            $"targetItem | {targetItem}"), LogLevel.Info);
                 }
                 if (foundMatch)
                 {

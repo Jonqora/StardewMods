@@ -11,6 +11,7 @@ using System.Reflection.Emit;
 using System.Reflection;
 using System.Drawing;
 using System.Diagnostics;
+using System.Net;
 
 namespace DynamicConversationTopics
 {
@@ -30,13 +31,14 @@ namespace DynamicConversationTopics
         /*********
         ** Fields
         *********/
-        //The section of CodeInstructions where we should exit the loop if HasSpokenRecently is true.
-        //Desired index is 0 (the start of the function).
-        static List<CIL> matchStart = new List<CIL>() { };
 
-        //The section of CodeInstructions where we should add a call to AddToRecentTopicSpeakers.
+        //Criteria matching the section of CodeInstructions where we should exit the loop if HasSpokenRecently is true.
+        //Desired index is 0 (the start of the function).
+        static List<Func<CIL, bool>> skipCriteria = new List<Func<CIL, bool>>() { };
+
+        //Criteria matching the section of CodeInstructions where we should add a call to AddToRecentTopicSpeakers.
         //Desired index is right after the Brtrue_S, so index 4 in this list.
-        static List<CIL> matchAddToRecentTopicSpeakers = new List<CIL>()
+        static List<Func<CIL, bool>> trackCriteria = new List<Func<CIL, bool>>()
         {
             //(C#)
             // if (!s.Contains("dumped"))
@@ -48,7 +50,7 @@ namespace DynamicConversationTopics
             //ldloc.s s
             //ldstr "dumped"
             //callvirt instance bool [mscorlib]System.String::Contains(string)
-            //brtrue.s IL_00c9 (offset 9?)
+            //brtrue.s IL_00c9
             //call class StardewValley.Farmer StardewValley.Game1::get_player()
             //ldfld class [Netcode]Netcode.NetStringList StardewValley.Farmer::mailReceived
             //ldarg.0
@@ -58,33 +60,45 @@ namespace DynamicConversationTopics
             //call string [mscorlib]System.String::Concat(string, string, string)
             //callvirt instance void class [Netcode]Netcode.NetList`2<string, class [Netcode]Netcode.NetString>::Add(!0)
 
-            new CIL(OpCodes.Ldloc_S, null), //Null to match any variable
-            new CIL(OpCodes.Ldstr, "dumped"),
-            new CIL(OpCodes.Callvirt, typeof(string).GetMethod("Contains", new Type[]{ typeof(string) })),
-            new CIL(OpCodes.Brtrue, null), //Null to match any offset
-            new CIL(OpCodes.Call, typeof(Game1).GetMethod("get_player")),
-            new CIL(OpCodes.Ldfld, typeof(Farmer).GetField("mailReceived")),
-            new CIL(OpCodes.Ldarg_0),
-            new CIL(OpCodes.Call, typeof(Character).GetMethod("get_Name")),
-            new CIL(OpCodes.Ldstr, "_"),
-            new CIL(OpCodes.Ldloc_0),
-            new CIL(OpCodes.Call, typeof(string).GetMethod("Concat", new Type[]{ typeof(string), typeof(string), typeof(string) })),
-            new CIL(OpCodes.Callvirt, typeof(Netcode.NetList<string, Netcode.NetString>).GetMethod("Add", new Type[] { typeof(string)}))
+            x => new List<OpCode>(){ OpCodes.Ldloc_0, OpCodes.Ldloc_1, OpCodes.Ldloc_2, OpCodes.Ldloc_3,
+            OpCodes.Ldloc, OpCodes.Ldloc_S, }.Contains(x.opcode),
+            x => x.opcode.Equals(OpCodes.Ldstr) && 
+                x.operand.Equals("dumped"),
+            x => x.opcode.Equals(OpCodes.Callvirt) && 
+                x.operand.Equals(typeof(string).GetMethod("Contains", new Type[]{ typeof(string) })),
+            x => new List<OpCode>(){ OpCodes.Brtrue, OpCodes.Brtrue_S }.Contains(x.opcode),
+            x => x.opcode.Equals(OpCodes.Call) && 
+                x.operand.Equals(typeof(Game1).GetMethod("get_player")),
+            x => x.opcode.Equals(OpCodes.Ldfld) &&
+                x.operand.Equals(typeof(Farmer).GetField("mailReceived")),
+            x => new List<OpCode>(){ OpCodes.Ldarg_0, OpCodes.Ldarg_1, OpCodes.Ldarg_2, OpCodes.Ldarg_3,
+            OpCodes.Ldarg_S, OpCodes.Ldarg }.Contains(x.opcode),
+            x => x.opcode.Equals(OpCodes.Call) && 
+                x.operand.Equals(typeof(Character).GetMethod("get_Name")),
+            x => x.opcode.Equals(OpCodes.Ldstr) &&
+                x.operand.Equals("_"),
+            x => new List<OpCode>(){ OpCodes.Ldloc_0, OpCodes.Ldloc_1, OpCodes.Ldloc_2, OpCodes.Ldloc_3,
+            OpCodes.Ldloc, OpCodes.Ldloca, OpCodes.Ldloc_S, OpCodes.Ldloca_S }.Contains(x.opcode),
+            x => x.opcode.Equals(OpCodes.Call) &&
+                x.operand.Equals(typeof(string).GetMethod("Concat", new Type[]{ typeof(string), typeof(string), typeof(string) })),
+            x => x.opcode.Equals(OpCodes.Callvirt) &&
+                x.operand.Equals(typeof(Netcode.NetList<string, Netcode.NetString>).GetMethod("Add", new Type[] { typeof(string)}))
         };
 
-        //The section of CodeInstructions where we should identify the Leave_S operand and use it to exit the loop earlier
+        //Criteria matching the CodeInstructions where we should identify the Leave operand label and use it to exit the loop
         //Desired index is Leave_S, so index 3 in this list.
-        static List<CIL> matchEndForeachLoop = new List<CIL>()
+        static List<Func<CIL, bool>> targetCriteria = new List<Func<CIL, bool>>()
         {
             //ldloca.s 2
             //call instance bool valuetype [Netcode]Netcode.NetDictionary`5/KeysCollection/Enumerator<string, int32, class [Netcode]Netcode.NetInt, class StardewValley.SerializableDictionary`2<string, int32>, class StardewValley.Network.NetStringDictionary`2<int32, class [Netcode]Netcode.NetInt>>::MoveNext()
             //brtrue IL_0023
             //leave.s IL_00ed
 
-            new CIL(OpCodes.Ldloca_S, null), //Null to match any variable
-            new CIL(OpCodes.Call, null), //Null to match whatever the heck that is D:
-            new CIL(OpCodes.Brtrue, null), //Null to match any offset
-            new CIL(OpCodes.Leave, null) //This is the branch instruction whose operand label I want to copy
+            x => new List<OpCode>(){ OpCodes.Ldloca, OpCodes.Ldloca_S }.Contains(x.opcode),
+            x => x.opcode.Equals(OpCodes.Call) &&
+                x.operand.Equals(typeof(Netcode.NetDictionary<string, int, Netcode.NetInt, SerializableDictionary<string, int>, StardewValley.Network.NetStringDictionary<int, Netcode.NetInt>>.KeysCollection.Enumerator).GetMethod("MoveNext")),
+            x => new List<OpCode>(){ OpCodes.Brtrue, OpCodes.Brtrue_S }.Contains(x.opcode),
+            x => new List<OpCode>(){ OpCodes.Leave, OpCodes.Leave_S }.Contains(x.opcode)
         };
 
 
@@ -117,9 +131,9 @@ namespace DynamicConversationTopics
             {
                 var codes = new List<CIL>(instructions);
 
-                int? insertSkipLocation = Utilities.findListMatch(codes, matchStart);
-                int? insertTrackLocation = insertSkipLocation == null ? null : Utilities.findListMatch(codes, matchAddToRecentTopicSpeakers, insertSkipLocation.Value, 4);
-                int? findTargetLocation = insertTrackLocation == null ? null : Utilities.findListMatch(codes, matchEndForeachLoop, insertTrackLocation.Value, 3);
+                int? insertSkipLocation = Utilities.findSublist(codes, skipCriteria);
+                int? insertTrackLocation = insertSkipLocation == null ? null : Utilities.findSublist(codes, trackCriteria, insertSkipLocation.Value, 4);
+                int? findTargetLocation = insertTrackLocation == null ? null : Utilities.findSublist(codes, targetCriteria, insertTrackLocation.Value, 3);
 
                 if (insertSkipLocation != null &&
                     insertTrackLocation != null &&

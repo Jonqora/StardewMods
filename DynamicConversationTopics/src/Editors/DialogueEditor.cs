@@ -58,7 +58,7 @@ namespace DynamicConversationTopics
 			//Insert dialogue for test topics
 			foreach (string topic in ModEntry.Instance.TestTopics)
             {
-				data[topic] = $"Test dialogue: {topic}";
+				data[topic] = $"Test dialogue: {topic}#$b#More test dialogue: {topic}#$e#Even more test dialogue after a break: {topic}";
             }
 		}
 	}
