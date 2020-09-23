@@ -1,11 +1,12 @@
 import os.path
 import json
 import csv
+from collections import OrderedDict
 from file_info import files_to_convert
 
 non_starters = ["TODO", "UNOBTAINABLE", "NON-INVENTORY", "ALREADY UNSETTLING"]
 
-cp_json_object = {"Changes": []}
+cp_json_object = OrderedDict({"Changes": []})
 
 # Add Fields patches for each file
 for entry in files_to_convert:
@@ -13,12 +14,11 @@ for entry in files_to_convert:
     desc_index = entry[3]
 
     # Create patch object
-    new_patch = {
-        "LogName": f"Edit {target_name} descriptions",
-        "Action": "EditData",
-        "Target": f"Data/{target_name}",
-        "Fields": {}
-    }
+    new_patch = OrderedDict()
+
+    new_patch["LogName"] = "Edit " + target_name + " descriptions"
+    new_patch["Action"] = "EditData"
+    new_patch["Target"] = "Strings/" + target_name
 
     # Check if this filled csv file exists
     if not os.path.isfile('csv_filled/Unsettling Item Descriptions - ' + target_name + '.csv'):
@@ -30,9 +30,10 @@ for entry in files_to_convert:
         reader = csv.DictReader(csv_file)
 
         if target_name == "ClothingInformation":
-            new_patch["Entries"] = {}
-
+            new_patch["Entries"] = OrderedDict()
             generic_shirt = "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt"
+
+        new_patch["Fields"] = OrderedDict()
 
         for row in reader:
 
@@ -59,12 +60,12 @@ target_name = 'StringsFromCSFiles'
 if os.path.isfile('csv_filled/Unsettling Item Descriptions - ' + target_name + '.csv'):
 
     # Create patch object
-    new_patch = {
-        "LogName": f"Edit {target_name}",
-        "Action": "EditData",
-        "Target": f"Strings/{target_name}",
-        "Entries": {}
-    }
+    new_patch = OrderedDict()
+
+    new_patch["LogName"] = "Edit " + target_name
+    new_patch["Action"] = "EditData"
+    new_patch["Target"] = "Strings/" + target_name
+    new_patch["Entries"] = OrderedDict()
 
     # Read and enter data from the csv file
     with open('csv_filled/Unsettling Item Descriptions - ' + target_name + '.csv') as csv_file:
