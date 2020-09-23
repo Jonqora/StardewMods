@@ -29,6 +29,11 @@ for entry in files_to_convert:
         print(target_name)
         reader = csv.DictReader(csv_file)
 
+        if target_name == "ClothingInformation":
+            new_patch["Entries"] = {}
+
+            generic_shirt = "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt"
+
         for row in reader:
 
             hasDesc = True
@@ -39,6 +44,10 @@ for entry in files_to_convert:
                     hasDesc = False
 
             if hasDesc:
+                # Manually add entry for generic shirts to allow custom description
+                if target_name == "ClothingInformation" and row["name"] == "Shirt":
+                    new_patch["Entries"][row["key"]] = generic_shirt
+                # Add the unsettling description
                 new_patch["Fields"][row["key"]] = {desc_index: row["unsettling_description"]}
 
     # Add patch
