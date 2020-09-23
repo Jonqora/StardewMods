@@ -18,7 +18,7 @@ for entry in files_to_convert:
 
     new_patch["LogName"] = "Edit " + target_name + " descriptions"
     new_patch["Action"] = "EditData"
-    new_patch["Target"] = "Strings/" + target_name
+    new_patch["Target"] = "Data/" + target_name
 
     # Check if this filled csv file exists
     if not os.path.isfile('csv_filled/Unsettling Item Descriptions - ' + target_name + '.csv'):

@@ -3,7 +3,7 @@
     {
       "LogName": "Edit BigCraftablesInformation descriptions",
       "Action": "EditData",
-      "Target": "Strings/BigCraftablesInformation",
+      "Target": "Data/BigCraftablesInformation",
       "Fields": {
         "0": {
           "4": "The small flower buds have a sweet, heady aroma."
@@ -328,7 +328,7 @@
     {
       "LogName": "Edit Blueprints descriptions",
       "Action": "EditData",
-      "Target": "Strings/Blueprints",
+      "Target": "Data/Blueprints",
       "Fields": {
         "Silo": {
           "9": "Stores dead organisms to feed your livestock."
@@ -356,7 +356,7 @@
     {
       "LogName": "Edit Boots descriptions",
       "Action": "EditData",
-      "Target": "Strings/Boots",
+      "Target": "Data/Boots",
       "Fields": {
         "504": {
           "1": "Stylish, but they lack traction on muddy, slimy, or bloody surfaces."
@@ -402,7 +402,7 @@
     {
       "LogName": "Edit ClothingInformation descriptions",
       "Action": "EditData",
-      "Target": "Strings/ClothingInformation",
+      "Target": "Data/ClothingInformation",
       "Entries": {
         "1105": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt"
       },
@@ -529,7 +529,7 @@
     {
       "LogName": "Edit hats descriptions",
       "Action": "EditData",
-      "Target": "Strings/hats",
+      "Target": "Data/hats",
       "Fields": {
         "0": {
           "1": "There's a small, round hole torn out of the brim."
@@ -623,7 +623,7 @@
     {
       "LogName": "Edit ObjectInformation descriptions",
       "Action": "EditData",
-      "Target": "Strings/ObjectInformation",
+      "Target": "Data/ObjectInformation",
       "Fields": {
         "16": {
           "5": "A hotly pungent, fleshy root. Crushing or grinding it releases the flavor and heat."
@@ -2232,7 +2232,7 @@
     {
       "LogName": "Edit weapons descriptions",
       "Action": "EditData",
-      "Target": "Strings/weapons",
+      "Target": "Data/weapons",
       "Fields": {
         "0": {
           "1": "Bestows tetanus on your enemies. And on you, if you're not careful."

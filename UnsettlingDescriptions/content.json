@@ -6,7 +6,7 @@
       "Action": "Include",
       "FromFile": "assets/i18n/default.json",
       "When": {
-        "HasFile:i18n/{{language}}.json": false
+        "HasFile:assets/i18n/{{language}}.json": false
       }
     },
   //OTHER LANGUAGES
