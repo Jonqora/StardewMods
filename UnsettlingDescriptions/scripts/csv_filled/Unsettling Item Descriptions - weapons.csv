@@ -12,7 +12,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(32, 16)",10,Claymore,,It's strong enough to cleave through heavy armor.,,It's really heavy.
 "(48, 16)",11,Steel Smallsword,,"It's not the size that counts, it's how you use it.",,A standard metal blade.
 "(64, 16)",12,Wooden Blade,,"What a weak sword. You might as well scream ""Kill me!"" instead.",,Not bad for a piece of carved wood.
-"(80, 16)",13,Insect Head,,Insect guts and a decapitated head. Kill monsters with their own kind.,,Not very pleasant to wield.
+"(80, 16)",13,Insect Head,,"Made from insect guts and a detached head, it seems to still chitter softly.",,Not very pleasant to wield.
 "(96, 16)",14,Neptune's Glaive,,You'll be in for a world of trouble if Neptune ever comes back for it.,,An heirloom from beyond the Gem Sea.
 "(112, 16)",15,Forest Sword,,Even the trees are conspiring to bloodshed.,,Made powerful by forest magic.
 "(0, 32)",16,Carving Knife,,Melt through bones like butter with this knife!,,"A small, light blade."
