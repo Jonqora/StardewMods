@@ -85,7 +85,7 @@ Wingheart's favorite: **Log Cabin**
 [Forsy :D](https://www.nexusmods.com/users/84002498)'s favorite: **Living Hat**
 > It slowly absorbs life energy from your scalp, waiting for the day you die.
 
-icecreamrat's favorite: **Official Cap**
+[icecreamrat](https://www.nexusmods.com/users/91777683)'s favorite: **Official Cap**
 > Wear this and you can get away with murder.
 
 [Arcane](https://www.nexusmods.com/users/67314851?tab=user+files)'s favorite: **Shirt (made from Basalt)**
@@ -117,7 +117,7 @@ If you want to help add to this mod by suggesting description ideas for missed i
 ---
 ## Notes
 ### ACKNOWLEDGEMENTS
-* This project was made possible by the joint creativity of many people! Huge thanks to contributors [Draylon](https://www.nexusmods.com/users/8049772), [SwiftIsHere](https://www.nexusmods.com/users/61873026), [foggywizard](https://www.nexusmods.com/users/48380238), [Forsy :D](https://www.nexusmods.com/users/84002498), [ItsBenter](https://www.nexusmods.com/users/41011220), [Undare](https://www.nexusmods.com/users/12004908), [Ruukas](https://www.nexusmods.com/users/3391358), [ExnoticTest](https://www.nexusmods.com/users/85656033), [Kat](https://github.com/KatrinaHoffert), [General Alexis](https://www.nexusmods.com/users/94394293), [LenneDalben](https://www.nexusmods.com/users/18592979?tab=user+files), Glowbug, Wingheart, [Arknir](https://www.nexusmods.com/stardewvalley/users/92469153), ssoshwac, Wobin, [Gervig91](https://www.nexusmods.com/stardewvalley/users/24986819), [Arcane](https://www.nexusmods.com/users/67314851?tab=user+files), and icecreamrat.
+* This project was made possible by the joint creativity of many people! Huge thanks to contributors [Draylon](https://www.nexusmods.com/users/8049772), [SwiftIsHere](https://www.nexusmods.com/users/61873026), [foggywizard](https://www.nexusmods.com/users/48380238), [Forsy :D](https://www.nexusmods.com/users/84002498), [ItsBenter](https://www.nexusmods.com/users/41011220), [Undare](https://www.nexusmods.com/users/12004908), [Ruukas](https://www.nexusmods.com/users/3391358), [ExnoticTest](https://www.nexusmods.com/users/85656033), [Kat](https://github.com/KatrinaHoffert), [General Alexis](https://www.nexusmods.com/users/94394293), [LenneDalben](https://www.nexusmods.com/users/18592979?tab=user+files), Glowbug, Wingheart, [Arknir](https://www.nexusmods.com/stardewvalley/users/92469153), ssoshwac, Wobin, [Gervig91](https://www.nexusmods.com/stardewvalley/users/24986819), [Arcane](https://www.nexusmods.com/users/67314851?tab=user+files), and [icecreamrat](https://www.nexusmods.com/users/91777683).
 * Much gratitude to ConcernedApe and [Pathoschild](https://www.nexusmods.com/stardewvalley/users/1552317?tab=user+files)!
 * Thanks to those who provided help and support in the [Stardew Valley Discord](https://discordapp.com/invite/StardewValley) #making-mods channel.
 * If you want to contribute description ideas to expand this mod, you can [comment your suggestions here!](https://docs.google.com/spreadsheets/d/1s3Upkb2qTd6m02gyfdLdIgkqdHE1TD2ga0LU8BdDnKY/edit?usp=sharing)
