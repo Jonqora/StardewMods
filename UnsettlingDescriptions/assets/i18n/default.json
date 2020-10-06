@@ -323,6 +323,9 @@
         "216": {
           "4": "Not big enough for meat. Storing crops and forage ingredients will have to do."
         }
+      },
+      "When": {
+        "DescribeBigCraftables": true
       }
     },
     {
@@ -340,7 +343,7 @@
           "9": "A monument constructed with the volatile technology of the dwarves."
         },
         "Water Obelisk": {
-          "9": "A monument imbued wiith the dangerous magic of the siren's call."
+          "9": "A monument imbued with the dangerous magic of the siren's call."
         },
         "Desert Obelisk": {
           "9": "A monument summoned by the arcane power of corrupted beings."
@@ -393,6 +396,9 @@
         "Fish Pond": {
           "9": "Toss your fish into a bottomless hole and hope they keep breeding down there."
         }
+      },
+      "When": {
+        "DescribeBuildings": true
       }
     },
     {
@@ -439,30 +445,15 @@
         "806": {
           "1": "A little tight on the toes."
         }
+      },
+      "When": {
+        "DescribeBoots": true
       }
     },
     {
       "LogName": "Edit ClothingInformation descriptions",
       "Action": "EditData",
       "Target": "Data/ClothingInformation",
-      "Entries": {
-        "1001": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1024": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1025": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1044": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1047": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1048": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1052": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1061": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1070": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1083": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1092": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1096": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1097": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1102": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1105": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt",
-        "1106": "Shirt/Shirt/A wearable shirt./0/-1/50/255 255 255/false/Shirt"
-      },
       "Fields": {
         "-1": {
           "2": "Totally optional."
@@ -484,9 +475,6 @@
         },
         "15": {
           "2": "The mayor's used silk shorts. They look better on you than on Marnie's floor."
-        },
-        "1001": {
-          "2": "This shirt hardens and cracks as it dries."
         },
         "1003": {
           "2": "Sewn out of warm, leathery, breathable bat wings."
@@ -515,12 +503,6 @@
         "1017": {
           "2": "For holding up your lucky shorts."
         },
-        "1024": {
-          "2": "There's soft cheese mashed into the seams."
-        },
-        "1025": {
-          "2": "There's cheese in the armpits."
-        },
         "1029": {
           "2": "Handwashing instructions for this tough garment say to \"beat it with a stick or other object\"."
         },
@@ -536,47 +518,8 @@
         "1039": {
           "2": "Reclaim your sad childhood."
         },
-        "1044": {
-          "2": "Chilly when worn. Even in midsummer."
-        },
-        "1047": {
-          "2": "This stiff, dark brown shirt keeps giving you splinters."
-        },
-        "1048": {
-          "2": "Highly flammable."
-        },
-        "1052": {
-          "2": "This charmed clothing item is banned from casinos."
-        },
-        "1061": {
-          "2": "It itches, and there's always crumbs all down the front."
-        },
-        "1070": {
-          "2": "The fairy bone dye used to color this shirt is magical, morbid and dangerous."
-        },
         "1071": {
           "2": "It smells of sour milk."
-        },
-        "1083": {
-          "2": "Singes all your chest hair right off. The scent lingers."
-        },
-        "1092": {
-          "2": "Oh my. This fabric is rather see-through..."
-        },
-        "1096": {
-          "2": "The fabric was dyed with slime monster organs."
-        },
-        "1097": {
-          "2": "May cause chaffing and bleeding of the nipples."
-        },
-        "1102": {
-          "2": "If the fabric's protective coating wears off, this shirt will dissolve in the wash."
-        },
-        "1105": {
-          "2": "Join Us. Thrive."
-        },
-        "1106": {
-          "2": "Doubles as a portable charger."
         },
         "1131": {
           "2": "The seams are rough and it's flecked with rust."
@@ -591,7 +534,7 @@
           "2": "Costume armor suitable for LARPing. Provides no real protection."
         },
         "1149": {
-          "2": "Flimsy with a noticable patina. Provides no protection."
+          "2": "Flimsy with a noticeable patina. Provides no protection."
         },
         "1150": {
           "2": "Heavy, soft, and expensive, it provides no meaningful protection."
@@ -731,6 +674,9 @@
         "1289": {
           "2": "A stylish suit for an ex-lover's wedding or an eagerly-awaited funeral."
         }
+      },
+      "When": {
+        "DescribeClothing": true
       }
     },
     {
@@ -805,7 +751,7 @@
           "1": "100% real cow skin."
         },
         "37": {
-          "1": "This town ain\u00e2\u20ac\u2122t big enough for the two of us! No, really, somebody died in this hat."
+          "1": "This town ain't big enough for the two of us! No, really, somebody died in this hat."
         },
         "38": {
           "1": "The suede material is uncomfortably damp."
@@ -864,6 +810,9 @@
         "71": {
           "1": "It may be practical, but your style choices are hideous."
         }
+      },
+      "When": {
+        "DescribeHats": true
       }
     },
     {
@@ -1229,7 +1178,7 @@
           "5": "You can still taste the dirt."
         },
         "206": {
-          "5": "It has pineapples on it. *shudder*"
+          "5": "It has pineapples on it. Urgh."
         },
         "207": {
           "5": "Sticks heavily to the pot and to your insides."
@@ -1616,7 +1565,7 @@
           "5": "The most ancient and versatile of all weapons and tools."
         },
         "392": {
-          "5": "A beautiful specimen. Washed up like this, you can pretend there\u00e2\u20ac\u2122s still plenty in the sea."
+          "5": "A beautiful specimen. Washed up like this, you can pretend there's still plenty in the sea."
         },
         "393": {
           "5": "A structure formed by beautiful, endangered species ravaged by human ecological damage."
@@ -1652,7 +1601,7 @@
           "5": "Flosses your teeth and gums as you eat it. Moderate to severe bleeding is normal."
         },
         "404": {
-          "5": "Someday they will decompose *your* remains. If you must eat, chew gently."
+          "5": "Someday they will decompose YOUR remains. If you must eat, chew gently."
         },
         "405": {
           "5": "Decorate with milled tree carcasses. Place on the ground to create paths or floors."
@@ -1793,7 +1742,7 @@
           "5": "An inexpensive, fast-growing trap for beginner farmers. Plant in spring, 4 days."
         },
         "473": {
-          "5": "It doesn't *feel* magical, but you never know. Plant in spring, 10 days, reharvestable. Trellis crop."
+          "5": "It doesn't feel magical, but you never know. Plant in spring, 10 days, reharvestable. Trellis crop."
         },
         "474": {
           "5": "The crop it grows is ghostly pale. Plant in spring, 12 days."
@@ -1994,7 +1943,7 @@
           "5": "Swells up to twice its original size when heated."
         },
         "551": {
-          "5": "They say the posessor of such a stone can command werewolves."
+          "5": "They say the possessor of such a stone can command werewolves."
         },
         "552": {
           "5": "Toxic and water-soluble. Please do not insert it into any orifices."
@@ -2144,7 +2093,7 @@
           "5": "Watch out for little worms that also like to eat crisp radishes."
         },
         "610": {
-          "5": "A splendid m\u00c3\u00a9lange of texture from mushy blueberries, fuzzy apricots, and underripe melon."
+          "5": "A splendid mélange of texture from mushy blueberries, fuzzy apricots, and underripe melon."
         },
         "611": {
           "5": "Blackberries very often harbor small worms inside them. They're not harmful though, and you won't even notice them when cooked!"
@@ -2294,7 +2243,7 @@
           "5": "Place in the water and load with tantalizing insect bits. Return next day for a stinky surprise!"
         },
         "715": {
-          "5": "Raising them in captivity is difficult; their cannibalistic behaviour limits profits."
+          "5": "Raising them in captivity is difficult; their cannibalistic behavior limits profits."
         },
         "716": {
           "5": "Their sperm are amoeba-shaped and crawl towards the eggs."
@@ -2408,7 +2357,7 @@
           "5": "Most definitely unwashed."
         },
         "790": {
-          "5": "Stained with what you *hope* is berry juice. It smells like Linus, and he smells awful."
+          "5": "Stained with what you hope is berry juice. It smells like Linus, and he smells awful."
         },
         "795": {
           "5": "Shadows have mutated this species beyond repair. Keep an eye out behind you, you could be next."
@@ -2473,6 +2422,9 @@
         "269": {
           "5": "It's up to no good."
         }
+      },
+      "When": {
+        "DescribeObjects": true
       }
     },
     {
@@ -2490,7 +2442,7 @@
           "1": "Saps the life force from your enemies and drives it through your veins."
         },
         "3": {
-          "1": "This sword doesn't sit right in your hands. Something about you feels *wrong*."
+          "1": "This sword doesn't sit right in your hands. Something about you feels \"wrong\"."
         },
         "4": {
           "1": "You wield the power of the universe in your hands. Don't drop it."
@@ -2594,6 +2546,9 @@
         "53": {
           "1": "From the hands of the Reaper himself!"
         }
+      },
+      "When": {
+        "DescribeWeapons": true
       }
     },
     {
@@ -2612,6 +2567,9 @@
         "FishingRod.cs.14042": "Used to drag unsuspecting fish to their deaths. A fun and relaxing pastime.",
         "FishingRod.cs.trainingRodDescription": "Too incompetent to use a normal fishing rod, huh? Sucks to be you.",
         "Shears.cs.14241": "Strip sheep naked to steal their wool."
+      },
+      "When": {
+        "DescribeTools": true
       }
     }
   ]

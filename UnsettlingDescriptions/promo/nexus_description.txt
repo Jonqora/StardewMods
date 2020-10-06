@@ -5,7 +5,7 @@ Does your game feel as bland as fiddlehead risotto? As common as carp? Install t
 [center][i]Currently includes reinvented descriptions for:[/i]
 [b]534[/b] small objects   [b]38[/b] weapons
 [b]106[/b] large objects   ﻿[b]13[/b] boots
-[b]89[/b] pants & shirts   ﻿[b]42[/b] hats
+[b]73[/b] pants & shirts   ﻿[b]42[/b] hats
 [b]21[/b] buildings   ﻿[b]11[/b] tools[/center]
 
 [center][img]https://staticdelivery.nexusmods.com/mods/1303/images/6822/6822-1601489199-668368847.png[/img][/center]

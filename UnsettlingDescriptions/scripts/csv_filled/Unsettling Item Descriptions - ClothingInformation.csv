@@ -166,7 +166,7 @@ tilesheet_coordinates,key,name,image,imageF,made_with,unsettling_description,sil
 "(16, 288)",1146,Shirt,,,Topaz,TODO,,
 "(24, 288)",1147,Shirt,,,Jade,TODO,,
 "(32, 288)",1148,Steel Breastplate,,,Iron Bar,Costume armor suitable for LARPing. Provides no real protection.,,Decorative armor made from steel.
-"(40, 288)",1149,Copper Breastplate,,,Copper Bar,Flimsy with a noticable patina. Provides no protection.,,Decorative armor made from copper.
+"(40, 288)",1149,Copper Breastplate,,,Copper Bar,Flimsy with a noticeable patina. Provides no protection.,,Decorative armor made from copper.
 "(48, 288)",1150,Gold Breastplate,,,Gold Bar,"Heavy, soft, and expensive, it provides no meaningful protection.",,Decorative armor made from solid gold.
 "(56, 288)",1151,Iridium Breastplate,,,Iridium Bar,"Flashy and ostentatious, it provides zero protection to the wearer.",,Decorative armor made from pure iridium.
 "(72, 288)",1153,Fake Muscles Shirt,,,Muscle Remedy,TODO,,"You could hit the gym, or you could just wear this instead."

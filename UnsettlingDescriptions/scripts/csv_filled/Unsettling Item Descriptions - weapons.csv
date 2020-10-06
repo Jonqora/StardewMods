@@ -2,7 +2,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(0, 0)",0,Rusty Sword,,"Bestows tetanus on your enemies. And on you, if you're not careful.",,"A rusty, dull old sword."
 "(16, 0)",1,Silver Saber,,Helpful when the howls you hear aren't just ordinary howls.,,Plated with silver to deter rust.
 "(32, 0)",2,Dark Sword,,Saps the life force from your enemies and drives it through your veins.,,It's glowing with vampire energy.
-"(48, 0)",3,Holy Blade,,This sword doesn't sit right in your hands. Something about you feels *wrong*.,,It feels hopeful to wield.
+"(48, 0)",3,Holy Blade,,"This sword doesn't sit right in your hands. Something about you feels ""wrong"".",,It feels hopeful to wield.
 "(64, 0)",4,Galaxy Sword,,You wield the power of the universe in your hands. Don't drop it.,,It's unlike anything you've ever seen.
 "(80, 0)",5,Bone Sword,,"A human leg bone, sharpened into a crude but piercing sword.",,A very light piece of sharpened bone.
 "(96, 0)",6,Iron Edge,,Particularly effective against fae folk.,,A heavy broadsword.

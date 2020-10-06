@@ -6,7 +6,7 @@ Does your game feel as bland as fiddlehead risotto? As common as carp? Install t
 * **106** large objects
 * **38** weapons
 * ﻿**13** boots
-* **89** pants & shirts
+* **73** pants & shirts
 * **42** hats
 * **21** buildings
 * ﻿**11** tools

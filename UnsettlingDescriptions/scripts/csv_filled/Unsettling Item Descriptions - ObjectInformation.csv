@@ -128,7 +128,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(176, 128)",203,Strange Bun,,What's inside? OH SWEET YOBA IT'S SPIDERS!,,What's inside?
 "(192, 128)",204,Lucky Lunch,,So tasty that luck-bringing spirits will nest in your belly to eat it.,,A special little meal.
 "(208, 128)",205,Fried Mushroom,,You can still taste the dirt.,,Earthy and aromatic.
-"(224, 128)",206,Pizza,,It has pineapples on it. *shudder*,,It's popular for all the right reasons.
+"(224, 128)",206,Pizza,,It has pineapples on it. Urgh.,,It's popular for all the right reasons.
 "(240, 128)",207,Bean Hotpot,,Sticks heavily to the pot and to your insides.,,It sure is healthy.
 "(256, 128)",208,Glazed Yams,,"If you can't stomach eating your vegetables, drown them in sugar first.",,Sweet and satisfying... The sugar gives it a hint of caramel.
 "(272, 128)",209,Carp Surprise,,The carp is not the surprising part of this meal.,,It's bland and oily.
@@ -271,7 +271,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(32, 256)",386,Iridium Ore,,Choking hazard: Not for children under 30 years.,,An exotic ore with many curious properties. Can be smelted into bars.
 "(64, 256)",388,Wood,,A highly flammable building material.,,"A sturdy, yet flexible plant material with a wide variety of uses."
 "(96, 256)",390,Stone,,The most ancient and versatile of all weapons and tools.,,A common material with many uses in crafting and building.
-"(128, 256)",392,Nautilus Shell,,"A beautiful specimen. Washed up like this, you can pretend there’s still plenty in the sea.",,An ancient shell.
+"(128, 256)",392,Nautilus Shell,,"A beautiful specimen. Washed up like this, you can pretend there's still plenty in the sea.",,An ancient shell.
 "(144, 256)",393,Coral,,"A structure formed by beautiful, endangered species ravaged by human ecological damage.",,A colony of tiny creatures that clump together to form beautiful structures.
 "(160, 256)",394,Rainbow Shell,,The poor hermit crab needed this more than you did.,,It's a very beautiful shell.
 "(176, 256)",395,Coffee,,"Brown, bitter liquid made from straining hot water through burnt, pulverized seeds.",,It smells delicious. This is sure to give you a boost.
@@ -283,7 +283,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(272, 256)",401,Straw Floor,,Toss dead grass around for a nice fall look. Place on the ground to create paths or floors.,,Place on the ground to create paths or to spruce up your floors.
 "(288, 256)",402,Sweet Pea,,The flower's wiry tendrils cling possessively to its surroundings.,,A fragrant summer flower.
 "(304, 256)",403,Field Snack,,Flosses your teeth and gums as you eat it. Moderate to severe bleeding is normal.,,A quick snack to fuel the hungry forager.
-"(320, 256)",404,Common Mushroom,,"Someday they will decompose *your* remains. If you must eat, chew gently.",,"Slightly nutty, with good texture."
+"(320, 256)",404,Common Mushroom,,"Someday they will decompose YOUR remains. If you must eat, chew gently.",,"Slightly nutty, with good texture."
 "(336, 256)",405,Wood Path,,Decorate with milled tree carcasses. Place on the ground to create paths or floors.,,Place on the ground to create paths or to spruce up your floors.
 "(352, 256)",406,Wild Plum,,Watery and tasteless. The weak flavor is overpowered by the fruit's pungent smell.,,Tart and juicy with a pungent aroma.
 "(368, 256)",407,Gravel Path,,"Small, sharp rocks to step on. Place on the ground to create paths or floors.",,Place on the ground to create paths or to spruce up your floors.
@@ -335,7 +335,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(144, 304)",465,Speed-Gro,,You have to wonder if this would work on other things. Increases growth rate by at least 10%.,,Stimulates leaf production. Guaranteed to increase growth rate by at least 10%. Mix into tilled soil.
 "(160, 304)",466,Deluxe Speed-Gro,,The long-term effects on edible produce are untested. Increases growth rate by at least 25%.,,Stimulates leaf production. Guaranteed to increase growth rate by at least 25%. Mix into tilled soil.
 "(256, 304)",472,Parsnip Seeds,,"An inexpensive, fast-growing trap for beginner farmers. Plant in spring, 4 days.",,Plant these in the spring. Takes 4 days to mature.
-"(272, 304)",473,Bean Starter,,"It doesn't *feel* magical, but you never know. Plant in spring, 10 days, reharvestable. Trellis crop.",,"Plant these in the spring. Takes 10 days to mature, but keeps producing after that. Grows on a trellis."
+"(272, 304)",473,Bean Starter,,"It doesn't feel magical, but you never know. Plant in spring, 10 days, reharvestable. Trellis crop.",,"Plant these in the spring. Takes 10 days to mature, but keeps producing after that. Grows on a trellis."
 "(288, 304)",474,Cauliflower Seeds,,"The crop it grows is ghostly pale. Plant in spring, 12 days.",,Plant these in the spring. Takes 12 days to produce a large cauliflower.
 "(304, 304)",475,Potato Seeds,,"The package says ""seeds"", but these are clearly potato eyes. Plant in spring, 6 days. Chance for multiple harvest.",,"Plant these in the spring. Takes 6 days to mature, and has a chance of yielding multiple potatoes at harvest."
 "(320, 304)",476,Garlic Seeds,,"Plant quickly, before the vampires destroy them. Plant in spring, 4 days.",,Plant these in the spring. Takes 4 days to mature.
@@ -403,7 +403,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(320, 352)",548,Jamborite,,"A spiky, sinister-looking green crystal. It might be from another planet?",,The crystals are so tightly packed it almost looks fuzzy.
 "(336, 352)",549,Jagoite,,"Thousands of tiny microcrystals, each one unique and entirely forgettable.",,A high volume of tiny crystals makes it very glittery.
 "(352, 352)",550,Kyanite,,Swells up to twice its original size when heated.,,The geometric faces are as smooth as glass.
-"(368, 352)",551,Lunarite,,They say the posessor of such a stone can command werewolves.,,The cratered white orbs form a tight cluster.
+"(368, 352)",551,Lunarite,,They say the possessor of such a stone can command werewolves.,,The cratered white orbs form a tight cluster.
 "(0, 368)",552,Malachite,,Toxic and water-soluble. Please do not insert it into any orifices.,,"A popular ornamental stone, used in sculpture and to make green paint."
 "(16, 368)",553,Neptunite,,Reflected in its jet-black surface you can see your face... and another face behind you.,,A jet-black crystal that is unusually reflective.
 "(32, 368)",554,Lemon Stone,,Dwarves are said to use the powdered crystal both medicinally and recreationally.,,Some claim the powdered crystal is a dwarvish delicacy.
@@ -513,7 +513,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(192, 464)",708,Halibut,,"Born with an eye on each side of its head, one eye slowly migrates across as it grows.",,A flat fish that lives on the ocean floor.
 "(208, 464)",709,Hardwood,,A formidable length of hardened wood. Very pleasing to the touch.,,A special kind of wood with superior strength and beauty.
 "(224, 464)",710,Crab Pot,,Place in the water and load with tantalizing insect bits. Return next day for a stinky surprise!,,"Place it in the water, load it with bait, and check the next day to see if you've caught anything. Works in streams, lakes, and the ocean."
-"(304, 464)",715,Lobster,,Raising them in captivity is difficult; their cannibalistic behaviour limits profits.,,A large ocean-dwelling crustacean with a strong tail.
+"(304, 464)",715,Lobster,,Raising them in captivity is difficult; their cannibalistic behavior limits profits.,,A large ocean-dwelling crustacean with a strong tail.
 "(320, 464)",716,Crayfish,,Their sperm are amoeba-shaped and crawl towards the eggs.,,A small freshwater relative of the lobster.
 "(336, 464)",717,Crab,,"A sea spider, ready to be boiled alive and eaten fresh.",,A marine crustacean with two powerful pincers.
 "(352, 464)",718,Cockle,,"The cockle's large siphon pokes out from its shell, squirming like a giant tongue.",,A common saltwater clam.
@@ -560,7 +560,7 @@ tilesheet_coordinates,key,name,image,unsettling_description,silly_description,or
 "(304, 512)",787,Battery Pack,,Lightning-powered. It's probably safe.,,It's fully charged with precious energy.
 "(320, 512)",788,Lost Axe,,"The axe cries out for its owner. Faintly you can hear it whisper, ""Robin...""",,Robin's been looking everywhere for it.
 "(336, 512)",789,Lucky Purple Shorts,,Most definitely unwashed.,,Better not inspect these too closely.
-"(352, 512)",790,Berry Basket,,"Stained with what you *hope* is berry juice. It smells like Linus, and he smells awful.",,The fibers are stained with berry juice.
+"(352, 512)",790,Berry Basket,,"Stained with what you hope is berry juice. It smells like Linus, and he smells awful.",,The fibers are stained with berry juice.
 "(0, 528)",792,Weeds,,UNOBTAINABLE,,Ugly weeds.
 "(16, 528)",793,Weeds,,UNOBTAINABLE,,Ugly weeds.
 "(32, 528)",794,Weeds,,UNOBTAINABLE,,Ugly weeds.
