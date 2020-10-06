@@ -114,6 +114,30 @@ You should see the new item descriptions show up right away. Almost every descri
 
 If you want to help add to this mod by suggesting description ideas for missed items, you can join our contributor group by commenting on our [shared google speadsheet document!](https://docs.google.com/spreadsheets/d/1s3Upkb2qTd6m02gyfdLdIgkqdHE1TD2ga0LU8BdDnKY/edit?usp=sharing)
 
+
+## Config Settings
+After running SMAPI at least once with Unsettling Item Descriptions (and Content Patcher) installed, a `config.json` file will be created inside the `[CP] Unsettling Item Descriptions` mod folder. Open it in any text editor to change your config settings.
+
+
+- **DescribeObjects:** Use unsettling descriptions for normal objects. Defaults to `true`.
+
+- **DescribeBigCraftables:** Use unsettling descriptions for big craftables (large objects). Defaults to `true`.
+
+- **DescribeWeapons:** Use unsettling descriptions for weapons. Defaults to `true`.
+
+- **DescribeTools:** Use unsettling descriptions for tools. Defaults to `true`.
+
+
+- **DescribeBoots:** Use unsettling descriptions for shoes and boots. Defaults to `true`.
+
+- **DescribeHats:** Use unsettling descriptions for hats and headgear. Defaults to `true`.
+
+- **DescribeClothing:** Use unsettling descriptions for pants and shirts. Defaults to `true`.
+
+
+- **DescribeBuildings:** Use unsettling descriptions for farm buildings. Defaults to `true`.
+
+
 ---
 ## Notes
 ### ACKNOWLEDGEMENTS

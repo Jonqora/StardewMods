@@ -94,6 +94,29 @@ If you want to help add to this mod by suggesting description ideas for missed i
 
 
 
+[size=5][center][b]Config Settings[/b][/center][/size]After running SMAPI at least once with Unsettling Item Descriptions (and Content Patcher) installed, a [code]config.json[/code] file will be created inside the [code][CP] Unsettling Item Descriptions[/code] mod folder. Open it in any text editor to change your config settings.
+
+[b][size=3]DescribeObjects:[/size][/b]
+Use unsettling descriptions for normal objects. Defaults to [code]true[/code].
+[b][size=3]DescribeBigCraftables:[/size][/b]
+Use unsettling descriptions for big craftables (large objects). Defaults to [code]true[/code].
+[b][size=3]DescribeWeapons:[/size][/b]
+Use unsettling descriptions for weapons. Defaults to [code]true[/code].
+[b][size=3]DescribeTools:[/size][/b]
+Use unsettling descriptions for tools. Defaults to [code]true[/code].
+
+[b][size=3]DescribeBoots:[/size][/b]
+Use unsettling descriptions for shoes and boots. Defaults to [code]true[/code].
+[b][size=3]DescribeHats:[/size][/b]
+Use unsettling descriptions for hats and headwear. Defaults to [code]true[/code].
+[b][size=3]DescribeClothing:[/size][/b]
+Use unsettling descriptions for pants and shirts. Defaults to [code]true[/code].
+
+[b][size=3]DescribeBuildings:[/size][/b]
+Use unsettling descriptions for farm buildings. Defaults to [code]true[/code].
+
+
+
 [b][size=5][center]Notes[/center][/size][/b][size=4][b]ACKNOWLEDGEMENTS[/b][/size]
 [list]
 [*]This project was made possible by the joint creativity of many people! Huge thanks to contributors [url=https://www.nexusmods.com/users/8049772]Draylon[/url], [url=https://www.nexusmods.com/users/61873026]SwiftIsHere[/url], [url=https://www.nexusmods.com/users/48380238]foggywizard[/url], [url=https://www.nexusmods.com/users/84002498]Forsy :D[/url], [url=https://www.nexusmods.com/users/41011220]ItsBenter[/url], [url=https://www.nexusmods.com/users/12004908]Undare[/url], [url=https://www.nexusmods.com/users/3391358]Ruukas[/url], [url=https://www.nexusmods.com/users/85656033]ExnoticTest[/url], [url=https://github.com/KatrinaHoffert]Kat[/url], [url=https://www.nexusmods.com/users/94394293]General Alexis[/url], [url=https://www.nexusmods.com/users/18592979?tab=user+files]LenneDalben[/url], Glowbug, Wingheart, [url=https://www.nexusmods.com/stardewvalley/users/92469153]Arknir[/url], ssoshwac, Wobin, [url=https://www.nexusmods.com/stardewvalley/users/24986819]Gervig91[/url], [url=https://www.nexusmods.com/users/67314851?tab=user+files]Arcane[/url], and [url=https://www.nexusmods.com/users/91777683]icecreamrat[/url].
