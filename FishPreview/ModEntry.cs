@@ -179,7 +179,7 @@ namespace FishPreview
             // call a function to determine the x and y coords
             DetermineCoordinates(positions, bar, out int x, out int y);
             // call a function to draw the box
-            DrawAtCoordinates(x, y);
+            DrawAtCoordinates((int)(x * (Game1.options.zoomLevel / Game1.options.uiScale)), (int) (y * (Game1.options.zoomLevel / Game1.options.uiScale)));
         }
 
         private void DetermineCoordinates(IList<string> positions, BobberBar bar, out int x, out int y)
