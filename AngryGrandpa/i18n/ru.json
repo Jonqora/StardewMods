@@ -1,4 +1,4 @@
-﻿{
+{
     // NOTE TO TRANSLATORS: If you are here to help create a new translation file, thank you so much!
     // I prefer to publish all translations as part of the main mod to keep everything up to date.
     
@@ -34,16 +34,16 @@
     // Text that comes after [#] is the mail preview name; this is shown when you hover over a letter in collections.
 
     // If your language has grammatical gender, make sure the ordinal numbers match the word in your language for "year".
-    "GrandpaOrdinalYears": "первый|второй|третий|четвёртый|пятый|шестой|седьмой|восьмой|девятые|десятый",
+    "GrandpaOrdinalYears": "первого|второго|третьего|четвёртого|пятого|шестого|седьмого|восьмого|девятого|десятого",
     
     // Do not change {{ordinalYear}} tokens; these will automatically use an appropriate word from the list above.
     "GrandpaNote": "{0}-\n\nЖдите моего возвращения на заре вашего {{ordinalYear}} года.\n\n-Дедушка",
-    "GrandpaNoteMail": "@-^^Ждите моего возвращения на заре вашего {{ordinalYear}} года.^^-Дедушка[#]Записка дедушки",
+    "GrandpaNoteMail": "@-^^Ждите моего возвращения на заре вашего {{ordinalYear}} года.^^-Дедушка[#]Записка Дедушки",
 
     // Do not change {{smapiSDate}} tokens; these automatically generate a translated date string.
     // smapiSDate example: "Spring 1 in year 15" or "le 1 printemps de l'année 12"
     "GrandpaNoteTenPlusYears": "{0}-\n\nЖди моего возвращения {{smapiSDate}}.\n\n-Дедушка",
-    "GrandpaNoteMailTenPlusYears": "@-^^Жди моего возвращения {{smapiSDate}}.^^-Дедушка[#]Записка дедушки",
+    "GrandpaNoteMailTenPlusYears": "@-^^Жди моего возвращения {{smapiSDate}}.^^-Дедушка[#]Записка Дедушки",
     
 
 // =====================================
@@ -53,13 +53,13 @@
     // These text entries are brand-new messages that appear when you collect a bonus reward from Grandpa's Shrine.
     // In vanilla, finding the statue of perfection shows: "You found a peculiar statue behind Grandpa's Shrine."
 
-    "Object.cs.1CandleReward": "Вы нашли очень старое семя наверху мемориала.",
+    "Object.cs.1CandleReward": "Вы нашли очень старое семя на верхушке мемориала.",
     "Object.cs.2CandleReward": "Вы нашли доисторическое яйцо, спрятанное за мемориалом. Оно всегда было там?",
-    "Object.cs.3CandleReward": "Что-то мерцало под мемориалом дедушки ... редкий и мощный драгоценный камень!",
+    "Object.cs.3CandleReward": "Что-то сверкнуло под мемориалом дедушки ... редкий и мощный драгоценный камень!",
 
     // Points score message displayed at the top of the screen during the evaluation events."
 
-    "Event.cs.ShowGrandpaScore": "Оценка Дедушки: {{grandpaScore}} из {{maxScore}} великих почестей",
+    "Event.cs.ShowGrandpaScore": "Оценка Дедушки: {{grandpaScore}} из {{maxScore}} Великих Почестей",
 
 
 // ==================================
@@ -124,8 +124,8 @@
     "RepeatEvaluationEvent.Original-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Мой дорогой ребенок...{{gpaNeutral}}
-            #$b#Я рад что позвали меня. Мне любопытно увидеть прогресс, которого ты достиг.{{gpaSurprise}}
-            #$b#Я надеюсь, ты усердно работал с моего последнего визита?{{gpaHappy}}\"
+            #$b#Я рад что вы позвали меня. Мне любопытно увидеть ваш прогресс.{{gpaSurprise}}
+            #$b#Я надеюсь, вы усердно работали с моего последнего визита?{{gpaHappy}}\"
         /specificTemporarySprite grandpaNight/pause 4000
         /speak Grandpa \"Посмотрим...{{gpaStern}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
@@ -138,7 +138,7 @@
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Мой дорогой мальчик...^Моя дорогая внучка...{{gpaHappy}}
             #$b#Мы не виделись уже много лет. Ты был ещe совсем маленьким... Помнишь?
-            ^Мы не виделись уже много лет. Ты был тогда ещe совсем маленьким... Помнишь?{{gpaNeutral}}
+            ^Мы не виделись уже много лет. Ты была тогда ещe совсем маленькой... Помнишь?{{gpaNeutral}}
             #$b#Посмотри, какой длинный путь позади!{{gpaSurprise}}
             #$b#Может, ты уже и не помнишь меня, но я был здесь всe это время.{{gpaStern}}
             #$b#Видишь ли... Телом я покинул этот мир, но душой навсегда остался в долине Стардью.{{gpaNeutral}}\"
@@ -167,7 +167,7 @@
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Мой дорогой мальчик...^Моя дорогая внучка...{{gpaHappy}}
             #$b#Я рад, что ты снова призываешь меня. Возможно, я был... немного резковат в прошлый раз.{{gpaNeutral}}
-            #$b#Прости меня. Твоя работа на ферме была очень усердной, и я тобой горжусь.{{gpaSurprise}}\"
+            #$b#Прости меня. Ты очень усердно работал над своей фермой, и я тобой горжусь.{{gpaSurprise}}\"
         /specificTemporarySprite grandpaNight/pause 4000
         /speak Grandpa \"Посмотрим...{{gpaHappy}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
@@ -175,7 +175,7 @@
         /skippable/specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Мой дорогой ребенок...{{gpaHappy}}
             #$b#Я рад, что ты снова призываешь меня. Возможно, я был... немного резковат в прошлый раз.{{gpaNeutral}}
-            #$b#Прости меня. Твоя работа на ферме была очень усердной, и я тобой горжусь.{{gpaSurprise}}\"
+            #$b#Прости меня. Ты очень усердно работал над своей фермой, и я тобой горжусь.{{gpaSurprise}}\"
         /specificTemporarySprite grandpaNight/pause 4000
         /speak Grandpa \"Посмотрим...{{gpaHappy}}\"
         /grandpaEvaluation2/pause 3000/globalFade/removeTemporarySprites/playMusic none/pause 1000/end bed",
@@ -187,7 +187,7 @@
     "EvaluationEvent.Nuclear": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Мой дорогой мальчик...^Моя дорогая внучка...{{gpaHappy}}
-            #$b#Мы не виделись уже много лет. Ты была тогда еще совсем маленькой... Помнишь?
+            #$b#Мы не виделись уже много лет. Ты был тогда еще совсем маленький... Помнишь?
             ^Мы не виделись уже много лет. Ты была тогда еще совсем маленькой... Помнишь?{{gpaNeutral}}
             #$b#Я надеюсь, что за все это время ты сделал что-то из себя и фермы, которую я оставил тебе.{{gpaStern}}
             #$b#С момента своей смерти я не могу заботиться о %farm Ферме... и мой дух обеспокоен.{{gpaFrown}}
@@ -201,7 +201,7 @@
     "EvaluationEvent.Nuclear-gn": "grandpas_theme/-2000 -1000/farmer 13 23 2/broadcastEvent/addTemporaryActor Grandpa 1 1 -100 -100 2 true
         /specificTemporarySprite grandpaSpirit/viewport -1000 -1000 true/pause 10000
         /speak Grandpa \"Мой дорогой ребенок...{{gpaHappy}}
-            #$b#\"Мы не виделись уже много лет. Ты была тогда еще совсем маленькой... Помнишь?{{gpaNeutral}}
+            #$b#\"Мы не виделись уже много лет. Ты был тогда еще совсем маленький... Помнишь?{{gpaNeutral}}
             #$b#Я надеюсь, что за все это время ты сделал что-то из себя и фермы, которую я оставил тебе.{{gpaStern}}
             #$b#С момента своей смерти я не могу заботиться о %farm Ферме... и мой дух обеспокоен.{{gpaFrown}}
             #$b#Возможно, твоя работа на ферме наконец позволит мне обрести покой.{{gpaHappy}}\"
@@ -238,7 +238,7 @@
    // Token used in 1CandleResult.Original {{pastYears}} when grandpa talks about how long you've been there. 
     // E.g. "you haven't accomplished very much during [this past year]"
     // The first in list, "so far", is used if Config.YearsBeforeEvaluation = 0 (grandpa visits on the morning of 1 Spring year 1)
-    "GrandpaDuringPastYears": "это время|в прошлом году|эти два года|эти три года|эти четыре года |эти пять лет|эти щесть лет|эти семь лет|эти восемь лет|эти девять лет",
+    "GrandpaDuringPastYears": "это время|год|эти два года|эти три года|эти четыре года |эти пять лет|эти шесть лет|эти семь лет|эти восемь лет|эти девять лет",
     // Used instead when Config.YearsBeforeEvaluation = 10 or more
     "GrandpaDuringManyYears": "все эти годы",
     // Token used for {{pastYears}} when Config.YearsBeforeEvaluation = 10 or more AND Config.GrandpaDialogue = "Nuclear"
@@ -262,15 +262,15 @@
   // "ORIGINAL" DIALOGUE VARIANT
 
     // Different, harsher scripts from the earliest versions of Stardew Valley
-    "1CandleResult.Original": "Мне жаль говорить ... но ты не достиг многого за {{pastYears}}.{{gpaFrown}}
+    "1CandleResult.Original": "Мне жаль говорить ... но ты мало чего сделал за {{pastYears}}.{{gpaFrown}}
         #$b#Может, мне стоило оставить ферму другому из внуков...{{gpaSigh}}",
-    "1CandleResult.Original-gn": "Мне жаль говорить ... но ты не достиг многого за {{pastYears}}.{{gpaFrown}}
+    "1CandleResult.Original-gn": "Мне жаль говорить ... но ты мало чего сделал за {{pastYears}}.{{gpaFrown}}
         #$b#Может, мне стоило оставить ферму другому из внуков...{{gpaSigh}}",
 
     "2CandleResult.Original": "Ты проделал достойную работу с этим местом.{{gpaNeutral}}
-        #$b#Кажется, ты старался изо всех сил ... это все, что я могу просить.{{gpaStern}}",
+        #$b#Кажется, ты старался изо всех сил ... это все, о чём я мог просить.{{gpaStern}}",
     "2CandleResult.Original-gn": "Ты проделал достойную работу с этим местом.{{gpaNeutral}}
-        #$b#Кажется, ты старался изо всех сил ... это все, что я могу просить.{{gpaStern}}",
+        #$b#Кажется, ты старался изо всех сил ... это все, о чём я мог просить.{{gpaStern}}",
 
     "3CandleResult.Original": "Ты хорошо потрудился, мой мальчик.^Дорогая, ты отлично справилась.{{gpaHappy}}
         #$b#Я впервые вижу, чтобы %farm ферма так процветала! Нашей семье есть чем гордиться.{{gpaSurprise}}
@@ -290,7 +290,7 @@
     "1CandleReevaluation.Original": "Мне жаль говорить... но ты все еще не достиг очень многого.{{gpaFrown}}
         #$b#Другие мои внуки позаботились бы о вещах получше...{{gpaSigh}}
         #$b#Я должен вернуться в другой мир... позови мне снова, если у тебя есть что-то стоящее.{{gpaStern}}",
-    "1CandleReevaluation.Original-gn": "Мне жаль говорит ... но ты все еще не достигла очень многого..{{gpaFrown}}
+    "1CandleReevaluation.Original-gn": "Мне жаль говорить ... но ты все еще не достигла очень многого..{{gpaFrown}}
         #$b#Другие мои внуки позаботились бы о вещах получше...{{gpaSigh}}
         #$b#Я должен вернуться в другой мир... позови мне снова, если у тебя есть что-то стоящее.{{gpaStern}}",
 
@@ -384,7 +384,7 @@
   // "NUCLEAR" DIALOGUE VARIANT
     
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
-    "1CandleResult.Nuclear": "Какого хера ты сделал {{pastYears}}?{{gpaShock}}
+    "1CandleResult.Nuclear": "Какого хера ты делал {{pastYears}}?{{gpaShock}}
         #$b#Серьёзно, @...{{gpaFrown}}
         #$b#Ты называешь это фермой?{{gpaAngry}}
         #$b#Я видел более чистые участки земли в зонах военных действий.{{gpaRage}}
@@ -399,9 +399,9 @@
                 _...тут неловкое молчание.{{gpaFrown}}
             _Это место было свалкой, когда я его получил. Я делаю все, что могу, чтобы убрать весь тот беспорядок, что ты оставил!
                 _Ну прости, если моя смерть причинила неудобства твоему наследству... засранец.{{gpaRage}}
-            _Пошел нахуй, дедушка.
+            _Пошел нахуй, Дедушка.
                 _...дедушка был оскорблён.{{gpaShock}}'",
-    "1CandleResult.Nuclear-gn": "Какого хера ты сделал{{pastYears}}?{{gpaShock}}
+    "1CandleResult.Nuclear-gn": "Какого хера ты делал{{pastYears}}?{{gpaShock}}
         #$b#Серьезно, @...{{gpaFrown}}
         #$b#Ты называешь это фермой?{{gpaAngry}}
         #$b#Я видел более чистые участки земли в зонах военных действий.{{gpaRage}}
@@ -416,16 +416,16 @@
                 _...тут неловкое молчание.{{gpaFrown}}
             _Это место было свалкой, когда я его получил. Я делаю все, что могу, чтобы убрать весь тот беспорядок, что ты оставил!
                 _Ну прости, если моя смерть причинила неудобства твоему наследству... засранец.{{gpaRage}}
-            _Пошел нахуй, дедушка.
+            _Пошел нахуй, Дедушка.
                 _...дедушка был оскорблён.{{gpaShock}}'",
 
-    "2CandleResult.Nuclear": "Это все, что тебе удалось сделать в {{pastYears}}?{{gpaAngry}}
+    "2CandleResult.Nuclear": "Это все, что тебе удалось сделать за {{pastYears}}?{{gpaAngry}}
         #$b#...{{gpaFrown}}
         #$b#Если честно, на ферме бывали времена и получше.{{gpaStern}}
         #$b#Это действительно не то, что было раньше... но, полагаю, ты сделал все, что мог.{{gpaFrown}}
         #$b#...{{gpaSigh}}
         #$b#Хорошо это или плохо, будущее %farm фермы в твоих руках, теперь...{{gpaFrown}}",
-    "2CandleResult.Nuclear-gn": "Это все, что тебе удалось сделать в {{pastYears}}?{{gpaAngry}}
+    "2CandleResult.Nuclear-gn": "Это все, что тебе удалось сделать за {{pastYears}}?{{gpaAngry}}
         #$b#...{{gpaStern}}
         #$b#Если честно, на ферме бывали времена и получше.{{gpaStern}}
         #$b#Это действительно не то, что было раньше... но, полагаю, ты сделал все, что мог.{{gpaFrown}}
@@ -469,20 +469,20 @@
 
     // Exaggerated, humorous script where grandpa is more assertive with his opinions. May contain profanity. Be creative! :)
     "1CandleReevaluation.Nuclear": "Я подумал, может быть, я был слишком резок в прошлый раз, поэтому я вернулся, чтобы посмотреть...{{gpaSurprise}}
-        #$b#But here I am, and you've still accomplished fuck-all.{{gpaRage}}
-        #$b#Your cousin %rival's progress on his farm would put you to shame.
-        ^Your cousin %rival's progress on her farm would put you to shame.{{gpaAngry}}
-        #$b#This visit was a waste of time.{{gpaFrown}}
+        #$b#Но вот я вернулся, а ты так НИХУЯ и не сделал.{{gpaRage}}
+        #$b#Ты - НИЧТОЖЕСТВО в сравнении с твоим кузеном %rival.
+        ^Ты - НИЧТОЖЕСТВО в сравнении с твоим кузеном %rival.{{gpaAngry}}
+        #$b#И зачем я припёрся на эту помойку...{{gpaFrown}}
         #$b#...{{gpaSigh}}
-        #$b#I'm leaving... don't summon me again unless you have something worth seeing.{{gpaFrown}}
-        #$b#%Wow, grandpa is really angry. I better not disappoint him again.",
+        #$b#Кто куда, а я по съебам. Не зови меня пока ты не сделаешь что-нибудь, достойное уважения.{{gpaFrown}}
+        #$b#%Ох, Дедушка по-настоящему зол. Лучше больше его не расстраивать.",
     "1CandleReevaluation.Nuclear-gn": "Я подумал, может быть, я был слишком резок в прошлый раз, поэтому я вернулся, чтобы посмотреть...{{gpaSurprise}}
-        #$b#But here I am, and you've still accomplished fuck-all.{{gpaRage}}
-        #$b#Your cousin %rival's progress on their farm would put you to shame.{{gpaAngry}}
-        #$b#This visit was a waste of time.{{gpaFrown}}
+        #$b#Я вернулся, а ты так НИХУЯ и не сделал.{{gpaRage}}
+        #$b#Твой кузен - %rival теперь мой единственный внук.{{gpaAngry}}
+        #$b#И нахуя я отдал мою ферму этому уродцу.{{gpaFrown}}
         #$b#...{{gpaSigh}}
-        #$b#I'm leaving... don't summon me again unless you have something worth seeing.{{gpaFrown}}
-        #$b#%Wow, grandpa is really angry. I better not disappoint him again.",
+        #$b#Я ухожу. Не зовите меня на эту помойку, пока вы не сделаете из неё ферму.{{gpaFrown}}
+        #$b#%Ох, Дедушка по-настоящему зол. Лучше больше его не расстраивать",
     
     "2CandleReevaluation.Nuclear": "Это все, что ты хотел мне показать?{{gpaNeutral}}
         #$b#Я надеялся на что-то более... ну не знаю.{{gpaStern}}
@@ -540,30 +540,30 @@
     // These descriptions are visible if players install Generic Mod Config Menu (optional) 
     // and view or change their config settings from the lower left button in the game's main menu.
     
-    "DialogueOptions.title": "Параметры диалогов", // Category title
+    "DialogueOptions.title": "Параметры диалога", // Category title
 
-    "GrandpaDialogue.name": "Выберите стиль общения дедушки",
+    "GrandpaDialogue.name": "Выберите стиль общения Дедушки",
     "GrandpaDialogue.description": "Изменяет диалог, используемый во время событий оценки и повторной оценки:{{NL}}  Original - Более жесткий диалог, встречается в ранних версиях игры{{NL}}  Vanilla - Обычный диалог, используемый в игре с версии 1.05{{NL}}  Nuclear - Дедушка очень увлечен своим мнением. ВНИМАНИЕ: Непристойное!",
     // Note to translators - do not translate the option names Original/Vanilla/Nuclear
 
-    "GenderNeutrality.name": "Используйте гендерно-нейтральный диалог",
-    "GenderNeutrality.description": "Удаляет все ссылки на пол игрока в диалоге дедушки.",
+    "GenderNeutrality.name": "Использовать гендерно-нейтральный диалог",
+    "GenderNeutrality.description": "Удаляет все(нет) ссылки на пол игрока в диалоге Дедушки.",
 
     "ExpressivePortraits.name": "Выразительные диалоги портретов",
-    "ExpressivePortraits.description": "Дарит дедушке множество новых выражений лица",
+    "ExpressivePortraits.description": "Дарит Дедушке множество новых выражений лица",
 
-    "PortraitStyle.name": "Choose grandpa's portrait art",
-    "PortraitStyle.description": "Changes the art style used for grandpa's expressive portraits:{{NL}}  auto - Checks for compatible portrait mods and uses a matching style if available{{NL}}  Vanilla - Grandpa matches the vanilla art style even if other portrait mods are installed{{NL}}  Poltergeister - Matches Poltergeister's art style no matter what portrait mods are installed",
+    "PortraitStyle.name": "Выбор портрета Дедушки",
+    "PortraitStyle.description": "Изменяет стиль портрета Дедушки:{{NL}}  auto - Находит совместимые портретные моды и по возможности использует их версию Дедушки{{NL}}  Vanilla - Портрет Дедушки остаётся неизменным, даже при наличии портретных модов{{NL}}  Poltergeister - Заменяет портреты работами Poltergeiste, даже если установлены другие моды",
     // Note to translators - do not translate the option names auto/Vanilla/Poltergeister
 
     "ScoringOptions.title": "Варианты оценки", // Category title
 
     "ScoringSystem.name": "Выберите систему оценки",
-    "ScoringSystem.description": "Изменение порядка подсчета очков и количества баллов, необходимых для того, чтобы заработать 4 свечи:{{NL}}  Original - Оригинальная оценка игры: 13 возможных очков, 12 заработанных 4 свечи{{NL}}  Vanilla - Нормальная оценка игры: 21 возможных очков, 12+ зарабатывает 4 свечи{{NL}}  Hard - Более жесткий вариант оценки: требуется 18/21 балла для того, чтобы заработать 4 свечи{{NL}}  Expert - Самый сложный вариант оценки: требуется все 21 очко за 4 свечи!",
+    "ScoringSystem.description": "Изменение порядка подсчета очков и количества баллов, необходимых для того, чтобы заработать 4 свечи:{{NL}}  Original - Оригинальная оценка игры: 13 возможных очков, 12 заработанных 4 свечи{{NL}}  Vanilla - Нормальная оценка игры: 21 возможных очков, 12+ зарабатывает 4 свечи{{NL}}  Hard - Более жесткий вариант оценки: требуется 18/21 балла для того, чтобы заработать 4 свечи{{NL}}  Expert - Самый сложный вариант оценки: требуется все 21 очка за 4 свечи!",
     // Note to translators - do not translate the option names Original/Vanilla/Hard/Expert
 
-    "YearsBeforeEvaluation.name": "Годы до оценки",
-    "YearsBeforeEvaluation.description": "Сколько игровых лет ждать до первого визита дедушки:{{NL}}  По умолчанию [2] - дедушка появится весной 1 года 3",
+    "YearsBeforeEvaluation.name": "Лет до оценки",
+    "YearsBeforeEvaluation.description": "Сколько игровых лет ждать до первого визита Дедушки:{{NL}}  По умолчанию [2] - Дедушка появится весной 1 года 3",
 
     "ShowPointsTotal.name": "Показать всего очков",
     "ShowPointsTotal.description": "Отображение необработанной оценки во время оценивания",
@@ -609,12 +609,12 @@
     
     // Players can view these command descriptions if they use the help command in the SMAPI console.
 
-    "reset_evaluation.description": "Сбрасывает все оценки дедушки и флаги почты/событий, позволяя вам повторно испытать событий оценки и повторной оценки в существующем сохранении поздней игры.",
+    "reset_evaluation.description": "Сбрасывает все оценки Дедушки и флаги почты/событий, позволяя вам повторно испытать события оценки и повторной оценки в существующем сохранении поздней игры.",
 
-    "grandpa_config.description": "Печатает активные настройки конфигурации Angry Grandpa на консоли.",
+    "grandpa_config.description": "Печатает активные настройки конфигурации Angry Grandpa в консоль.",
     
-    "grandpa_score.description": "Оценивает результат оценки фермы с использованием критериев оценки дедушки.",
+    "grandpa_score.description": "Оценивает результат оценки фермы с использованием критериев оценки Дедушки.",
 
-    "grandpa_debug.description": "Запускает команды grandpa_config и grandpa_score, а также полезную информацию об отладке.",
+    "grandpa_debug.description": "Запускает команды grandpa_config и grandpa_score, а также полезную информацию для отладки.",
     // Note: do not change grandpa_config or grandpa_score as these are commands.
 }
